@@ -1,1 +1,439 @@
 
+# Assignment Questions 12
+
+<aside>
+💡 **Question 1**
+
+Given a singly linked list, delete **middle** of the linked list. For example, if given linked list is 1->2->**3**->4->5 then linked list should be modified to 1->2->4->5.If there are **even** nodes, then there would be **two middle** nodes, we need to delete the second middle element. For example, if given linked list is 1->2->3->4->5->6 then it should be modified to 1->2->3->5->6.If the input linked list is NULL or has 1 node, then it should return NULL
+
+**Example 1:**
+
+```
+Input:
+LinkedList: 1->2->3->4->5
+Output:1 2 4 5
+
+```
+
+**Example 2:**
+
+```
+Input:
+LinkedList: 2->4->6->7->5->1
+Output:2 4 6 5 1
+```
+class node{
+    constructor(data){
+        this.data=data;
+        this.next=null;
+    }
+}
+function deletemiddlenode(head){
+    if(head===null||head.next===null){//when node we have such as the single node
+        return head;
+    }
+    //assign the pointer
+    let slowptr=head;
+    let fastptr=head;
+    let prevptr=null;
+//this will assign the after find the middle node it will move into skip the middle node
+    while(fatsptr!==null&&fastptr.next!==null){
+        fastptr=fastptr.next.next;//move the pointer two step at a time
+        prevptr=slowptr;//helpful to stand the before the middle node
+        slowptr=slowptr.next;//stand at the middle node
+    }
+    prevptr.next=slowptr.next;
+    return head;
+
+}
+
+//before we delete the middle node
+const head = new node(1);
+head.next = new node(2);
+head.next.next = new node(3);
+head.next.next.next = new node(4);
+head.next.next.next.next = new node(5);
+
+console.log("Original linked list:");
+printlinkedlist(head);
+//after delete the middle node
+const newhead = deletemiddlenode(head);
+
+console.log("Modified linked list:");
+printlinkedlist(newHead);
+
+
+function printlinkedlist(head) {
+    let current = head;
+    while (current !== null) {
+        console.log(current.data);
+        current = current.next;
+    }
+
+</aside>
+
+<aside>
+💡 **Question 2**
+
+Given a linked list of **N** nodes. The task is to check if the linked list has a loop. Linked list can contain self loop.
+
+**Example 1:**
+
+```
+Input:
+N = 3
+value[] = {1,3,4}
+x(position at which tail is connected) = 2
+Output:True
+Explanation:In above test case N = 3.
+The linked list with nodes N = 3 is
+given. Then value of x=2 is given which
+means last node is connected with xth
+node of linked list. Therefore, there
+exists a loop.
+```
+
+**Example 2:**
+
+```
+Input:
+N = 4
+value[] = {1,8,3,4}
+x = 0
+Output:False
+Explanation:For N = 4 ,x = 0 means
+then lastNode->next = NULL, then
+the Linked list does not contains
+any loop.
+```
+class node{  
+  constructor(value){  
+this.value=value;
+this.next=null;
+}
+}
+function findnthnode(head,n){
+let firstpointer=head;
+let secondpointer=head;
+//moving the node towards the null one step at the time
+for(let i=0;i<n;i++){
+//if the number of nodes we have lesser than the nth node from end return null    
+    if(firstpointer===null){
+    return null;
+}
+firstpointer=firstpointer.next;
+}
+//if until first reaches the null then we move the both the pointer one step at a time
+while(firstpointer!==null){
+    firstpointer=firstpointer.next;
+    secondpointer=secondpointer.next;
+}
+return secondpointer;
+}
+const head = new node(1);
+head.next = new node(2);
+head.next.next = new node(3);
+head.next.next.next = new node(4);
+head.next.next.next.next = new node(5);
+
+const n=4;
+const nthnodefromend=findnthnode(head,n);
+console.log((nthnodefromend));
+
+</aside>
+
+<aside>
+💡 **Question 3**
+
+Given a linked list consisting of **L** nodes and given a number **N**. The task is to find the **N**th node from the end of the linked list.
+
+**Example 1:**
+
+```
+Input:
+N = 2
+LinkedList: 1->2->3->4->5->6->7->8->9
+Output:8
+Explanation:In the first example, there
+are 9 nodes in linked list and we need
+to find 2nd node from end. 2nd node
+from end is 8.
+
+```
+
+**Example 2:**
+
+```
+Input:
+N = 5
+LinkedList: 10->5->100->5
+Output:-1
+Explanation:In the second example, there
+are 4 nodes in the linked list and we
+need to find 5th from the end. Since 'n'
+is more than the number of nodes in the
+linked list, the output is -1.
+```
+class node{  
+  constructor(value){  
+this.value=value;
+this.next=null;
+}
+}
+function findnthnode(head,n){
+let firstpointer=head;
+let secondpointer=head;
+//moving the node towards the null one step at the time
+for(let i=0;i<n;i++){
+//if the number of nodes we have lesser than the nth node from end return null    
+    if(firstpointer===null){
+    return null;
+}
+firstpointer=firstpointer.next;
+}
+//if until first reaches the null then we move the both the pointer one step at a time
+while(firstpointer!==null){
+    firstpointer=firstpointer.next;
+    secondpointer=secondpointer.next;
+}
+return secondpointer;
+}
+const head = new node(1);
+head.next = new node(2);
+head.next.next = new node(3);
+head.next.next.next = new node(4);
+head.next.next.next.next = new node(5);
+
+const n=4;
+const nthnodefromend=findnthnode(head,n);
+console.log((nthnodefromend));
+</aside>
+
+<aside>
+💡 **Question 4**
+
+Given a singly linked list of characters, write a function that returns true if the given list is a palindrome, else false.
+
+!https://media.geeksforgeeks.org/wp-content/uploads/20220816144425/LLdrawio.png
+
+**Examples:**
+
+> Input: R->A->D->A->R->NULL
+> 
+> 
+> **Output:** Yes
+> 
+> **Input:** C->O->D->E->NULL
+> 
+> **Output:** No
+> 
+</aside>
+
+<aside>
+💡 **Question 5**
+
+Given a linked list of **N** nodes such that it may contain a loop.
+
+A loop here means that the last node of the link list is connected to the node at position X(1-based index). If the link list does not have any loop, X=0.
+
+Remove the loop from the linked list, if it is present, i.e. unlink the last node which is forming the loop.
+
+**Example 1:**
+
+```
+Input:
+N = 3
+value[] = {1,3,4}
+X = 2
+Output:1
+Explanation:The link list looks like
+1 -> 3 -> 4
+     ^    |
+     |____|
+A loop is present. If you remove it
+successfully, the answer will be 1.
+
+```
+
+**Example 2:**
+
+```
+Input:
+N = 4
+value[] = {1,8,3,4}
+X = 0
+Output:1
+Explanation:The Linked list does not
+contains any loop.
+```
+
+**Example 3:**
+
+```
+Input:
+N = 4
+value[] = {1,2,3,4}
+X = 1
+Output:1
+Explanation:The link list looks like
+1 -> 2 -> 3 -> 4
+^              |
+|______________|
+A loop is present.
+If you remove it successfully,
+the answer will be 1.
+```
+
+</aside>
+
+<aside>
+💡 **Question 6**
+
+Given a linked list and two integers M and N. Traverse the linked list such that you retain M nodes then delete next N nodes, continue the same till end of the linked list.
+
+Difficulty Level: Rookie
+
+**Examples**:
+
+```
+Input:
+M = 2, N = 2
+Linked List: 1->2->3->4->5->6->7->8
+Output:
+Linked List: 1->2->5->6
+
+Input:
+M = 3, N = 2
+Linked List: 1->2->3->4->5->6->7->8->9->10
+Output:
+Linked List: 1->2->3->6->7->8
+
+Input:
+M = 1, N = 1
+Linked List: 1->2->3->4->5->6->7->8->9->10
+Output:
+Linked List: 1->3->5->7->9
+```
+
+</aside>
+
+<aside>
+💡 **Question 7**
+
+Given two linked lists, insert nodes of second list into first list at alternate positions of first list.
+For example, if first list is 5->7->17->13->11 and second is 12->10->2->4->6, the first list should become 5->12->7->10->17->2->13->4->11->6 and second list should become empty. The nodes of second list should only be inserted when there are positions available. For example, if the first list is 1->2->3 and second list is 4->5->6->7->8, then first list should become 1->4->2->5->3->6 and second list to 7->8.
+
+Use of extra space is not allowed (Not allowed to create additional nodes), i.e., insertion must be done in-place. Expected time complexity is O(n) where n is number of nodes in first list.
+//create the  node
+class node{
+    constructor(data){
+    this.data=data;
+    this.next=null;
+}
+}
+// //both the the pointer are move one node at a time
+// if(!secondpointer){
+//  return firstpointer;
+// }
+function mergelist(first,second){
+//if there is no second pointer is available then feturn the first pointer
+    if(!second){
+    return first;
+}
+//assign the pointer to the first and second variable
+let firstpointer=first;
+let secondpointer=second;
+
+while(firstpointer&&secondpointer){
+//move the both the pointer one node at a time
+    let firstpointernext=firstpointer.next;
+let secondpointernext=secondpointer.next;
+//system:pointed towards the second one from the first one
+firstpointer.next=secondpointer;
+//if there is end of secondpointer then return the firstpointer
+secondpointer.next=firstpointernext;
+
+firstpointer=firstpointernext;
+secondpointer=secondpointernext;
+}
+
+if(secondpointer){
+//verify that if second pointer have the remaining element then we need to connect with the first one  
+    firstpointer.next=secondpointer;
+}
+second=null;
+return first;
+}
+// create the first list: 
+let first = new node(5);
+first.next = new node(7);
+first.next.next = new node(17);
+first.next.next.next = new node(13);
+first.next.next.next.next = new node(11);
+
+// create the second list: 
+let second = new node(12);
+second.next = new node(10);
+second.next.next = new node(2);
+second.next.next.next = new node(4);
+second.next.next.next.next = new node(6);
+
+// Merge the lists
+ first = mergelist(first, second);
+
+ // Print the merged list
+ let current = first;
+ while (current) {
+ console.log(current.data);
+   current = current.next;
+}
+
+
+
+
+
+</aside>
+
+<aside>
+💡 **Question 8**
+
+Given a singly linked list, find if the linked list is [circular](https://www.geeksforgeeks.org/circular-linked-list/amp/) or not.
+
+> A linked list is called circular if it is not NULL-terminated and all nodes are connected in the form of a cycle. Below is an example of a circular linked list.
+> 
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d30bbf79-b1eb-4ba4-b23e-6d3f27ccdfe5/Untitled.png)
+
+class node{
+    constructor(data){
+    this.data=data;
+    this.next=null;
+}
+}
+
+//assign the slow and fast pointer 
+//both are moving different spped
+function circularornot(head){
+//we traverse the head  
+    let slow=head.next;
+    let fast=head.next.next;
+while(fast&&fast.next){
+    if(slow===fast){
+        return true;
+    }
+    slow=slow.next;
+    fast=fast.next.next;
+}
+return false;
+}
+
+//create the circular linked linked list
+let head = new node(1);
+head.next = new node(2);
+head.next.next = new node(3);
+head.next.next.next = new node(4);
+head.next.next.next.next =new node(6);
+
+// Print the values of the circular linkedlist
+console.log(circularornot(head));
+</aside>
