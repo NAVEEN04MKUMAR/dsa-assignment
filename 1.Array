@@ -1,4 +1,4 @@
-doubt:1,4,7
+doubt:1,4,7,6,8
 # Assignment Questions 1
 
 <aside>
@@ -30,6 +30,23 @@ Output: 2, nums = [2,2,_*,_*]
 
 **Explanation:** Your function should return k = 2, with the first two elements of nums being 2. It does not matter what you leave beyond the returned k (hence they are underscores)[
 
+var removeelement=function(num,val){
+    let count=0;
+//it will count the value other than the target element    
+    for(let i=0;i<num.length;i++){
+        if(num[i]!==val){
+            num[count++]=num[i];
+        }
+    }
+return count;
+};
+let num=[1,2,3,4,5];
+let val=5;
+console.log(removeelement(num,val));
+
+
+
+
 </aside>
 
 <aside>
@@ -41,6 +58,53 @@ You must write an algorithm with O(log n) runtime complexity.
 Input: nums = [1,3,5,6], target = 5
 
 Output: 2
+
+//<script>
+// JavaScript program for the above approach
+
+// Function to find insert position of K
+function find_index(arr, n, K)
+{
+	// Lower and upper bounds
+	let start = 0;
+	let end = n - 1;
+
+	// Traverse the search space
+	while (start <= end) {
+		let mid = Math.floor((start + end) / 2);
+
+		// If K is found
+		if (arr[mid] == K)
+			return mid;
+
+		else if (arr[mid] < K)
+			start = mid + 1;
+
+		else
+			end = mid - 1;
+	}
+
+	// Return insert position
+	return end + 1;
+}
+
+// Driver Code
+	let arr = [ 1, 3, 5, 6 ];
+	let n = arr.length;
+	let K = 2;
+	document.write(find_index(arr, n, K) + "<br>");
+
+
+
+
+// This code is contributed by Surbhi Tyagi.
+//</script>
+
+
+
+
+
+
 
 </aside>
 
@@ -73,6 +137,36 @@ Output: [1,2,2,3,5,6]
 
 **Explanation:** The arrays we are merging are [1,2,3] and [2,5,6].
 The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.
+
+// var containsDuplicate = function(nums) {
+//     for (let i = 0; i < nums.length; ++ i) {
+//         for (let j = 0; j < i; ++ j) {
+//             if (nums[i] == nums[j]) {
+//                 return true;
+//             }
+//         }
+//     }
+//     return false;
+// // };
+// let arr=[1,2,3,4,1];
+// console.log(containsDuplicate(arr));
+//after sort the element we verify with the continuous value with 2 element verify whether it is the present or not
+var containsDuplicate = function(nums) {
+    nums.sort();
+    for (let i = 1; i < nums.length; ++ i){ 
+        if (nums[i] == nums[i - 1]) {
+            return true;
+        }
+    }
+    return false;
+}
+let nums=[1,2,3,4];
+console.log(containsDuplicate(nums));
+
+
+
+
+
 
 </aside>
 
