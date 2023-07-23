@@ -1,4 +1,4 @@
-
+doubt:2,6,7,8
 # Assignment Questions 7
 
 <aside>
@@ -15,6 +15,41 @@ All occurrences of a character must be replaced with another character while pre
 **Input:** s = "egg", t = "add"
 
 **Output:** true
+
+//after rotate the 180degree then we got the same number either(0,0),(1,1),(6,9),(9,6),(8,8)
+function strobo(num){
+const strobogrammaticpairs={
+'0':'0',
+'1':'1',
+'6':'9',
+'8':'8',
+'9':'6'
+};
+let left=0;
+let right=num.length-1;
+
+while(left<=right){
+    const leftchar=num[left];
+    const rightchar=num[right];
+//    if (!strobogrammaticpairs[leftchar] || strobogrammaticpairs[leftchar] !== rightchar) {
+        if (strobogrammaticpairs[leftchar] !== rightchar) {
+        return false;
+      }
+
+left++;
+right--;
+}
+return true;
+}
+//console.log(strobo("69")); // Output: true
+//console.log(strobo("88")); // Output: true
+//console.log(strobo("818")); // Output: true
+console.log(strobo("123")); // Output: false
+
+
+
+
+
 
 </aside>
 
@@ -50,6 +85,36 @@ You must solve the problem without using any built-in library for handling large
 **Output:**
 
 "134"
+//hint:add the two number,with help of the modulo by the ten then the reverse the number
+function addstrings(num1,num2){
+let result="";
+let carry=0;
+//get the last character from the both the string
+let i=num1.length-1;
+let j=num2.length-1;
+
+//get the number from the last digits if it is not equal to zero
+while(i>=0||j>=0||carry>0) {
+const digit1=i>=0?Number(num1[i]):0;
+const digit2=j>=0?Number(num2[i]):0;
+
+const sum=digit1+digit2+carry;
+const digitsum=sum%10;
+carry = Math.floor(sum/10);
+
+result=digitsum.toString()+result;
+
+i--;
+j--;
+
+}return result;
+}
+console.log(addstrings("123", "123")); // Output: "579"
+console.log(addstrings("99", "1")); // Output: "1000"
+console.log(addstrings("0", "0")); // Output: "0"
+
+
+
 
 </aside>
 
@@ -63,6 +128,32 @@ Given a string s, reverse the order of characters in each word within a sentence
 **Input:** s = "Let's take LeetCode contest"
 
 **Output:** "s'teL ekat edoCteeL tsetnoc"
+//hint:try to get the 1st word then reverese then start the varialbe after the space then get the word reverse those word the keep on executing
+function reversewords(s){
+let result=[];
+let start =0;
+
+//scan the entire sentence
+for(let i=0;i<s.length;i++){
+if(s.charAt(i)===" "){
+    const word=s.substring(start,i).split("").reverse("").join("");
+//get the result with the word with space    
+    result+=word+ " ";  
+//fix the pointer to the starting of the next word
+    start=i+1;
+  }
+ }
+ //treat the lest word separetely where the there is no need to have the last space also no need to fix the pointer
+const lastword=s.substring(start).split("").reverse().join("");
+result+=lastword;
+
+return result;
+}
+console.log(reversewords("Hello World")); 
+
+
+
+
 
 </aside>
 
@@ -80,6 +171,28 @@ If there are fewer than k characters left, reverse all of them. If there are les
 **Output:**
 
 "bacdfeg"
+//hint:we have to reverse the string upto the k every 2k string
+function reversedstr(s,k){
+let result="";
+//get the reversed string nd the remainig strings
+for (let i=0;i<s.length;i+=2*k){ 
+//separate the upto the k th string    
+const substring=s.substring(i,i+k);
+//split the string,reverse the string,join the string
+const reversedstring=substring.split("").reverse().join("");
+//don't try to change anything remaining string
+const remainingchar=s.substring(i+k ,i+2*k);
+
+result+=reversedstring+remainingchar;
+}
+return result;
+}
+console.log(reversedstr("naveen",2));
+console.log(reversedstr("abc",3));
+
+
+
+
 
 </aside>
 
