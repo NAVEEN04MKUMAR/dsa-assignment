@@ -1,4 +1,4 @@
-
+status:do 1,5,7,8
 # Assignment Questions 4
 
 <aside>
@@ -36,6 +36,36 @@ Given two **0-indexed** integer arrays nums1 and nums2, return *a list* answer *
 For nums1, nums1[1] = 2 is present at index 0 of nums2, whereas nums1[0] = 1 and nums1[2] = 3 are not present in nums2. Therefore, answer[0] = [1,3].
 
 For nums2, nums2[0] = 2 is present at index 1 of nums1, whereas nums2[1] = 4 and nums2[2] = 6 are not present in nums2. Therefore, answer[1] = [4,6].
+
+
+//hint:create the set where the store the unique value of the number then get the which number not equal to the another array
+
+function findDistinctIntegers(num1, num2) {
+const set1=new Set(num1);
+const set2=new Set(num2);
+const answer = [[], []];
+//iterate over the num1 then get the number where the which is not present from th set 2  
+for(const num of num1){
+    if(!set2.has(num)){
+        answer[0].push(num);
+    }
+}
+for(const num of num2){
+    if(!set1.has(num)){
+    answer[1].push(num)
+}
+}
+return answer;
+}
+const nums1 = [1, 2, 3];
+const nums2 = [2, 4, 6];
+const distinctIntegers = findDistinctIntegers(nums1, nums2);
+console.log(distinctIntegers); // Output: [[1, 3], [4, 6]]
+
+
+
+
+
 
 </aside>
 
@@ -110,6 +140,55 @@ Output: [0,1,9,16,100]
 **Explanation:** After squaring, the array becomes [16,1,0,9,100].
 After sorting, it becomes [0,1,9,16,100]
 
+
+//hint:try to find the value of the irrespective of the +ve and -ve then square
+//get the value irrespecive of +ve or -ve
+
+//change the pointer where the after get the value of the big number
+//create the array where the resultant store that array
+function sortedsquares(nums){
+const result=[];
+//create the left and right pointer in array
+let left=0;
+let right=nums.length-1;
+//get the absolute value
+while(left<=right){
+    const leftvalue=Math.abs(nums[left]);
+    const rightvalue=Math.abs(nums[left]);
+
+    if(leftvalue >= rightvalue){
+        result.unshift(nums[left]*nums[left]);
+        left++;
+    }else{
+        result.unshift(nums[right]*nums[right]);
+        right--;
+    }
+    // while (left < nums.length) {
+    //     result.unshift(nums[left] * nums[left]);
+    //     left++;
+   //   }
+    
+}
+return result;
+}
+
+const nums = [15,-11,10,-12,-13];
+const squaredNums = sortedsquares(nums);
+console.log(squaredNums); 
+//Math.abs(left) 
+//Math.abs(right)
+
+//if( leftvalue>rightvalue) 
+//     leftpointer++;
+//     else
+//    rightpointer--; 
+    
+
+
+
+
+
+
 </aside>
 
 <aside>
@@ -144,5 +223,23 @@ Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,.
 **Output:** [2,3,5,4,1,7]
 
 **Explanation:** Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
+
+
+function shuffleArray(nums, n) {
+    const result = [];
+    for (let i = 0; i < n; i++) {
+//get the ith and (i+n)th element shuffle theelement   
+        result.push(nums[i]);
+      result.push(nums[i + n]);
+    }
+    return result;
+  }
+  const nums = [2, 5, 1, 3, 4, 7];
+const n = 3;
+const output = shuffleArray(nums, n);
+console.log(output);
+
+
+
 
 </aside>
