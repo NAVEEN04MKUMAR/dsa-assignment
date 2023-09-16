@@ -1,4 +1,4 @@
-
+staus:do 1,2,4,6,8
 # Assignment Questions 6
 
 <aside>
@@ -69,6 +69,46 @@ Recall that arr is a mountain array if and only if:
 
 false
 
+
+//hint:we need to get the value of the strictly increasing order also strictly decreasing order then wit is the mountain array
+//algo:find the index where the before the index upcoming element have the big value arr[i-1]<arr[i] then after the index value upcoming value are the small value compare with before one arr[i]<arr[i-1]
+//
+//get the maximum value of the array in indexing
+function validMountainArray(arr){
+//it atleast array length exist three
+    if(arr.length<3){
+        return false;
+    }
+    
+    let i=1;
+//increament the index where the until the maximum value 
+while(i<arr.length&&arr[i]>arr[i-1]){
+i++;
+}
+if(i===1 || i===arr.length){
+    return false;
+}
+while(i<arr.length&&arr[i]<arr[i-1]){
+    i++;
+}
+return i===arr.length;
+}
+
+
+const arr = [1,2,3,2,1];
+console.log(validMountainArray(arr)); // Output: true
+
+const arr2 = [1,2,3,4,5,4];
+console.log(validMountainArray(arr2)); // Output: false
+
+
+
+
+
+
+
+
+
 </aside>
 
 <aside>
@@ -106,6 +146,32 @@ Given two arrays nums1 and nums2 of length n, return *the **minimum product sum*
 **Explanation:**
 
 We can rearrange nums1 to become [3,5,4,2]. The product sum of [3,5,4,2] and [4,2,2,5] is 3*4 + 5*2 + 4*2 + 2*5 = 40.
+
+
+//hint:sort the two number then multiply the ith number from the num1 and (n-i-1) from the num2
+
+
+//sort the number
+function minproductsum(nums1,nums2){
+nums1.sort((a,b)=>a-b);
+nums2.sort((a,b)=>a-b);
+
+//assign the total number of element from the array,also min productsum
+const n =nums1.length;
+//const n2 =nums2.length;
+let minproductsum=0;
+//here the both the array have the equal number of the value
+for(let i=0;i<n;i++){
+    minproductsum+=nums1[i]*nums2[n-i-1];
+}
+return minproductsum;
+}
+const nums1 = [1, 2];
+const nums2 = [6,5];
+console.log(minproductsum(nums1, nums2)); // Output: 22
+
+
+
 
 </aside>
 
@@ -146,6 +212,41 @@ Given a positive integer n, generate an n x n matrix filled with elements from 1
 **Input:** n = 3
 
 **Output:** [[1,2,3],[8,9,4],[7,6,5]]
+
+
+//assign the three variable where the no of the row and column of the both the matrix
+
+
+
+function multiplysparsematrix(mat1,mat2){
+
+const m=mat1.length;
+const k=mat1[0].length;
+const n=mat2[0].length;
+
+// Create the result matrix with size m x n
+const result = new Array(m).fill(0).map(() => new Array(n).fill(0));
+
+for(let i=0;i<m;i++){
+    for(let j=0;j<n;j++){
+       for(let l=0;l<k;l++){
+        result[i][j]+=mat1[i][l]*mat2[l][j];
+
+       }
+    }
+ }
+return result;
+}
+
+const mat1 = [[1, 0, 0], [-1, 0, 3]];
+const mat2 = [[7, 0, 0], [0, 0, 0], [0, 0, 1]];
+console.log(multiplysparsematrix(mat1, mat2));
+
+
+
+
+
+
 
 </aside>
 
