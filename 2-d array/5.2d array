@@ -1,4 +1,4 @@
-
+status 1,2,3,4,7,8
 # Assignment Questions 5
 
 <aside>
@@ -137,6 +137,38 @@ For arr1[2]=8 we have:
 
 **|8-8|=0 <= d=2**
 
+//get the value from the one array then get the another value from the another then subtract the value from the one array to another array
+//initialise the  distance=0;
+
+
+function finddistancevalue(arr1,arr2,d){
+let distance=0;
+//iterate over the each element arr1 and arr2 from num1 and num2
+//check the number where the absolute difference between the two number are thegreater than the distance 2
+ for(let i=0; i<arr1.length;i++){
+    let found=false;
+
+    for(let j=0;j<arr2.length;j++){
+        if(Math.abs(arr1[i]-arr2[j])<=d){
+         found=true;
+         break;   
+        }
+    }if(!found){
+        distance++;
+    }
+ }
+return distance;
+}
+
+const arr1 = [4, 5, 8];
+const arr2 = [10, 9, 1];
+const d = 2;
+
+const distance = finddistancevalue(arr1, arr2, d);
+console.log(distance);
+//here from the first array with 8 subtrction from the another array then we got the value such as <=2
+
+
 </aside>
 
 <aside>
@@ -153,6 +185,36 @@ You must write an algorithm that runs in O(n) time and uses only constant extra 
 **Output:**
 
 [2,3]
+
+
+
+function findduplicates(nums) {
+    const frequency = {};
+//we gone through the all the element number is not appeared then increased the frequency if already present then we increase the value towards 2
+  
+for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+    if (frequency[num] === undefined) {
+      frequency[num] = 1;
+    } else {
+      frequency[num]++;
+    }
+  }
+//whatever value appeared twice we collecet the those element 
+
+  const result=[];
+for(const key in frequency){
+    if(frequency[key]===2){
+        result.push(parseInt(key));
+    }
+    }
+return result;
+}
+const nums = [1,2,3,4,5,3];
+const duplicates = findduplicates(nums);
+console.log(duplicates);
+
+
 
 </aside>
 
