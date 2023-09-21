@@ -24,6 +24,29 @@ Output: false
 
 </aside>
 
+//hint:
+
+
+//verify theat number is negative also,it will also equal to zero then return false
+function ispoweroftwo(n){
+    if(n<=0){
+        return false;
+    }
+//verify that if reminder is present surely it will respond to that value    
+    while(n>1){
+        if(n%2!==0){
+            return false;
+        }
+//once it will true then we keep on dividing there  until we got the value one       
+    n=Math.floor(n/2);
+    }
+    return n==1;
+}
+
+console.log(ispoweroftwo(3));
+
+
+
 <aside>
 💡 **Question 2**
 
@@ -42,6 +65,20 @@ Input  : 5
 Output : 15
 
 </aside>
+
+//hint:sum of 'n' and the sum of the natural number(n-1)
+function sumofnaturalnumbers(n){
+if(n==1){
+return 1;
+}
+else{ 
+return n+sumofnaturalnumbers(n-1);
+}
+}
+console.log(sumofnaturalnumbers(5));
+console.log(sumofnaturalnumbers(3));
+console.log(sumofnaturalnumbers(10000)); 
+
 
 <aside>
 💡 **Question 3**
@@ -62,6 +99,16 @@ Output: 24
 
 </aside>
 
+//hint:we get the number then subtract by one then multiply bot the number
+function factorial(n){
+    if(n==0||n==1){
+        return 1;
+    }
+//system:get the numebr then multiply by the subtract by one then multiply store that number    
+    return n * factorial(n-1);
+}
+console.log(factorial(5));
+
 <aside>
 💡 **Question 4**
 
@@ -80,6 +127,16 @@ Output: 32
 
 </aside>
 
+//hint:multiply the number and the N power (p-1)
+function power(N,P){
+if(P==0){
+    return 1;
+}
+//system :multiply the N and the power of the N is the (P-1)
+return N*power(N,P-1);
+}
+
+
 <aside>
 💡 **Question 5**
 
@@ -96,6 +153,19 @@ Input: arr = {1, 4, 45, 6, 10, -8};
 Output: 45
 
 </aside>
+
+function findMax(arr,index){
+    if (index === arr.length-1) {//we are verify that there is no element is available then return the value
+        return arr[index];
+      }
+    const n=arr[index];//get the current element from the array
+    const maxsofar=Math.max(n,findMax(arr,index+1));
+    return maxsofar;   
+
+}
+const array=[1,2,3,4,5];
+const maxelement=findMax(array,0);
+console.log("maximum element:",maxelement);
 
 <aside>
 💡 **Question 6**
@@ -115,6 +185,14 @@ Output : 23
 The 10th term of the series is : 23
 
 </aside>
+
+
+
+
+
+
+
+
 
 <aside>
 💡 **Question 7**
@@ -142,6 +220,28 @@ Given a string S, the task is to write a program to print all permutations of a 
 *“XY”, “YX”*
 
 </aside>
+function permutestring(str, prefix = "") {
+    if (str.length === 0) {
+      console.log(prefix);
+    } else {
+      for (let i = 0; i < str.length; i++) {
+        const char = str[i];//get the current character from the string and store with the variable such as the char
+        const newStr = str.slice(0, i) + str.slice(i + 1);//which index we are removing those index we should not take then remaining string we have to take
+        const newPrefix = prefix + char;//concate with the after removing remaining char and the removed character 
+        permutestring(newStr, newPrefix);
+      }
+    }
+  }
+  
+  // Main function
+  function printpermutations(str) {
+    permutestring(str, "");
+  }
+  
+  // driver code
+  printpermutations("abcd");
+  
+
 
 <aside>
 💡 **Question 8**
@@ -156,5 +256,28 @@ Output : 120
 
 Input  : arr[] = {1, 6, 3}
 Output : 18
+
+function arrayProduct(arr, index = 0) {
+    // retuen the actual element when it reaches the actual length of the array
+    if (index === arr.length - 1) {
+      return arr[index];
+    }
+    const currentElement = arr[index];
+    const remainingProduct = arrayProduct(arr, index + 1);
+    
+    return currentElement * remainingProduct;
+  }
+  
+  // Example u
+  const array = [2, 3, 4, 5];
+  const product = arrayProduct(array);
+  console.log("Product:", product);
+  
+
+
+
+
+
+
 
 </aside>
