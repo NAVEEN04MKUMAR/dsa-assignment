@@ -1,4 +1,4 @@
-status:do 1,2,3,4,5,6,7,8
+status:do 3,5,6,7
 # Assignment Questions 10
 
 <aside>
@@ -14,7 +14,8 @@ An integer `n` is a power of three, if there exists an integer `x` such that
 Input: n = 27
 Output: true
 Explanation: 27 = 33
-```
+``
+
 
 **Example 2:**
 
@@ -34,6 +35,21 @@ Explanation: There is no x where 3x = (-1).
 ```
 
 </aside>
+
+`
+
+function ispowerofthree(n){
+    if(n==1){
+        return true;
+    }
+    else if(n<=0||n%3!==0){
+        return false;
+    }
+    else{//divide the number contantly by 3 if we got equal to 1 then 
+        return  ispowerofthree(n/3);
+    }
+}
+console.log( ispowerofthree(28));
 
 <aside>
 💡 **Question 2**
@@ -67,6 +83,21 @@ Output: 1
 ```
 
 </aside>
+
+function lastremaining(arr){
+//when we get the last one element we are get those element 
+    if(arr.length===1){
+    return arr[0];
+}
+const nextarr=[];//it is for whatever element we sort out rom these array we have to store
+for(i=1;i<arr.length;i+=2){
+    nextarr.push(arr[i]);//whereever even number of element is present then we need to push those element 
+}
+return lastremaining(nextarr.reverse())//next iteration we have to push from the 
+}
+
+let arr=[1,2,3,4,5,6,7,8,9];
+console.log(lastremaining(arr));
 
 <aside>
 💡 **Question 3**
@@ -103,6 +134,18 @@ Output :13
 ```
 
 </aside>
+
+function stringlength(str){
+//if we don't have the string length reurn zero
+    if(str===''){
+return 0;
+}
+//if we ahve the string length atleast one the get the string from the word add count
+else{
+return 1+stringlength(str.slice(1));
+}
+}
+console.log(stringlength('god'));
 
 <aside>
 💡 **Question 5**
