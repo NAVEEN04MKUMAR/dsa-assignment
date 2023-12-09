@@ -54,24 +54,6 @@ console.log(strobo("123")); // Output: false
 </aside>
 
 <aside>
-💡 **Question 2**
-
-Given a string num which represents an integer, return true *if* num *is a **strobogrammatic number***.
-
-A **strobogrammatic number** is a number that looks the same when rotated 180 degrees (looked at upside down).
-
-**Example 1:**
-
-**Input:** num = "69"
-
-**Output:**
-
-true
-ANS:
-
-</aside>
-
-<aside>
 💡 **Question 3**
 
 Given two non-negative integers, num1 and num2 represented as string, return *the sum of* num1 *and* num2 *as a string*.
@@ -189,10 +171,25 @@ return result;
 }
 console.log(reversedstr("naveen",2));
 console.log(reversedstr("abc",3));
+</aside>
 
 
 
+<aside>
+💡 **Question 2**
 
+Given a string num which represents an integer, return true *if* num *is a **strobogrammatic number***.
+
+A **strobogrammatic number** is a number that looks the same when rotated 180 degrees (looked at upside down).
+
+**Example 1:**
+
+**Input:** num = "69"
+
+**Output:**
+
+true
+ANS:
 
 </aside>
 
@@ -250,3 +247,20 @@ You are given an array coordinates, coordinates[i] = [x, y], where [x, y] repres
 **Output:** true
 
 </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
