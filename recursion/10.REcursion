@@ -100,25 +100,6 @@ let arr=[1,2,3,4,5,6,7,8,9];
 console.log(lastremaining(arr));
 
 <aside>
-💡 **Question 3**
-
-****Given a set represented as a string, write a recursive code to print all subsets of it. The subsets can be printed in any order.
-
-**Example 1:**
-
-Input :  set = “abc”
-
-Output : { “”, “a”, “b”, “c”, “ab”, “ac”, “bc”, “abc”}
-
-**Example 2:**
-
-Input : set = “abcd”
-
-Output : { “”, “a” ,”ab” ,”abc” ,”abcd”, “abd” ,”ac” ,”acd”, “ad” ,”b”, “bc” ,”bcd” ,”bd” ,”c” ,”cd” ,”d” }
-
-</aside>
-
-<aside>
 💡 **Question 4**
 
 Given a string calculate length of the string using recursion.
@@ -148,6 +129,32 @@ return 1+stringlength(str.slice(1));
 console.log(stringlength('god'));
 
 <aside>
+
+
+
+<aside>
+💡 **Question 3**
+
+****Given a set represented as a string, write a recursive code to print all subsets of it. The subsets can be printed in any order.
+
+**Example 1:**
+
+Input :  set = “abc”
+
+Output : { “”, “a”, “b”, “c”, “ab”, “ac”, “bc”, “abc”}
+
+**Example 2:**
+
+Input : set = “abcd”
+
+Output : { “”, “a” ,”ab” ,”abc” ,”abcd”, “abd” ,”ac” ,”acd”, “ad” ,”b”, “bc” ,”bcd” ,”bd” ,”c” ,”cd” ,”d” }
+
+</aside>
+
+
+
+
+
 💡 **Question 5**
 
 We are given a string S, we need to find count of all contiguous substrings starting and ending with same character.
