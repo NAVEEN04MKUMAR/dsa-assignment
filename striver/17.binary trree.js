@@ -1,5 +1,8 @@
 
-//Inorder Traversal		
+//Inorder Traversal
+
+//Inorder traversal (left-current-right): This approach visits the current node after visiting all nodes inside the left subtree, 
+//but before visiting any node within the right subtree.
 class Node{
     constructor(value) {
         this.data=value;
@@ -35,10 +38,6 @@ function inorder(node){
 
 console.log("inorder")
 inorder(root);
-
-
-
-	
 
 //Preorder Traversal		
 	
