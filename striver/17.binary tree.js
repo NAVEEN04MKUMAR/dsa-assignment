@@ -117,11 +117,21 @@ postorder(root);
 //Morris Inorder Traversal		
 	
 
+
+
+
+
 //Morris Preorder Traversal		
 
 
-//LeftView Of Binary Tree	
 
+
+
+
+
+
+
+//LeftView Of Binary Tree	
 class Node{
     constructor(value) {
         this.data=value;
@@ -355,13 +365,37 @@ let root = new Node(1);
  root.right.right.right= new Node(15);
  topview(root);
 	
-//Preorder inorder postorder in a single traversal
+//Preorder inorder postorder in a single traversal 09/01
+
+
+
+
+
+
 
 
 //Vertical order traversal		
-	
+
+
+
+
+
+
+
+
 
 //Root to Node Path in Binary Tree
 
 
+
+
+
+
 //max width of the tree
+
+
+
+
+
+
+
