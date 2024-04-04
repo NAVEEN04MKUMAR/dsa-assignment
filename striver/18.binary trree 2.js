@@ -131,10 +131,99 @@ dfsheight(root){
  const solution2 = new Solution();
  console.log(solution2.isbalanced(tree)); // Output: false
 	
-//LCA in Binary Tree		
-	
+//LCA in Binary Tree
 
-//Check if two trees are identical or not		
+class TreeNode{
+    constructor(val){
+        this.val=val;
+        this.left=null;
+        this.right=null;
+    }
+}
+
+class Solution{
+    lca(root,p,q){
+        if(!root||root===p||root===q){
+            return root;
+        }
+        //we search the left and right subtree 
+        const left=this.lca(root.left,p,q);
+        const right=this.lca(root.right,p,q);
+       //if the one of the subtrees return null we returnthe other one
+        if(!left){
+            return right;
+        }else if(!right){
+            return left;
+        }else{
+            return root;
+        }
+
+    }
+}
+
+// Example usage:
+const root = new TreeNode(1);
+root.left = new TreeNode(2);
+root.right = new TreeNode(3);
+root.left.left = new TreeNode(4);
+root.left.right = new TreeNode(5);
+root.right.right = new TreeNode(6);
+
+const solution3 = new Solution();
+const p=root.left.left;
+const q=root.left.right;
+const lca = solution3.lca(root, p,q);
+// console.log(solution3.lcs(tree,p,q));
+console.log(lca.val); 
+ // Output: false
+
+//height of the binary tree
+
+
+//diameter of the binary tree
+
+
+//Check if two trees are identical or not
+class TreeNode {
+    constructor(data) {
+        this.data = data;
+        this.left = this.right = null;
+    }
+}
+
+
+function isidentical(node1,node2){
+      if(node1===null&&node2===null)
+      return true;
+      else if(node1===null||node2===null)
+      return false;
+    return (node1.data===node2.data)&&isidentical(node1.left,node2.left)&&isidentical(node1.right,node2.right);
+}
+
+function newNode(data) {
+    let node = new TreeNode(data);
+    node.left = null;
+    node.right = null;
+    return node;
+}
+
+let root1 = newNode(1);
+root1.left = newNode(2);
+root1.right = newNode(3);
+root1.right.left = newNode(4);
+root1.right.right = newNode(5);
+
+let root2 = newNode(1);
+root2.left = newNode(2);
+root2.right = newNode(3);
+root2.right.left = newNode(4);
+root2.right.right = newNode(5);
+
+
+if (isidentical(root1, root2))
+    console.log("Two Trees are identical");
+else
+    console.log("Two trees are non-identical");
 	
 
 //Zig Zag Traversal of Binary Tree		
