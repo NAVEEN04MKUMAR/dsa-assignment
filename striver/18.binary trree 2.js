@@ -238,11 +238,11 @@ class Node {
         this.right = null;
     }
 }
-
+//leaf node
 function isleaf(root){
     return !root.left&&!root.right;
 }
-
+//go to left hand side if not exist go to right hand side
 function addleftboundary(root,res){
     let cur=root.left;
     while(cur!==null){
@@ -250,7 +250,7 @@ function addleftboundary(root,res){
         cur=cur.left!==null?cur.left:cur.right;
     }
 }
-
+//go to right hand side if not exist go to left hand side
 function addrightboundary(root,res){
     let cur=root.right;
     let tmp=[];
