@@ -230,3 +230,73 @@ else
 	
 
 //Boundary Traversal of Binary Tree
+
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+function isleaf(root){
+    return !root.left&&!root.right;
+}
+
+function addleftboundary(root,res){
+    let cur=root.left;
+    while(cur!==null){
+        if(!isleaf(cur)) res.push(cur.data);
+        cur=cur.left!==null?cur.left:cur.right;
+    }
+}
+
+function addrightboundary(root,res){
+    let cur=root.right;
+    let tmp=[];
+    while(cur!==null){
+        if(!isleaf(cur)) res.push(cur.data);
+        cur=cur.right!==null?cur.right:cur.left;
+    }
+    for(let i=tmp.length-1;i>=0;i--){
+        res.push(tmp[i]);
+    }
+}
+
+
+function addleaves(root,res){
+    if(isleaf(root)){
+        res.push(root.data);
+        return;
+    }
+    if(root.left) addleaves(root.left,res);
+    if(root.right) addleaves(root.right,res);
+}
+
+
+function printboundary(node){
+    const ans=[];
+    if(!isleaf(node))ans.push(node.data);
+    addleftboundary(node,ans);
+    addleaves(node,ans);
+    addrightboundary(node,ans);
+    return ans;
+}
+
+const root = new Node(1);
+root.left = new Node(2);
+root.left.left = new Node(3);
+root.left.left.left = new Node(4);
+root.left.left.left.left = new Node(5);
+root.right = new Node(7);
+root.right.right = new Node(8);
+root.right.right.right = new Node(9);
+root.right.right.right.left = new Node(10);
+
+const boundaryTraversal = printboundary(root);
+
+console.log("The Boundary Traversal is : ");
+console.log(boundaryTraversal.join(" "));
+
+
+
