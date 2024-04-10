@@ -129,7 +129,118 @@ function main(){
 }
 main();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //construct a binary tree from a inorder and postorder
+//doubt
+class Treenode{
+    constructor(val){
+        this.val=val;
+        this.left=null;
+        this.right=null;
+    }
+}
+
+
+class Solution {
+    buildtree(inorder,postorder){
+        //store inorder in the map
+        const inmap=new Map();
+        //populate the map with indices of elements in the inorder traversal
+        inorder.forEach((val,index) => {
+            inmap.set(val,index);
+        });
+
+        const root=this.buildtreehelper(inorder,0,inorder.length-1,postorder,0,postorder.length-1,inmap);
+        return root;
+
+    }
+    buildtreehelper(inorder,instart,inend,postorder,poststart,postend,inmap){
+        if(instart>inend||poststart>postend){
+            return null;
+        }
+        //
+        const root=new Treenode(postorder[postend]);
+        // if(root==null){
+            //find index
+        const inroot=inmap.get(root.val);
+        if (inroot === undefined) {
+            throw new Error("Invalid input: Inorder and postorder arrays do not correspond to a valid binary tree.");
+        }
+        //count number of left subtree
+        const numsleft=inroot-instart;
+
+//build the left and right subtree        
+        root.left=this.buildtreehelper(inorder,instart,inroot-1,postorder,poststart+numsleft-1,inmap);
+        root.right=this.buildtreehelper(inorder,inroot+1,inend,postorder,poststart+numsleft,postend-1,inmap);
+
+        // }
+        
+        return root;
+    }
+}
+//verify the after construct the tree get the inorder 
+function printinorder(root){
+    if(!root){
+        return;
+    }
+    printinorder(root.left);
+    console.log(root.val+" ");
+    printinorder(root.right);
+}
+
+function printarray(array){
+    array.forEach((element)=>{
+        console.log(element+"");
+    });
+    console.log();
+}
+
+
+function main(){
+    const inorder=[9,3,15,20,7];
+    const postorder=[9,15,7,20,3];
+
+    console.log("inorder array:");
+    printarray(inorder);
+
+    console.log("postorder array:");
+    printarray(postorder);
+
+    const sol=new Solution();
+    const root=sol.buildtree(inorder,postorder);
+    console.log("inorder of unique binary tree created:");
+    printinorder(root);    
+}
+main();
 
 
 
