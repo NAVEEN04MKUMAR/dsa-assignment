@@ -129,6 +129,56 @@ function main(){
 }
 main();
 
+//convert binary tree into the flaten linkedlist
+class Node {
+    constructor(data) {
+      this.data = data;
+      this.left = null;
+      this.right = null;
+    }
+  }
+  //thought process:
+  function flatten(root){
+   //initially assign the value of null
+    let prev=null;
+    function traverse(node){
+        
+        if(!node)
+        return;
+//we traverse the node from right and left hand side then untill 
+//we find the node have the bothchild are empty 
+        traverse(node.right);
+        traverse(node.left);
+//whatever left child we have then we pass this one with the or convert into the to become the right hand child
+        node.right=prev;
+        node.left=null;
+        prev=node;
+
+    }
+    traverse(root);
+  }
+
+ function printflattenedlist(root){
+    while(root.right!==null){
+        process.stdout.write(root.data+"->");
+        root=root.right;
+    }
+    process.stdout.write(root.data.toString());
+  }
+
+let root = new Node(1);
+root.left = new Node(2);
+root.left.left = new Node(3);
+root.left.right = new Node(4);
+root.right = new Node(5);
+root.right.right = new Node(6);
+root.right.right.left = new Node(7);
+
+flatten(root);
+printflattenedlist(root);
+
+
+
 
 
 
