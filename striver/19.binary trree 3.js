@@ -223,6 +223,112 @@ function inordertraversal(root){
     inordertraversal(root.right);
 }
 
+//check for childer sum property 
+class Treenode{
+    constructor(val){
+        this.val=val;
+        this.left=null;
+        this.right=null;
+    }
+}
+class Solution{
+    changetree(root){
+        if(root==null){
+            return;
+        }
+        
+        
+        //calculate the left and right and right hand side value
+       let child=0;
+        if(root.left!==null){
+            child+=root.left.val;
+        }
+        
+        if(root.right!==null){
+            child+=root.right.val;
+        }
+        
+        //compare the child value with the root value
+        if(child>=root.val){
+            root.val=child;
+        }else{
+            //apply the root value to the child value
+            if(root.left!==null){
+                root.left.val=root.val;
+            }
+            else if(root.right!==null){
+                root.right.val=root.val;
+            }
+        }
+        
+        this.changetree(root.left);
+        this.changetree(root.right);
+        
+        //calculate the total value of left and right subtree
+        let tot=0;
+        if(root.left!==null){
+            tot+=root.left.val;
+        }
+        if(root.right!==null){
+            tot+=root.right.val;
+        }
+        
+        if(root.right!==null||root.right!==null){
+            root.val=tot;
+        }
+        
+
+    }
+
+}
+
+function inordertraversal(root){
+    if(root===null){
+        return;
+    }
+    inordertraversal(root.left);
+    process.stdout.write(root.val+"");
+    inordertraversal(root.right);
+
+
+}
+
+const root=new Treenode(3);
+root.left=new Treenode(5);
+root.right=new Treenode(1);
+root.left.left=new Treenode(6);
+root.left.right=new Treenode(2);
+root.right.left=new Treenode(0);
+root.right.right=new Treenode(8);
+root.left.right.left=new Treenode(7);
+root.left.right.right=new Treenode(4);
+
+const sol=new Solution();
+
+console.log("binary tree before modification");
+inordertraversal(root);
+console.log();
+
+sol.changetree(root);
+
+console.log("binary tree after modification");
+inordertraversal(root);
+console.log();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
