@@ -179,6 +179,91 @@ printflattenedlist(root);
 
 
 
+//mirror the tree
+
+class Treenode{
+    constructor(val){
+        this.val=val;
+        this.left=null;
+        this.right = null;
+    }
+}
+
+function mirror(root){
+    if(root===null){
+        return;
+    }
+    let temp=root.left;
+    root.left=root.right;
+    root.right=temp;
+//mirror the left and right subtree
+mirror(root.left);
+mirror(root.right);
+}
+
+const root=new Treenode(1);
+root.left=new Treenode(2);
+root.right=new Treenode(3);
+root.left.left=new Treenode(4);
+root.left.right=new Treenode(5);
+
+console.log("inorder traversal before mirroring");
+inordertraversal(root);
+mirror(root);
+console.log("inorder traversal after mirroring");
+inordertraversal(root);
+
+
+function inordertraversal(root){
+    if(root==null){
+        return;
+    }
+    inordertraversal(root.left);
+    process.stdout.write(root.val+" ");
+    inordertraversal(root.right);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
