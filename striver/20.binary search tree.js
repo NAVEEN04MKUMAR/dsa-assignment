@@ -94,6 +94,57 @@ const val=1;
 const result=searchBST(root,val);
 console.log(result);
 
+//converted sorted array into the binary search tree
+
+
+'use strict';
+function Treenode(val){
+    this.val=val;
+    this.left=null;
+    this.right=null;
+}
+var sortedarraytolist=function(nums){
+    if(!nums||!nums.length){
+        return null;
+    }
+//find the root of the value then build the left and right tree
+function buildbst(start,end){
+    if(start>end){
+        return null;
+    }
+    const mid=Math.floor((start+end)/2);
+    const node=new Treenode(nums[mid]);
+
+    node.left=buildbst(start,mid-1);
+    node.right=buildbst(mid+1,end);
+
+    return node;
+}
+return buildbst(0,nums.length-1);
+}
+
+
+const nums=[1,2,3,4,5];
+
+//convert sorted array to balanced BST
+const root=sortedarraytolist(nums);
+
+function inordertraversal(root){
+    if(root){
+        inordertraversal(root.left);
+        console.log(root.val);
+        inordertraversal(root.right);
+    }
+}
+inordertraversal(root);
+
+
+
+
+
+
+
+
 
 
 
