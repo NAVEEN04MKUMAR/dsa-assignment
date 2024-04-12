@@ -53,9 +53,61 @@ root.right.left.right = new Node(13);
 root.right.right.left = new Node(14);
 root.right.right.right = new Node(15);
 
-
 // Connect the next pointers
 connect(root);
 
 // Output the next pointers
 console.log(root);
+
+
+
+
+//Search in a Binary Search Tree
+
+'use strict';
+function Treenode(val){
+    this.val=val;
+    this.left=null;
+    this.right=null;
+}
+
+var searchBST=function (root,val){
+    if(!root||root.val===val){
+        return root;
+    }
+    //compare the gven value with the root value
+    //then go to left or right subtree 
+    if(val<root.val){
+        return searchBST(root.left,val);
+    }else{
+        return searchBST(root.right,val);
+    }
+}
+
+const root=new Treenode(4);
+root.left=new Treenode(2);
+root.right=new Treenode(7);
+root.left.left=new Treenode(1);
+root.left.right=new Treenode(3);
+
+const val=1;
+const result=searchBST(root,val);
+console.log(result);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
