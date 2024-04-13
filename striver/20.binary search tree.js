@@ -139,6 +139,54 @@ function inordertraversal(root){
 inordertraversal(root);
 
 
+//build the bst from the preorder
+function Treenode(val){
+    this.val=val;
+    this.left=null;
+    this.right=null;
+}
+
+
+
+var bstfrompreorder=function(preorder){
+    if (!preorder || preorder.length === 0) {
+        return null;
+    }
+function buildbst(preorder,start,end){
+    if (start > end) {
+        return null;
+    }
+    const root=new Treenode(preorder[start]);
+    //get the index of the value of 
+    let i;
+    for(i=start+1;i<=end;i++){
+        if(preorder[i]>root.val){
+            break;
+        }
+    }
+    //build the tree
+    root.left=buildbst(preorder,start+1,i-1);
+    root.right=buildbst(preorder,i,end);
+     
+    return root;
+}
+return buildbst(preorder,0,preorder.length-1);
+}
+
+
+const preorder=[8,5,1,7,10,12];
+const root=bstfrompreorder(preorder);
+
+function inordertraveral(root){
+    if(root){
+        inordertraveral(root.left);
+        console.log(root.val);
+        inordertraveral(root.right);
+    }
+}
+inordertraveral(root);
+
+
 
 
 
