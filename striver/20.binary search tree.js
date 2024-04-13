@@ -187,6 +187,45 @@ function inordertraveral(root){
 inordertraveral(root);
 
 
+//verify the bst or not
+'use strict';
+function Treenode(val){
+    this.val=val;
+    this.left=null;
+    this.right=null;
+
+}
+
+var isvalidbst=function(root){
+    function inordertraversal(node,result){
+        if(!node){
+            return;
+        }
+        inordertraversal(node.left,result);
+        result.push(node.val);
+        inordertraversal(node.right,result);
+    }
+    const inorderresult=[];
+    inordertraversal(root,inorderresult);
+    
+    for(let i=1;i<=inordertraversal.length;i++){
+        if(inorderresult[i]<=inorderresult[i-1]){
+            return false;
+        }
+    }
+    return true;
+}
+
+// Construct a binary tree
+const root = new Treenode(2);
+root.left = new Treenode(1);
+root.right = new Treenode(3);
+root.right.right = new Treenode(4);
+root.right.left = new Treenode(1);
+
+
+// Validate if it's a valid BST
+console.log(isvalidbst(root)); 
 
 
 
