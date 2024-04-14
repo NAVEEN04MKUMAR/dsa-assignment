@@ -227,6 +227,51 @@ root.right.left = new Treenode(1);
 // Validate if it's a valid BST
 console.log(isvalidbst(root)); 
 
+//get the lowest common ancestor
+
+class TreeNode{
+    constructor(val){
+        this.val=val;
+        this.left=this.right=null;
+    }
+}
+
+function lca(root,p,q){
+    if(root===null||p===null||q===null){
+        return null;
+    }
+
+  //if p and q are lesser than the root value
+  if(p.val>root.val&&q.val>root.val){
+    return lca(root.left,p,q);
+}
+
+    //if p and q are greater than the root value
+    if(p.val>root.val&&q.val>root.val){
+        return lca(root.right,p,q);
+
+    }
+
+    //if either p or q both are the left and right sub tree
+    return root;
+
+}
+
+let root = new TreeNode(6);
+root.left = new TreeNode(2);
+root.right = new TreeNode(8);
+root.left.left = new TreeNode(0);
+root.left.right = new TreeNode(4);
+root.right.left = new TreeNode(7);
+root.right.right = new TreeNode(9);
+root.left.right.left = new TreeNode(3);
+root.left.right.right = new TreeNode(5);
+
+let p = root.left;
+let q = root.left.right;
+
+console.log(lca(root, p, q).val);
+
 
 
 
