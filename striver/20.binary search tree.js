@@ -272,6 +272,71 @@ let q = root.left.right;
 
 console.log(lca(root, p, q).val);
 
+//Find the inorder predecessor/successor of a given Key in BST
+class TreeNode{
+    constructor(val){
+        this.val=val;
+        this.left=null;
+        this.right=null;
+    }
+}
+
+
+
+function findpredecessorandsuccessor(root,key){
+    let predecessor=null;
+    let successor=null;
+
+while(root){
+
+//
+    if(root.val===key){
+        //predecessor is present in the rightmost in the left subtree 
+        if(root.left){
+            predecessor=root.left;
+            while(predecessor.right){
+                predecessor=predecessor.right
+            }
+        }
+        //succesor is present in the lefttmost in the right subtree 
+        if(root.right){
+            successor=root.right;
+            while(successor.left){
+                successor=successor.left;
+            }
+        }
+        break;
+    }
+
+
+    else if(root.val>key){
+        successor=root;
+        root=root.left;
+    }
+
+    else{
+        predecessor=root;
+        root=root.right;
+    }
+
+}
+    return {predecessor,successor};
+}
+
+let root = new TreeNode(20);
+root.left = new TreeNode(15);
+root.right = new TreeNode(25);
+root.left.left = new TreeNode(10);
+root.left.right = new TreeNode(17);
+root.right.left = new TreeNode(23);
+root.right.right = new TreeNode(30);
+
+let key=17;
+let {predecessor,successor}=findpredecessorandsuccessor(root,key);
+
+console.log("Predecessor:", predecessor ? predecessor.val : null); 
+console.log("Successor:", successor ? successor.val : null); 
+
 
 
 
