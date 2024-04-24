@@ -167,5 +167,157 @@ const kthElements = solution.findkth(root, k);
 console.log("Kth smallest element: " + kthElements[0]);
 console.log("Kth largest element: " + kthElements[1]);
 
+//maximu sum set 
+class TreeNode{
+    constructor(val){
+        this.val=val;
+        this.left=null;
+        this.right=null;
+    }
+}
+
+let maxsum = 0;
+
+function maxsumbst(root) {
+    maxsum = 0; // Reset maxSum before each run
+    traverse(root);
+    return maxsum;
+}
+function traverse(node){
+
+    if (!node) return [true, 0, Infinity, -Infinity]; // [isValidBST, sum, min, max]
+
+    const [leftvalid,leftsum,leftmin,leftmax]=traverse(node.left); 
+    const [rightvalid,rightsum,rightmin,rightmax]=traverse(node.right);
+    const isvalidbst=leftvalid&&rightvalid&&node.val>leftmax&&node.val<rightmin;
+
+    if(isvalidbst){
+        const sum=leftsum+rightsum+node.val;
+        maxsum=Math.max(maxsum,sum);
+        return [true,sum,Math.min(node.val,leftmin),Math.max(node.val,rightmax)];
+    }
+    else {
+        return [false, 0, null, null];
+    }
+}
+
+const root=new TreeNode(1);
+root.left=new TreeNode(4);
+root.right=new TreeNode(3);
+root.left.left=new TreeNode(2);
+root.left.right=new TreeNode(5);
+root.right.right=new TreeNode(7);
+console.log(maxsumbst((root)));
+
+//arrange the serialise and deserialise the tree
+// Definition for a binary tree node.
+class TreeNode {
+    constructor(val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+}
+
+
+class Solution{
+    serialise(root){
+        //tree is empty
+        if(!root){
+            return "";
+        }
+
+        let s="";
+        let q=[];
+
+        q.push(root);
+
+        while(q.length>0){
+            let curnode=q.shift();
+
+            if(curnode===null){
+                s+="#,";
+            }else{
+                s+=curnode.val+",";
+                q.push(curnode.left);
+                q.push(curnode.right);
+            }
+        }
+        return s;
+    }
+
+    deserialise(data){
+        if(data===""){
+            return null;
+        }
+        let s=data.split(",");
+        let rootval=s.shift();
+        let root=new TreeNode(parseInt(rootval));
+
+        let q=[];
+        q.push(root);
+
+        while(q.length>0){
+            let node=q.shift();
+            let leftval=s.shift();
+            if(leftval!=="#"){
+                let leftnode=new TreeNode(parseInt(leftval));
+                node.left=leftnode;
+                q.push(leftnode);
+            }
+
+            let rightval=s.shift();
+            if(rightval!=="#"){
+                let rightnode=new TreeNode(parseInt(rightval));
+                node.right=rightnode;
+                q.push(rightnode);
+            }
+        }
+
+        return root;
+
+    }
+}
+
+
+
+function inorder(root) {
+    if (!root) {
+        return;
+    }
+    inorder(root.left);
+    console.log(root.val + " ");
+    inorder(root.right);
+}
+
+// Main function
+function main() {
+    let root = new TreeNode(1);
+    root.left = new TreeNode(2);
+    root.right = new TreeNode(3);
+    root.right.left = new TreeNode(4);
+    root.right.right = new TreeNode(5);
+
+    let solution = new Solution();
+    console.log("Original Tree: ");
+    inorder(root);
+    console.log("\n");
+
+    let serialized = solution.serialise(root);
+    console.log("Serialized: " + serialized + "\n");
+
+    let deserialized = solution.deserialise(serialized);
+    console.log("Tree after deserialization: ");
+    inorder(deserialized);
+    console.log("\n");
+}
+
+// Run the main function
+main();
+
+
+
+
+
+
 
 
