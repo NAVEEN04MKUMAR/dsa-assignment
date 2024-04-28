@@ -1,0 +1,18 @@
+ % First work experience entry
+    \begin{rSubsection}{live Polling System}{December 2023}{Application:Schools and college}{Theni}
+        \item Description:Developed a live polling system using JavaScript to facilitate real-time audience engagement during events or presentations
+        \item Impact:Enhanced audience engagement during events, leading to increased participation and interaction.
+    \end{rSubsection}
+    
+    % Second work experience entry
+    \begin{rSubsection}{Learning Management System}{september 2023}{Application:To helpful to the Online platform}{Theni}
+        \item Description:
+Spearheaded the development of a comprehensive Learning Management System (LMS) catering to educational institutions or corporate training needs.
+        \item Impact:Empowered educational institutions or organizations with a feature-rich platform for managing and delivering learning content effectively.
+    \end{rSubsection}
+    
+    % Third work experience entry
+    \begin{rSubsection}{Omegle platform}{January 2024}{Application:Two different people are talk each other with the video,audio and text chat}{Theni}
+        \item Description:Led the development and implementation of an online chat platform inspired by Omegle, facilitating anonymous conversations between users around the globe.
+        \item Impact:We are connect the randomly two people in the world.
+    \end{rSubsection}
