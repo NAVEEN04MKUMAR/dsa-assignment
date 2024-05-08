@@ -92,5 +92,42 @@ function ChildComponent(props) {
   return <p>Hello, {props.name}!</p>;
 }
 
+6.Virtualdom:
+improve the performance and the minimise the dom opration
+1.initial render:first render at the react,then react craete thevirtual dom 
+2.update:if any state or prop are change the we need to create the new virtual do representationof the component.
+3.diffing:compare the new virtual dom to the previous one vdom
+4.reconciliation:calculate the minimal set of changes to update the real dom to match the new virtual dom
 
 
+7.about JSX?
+  syntex extension for javascript uses in react
+  we can write the HTML like code directly within the javascript
+
+import React from 'react';
+//here we write the HTML code here wit the javascript
+const element=<h1>hello world<h1>;
+ReactDOM.render(element,document.getElementById('root'));
+
+
+8.React compnent:
+reusable code blocks contains the logics and ui elements
+ui broken into small pieces called components
+types:
+functional,class components:
+
+functional components same as javascript:
+function welcome(){
+  return <h1>hello naveen</h1>
+  }
+//it will useful where there is less interaction like static ui
+
+class components:it can access the data of other components:
+syntex:
+    class Democomponent extents React.Componenst{
+  render(){
+    return <h1>welcome message</h1>
+  }
+  }
+//class component have the less efficient than the functional components 
+  
