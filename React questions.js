@@ -129,5 +129,8 @@ syntex:
     return <h1>welcome message</h1>
   }
   }
-//class component have the less efficient than the functional components 
-  
+//class component have the less efficient than the functional components
+
+9.how browser read the jsx:
+browser does not capable read the jsx,but it can read the javascript
+but with help of the transpiler we convert the jsx into the javascript then we read
