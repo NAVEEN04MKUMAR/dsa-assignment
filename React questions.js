@@ -134,3 +134,65 @@ syntex:
 9.how browser read the jsx:
 browser does not capable read the jsx,but it can read the javascript
 but with help of the transpiler we convert the jsx into the javascript then we read
+
+10.can you print the hello world?
+//syntex
+  function Component(){
+    dosomething(e){
+      e.preventDefault();
+    }
+    return(
+      <button onEvent={dosomething}></button>
+    );
+  };
+
+
+
+
+
+
+  11.create the event in the react:
+during event user interactions plays a role,interaction like the mouse clicks,keypress, or battary to the charger
+
+import React from 'react';
+function App(){
+  function eventhandler(){
+    alert('naveen surely will be a good problem solver');
+  }
+  return(
+    <div className='App'>
+      <h1>Just Recurit Naveen</h1>
+      <button onClick={eventhandler}>Click for alert</button>
+    </div>
+  )
+
+}
+
+export default App;
+
+  12.List in the React:
+  
+ import React from 'react';
+ import ReactDOM from 'react-dom';
+
+ class Numberlist extends React.Component{
+  render(){
+    const numbers=[1,2,3,4,5];//stored in array
+    //iterating over the each element in the array through map
+    <li key={number}>{number}</li>
+    const listitems=numbers.map((number)=>{
+    });
+    return (
+      <ul>
+        {listitems}
+      </ul>
+    );
+  }
+ }
+ ReactDOM.render(
+  <Numberlist/>,
+  document.getElementById('root')
+ );
+
+
+  
