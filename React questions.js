@@ -235,5 +235,22 @@ root.render(<App />);
 
 13.write comments in react:
   //it is represent that single line comment //
-  //multiline comment that /**/         
+  //multiline comment that /**/
+
+14.difference between the react and angular:
+     performance:
+            react:one way data binding ,provides the better performance for dynamic application
+            angular:uses the realdom
+
+     data binding:
+            react:one way data binding easy to debug and understand 
+            angular:two way data binding so changes in the UI reflected in the model and vice versa
+      
+    language:
+            react:whhich we have uses in the javascript,developed by facebook
+            angular:we are used in the typescript and the developed by the google
+            
+            angular:
+
+
   
