@@ -195,6 +195,8 @@ export default App;
  );
 
 13.About Keys:
+//we should include when we create the list of elements in React
+//it will helpful to get the which itemsare eleted,changed or updated
 //unique ness o the keys  is that we have the unique element within the array not globally
 import React from "react";
 import ReactDOM from"react-dom/client";
