@@ -194,5 +194,42 @@ export default App;
   document.getElementById('root')
  );
 
+13.About Keys:
+//unique ness o the keys  is that we have the unique element within the array not globally
+import React from "react";
+import ReactDOM from"react-dom/client";
+
+function Menuitems(props){
+    const item=props.item;
+    return <li>{item}</li>
+}
+
+//component will return unordered list
+function Navmenu(props){
+const list=props.menuitems;
+const updatedlist=list.map((listitems)=>{
+ return <Menuitems key={listitems.toString()} item={listitems}/>;
+});
+return <ul>{updatedlist}</ul>
+}
+
+function App(){
+    const menuitems1=[1,2,3,4,5];
+    const menuitems2=[1,2,3,4,5];
+    return (
+        <React.StrictMode>
+            <Navmenu menuitems={menuitems1}/>
+            <Navmenu menuitems={menuitems2}/>
+        </React.StrictMode>
+    )
+}
+
+// Exporting the App component as the default export
+export default App;
+
+// Rendering the App component
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+
 
   
