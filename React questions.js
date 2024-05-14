@@ -233,5 +233,7 @@ export default App;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 
-
+13.write comments in react:
+  //it is represent that single line comment //
+  //multiline comment that /**/         
   
