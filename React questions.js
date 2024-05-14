@@ -250,7 +250,36 @@ root.render(<App />);
             react:whhich we have uses in the javascript,developed by facebook
             angular:we are used in the typescript and the developed by the google
             
-            angular:
+  15.About render:
+  import React,{Component} from "react";
+
+export default class App extends Component{
+    state={
+        pawridays:[
+            {id:"123",Day:"monday"},
+            {id:"234",Day:"wednesday"},
+            {id:"345",Day:"thrusday"},
+        ],
+    };
+  
+    //purpose of the render is that we the HTML code inside the render function 
+    render(){
+        const partydays=this.state.pawridays.length;
+        const style={
+            textAlign:"center",
+            color:"green",
+        };
+      
+        return(
+            <div style={style}>
+                <h1>I am user</h1>
+                <p>we party:{partydays} days a week</p>
+            </div>
+        );
+      
+    }
+}
+
 
 
   
