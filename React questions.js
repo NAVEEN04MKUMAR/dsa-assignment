@@ -280,6 +280,56 @@ export default class App extends Component{
     }
 }
 
+16.Abouts state in the react:
+//State is a way to store and manage the data
+//State of a component is an object that holds some information that may change the over the lifetime of the component
+
+  import React,{Component} from "react";
+//   import ReactDOM from "react-dom/client";
+
+export default class App extends Component{
+   constructor(props){
+    super(props);
+    this.state={
+       count:0,
+    };
+   }
+
+  increment=()=>{
+    this.setState((prevState)=>({
+       count:prevState.count+1,
+    }));
+   };
+  
+   decrement=()=>{
+    this.setState((prevState)=>({
+       count:prevState.count-1,
+    }));
+   };
+  
+   //takes the single parameter expect the contain the e of values to be updated
+   //update the state in react it is the independent it mean multiple attribute is present then we can include the very subset of the attributes ,once update is ver then render will call this one
+  
+  render(){
+        return(
+            <div>
+                <h1>The currrent count is:{" "}
+                {this.state.count}
+                </h1>
+                <button onClick={this.increment}>
+                    increase
+                </button>
+                <button onClick={this.decrement}>
+                    decrease
+                </button>
+            </div>
+        );
+      
+    }
+}
+
+
+
 
 
   
