@@ -328,6 +328,27 @@ export default class App extends Component{
     }
 }
 
+17.About props:
+//props mean we are pass the information to the component 
+//props means that it is the object where the we are using this one at the inside a component
+
+//for the class absed value we need the this keyword access te data
+  import React,{Component} from "react";
+//   import ReactDOM from "react-dom/client";
+
+export default class App extends Component{
+   
+  
+  render(){
+        return(
+            <div>
+                <h2>Hello {this.props.user}</h2>
+                <h3>hello naveen</h3>
+            </div>
+        );
+      
+    }
+}
 
 //when we use the class that time it si not required the cthis keyword access the data
   import React from "react";
@@ -341,6 +362,38 @@ export default function App (props){
             </div>
         );  
     }
+
+
+
+  import React from "react";
+//   import ReactDOM from "react-dom/client";
+
+export default class App extends React.Component{
+    render(){
+            return(
+            <div>
+                <h2>we are inside the parant component </h2>
+                <Child name="user" userid="1111"/>
+            </div>
+        );  
+    } 
+    
+}
+
+ class Child extends React.Component{
+    render(){
+     console.log(this.props);
+            return(
+            <div>
+                <h2>Hello,{this.props.name}</h2>
+                <h3>We are at the inside the Child component</h3>
+                <h3>Our user id is the {this.props.userid}</h3>
+            </div>
+        );  
+    } 
+    
+}
+
 
 
 
