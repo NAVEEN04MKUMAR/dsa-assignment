@@ -329,6 +329,21 @@ export default class App extends Component{
 }
 
 
+//when we use the class that time it si not required the cthis keyword access the data
+  import React from "react";
+//   import ReactDOM from "react-dom/client";
+
+export default function App (props){
+        return(
+            <div>
+                <h2>Hello {props.user}</h2>
+                <h3>hello naveen</h3>
+            </div>
+        );  
+    }
+
+
+
 
 
 
