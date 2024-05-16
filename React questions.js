@@ -398,6 +398,78 @@ export default class App extends React.Component{
 
 
 
+//functional component
+// const Car=()=>{
+//     return <h2>Hi Myself Naveen kumar</h2>
+// }
+import React,{useState} from "react";
+const Functionalcomponent=()=>{
+    const [count,setCount]=useState(0);
+
+    const increase=()=>{
+        setCount(count+1);
+    }
+    
+    return(
+        <div>
+            <h1>Welcome to recurit Naveen</h1>
+            <h3>Counter app using Functionalcomponent</h3>        
+            <h2>{count}</h2>
+            <button onClick={increase}>Add</button>
+        </div>
+
+    )
+}
+export default Functionalcomponent;
+
+//functional
+constructr are not used
+hooks are used for to make stateful
+ru from top to bottom
+no render is used
+plain js accept props as arguements ad return react element
 
 
-  
+
+
+//class based component
+import React,{Component} from "react";
+class ClassComponent extends React.Component{
+    constructor(){
+        super();
+        this.state={
+            count:0
+        };
+        this.increase=this.increase.bind(this);
+    }
+    increase(){
+        this.setState({count:this.state.count+1})
+    }
+    render(){
+        return(
+        <div>
+            <h1>Welcome to recurit Naveen</h1>
+            <h3>Counter app using classcomponent</h3>        
+            <h2>{this.state.count}</h2>
+            <button onClick={this.increase}>Add</button>
+        </div>
+      )
+    }   
+  }
+export default ClassComponent;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
