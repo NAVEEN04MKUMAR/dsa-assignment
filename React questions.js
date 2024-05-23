@@ -460,9 +460,39 @@ export default ClassComponent;
 
 
 
+20.about render:
 
+//app.js
+import React,{useState} from 'react';
+import Childcomponent from './Childcomponent.js';
 
+function App(){
+    const[message,setmessage]=useState('hello world');
+    return(
+        <div>
+        <h1>Parant component</h1>
+        <button onClick={()=>setmessage('hello naveen')}>change message</button>
+        <Childcomponent message={message}/>
+        </div>
+    );
+}
 
+export default App; 
+
+//Childcomponent.js
+import React from 'react';
+
+function Childcomponent({message}){
+
+    return(
+        <div>
+            <h2>Childcomponent</h2>
+            <p>{message}</p>
+        </div>
+
+    );
+}
+export default Childcomponent;
 
 
 
