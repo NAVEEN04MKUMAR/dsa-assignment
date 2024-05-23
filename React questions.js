@@ -494,6 +494,55 @@ function Childcomponent({message}){
 }
 export default Childcomponent;
 
+//INTERMEDIATE QUESTIONS REACT RENDERING
+//21
+import React from "react";
+import ReactDOM from "react-dom";
+
+function Message(props){
+    if(props.isloggedin)
+        return <h1>Welcome User</h1>
+    else
+        return <h1>Please login</h1>
+}
+
+function Login(props){
+    return <button onClick={props.clickFunc}>login</button>
+}
+
+function Logout(props){
+    return <button onClick={props.clickFunc}>logout</button>
+}
+
+class Homepage extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={isloggedin:false};
+        this.ifloginclicked=this.ifloginclicked.bind(this);
+        this.iflogoutclicked=this.iflogoutclicked.bind(this);
+    }
+    ifloginclicked(){
+        this.setState({isloggedin:true});
+    }
+     iflogoutclicked(){
+        this.setState({isloggedin:false});
+    }
+
+    render(){
+        return(
+            <div>
+            <Message isloggedin={this.state.isloggedin}/>
+            {this.state.isloggedin?(
+                <Logout clickFunc={this.iflogoutclicked}/>
+            ):(<Login clickFunc={this.ifloginclicked}/>
+            )}
+            </div>
+        );
+    }
+
+}
+ReactDOM.render(<Homepage />, document.getElementById("root"));
+
 
 
 
