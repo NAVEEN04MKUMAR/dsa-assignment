@@ -543,12 +543,100 @@ class Homepage extends React.Component{
 }
 ReactDOM.render(<Homepage />, document.getElementById("root"));
 
+//22.About react router:
 
 
+//app.js
+components of the react:
+//Browser router:it will push,replace,and pop,it store te all other components
+//Routes:
+//Route:render some ui when path match the current url
+//Link:create link to different routes
+import React,{Component} from "react";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+} from "react-router-dom";
+import Home from "./components/home.js";
+import Contact from "./components/contact.js";
+import About from "./components/about.js";
 
 
+class App extends Component{
+    render(){
+        return(
+            <Router>
+                <div className="App">
+                    <ul className="App-header">
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                         <li>
+                            <Link to="/about">About us</Link>
+                        </li>
+                        <li>
+                            <Link to="/contact">
+                                Contact us
+                            </Link>
+                        </li>
+                    </ul>
+                    <Routes>
+                        <Route path="/" element={<Home/>}></Route>
+                        <Route path="/about" element={<About/>}></Route>
+                        <Route path="/contact" element={<Contact/>}></Route>
+                    </Routes>
+                </div>
+            </Router>
+        );
+    }
+}
+
+export default App;
 
 
+//about.js
+import React from "react";
+
+function About(){
+    return(
+        <div>
+            <h2>
+                Naveenkumar is a Computer science Engineer right now
+            </h2>
+        </div>
+    );
+}
+export default About;
+
+//Contact.js
+import React from "react";
+
+function Contact(){
+    return(
+        <address>
+            Porur<br/>
+            chennai 600 026<br/>
+            or<br/>
+            Anna cenetaory library  at guindy
+        </address>
+    );
+}
+export default Contact;
+
+//Home.js
+import React from "react";
+
+function Home(){
+    return(
+       <h1>Welcome to the recurit Naveenkumar</h1>
+    );
+}
+export default Home;
+
+
+23.
 
 
 
