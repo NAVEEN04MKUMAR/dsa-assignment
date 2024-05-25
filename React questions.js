@@ -636,7 +636,114 @@ function Home(){
 export default Home;
 
 
-23.
+23.About react life cycle
+
+//2.Mounting:
+class Test extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={hello:"world!"};
+  }
+  // //static get Derived State from Props
+  // static getDerivedStateFromProps(props,state){
+  //   return {hello:props.greet};
+  // }
+
+  //componentDidMount() for this one this funtion is invoked right after the render() function is executed for the first time
+  componentDidMount(){
+    this.setState({hello:" Geeks!"});
+  }
+  render(){
+    return(
+      <div>
+        <h1>
+          Naveenkumar
+          {this.state.hello}
+        </h1>
+      </div>
+    )
+  }
+
+}
+
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Test greet=" Geeks!"/>);
+//.3.Updating:
+
+//getDerivedStateFromProps
+//we will get the My name is sachin
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class App extends React.Component{
+    render(){
+        return(
+            <div>
+                <Child name="sachin"></Child>
+            </div>
+        )
+    }
+}
+
+class Child extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            name:"naveen"
+        };
+    }
+    static getDerivedStateFromProps(props,state){
+        if(props.name!==state.name){
+            return{
+                name:props.name
+            };
+        }
+        return null;
+    }
+
+    render(){
+        return(
+            <div>My name is {this.state.name}</div>
+        )
+    }
+}
+
+export default App;
+
+
+
+
+//it will change to the click the button on receive message to the geeks for the geeks welcome you
+//setstate
+import React,{Component} from "react";
+class App extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+           greeting:"Click the button on receive message",
+        };
+        this.updateState=this.updateState.bind(this);
+    }
+    
+
+    updateState(){
+        this.setState({
+            greeting:"Geeks for geeks welcome you"
+        });
+    }
+
+    render(){
+        return(
+            <div>
+                <h2>Greeting portal</h2>
+                <p>{this.state.greeting}</p>
+                <button onClick={this.updateState}>Click me</button>      
+            </div>
+        );
+    }
+}
+
+export default App;
 
 
 
