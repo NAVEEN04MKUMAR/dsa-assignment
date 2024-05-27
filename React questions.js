@@ -146,11 +146,6 @@ but with help of the transpiler we convert the jsx into the javascript then we r
     );
   };
 
-
-
-
-
-
   11.create the event in the react:
 during event user interactions plays a role,interaction like the mouse clicks,keypress, or battary to the charger
 
@@ -236,23 +231,20 @@ root.render(<App />);
 13.write comments in react:
   //it is represent that single line comment //
   //multiline comment that /**/
-
+            
 14.difference between the react and angular:
      performance:
             react:one way data binding ,provides the better performance for dynamic application
             angular:uses the realdom
-
      data binding:
             react:one way data binding easy to debug and understand 
             angular:two way data binding so changes in the UI reflected in the model and vice versa
-      
     language:
             react:whhich we have uses in the javascript,developed by facebook
             angular:we are used in the typescript and the developed by the google
             
   15.About render:
   import React,{Component} from "react";
-
 export default class App extends Component{
     state={
         pawridays:[
@@ -261,7 +253,6 @@ export default class App extends Component{
             {id:"345",Day:"thrusday"},
         ],
     };
-  
     //purpose of the render is that we the HTML code inside the render function 
     render(){
         const partydays=this.state.pawridays.length;
@@ -279,7 +270,6 @@ export default class App extends Component{
       
     }
 }
-
 16.Abouts state in the react:
 //State is a way to store and manage the data
 //State of a component is an object that holds some information that may change the over the lifetime of the component
@@ -335,10 +325,7 @@ export default class App extends Component{
 //for the class absed value we need the this keyword access te data
   import React,{Component} from "react";
 //   import ReactDOM from "react-dom/client";
-
 export default class App extends Component{
-   
-  
   render(){
         return(
             <div>
@@ -349,11 +336,9 @@ export default class App extends Component{
       
     }
 }
-
 //when we use the class that time it si not required the cthis keyword access the data
   import React from "react";
 //   import ReactDOM from "react-dom/client";
-
 export default function App (props){
         return(
             <div>
@@ -362,12 +347,8 @@ export default function App (props){
             </div>
         );  
     }
-
-
-
   import React from "react";
 //   import ReactDOM from "react-dom/client";
-
 export default class App extends React.Component{
     render(){
             return(
@@ -460,12 +441,14 @@ export default ClassComponent;
 
 
 
+
+
+
 20.about render:
 
 //app.js
 import React,{useState} from 'react';
 import Childcomponent from './Childcomponent.js';
-
 function App(){
     const[message,setmessage]=useState('hello world');
     return(
@@ -476,23 +459,27 @@ function App(){
         </div>
     );
 }
-
 export default App; 
 
 //Childcomponent.js
 import React from 'react';
-
 function Childcomponent({message}){
-
     return(
         <div>
             <h2>Childcomponent</h2>
             <p>{message}</p>
         </div>
-
     );
 }
 export default Childcomponent;
+
+
+
+
+
+
+
+
 
 //INTERMEDIATE QUESTIONS REACT RENDERING
 //21
@@ -543,6 +530,7 @@ class Homepage extends React.Component{
 }
 ReactDOM.render(<Homepage />, document.getElementById("root"));
 
+//doubt:this one 
 //22.About react router:
 
 
@@ -744,6 +732,134 @@ class App extends Component{
 }
 
 export default App;
+
+
+
+//shouldComponentUpdate
+import React,{Component} from "react";
+class App extends Component{
+       shouldComponentUpdate(nextProps){
+        if(nextProps.value!==this.props.value){
+            return true;
+        }else{
+            return false;
+        }
+       }
+render(){
+    console.log("counter 1 is calling");
+    return(
+        <div>
+            <h2>
+                Counter 1:
+            </h2>
+            <h3>{this.props.value}</h3>
+            <button onClick={this.props.onClick}>Add</button>
+        </div>
+    );
+}
+}
+export default App;
+
+
+
+25.React life cycle order in the Mounting:
+
+
+
+//1.constructor
+import React,{Component} from "react";
+class App extends Component{
+    constructor(props){
+        super(props);
+    this.state={name:'naveen'};    
+}
+
+render(){
+return (
+<div className="App">
+<h1>welcome {this.state.name}</h1>
+</div>
+);
+
+}
+}
+
+export default App;
+
+
+
+//2.get derived state from props it will change the nam efrom naveen to the kumar
+import React,{Component} from "react";
+class App extends Component{
+    constructor(props){
+        super(props);
+    this.state={name:'naveen'};    
+}
+static getDerivedStateFromProps(props){
+    return {name:'kumar'};
+}
+
+render(){
+return (
+<div className="App">
+<h1>welcome {this.state.name}</h1>
+</div>
+);
+
+}
+}
+
+export default App;
+
+//3.render it will output the HTML to the Dom
+//constructor
+import React,{Component} from "react";
+class App extends Component{
+render(){
+return (
+<div className="App">
+<h1>welcome Naveen</h1>
+</div>
+);
+
+}
+}
+
+export default App;
+
+//4.ComponentDidMount(); it will work when the element in the DOM
+//here it will work settimeout function changes the after 2  seconds
+//constructor
+import React,{Component} from "react";
+class App extends Component{
+    constructor(props){
+        super(props);
+        this.state={name:'naveen'};    
+}
+componentDidMount(){
+    setTimeout(()=>{
+        this.setState({name:"kumar"})
+    },2000)
+}
+
+render(){
+return (
+<div className="App">
+<h1>welcome {this.state.name}</h1>
+</div>
+);
+
+}
+}
+export default App;
+
+
+
+
+
+
+
+
 
 
 
