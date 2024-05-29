@@ -765,7 +765,6 @@ export default App;
 25.React life cycle order in the Mounting:
 
 
-
 //1.constructor
 import React,{Component} from "react";
 class App extends Component{
@@ -842,6 +841,341 @@ componentDidMount(){
     },2000)
 }
 
+
+
+
+  
+27.Reactef:
+//ref are used in the access and odify the DOM elements in the react
+//ref it was helpful to access the DOM
+//change the value of the child compnent without use the props
+//without ref
+import React from "react";
+import ReactDOM from "react-dom";
+class App extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={sayings:""};
+    }
+    update(e){
+        this.setState({sayings:e.target.value});
+    }
+    render(){
+        return(
+            <div>
+                Mukul says {" "}
+                <input 
+                type="text"
+                onChange={this.update.bind(this)}
+                />
+                <br/>
+                <em>{this.state.sayings}</em>
+            </div>
+        );
+    }
+
+}
+
+export default App;
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+//without ref
+import React from "react";
+import ReactDOM from "react-domm";
+class App extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={sayings:""};
+    }
+    update(e){
+        this.setState({sayings:this.a.value});
+    }
+    render(){
+        return(
+            <div>
+                Mukul says {" "}
+                <input 
+                type="text"
+                ref={(call_back)=>{
+                    this.a=call_back;
+                }}
+                onChange={this.update.bind(this)}
+                />
+                <br/>
+                <em>{this.state.sayings}</em>
+            </div>
+        );
+    }
+
+}
+
+export default App;
+
+28.Usestate and useref:
+//react hooks
+//abiliy to use the usestates and side effects
+//without hook:functional compoenent in React lated add the state into it we used to convert into the class component
+//if we use the hook there is no nee t convert into the class component
+
+
+//React Hooks
+
+//state,context,ref,effect
+//performance,resource,etc
+
+//state hooks:to provide access to the information
+//it is add state to the function components
+//declare the manage state variables directly within the component
+//usestate 1st one contain the state and the second one is the update the state 
+
+
+//example:
+import React,{useState} from "react";
+
+function App(){
+    const click=useState('naveen');
+    return(
+        <h1>Welcome to</h1>
+    )
+
+}
+export default App;
+//update the usestate hook 
+
+
+//example:
+
+///second value passed into the 1st value then upadte this one 
+import React,{useState} from "react";
+
+function App(){
+    const [click,setclick]=useState(0);
+    return(
+        <div>
+            <p>You clicked {click} times</p>
+            <button onClick={()=>setclick(click+1)}>click me</button>
+        </div>
+    )
+
+}
+export default App;
+
+
+//use reducer:
+
+//syntex:
+//const[state,dispatch]=useReducer(reducer,initailArgs,init);
+import React,{useReducer} from "react";
+
+const initialState=0;
+const reducer=(state,action)=>{
+    switch(action){
+        case "add":
+        return state+1;
+        case "substract":
+        return state-1;    
+        case "reset":
+        return 0;
+        default:
+            throw new Error("unexpected action");
+    }
+};
+
+
+const App=()=>{
+    const[count,dispatch]=useReducer(reducer,initialState);
+
+    return(
+        <div>
+            <h2>{count}</h2>
+            <button onClick={()=>dispatch("add")}>add</button>
+            <button onClick={()=>dispatch("substract")}>substract</button>
+            <button onClick={()=>dispatch("reset")}>reset</button>
+        </div>
+    )
+};
+export default App;
+
+
+
+
+
+//useref:
+import React,{Fragment,useRef} from "react";
+
+function App(){
+  //creatte the ref object using the useref
+  //useref allow to directly create the reference to DOM element
+  //change the value then it is not the re-render
+  //efficient in access the DOM element
+     const focuspoint=useRef(null);
+
+     const onclickhandler=()=>{
+        focuspoint.current.value=
+        "the quick brown fox jumps over the lazy dog";
+        focuspoint.current.focus();
+     };
+
+    return(
+        <Fragment>
+            <div>
+                <button onClick={onclickhandler}>action</button>
+            </div>
+                <label>click on the action button to focus and populate the text</label><br/>
+                <textarea ref={focuspoint}/>
+        </Fragment>
+    )
+
+}
+export default App;
+
+
+//useImperativeHandle:
+import React,{useRef} from "react";
+import Input from "./input"; 
+function App(){
+  
+     const inputref=useRef(null);
+    return(
+            <div>
+              <Input onFocus={()=>inputref.current.focus()}  
+              ref={inputref}/>
+            </div>
+
+    );
+};
+export default App;
+
+//input.js
+import React,{useRef,useImperativeHandle,forwardRef} from "react";
+function Input(props,ref){
+     const btn=useRef();//it is for reference to DOM
+     //this one will helpful to what we have to expose 
+     //to the parant element from child element 
+     useImperativeHandle(ref,()=>({
+        focus:()=>{
+            console.log('input is in focus');
+        },
+     }));
+    return(<input ref={btn} {...props} placeholder="type here"/>)
+}
+export default forwardRef(Input);
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 render(){
 return (
 <div className="App">
@@ -852,6 +1186,7 @@ return (
 }
 }
 export default App;
+
 
 
 
