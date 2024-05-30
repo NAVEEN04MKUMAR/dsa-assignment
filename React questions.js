@@ -1064,6 +1064,84 @@ export default forwardRef(Input);
 
 
 
+// File name - HookCounterOne.js
+// useEffect is defined here
+
+import { useState, useEffect } from "react";
+
+function HookCounterOne() {
+	const [count, setCount] = useState(0);
+
+	useEffect(() => {
+		document.title = `You clicked ${count} times`;
+	}, [count]);
+
+	return (
+		<div>
+			<button onClick={() => setCount((prevCount) => prevCount + 1)}>
+				Click {count} times{" "}
+			</button>
+		</div>
+	);
+}
+export default HookCounterOne;
+
+// Filename - App.js 
+// Importing and using HookCounterOne
+
+import React from "react";
+import "./App.css";
+import HookCounterOne from "./components/HookCounterOne";
+
+function App() {
+	return (
+		<div className="App">
+			<HookCounterOne />
+		</div>
+	);
+}
+export default App;
+
+
+
+
+
+
+
+
+//uselayouteffect
+//it works synchronously after all DOM loading is done loading
+import React, { useLayoutEffect, useState } from "react";
+
+const App = () => {
+	const [value, setValue] = useState("GFG");
+
+	useLayoutEffect(() => {
+		console.log(
+			"UseLayoutEffect is called with the value of ",
+			value
+		);
+	}, [value]);
+	setTimeout(() => {
+		setValue("GeeksForGeeks");
+	}, 2000);
+
+	return (
+		<div
+			style={{
+				textAlign: "center",
+				margin: "auto",
+			}}
+		>
+			<h1 style={{ color: "green" }}>{value}</h1> is
+			the greatest portal for geeks!
+		</div>
+	);
+};
+
+export default App;
+
+
   
 
 
