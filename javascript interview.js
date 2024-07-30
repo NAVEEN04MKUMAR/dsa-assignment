@@ -104,33 +104,103 @@ const str8="very soon get the" +
 "millionare job";
 console.log(str7);
 
-//get the sub string
+//l)get the sub string
 let str='very soon placed in the great startup in the world';
 let substr=str.substring(24,37);
 console.log(substr);
 
-//get the upper case and lowercase
+//m)get the upper case and lowercase
 let str2='very soon placed in the great startup in the world';
 let upper=str2.toUpperCase();
 let lower=str2.toLowerCase();
 console.log(upper);
 console.log(lower);
 
-//string search
-let str3='very soon placed in the great startup in the world';
-let searchstr=str3.indexOf('great startup');
-console.log(searchstr);
-
-//trimming
+//o)trimming
 let str4='          very soon placed in the great startup in the world';
 let trim=str4.trim();
 console.log(trim);
 
-//replacemet
+//p)replacemet
 let str5='very soon placed in the great startup in the world';
 let newstr=str5.replace('very soon','now');
 console.log(newstr);
 
+//q)we get the charecter from giving index
+function func(){
+    let str="beautiful naveen";
+    let ltr=str.charAt(0);
+    console.log(ltr);
+    let ltr2=str.charAt(10);
+    console.log(ltr2);
+    let ltr3=str.charAt(100);
+    console.log(ltr3);//o/p:retuern empty string
+
+}
+func()
+
+//r)local compare
+//+ve num if lexicographically>compare string
+//-ve num if lexicographically<compare string
+//0 num if lexicographically=compare string
+
+let str6="mech";
+let str7="cse";
+let result=str6.localeCompare(str7);
+console.log(result);
+//o/p return 1  c come after m
+
+let str8="cse";
+let str9="mech";
+let result2=str8.localeCompare(str9);
+console.log(result2);
+//o/p resturn -1   m com after c
+
+let str10="cse";
+let str11="cse";
+let result3=str10.localeCompare(str11);
+console.log(result3);
+//o/p resturn 1
+
+//s)passing javascript string as the object
+let str12=new String("Navenn kumar mmost valuable person in te world");
+console.log(str12);
+
+
+//C)Boolean
+
+//false:0,Nan,empty string,undefined,null
+//true:object,other than
+
+//everything is true
+console.log(Boolean(10));
+console.log(Boolean(2.74));
+console.log(Boolean(1<2));
+console.log(Boolean(3*2+1));
+console.log(Boolean('true'));
+console.log(Boolean('false'));
+console.log(Boolean("Naveenkumar"));
+
+//everything is false
+console.log(Boolean(0));
+console.log(Boolean(""));
+console.log(Boolean(-0));
+console.log(Boolean(null));
+console.log(Boolean(NaN));
+console.log(Boolean(1>2));
+
+//about symbol data types:
+//symbol we can create the unique identifier 
+const sym1=Symbol('description');
+const sym2=Symbol('descriptio');
+console.log(sym1===sym2);
+
+//avaoid the name collisions when interact with the objects,avoid interface
+const mysymbol=Symbol('mysymbol');
+const obj={
+    [mysymbol]:'some value'
+};
+console.log(obj[mysymbol]);
 
 
 
