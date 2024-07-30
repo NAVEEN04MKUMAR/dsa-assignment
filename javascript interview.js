@@ -203,6 +203,63 @@ const obj={
 console.log(obj[mysymbol]);
 
 
+//UNDEFINED
+//application:object property exist before accessing it
+//application:uninitialised variables during debugging
+//undefined data type where the variable is declared then value not assigned
+let newvar;
+console.log(newvar);
+//o/p:undefined
 
+
+//we got the undefined when function are not return the any value
+function sayhi(name){
+    console.log(`hi ${name}`)
+}
+x=sayhi('hike');
+
+console.log(`value in x=${x}`);
+//o/p:hi hike
+//value in x=undefined
+
+//if we access the property which does not have 
+//inside the object then we assign them for the undefined
+const object={name:"naveen",age:"24"};
+console.log(object.salary);
+
+//NULL
+//null represent the absense of any object value
+class Square{
+    constructor(length){
+        this.length=length;
+    }
+    static craetesquare(length){
+        return length>0? new Square(length):null;
+    }
+}
+
+const square1=Square.craetesquare(10);
+const square2=Square.craetesquare(100);
+const square3=Square.craetesquare();
+
+console.log(square1);
+console.log(square2);
+console.log(square3);
+
+// o/p
+// Square { length: 10 }
+// Square { length: 100 }
+// null
+
+
+//ex:
+const myvalue=null;
+if(myvalue){
+    console.log("not null");
+
+}else{
+    console.log("null");
+}
+//o/p:null
 
 
