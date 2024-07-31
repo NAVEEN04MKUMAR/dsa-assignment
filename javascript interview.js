@@ -262,4 +262,100 @@ if(myvalue){
 }
 //o/p:null
 
+//Objects in Javascript
+const o = new Object();
+o.foo = 42;
+
+console.log(o);
+// { foo: 42 }
+
+//ex
+// JavaScript code demonstrating a simple object
+let school = {
+    name: 'Vivekananda School',
+    location: 'Delhi',
+    established: '1971',
+    displayInfo: function () {
+        console.log(`${school.name} was established 
+              in ${school.established} at ${school.location}`);
+    }
+}
+school.displayInfo(); 
+//Vivekananda School was established in 1971 at Delhi
+
+//ex:
+//Bracket notation 
+let school = {
+    name: 'Vivekananda School',
+    displayInfo: function () {
+        console.log(`${school.name.split(' ')[0]}`);
+    }
+}
+school.displayInfo(); // Vivekananda
+
+//Inherited Propertie
+let school = {
+    "name": "Vivekananda School"
+};
+console.log(school.hasOwnProperty("name")); 
+console.log(school.hasOwnProperty("toString"));
+//o/p:
+//true
+//false
+
+
+
+//Accessing object members
+
+let person = {
+    name: "John"
+};
+Object.defineProperty(person, 'name', {
+    writable: false,
+    enumerable: true,
+    configurable: false
+});
+//o/p:
+//Vivekanada
+//1971
+
+//Iterating all over the keys
+let person = {
+    gender: "male"
+}
+
+let person1 = Object.create(person);
+person1.name = "Adam";
+person1.age = 45;
+person1.nationality = "Australian";
+
+for (let key in person1) {
+    // Output : name, age, nationality 
+    // and gender
+    console.log(key);
+}          
+//output
+name
+age
+nationality
+gender
+
+
+
+//Deleting Properties
+let obj1 = { 
+    propfirst : "Name"
+} 
+
+// Output : Name 
+console.log(obj1.propfirst); 
+delete obj1.propfirst 
+
+// Output : undefined 
+console.log(obj1.propfirst); 
+
+//o/p
+//Name
+//undefined
+
 
