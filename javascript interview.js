@@ -359,3 +359,39 @@ console.log(obj1.propfirst);
 //undefined
 
 
+
+
+
+
+3.Comments in javascript:
+//single line comment
+
+/*
+multiline comment
+*/ 
+
+
+4.what will happened if 2+4+"7"
+2 and 4 we got the addition then then 6+"7" then concatinate the value 67 
+
+5.about NaN:
+verify this one we are not pass the value of the not a number,if not a number we got true else false
+
+6.javascript and ASP script:
+speed of js>speed of ASP script
+because js is the client side code so it will not depend on the server side code
+ASP script is the server side sciripting language always is depend on the server
+
+7.Negative value:
+
+8.creation of js is the netscape (1995)
+
+9.break the code in the multiple line this one 
+console.log("Aonline computer science portal \n for geeks");
+
+10.undeclared:when we try to access any variable which is not initialise  earlier using var and constkeyword
+
+
+
+
+
