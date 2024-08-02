@@ -106,3 +106,65 @@ for(const row of ans){
 }
 //time complexity for entire row and column we traverse that will take the 2(m*);
 //space:o(m)+o(n)
+
+//optimal approach
+function zeromatrix(matrix){
+    const n=matrix.length;
+const m=matrix[0].length;
+
+col0=1;
+for(let i=0;i<n;i++){
+    for (let j=0;j<m;j++){
+        if(matrix[i][j]===0){
+            //mark ith row
+            matrix[i][0]=0;
+            //mark j th column
+            if(j!==0){
+                matrix[0][j]=0;
+            }else{
+                col0=0;
+            }
+        }
+    }
+}
+
+
+//mark the zero for the (1,1) to (n-1,m-1) if 1st row and 1st column have the zero
+for(let i=1;i<n;i++){
+    for (let j=1;j<m;j++){
+        if(matrix[i][j]!==0){
+            //check for col and row:
+            if(matrix[i][0]===0||matrix[0][j]===0){
+                matrix[i][j]=0;
+            }
+        }
+    }
+}
+//mark the all the element from 1st row is zero
+
+    if(matrix[0][0]===0){
+        for(let j=0;j<m;j++){
+            matrix[0][j]=0;
+        }
+    }
+    
+    //mark the 1st col is the zero
+    if(col0===0){
+        for(let i=0;i<n;i++){
+            matrix[i][0]=0;
+        }
+    }
+
+    return matrix;
+}
+
+
+const matrix = [[1, 1, 1], [1, 0, 1], [1, 1, 1]];
+const ans = zeromatrix(matrix);
+
+console.log("The Final matrix is:");
+for (const row of ans) {
+    console.log(row.join(" "));
+}    
+
+//space complexity is constant for this one
