@@ -289,3 +289,53 @@ for (let i = 0; i < ans.length; i++) {
 // Time Complexity: O(n2), where n = number of rows(given).
 // Reason: We are generating a row for each single row. The number of rows is n. And generating an entire row takes O(n) time complexity.
 // Space Complexity: In this case, we are only using space to store the answer. That is why space complexity can still be considered as O(1).
+
+
+
+//find the permutation for the next one
+function nextgreaterpermutation(A){    
+let n=A.length;
+let ind=-1;
+//find break point where the minimum element from the rhs to lhs
+for(let i=n-2;i>=0;i--){
+    if(A[i]<A[i+1]){
+        ind=i;
+        break;
+    }
+}
+// console.log("Breakpoint index:", ind);
+//special case:
+if(ind===-1){
+    //reverse the whole array that is the 
+    A.reverse();
+    return A;
+}
+//find the next greater element compare with the A[i] then swap it 
+for(let i=n-1;i>ind;i--){
+    if(A[i]>A[ind]){
+        [A[i],A[ind]]=[A[ind],A[i]];
+        break;
+    }
+}
+//after indices remaioning element we should reverse to get the next greatest permutation
+let left = ind + 1;
+    let right = n - 1;
+    while (left < right) {
+        [A[left], A[right]] = [A[right], A[left]];
+        left++;
+        right--;
+    }return A;
+}
+let A=[2,1,5,4,3,0,0];
+// console.log("Initial array:", A);
+let ans=nextgreaterpermutation(A);
+console.log("Array after swapping:", A)
+
+console.log("The next permutation is: [" + ans.join(" ") + "]");
+
+
+
+
+
+
+
