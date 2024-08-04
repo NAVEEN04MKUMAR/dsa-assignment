@@ -334,6 +334,21 @@ console.log("Array after swapping:", A)
 console.log("The next permutation is: [" + ans.join(" ") + "]");
 
 
+//permutation using backtracking:
+//backtracking:try different option and undoing them if we gop to the dead end
+//it is the solve the eveery possivble solution where the in order to solve a compututational problem
+//leafnode recursion call start
+//C:different Checkpoints
+//tn:last nodes there is no further recursive call
+
+
+
+
+
+
+
+
+
 
 
 
