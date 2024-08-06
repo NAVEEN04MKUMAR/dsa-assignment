@@ -341,8 +341,46 @@ console.log("The next permutation is: [" + ans.join(" ") + "]");
 //C:different Checkpoints
 //tn:last nodes there is no further recursive call
 
+//print the all the permutations:
+//it will better if try to understand clearly
+function permute(nums){
+    const result=[];
+    function recurpermute(index){
+        if(index===nums.length){
+            result.push([...nums]);
+            return;
+        }
 
+//permutation it is starting from any number ex:if 2 then start with 1 or start with 3         
+        for(let i=index;i<nums.length;i++){
+            swap(index,i);//swap the current index with the ith element
+            recurpermute(index+1);//recurse the next index
+            swap(index,i);//swap back to original index
+        }
+        
+    }
+    function swap(i,j){
+    [nums[i],nums[j]]=[nums[j],nums[i]];
+  }
+  recurpermute(0);
+  return result;
+  
+}
 
+const nums=[1,2,3];
+const permutations=permute(nums);
+
+console.log("all permutations are");
+permutations.forEach(perm => {
+    console.log(perm.join(' '));
+});
+o/p:
+1 2 3
+1 3 2
+2 1 3
+2 3 1
+3 2 1
+3 1 2
 
 
 
