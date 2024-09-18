@@ -83,3 +83,68 @@ lion.sayHello();
 
 
 
+3.difference betweeen the call,apply,bind
+//Call:the call() method involkes a fuction with a given this value argumet and  argument provided by one
+
+var employee1={firstname:"naveen",lastname:"kumar"};
+var employee2={firstname:"muthu",lastname:"kumar"};
+var employee3={firstname:"vignesh",lastname:"kanna"};
+
+
+function invite(greeting1,greeting2){
+
+console.log(
+    greeting1+" "+this.firstname+" "+this.lastname+" "+greeting2
+    );    
+}
+
+invite.call(employee1,"hello","how are you?");
+invite.call(employee2,"hello","where are you?");
+invite.call(employee3,"hello","who are you");
+
+
+//apply
+//pass the arguments as the array with the array
+
+var employee4={firstname:"naveen",lastname:"kumar"};
+var employee5={firstname:"muthu",lastname:"kumar"};
+var employee6={firstname:"vignesh",lastname:"kanna"};
+
+
+function invite2(greeting3,greeting4){
+
+console.log(
+    greeting3+" "+this.firstname+" "+this.lastname+" "+greeting4
+    );    
+}
+
+invite2.apply(employee4,["hello","how are you?"]);
+invite2.apply(employee5,["hello","where are you?"]);
+invite2.apply(employee6,["hello","who are you"]);
+
+//bind
+//pass the any number of arguments 
+
+var employee7={firstname:"naveen",lastname:"kumar"};
+var employee8={firstname:"muthu",lastname:"kumar"};
+var employee9={firstname:"vignesh",lastname:"kanna"};
+
+
+function invite3(greeting5,greeting6){
+
+console.log(
+    greeting5+" "+this.firstname+" "+this.lastname+" "+greeting6
+    );    
+}
+
+var invitee1=invite3.bind(employee7);
+var invitee2=invite3.bind(employee8);
+var invitee3=invite3.bind(employee9);
+
+invitee1("hello","how are you?");
+invitee2("hello","where are you?");
+invitee3("hello","who are you")
+
+
+
+
