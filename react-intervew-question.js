@@ -548,6 +548,90 @@ const todoitems=todo.map((todo,index)=>{
 
 
 
+#16:
+virtual dom:
+it is memorty ligght weiht represation of the actual DOM
+when changes occured at the time changes will not occured at the directly to the dom then
+virtual dom created then first changes occured then compare wit the dom whatver 
+minimal changes reqyuird then we will put them   
+
+
+17)virtual dom how it is works:
+1)if we change anything then entire ui is re-render in v-dom
+2)only the difference between the previous dom  representation and new one is calculated
+3)once calculation i don't then real dom will updated
+
+
+
+//18)shadow dom:
+purpose:it is the isolatio of component logic 
+ensure that components ar self-containded and do not interfare with the rest of element 
+use case:it helpful to reusable component
+rendering :
+encapsulate the wn dom tree  which is separate from the document dom 
+
+//18)vittual dom:
+purpose:prrfomance optimasation for the dom in  react
+use case:helpful t manage the ui updates
+render:memory representation of entire dom real dom only updated with diff
+
+
+//19)react fiber:
+//it will solve the propblem related to responsive name and updating user interface
+//it will make the react as the taskmore small taks it will help to heavy updats
+//it can pause work,switch between tasks or discard work
+
+import React,{useState} from 'react';
+const Fiber=()=>{
+    const [count,setcount]=useState(0);
+    const [items,setitems]=useState(Array.from({ length: 2000 }, (_, i) => i));
+const updatedlist=()=>{
+    setitems(items.map((item)=>item+1));
+}
+const incrementcounter=()=>{
+    setcount(count+1);
+}
+
+    return(
+        <div>
+            <h3>
+                react fiber
+            </h3>
+            <div>
+                  <button onClick={updatedlist}>updated heavy list</button>
+           </div>
+
+           <div>
+                  <button onClick={incrementcounter}>increment counter{count}</button>
+           </div>
+
+               <div>
+                <ul>
+                {items.map((item)=>(
+                    <li key={item}>
+                        {item}
+                    </li>
+                ))}
+                 </ul>
+                </div>
+            
+                </div>
+    );
+ };
+
+
+ export default Fiber;
+
+//before:if we increment the updated list then it will take like the
+//it will freese then block the increament by user 
+
+
+20.main goal of the react fiber:
+
+it can split our work interruble work into chunks
+ability to prioritise,reuse work 
+better support for error boundarie
+
 
 
 
