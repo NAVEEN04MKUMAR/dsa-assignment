@@ -57,7 +57,28 @@ console.log("final",final.prop2);
 //from this if we passs the exp2 as a argument directly then we will get the object it show type error
 //if we give access then it show the object
 //if we access the exp1 only the objectname we will not get the value 
-//if we through the ke value then get the value 
+
+
+2.about the prototype chaining:
+Is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language. 
+i.e, When you create an object using a constructor function or a class, the created object inherits properties from a prototype object.
+e.x:
+function Animal(name){
+    this.name=name;
+}
+
+Animal.prototype.sayHello=function(){
+    console.log(`Hello,I am ${this.name}`);
+};
+
+
+const lion=new Animal('lion');
+lion.sayHello();
+    console.log(Object.getPrototypeOf(lion));//{ sayHello: [Function (anonymous)] } iyt represent have the sayhello ariable have th funtion
+    console.log(Object.getPrototypeOf(Object.getPrototypeOf(lion)));//[Object: null prototype] {} that one inside have the null represent at the node.js
+    console.log(Object.getPrototypeOf(Object.getPrototypeOf(Object.getPrototypeOf(lion))));//null
+
+//if we through the key value then get the value 
 
 
 
