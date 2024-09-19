@@ -351,6 +351,23 @@ const greet1=()=>`Hey,how are you`;
 console.log(greet1());
 
 
+//10)difference between the == lose equality and the === strict equality:
+lose:compare the value
+strict:compare the value an data type
+console.log(1=='1');//true
+console.log(true=='1');//true
+console.log(true==1);//true
+console.log(false=='1');//false
+console.log(false==1);//false
+console.log(null==undefined);//true
+
+console.log(1==='1');//false
+console.log(true==='1');//false
+console.log(true===1);//false
+console.log(null===undefined);//false
+
+
+
 
 
 
