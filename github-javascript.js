@@ -426,3 +426,27 @@ function operate(fn,x,y){
 const result=operate(add,5,3);
 console.log(result);
 
+//14)unary function:
+//it accept the only one argument
+//return the any type of value
+
+function unary(a){
+    return a*a;
+}
+console.log(unary(3));
+const unary1=a=>a*2;
+console.log(unary1(4));
+
+
+//15)currying function:
+//functional programming instead of taking all argument at once take the firt argument and return new function that takes the second argument,once all argument passed,final result is computed
+function multiply(a){
+    return function(b){
+        return a*b;
+    };
+}
+
+const multiplybytwo=multiply(2);//return the function multiply by 2
+console.log(multiplybytwo(5));
+
+
