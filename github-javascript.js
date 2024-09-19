@@ -252,6 +252,94 @@ const removed4=array4.splice(2,2,6,7,8);
 console.log(array4);//[ 1, 2, 6, 7, 8, 5 ]
 console.log(removed4);//[ 3, 4 ]
 
+//8.difference between the slice and spice
+// slice:
+// we will not the modify the array
+// return subset of original array
+// used to pick the element of the array
+
+// splice:
+// we will  the original array modify the array
+// return the deleteed elements of array
+// used to insert/delete the element of the array
+
+9)//key types:
+//1)key types:
+
+//object:key ony strings or symbol,if we pass the number it will cnsider them as the string
+//
+const obj={};
+obj[123]='value1';//123 is not number 
+obj[456]='value4';//123 is not number 
+obj[789]='value7';//123 is not number 
+console.log(obj);
+// obj.keys().length.
+
+//2){ '123': 'value1', '456': 'value4', '789': 'value7' }
+//here we get the correct order of key sometime i get the different order of key
+
+//3) in object when we searching for properties it is slower  than map becuase it work as the prototype chain
+//4)length of length we shold manually wit argumnt we should pass
+
+const obj2 = {
+  name: "Naveen",
+  age: 24,
+  profession: "Engineer"
+};
+const numberofkeys = Object.keys(obj2).length;
+console.log(numberofkeys);  // Output: 3
+//5)iteration
+//for ... in
+for(let key in obj2){
+    console.log(key,obj2[key]);
+}
+
+//object.key();
+
+Object.keys(obj2).forEach((key)=>{
+    console.log(key,obj2[key])
+})
+
+//
+for(const [key,value] of Object.entries(obj2)){
+    console.log(key,value);
+}
+
+//6)application:
+//used for string ,json etc
+
+const map=new Map();
+map.set(123,'value');
+map.set({key:'val1'},'objctkey');
+map.set({key:'val2'},'objctkey');
+map.set({key:'val3'},'objctkey');
+
+console.log(map);
+
+//2)map:it will taje the key as th enumber,string etc
+//here always we get the order of key is the how we arrange the order
+// Map(4) {
+//   123 => 'value',
+//   { key: 'val1' } => 'objctkey',
+//   { key: 'val2' } => 'objctkey',
+//   { key: 'val3' } => 'objctkey'
+// }
+//3)when we add or delete the value that time it will show as the faster performance commpare with the object  
+
+//4)length of key of it will give the automatically
+//5)iteration:
+
+for(let [key,value] of map){
+    console.log(key,value);
+}
+//6)application:
+//suited or the complex key value pais,insertion deletion
+
+
+
+
+
+
 
 
 
