@@ -466,4 +466,47 @@ function increment(){
 console.log(increment());
 
 
+//18)know the difference between the let and var
+//the key word will not use as the before initialisation
+function userdetails(username){
+    if(username){
+     let age=24;
+     var salary=10000000; 
+     console.log(age);//let is the functional scope variable
+     }
+    let age=25;
+    console.log(salary);//var is the global (scope) variable then 
+    console.log(age);//let is the functional scope variable
+}
+userdetails("naveen");
+
+//19)why let choose instead of var
+//if the function scope(let) scope will get the correct answer in loops
+//if the global scope(var) scope will over written answer in loops
+
+for(let i=0;i<3; i++){
+    setTimeout(()=>console.log(i),100);
+}//0,1,2
+
+for(var i=0;i<3; i++){
+    setTimeout(()=>console.log(i),100);
+}//3,3,3
+
+//20)how to reassign the variable in switch component
+//x=1 mean it will execute only one block 
+//if x=2 mean it will execute only 2nd block 
+//if we want to run both the we wantremove the break from the 1st block also make the x=1; 
+let x = 1;
+switch (x) {
+  case 1:{
+    let name="naveen";
+    console.log(name);
+}
+  case 2:{
+    let name="kumar1"; // SyntaxError for redeclaration.
+    console.log(name);
+    break;
+}
+}
+
 
