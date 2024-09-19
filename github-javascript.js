@@ -449,4 +449,21 @@ function multiply(a){
 const multiplybytwo=multiply(2);//return the function multiply by 2
 console.log(multiplybytwo(5));
 
+//16)pure function:
+
+//no side effects:it will not modify the any external state on exeternal varaible can change,operate  with the only input
+function add(a,b){
+    return a+b;
+}
+console.log(add(2,3));//whatever input we ae given it will take the input then it will give the result
+
+//impure function example it means that it will modify the external state like the global 
+let count=5;
+function increment(){
+    count+=1;
+    return count;
+}
+console.log(increment());
+
+
 
