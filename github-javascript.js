@@ -366,11 +366,42 @@ console.log(true==='1');//false
 console.log(true===1);//false
 console.log(null===undefined);//false
 
+//11.first calss function:
+//1)assuning function to variable
+const greet=function(){
+    console.log('hello world');
+};
+greet();
 
+//2)passing function as the  argument
+function sayhello(){
+    console.log('hello');
+}
 
+function executefunction(fn){
+    fn();
+}
+executefunction(sayhello);
 
+//returning function from another function
+function multiplier(factor){
+    return function(number){
+        return number*factor;
+    };
+}
 
+const double=multiplier(3);
+console.log(double(5));//15
 
-
-
+//storing function in arrray object
+const operations={
+    add:function(a,b){
+        return a+b;
+    },
+    multiply:function(a,b){
+        return a*b;
+    }
+};
+    console.log(operations.add(2,3));
+    console.log(operations.multiply(2,3));
 
