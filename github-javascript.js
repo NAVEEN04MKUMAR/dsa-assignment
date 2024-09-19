@@ -227,7 +227,30 @@ console.log(array6);//[ 1, 2, 3, 4 ]
 
 
 
+//6.it is add,remove or replace element from array 
+//array.splice(start, deleteCount, item1, item2, ..., itemN)
+//it modifies the original array
+const array=[1,2,3,4,5];
+const removed=array.splice(2,2);
+console.log(array);//[ 1, 2, 5 ]
+console.log(removed);//[ 3, 4 ]
 
+const array2=[1,2,3,4,5];
+const removed2=array2.splice(2,2);
+console.log(array2);//[ 1, 2, 5 ]
+console.log(removed2);//[ 3, 4 ]
+
+//add element
+const array3=[1,2,3,4,5];
+const removed3=array3.splice(2,2,6);
+console.log(array3);//[ 1, 2, 5, 6 ]
+console.log(removed3);//[ 3, 4 ]
+
+//replace element
+const array4=[1,2,3,4,5];
+const removed4=array4.splice(2,2,6,7,8);
+console.log(array4);//[ 1, 2, 6, 7, 8, 5 ]
+console.log(removed4);//[ 3, 4 ]
 
 
 
