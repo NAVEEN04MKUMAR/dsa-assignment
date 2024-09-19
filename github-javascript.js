@@ -146,5 +146,59 @@ invitee2("hello","where are you?");
 invitee3("hello","who are you")
 
 
+4. about JSON:
+//javascript object notation it is light weight data-interchanges format
+//it will useful to the parse the data between the client and server
+
+//convert the js on string into json object
+const jsonstring='{"name":"naveen","age":24}';
+const jsonobject=JSON.parse(jsonstring);
+console.log(jsonobject.name);
+console.log(jsonobject.age);
+console.log(jsonobject);
+
+//convert the js on object into jsonstring
+const jsonobject1={name:"naveen",age:24};
+const jsonstring1=JSON.stringify(jsonobject1);
+console.log(jsonstring1);
+
+//access the json data
+const jsonobject2={name:"naveen",age:24,address:{area:"minnagar"}};
+console.log(jsonobject2.name);
+console.log(jsonobject2.address.area);
+console.log(jsonobject2["age"]);
+
+//modify the json data
+const jsonobject3={name:"naveen",age:24,address:{area:"minnagar"}};
+jsonobject3.name="kumar";
+jsonobject3.address.area="voc nagar";
+jsonobject3["age"]="25";
+console.log(jsonobject3);
+console.log(jsonobject3.address.area);
+console.log(jsonobject3["age"]);
+console.log(jsonobject3.name);
+
+//looping through the json data
+const jsonobjects=["naveen","age:24","minnagar"];
+jsonobjects.forEach( jsonobject=>{
+   console.log( jsonobject); 
+});
+
+//looping through the object data
+const jsonobject4={name:"naveen",age:24,address:{area:"minnagar"}};
+for(let key in jsonobject4){
+    console.log(key+":"+jsonobject4[key])
+}
+
+//merging objects:
+const obj5={name:"naveen"};
+const obj6={age:24};
+const obj7={address:{area:"minnagar"}};
+const merged={...obj5,...obj6,...obj7};
+console.log(merged);
+
+
+
+
 
 
