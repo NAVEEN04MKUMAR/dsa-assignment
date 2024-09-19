@@ -335,8 +335,20 @@ for(let [key,value] of map){
 //6)application:
 //suited or the complex key value pais,insertion deletion
 
+//9.arrow function:
+//multiple argument
+const sum=(a,b)=>{
+    return a+b;
+}
+console.log(sum(5,3));
 
+//single parameter
+const greet=name=>`Hey,how are you ${name}`;
+console.log(greet('naveen'));
 
+//no paramter
+const greet1=()=>`Hey,how are you`;
+console.log(greet1());
 
 
 
