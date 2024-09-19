@@ -199,6 +199,38 @@ console.log(merged);
 
 
 
+5.slice
+//slice return the selected element in an array new array object
+//we give the strating argument and returning argument if we are not give the end argument it will automatcally take the nd argument 
+let array=[1,2,3,4];
+
+let array1=array.slice(0,2);
+console.log(array1);//[ 1, 2 ]
+
+
+let array2=array.slice(0);
+console.log(array2);//[ 1, 2, 3, 4 ]
+
+//slice(-n) starts from the n-th element from the end and goes to the end of the array.
+let array3=array.slice(-3);
+console.log(array3);//[ 2, 3, 4 ]
+
+//negatie side 1st is inclusive 2nd is exclusive
+let array4=array.slice(-3,-2);
+console.log(array4);//[ 2 ]
+
+let array5=array.slice(-3,-1);
+console.log(array5);//[ 2, 3 ]
+
+let array6=array.slice(-4);
+console.log(array6);//[ 1, 2, 3, 4 ]
+
+
+
+
+
+
+
 
 
 
