@@ -405,3 +405,24 @@ const operations={
     console.log(operations.add(2,3));
     console.log(operations.multiply(2,3));
 
+//12)first order function:it is represent like the have it is accept the function as the argument,also not return the any function 
+function add(a,b){
+    return a+b;
+}
+
+const result=add(6,3);
+console.log(result);
+
+//13)higher order function
+//it is accept the function as the argument and the  return the function 
+function add(a,b){
+    return a+b;
+}
+
+function operate(fn,x,y){
+    return fn(x,y);
+}
+
+const result=operate(add,5,3);
+console.log(result);
+
