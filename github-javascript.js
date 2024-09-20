@@ -673,3 +673,10 @@ console.log(secretholder.getSecret());
 console.log(functionscoped);//i am function scoped
 
 
+//29.modular organise code into the smaller ,reusable,maintable pieces
+//split the code into the separate files and functions
+
+//30.why:
+//we can split them into the logicalspecies easier to understand
+//we can import when ever needed at the differet file
+//if we use the everyting at the single file thenit causes error like the global scope,if we make the separate then it is not show the collision
