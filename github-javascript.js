@@ -659,5 +659,17 @@ console.log(secretholder.getSecret());
 secretholder.setSecret('new sssecret');
 console.log(secretholder.getSecret());
 
+//28.global and local scope
+//block scope: we can access this one within scope outside this scope this show the error
+{
+    let blockscoped="i am block-scoped";
+    console.log(blockscoped);//i am block-scoped
+}
+    console.log(blockscoped);//ReferenceError: blockscoped is not defined
+    
+{
+    var functionscoped="i am function scoped";
+}
+console.log(functionscoped);//i am function scoped
 
 
