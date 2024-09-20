@@ -591,9 +591,42 @@ console.log(addition(80));//calculating result 100
 console.log(addition(80));//fetching from cache 100
 
 
+//26.Classes:
+//it is the blueprint fo the creating objects
+//insid that clas we will not use the function keyword
+class Animal{
+    constructor(name){
+        this.name=name;
+    }
+    speak(){
+        console.log(`${this.name} makes a sound`);
+    }
+}
+const dog=new Animal('Dog');
+dog.speak();
 
 
+//inheritance
+class Animals{
+    constructor(name){
+        this.name=name;
+    }
+    //ths one inherited by the dog class
+    speak(){
+        console.log(`${this.name} makes a sound`);
+    }
+}
 
-
+class Dog extends Animals{
+    constructor(name){
+        super(name);//we are call the parant constructor
+    }
+    bark(){
+        console.log(`${this.name} barks`);
+    }
+}
+const mydog=new Dog('Buddy');
+mydog.speak();
+mydog.bark();
 
 
