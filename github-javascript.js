@@ -509,4 +509,91 @@ switch (x) {
 }
 }
 
+//21.temporal dead zone:
+//we wil not access the variable before initilalisation,if we access the then it show the error 
+function temp(){
+  //  console.log(temp1);//ReferenceError: Cannot access 'temp1' before initialization
+    //console.log(temp2);//ReferenceError: Cannot access 'temp2' before initialization
+    console.log(temp3);//undefined
+    let temp1=1;
+    const temp2=1;
+    var temp3=1;
+    
+}
+temp();
+
+//22.Immediately invoked function expression, iife
+//iife
+
+(function(){
+    var about="Naveen working as the frontend developer";
+    console.log(about);//Naveen working as the frontend developer
+})();
+    // console.log(about);//ReferenceError: about is not defined
+
+const url="https://www.indeed.com/q-javascript-developer-with-google-jobs.html";
+//encodeURIComponent it will escape the special meaning
+const encoded=encodeURIComponent(url);
+console.log(encoded);
+
+//https%3A%2F%2Fwww.indeed.com%2Fq-javascript-developer-with-google-jobs.html
+
+//Decodes a URI component that has been encoded.
+const decoded=decodeURIComponent(url);
+console.log(decoded);
+https://www.indeed.com/q-javascript-developer-with-google-jobs.html
+
+//encodeuri:Encodes most special characters but leaves characters like :, /, ?, &, = intact.
+const encoded1=encodeURI(url);
+console.log(encoded1);
+//https://www.indeed.com/q-javascript-developer-with-google-jobs.html
+
+//decodeURI(): Decodes an entire URL that has been encoded
+const decoded1=decodeURI(url);
+console.log(decoded1);
+//https://www.indeed.com/q-javascript-developer-with-google-jobs.html
+
+//24.hoisting:
+//declaration should be moved to top 
+
+console.log(message);
+var message="Naveen working as a frontend developer";
+
+var message="Naveen working as a frontend developer";
+console.log(message);
+
+//we can place the again top of the  declaration
+message1("Good morning"); //Good morning 
+function message1(name) {
+  console.log(name);
+}
+
+//25.memoziation:
+//caching the previously computed results
+const memoaddition=()=>{
+    let cache={};
+
+return (value)=>{
+    if(value in cache){
+        console.log("fetching from cache");
+        return cache[value];
+    }
+    else{
+        console.log("calculating result")
+        let result=value+20;
+        cache[value]=result;
+        return result;
+    }
+};
+};
+const addition=memoaddition();
+console.log(addition(80));//calculating result 100
+console.log(addition(80));//fetching from cache 100
+
+
+
+
+
+
+
 
