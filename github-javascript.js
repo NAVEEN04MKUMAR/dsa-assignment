@@ -629,4 +629,35 @@ const mydog=new Dog('Buddy');
 mydog.speak();
 mydog.bark();
 
+//27.closure 
+//access the variable from its outer scope even after outer function has finished eecuting 
+
+function outerfunction(outervariable){
+    return function innerfunction(innervariable){
+        console.log(`inner variable:${innervariable}`);
+        console.log(`outer variable:${outervariable}`);
+    }
+};
+const newfunction=outerfunction('outside');
+console.log(newfunction);
+newfunction('inside');
+
+//closure private example
+function createsecureholder(secret){
+    return {
+        getSecret:function(){
+            return secret;
+        },
+        setSecret:function(newsecret){
+            secret=newsecret;
+        }
+    };
+};
+//closure even after get the value of the initial secret then when we assign the setsecret w change the value from secret to new sssecret 
+const secretholder=createsecureholder('initial secret');
+console.log(secretholder.getSecret());
+secretholder.setSecret('new sssecret');
+console.log(secretholder.getSecret());
+
+
 
