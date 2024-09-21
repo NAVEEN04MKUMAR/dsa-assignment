@@ -685,6 +685,7 @@ console.log(functionscoped);//i am function scoped
 
 
 //31.service-worker:
+//that runs in the background, separate from a web page and provides features that don't need a web page or user interaction
 //offline mode:cache collaborartion data,files and assets so users can still view and work with document offline
 //push notification:notify user about updates,like new comments changes to shared document
 
