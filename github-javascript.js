@@ -680,3 +680,58 @@ console.log(functionscoped);//i am function scoped
 //we can split them into the logicalspecies easier to understand
 //we can import when ever needed at the differet file
 //if we use the everyting at the single file thenit causes error like the global scope,if we make the separate then it is not show the collision
+
+
+
+
+//31.service-worker:
+//offline mode:cache collaborartion data,files and assets so users can still view and work with document offline
+//push notification:notify user about updates,like new comments changes to shared document
+
+import { cache } from "fabric";
+self.addEventListener('install',event=>{
+    console.log('service woker installed');
+
+    event.waitUtil(
+        caches.open('my-cache-v1').then(cache=>{
+                console.log('service woker installed');
+                return cache.addAll([
+                    '/',
+                    './sample.html',
+                    './mail.jsx',
+                ]);
+            })
+    );
+});
+
+
+self.addEventListener('activate',event=>{
+    console.log('service woker activated');
+
+    event.waitUtil(
+        caches.keys().then(cachenames=>{
+            return Promise.all(
+                cachenames.map(cache=>{
+                    if(cache!=='my-cache-v1'){
+                        console.log('service woker:deleting old cache');
+                        return caches.delete(cache);
+                    }
+                })
+            )
+        })
+        );
+ });
+
+
+ self.addEventListener('fetch',event=>{
+    console.log('service woker fetching:',event.request.url);
+
+    event.respondWith(
+        caches.match(event.request).then(response => {
+          // Serve cached files or fallback to fetching from network
+          return response || fetch(event.request);
+        })
+      );
+     });
+
+
