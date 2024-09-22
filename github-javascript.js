@@ -804,3 +804,23 @@ console.log(name);
 sessionStorage.removeItem('name');
 sessionStorage.clear();
 
+//37.storag event:
+    <!-- storage event is the key value pair is added a,removed,modified inlocalstorage or session storage -->
+    <!-- keychanges are occure at he differet tabs not as the same tab -->
+    <script>
+        window.addEventListener('storage',(event)=>{
+            console.log('storage event detected');
+            console.log('key',event.key);
+            console.log('old value',event.oldValue);
+            console.log('new value',event.newValue);
+            console.log('url',event.url);
+        });
+         function modifystorage(){
+            localStorage.setItem('ekey','evalue');
+         }
+    </script>
+</head>
+<body>
+    <h1>storage event example</h1>
+    <button onclick="modifystorage()">modify localstorage</button>
+</body>
