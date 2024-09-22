@@ -785,8 +785,6 @@ const Indexdbexample=()=>{
 };
 export default Indexdbexample;
 
-
-
 //36.about local and session storage:
 //Web Storage refers to the browser's ability to store data on a user's computer, either temporarily or persistently, using two key mechanisms:
 //Local Storage (localStorage): Stores data with no expiration time, which remains even when the browser is closed and reopened.
@@ -825,10 +823,7 @@ sessionStorage.clear();
     <button onclick="modifystorage()">modify localstorage</button>
 </body>
 
-
-
 //38)indexeddb:
-
 import React,{useEffect} from 'react';
 const Indexdbexample=()=>{
     const dbname='naveen';
@@ -876,8 +871,6 @@ const Indexdbexample=()=>{
 };
 export default Indexdbexample;
 
-
-
 //39)about the postmessage:
 //parant window:
 <h1>Parant window</h1>
@@ -910,8 +903,6 @@ event.source.postMessage('Hello from the child window!', event.origin);
 })
 </script>
 
-
-
 40).about cookies:
 
 // Cookies are small pieces of data stored on the user's browser by a website, which the server can later retrieve. 
@@ -933,12 +924,8 @@ document.cookie = "username=JohnDoe; expires=" + now.toUTCString() + "; path=/";
 //4)we can define path
 //5)we can access this one at the through http
 
-
 //43).we can delete the cookie through the experiation date:
 //document.cookie="username=;expires=Thu,01 Jan 2025 00:00:00 UTC;path=/";
-
-
-
 
 //44)why web storage:
 //if we store at the local then we dont have the frequent request to the server improving performance and responsiveness  
