@@ -736,3 +736,71 @@ self.addEventListener('activate',event=>{
      });
 
 
+//34.indexed db:
+// IndexedDB is a browser-based database that allows you to store large amounts of structured data, including files/blobs.
+import React,{useEffect} from 'react';
+const Indexdbexample=()=>{
+    const dbname='naveen';
+    const storename='naveens';
+    useEffect(()=>{
+        const opendatabase=async()=>{
+            const request=indexedDB.open(dbname,1);
+
+            request.onupgradeneeded=(event)=>{
+                const db=event.target.result;
+                db.createObjectStore(storename,{keyPath:'id'});
+                console.log('database setup complete');
+            };
+
+            request.onsuccess=(event)=>{
+                const db=event.target.result;
+                console.log('database opened successfully');
+
+                const transaction=db.transaction(storename,'readwrite');
+                const store=transaction.objectStore(storename);
+
+                store.add({id:1,name:'item 1'});
+                store.add({id:2,name:'item 2'});
+
+                transaction.oncomplete=()=>{
+                    console.log('transaction completed');
+                };
+
+                transaction.onerror=(event)=>{
+                    console.log('transaction error',event.target.error);
+                };
+            };
+            request.onerror=(event)=>{
+                console.log('transaction error',event.target.error);
+        }
+    }
+    opendatabase();
+    },[]);
+    return (
+        <div>
+            <h1>IndexedDB Example</h1>
+            <p>Check the console for IndexedDB operations.</p>
+        </div>
+    );
+};
+export default Indexdbexample;
+
+
+
+//36.about local and session storage:
+//Web Storage refers to the browser's ability to store data on a user's computer, either temporarily or persistently, using two key mechanisms:
+//Local Storage (localStorage): Stores data with no expiration time, which remains even when the browser is closed and reopened.
+
+localStorage.setItem('name','naveen');
+const name1=localStorage.getItem('name');
+console.log(name);
+localStorage.removeItem('name');
+localStorage.clear();
+
+//Session Storage (sessionStorage): Stores data only for the duration of the page session. Once the tab or window is closed, the data is deleted.
+sessionStorage.setItem('name','naveen');
+const name=sessionStorage.getItem('name');
+console.log(name);
+sessionStorage.removeItem('name');
+sessionStorage.clear();
+
