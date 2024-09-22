@@ -824,3 +824,126 @@ sessionStorage.clear();
     <h1>storage event example</h1>
     <button onclick="modifystorage()">modify localstorage</button>
 </body>
+
+
+
+//38)indexeddb:
+
+import React,{useEffect} from 'react';
+const Indexdbexample=()=>{
+    const dbname='naveen';
+    const storename='naveens';
+    useEffect(()=>{
+        const opendatabase=async()=>{
+            const request=indexedDB.open(dbname,1);
+
+            request.onupgradeneeded=(event)=>{
+                const db=event.target.result;
+                db.createObjectStore(storename,{keyPath:'id'});
+                console.log('database setup complete');
+            };
+
+            request.onsuccess=(event)=>{
+                const db=event.target.result;
+                console.log('database opened successfully');
+
+                const transaction=db.transaction(storename,'readwrite');
+                const store=transaction.objectStore(storename);
+
+                store.add({id:1,name:'item 1'});
+                store.add({id:2,name:'item 2'});
+
+                transaction.oncomplete=()=>{
+                    console.log('transaction completed');
+                };
+
+                transaction.onerror=(event)=>{
+                    console.log('transaction error',event.target.error);
+                };
+            };
+            request.onerror=(event)=>{
+                console.log('transaction error',event.target.error);
+        }
+    }
+    opendatabase();
+    },[]);
+    return (
+        <div>
+            <h1>IndexedDB Example</h1>
+            <p>Check the console for IndexedDB operations.</p>
+        </div>
+    );
+};
+export default Indexdbexample;
+
+
+
+//39)about the postmessage:
+//parant window:
+<h1>Parant window</h1>
+<iframe id="childframe" src="post1.html" width="400" height="200"></iframe>
+                <button onclick="sendmessage()">Send message to child</button>
+    <script>
+        //used for communication between the windows or iframes from different origin
+        //useful for the cross-origin-communication such as the when you want an iframe to send data to its parant windowor between different browser
+        function sendmessage(){
+         const iframe=document.getElementById("childframe");
+         const message='hello from the parant window';
+         iframe.contentWindow.postMessage(message,'*');
+        }
+
+        window.addEventListener('message',(event)=>{
+            console.log('parant received:',event.data);
+        })
+    </script>
+
+
+//child window:
+<h1>Child window</h1>
+<p id="messagedisplay">waiting for message</p>
+<script>
+
+window.addEventListener('message',(event)=>{
+console.log('child received:',event.data);
+document.getElementById('messagedisplay').textContent=event.data;
+event.source.postMessage('Hello from the child window!', event.origin);
+})
+</script>
+
+
+
+40).about cookies:
+
+// Cookies are small pieces of data stored on the user's browser by a website, which the server can later retrieve. 
+// They are commonly used for authentication, session management, and storing user preferences.
+Set a cookie that expires in 7 days
+const now = new Date();
+now.setTime(now.getTime() + (7 * 24 * 60 * 60 * 1000)); // 7 days
+document.cookie = "username=JohnDoe; expires=" + now.toUTCString() + "; path=/";
+
+
+//41)why we need cookie:
+//when user visits a web page,user profile can be stored in cookie
+//next time user visits te page,the cokie remembers the user profile
+
+//42).options:
+//1)we can set the expire date
+//2)set the maximu/ age for the cookies
+//3)we can define the domain we can access the cookie that domain only
+//4)we can define path
+//5)we can access this one at the through http
+
+
+//43).we can delete the cookie through the experiation date:
+//document.cookie="username=;expires=Thu,01 Jan 2025 00:00:00 UTC;path=/";
+
+
+
+
+//44)why web storage:
+//if we store at the local then we dont have the frequent request to the server improving performance and responsiveness  
+//more storage capacity on the compare wth the cookie like the web storage have the 10MB and the cookie have the 4KB
+//use the single page application,also have the offline capabilities,enable functionality
+
+
+
