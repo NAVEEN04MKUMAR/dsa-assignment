@@ -933,4 +933,16 @@ document.cookie = "username=JohnDoe; expires=" + now.toUTCString() + "; path=/";
 //use the single page application,also have the offline capabilities,enable functionality
 
 
+//45)hot verify the web workrs and web storage support in your browser        
+        const storagesupport=(typeof(Storage)!=="undefined")?
+        "web storage is supported!":
+        "web storage is not supported in this browser!";
+        document.getElementById("storage-support").innerText=storagesupport;
+        
+
+        const workersupport=(typeof(worker)!=="undefined")?
+        "web  workers is supported!":
+        "web workers is not supported in this browser!";
+        document.getElementById("worker-support").innerText=workersupport;
+        
 
