@@ -944,5 +944,87 @@ document.cookie = "username=JohnDoe; expires=" + now.toUTCString() + "; path=/";
         "web  workers is supported!":
         "web workers is not supported in this browser!";
         document.getElementById("worker-support").innerText=workersupport;
-        
+
+//46)what is promise:
+//promise is the object that may produce a single value some time in the future with either a resolved value or a reason that is not resolved
+//.then():result with the fulfilled
+//handles error when proise rejected
+//.finally():run when promise fullfilled or rejected
+
+
+let promise=new Promise(function(resolve,reject){
+    let success=false;
+    if(success){
+        resolve("resolved");
+    }
+    else{
+        reject("failed");
+    }
+});
+
+promise.then(result=>{
+    console.log(result);
+}).catch(error=>{
+    console.log(error);
+})
+
+//47.why promise:
+
+//1)if we use with asyncfunction  then we have the nested loop the difficult read 
+asynFunction1(data,function(result1){
+      asyncFunction2(result1,function(result2){
+          asyncFunction3(result2,function(result3){
+              console.log(result3);
+          });
+      });
+  });
+  //pending:promise is created but the result not yet been determined
+
+  asyncFunction(data)
+  .then(result1=>asyncFunction(result1))
+    .then(result2=>asyncFunction(result2))
+      .then(result3=>console.log(result3))
+        .then(error=>console.log(error))
+//2) single threaded then it is time consuming operations like api calls asynchronouly without blocking main thread 
+
+//3)states:
+//pending The promise has been created but the result (either success or failure has not yet been determined.
+//The promise has been successfully completed, meaning the asynchronous operation finished successfully.
+//Rejected:The promise has failed, indicating that the asynchronous operation encountered an error or issue.
+
+//48)call back function:
+//passed the function passed into the another function as an argument
+//it will use ful for the asynchronous operation when we executing the after completing the current task 
+
+function greeting(name){
+    console.log('hello',name);
+}
+
+function processuserinput(callback){
+    const name='alice';
+    callback(name);
+}
+processuserinput(greeting);//o/p:hello alice
+
+//49)why we need the callbacks:
+//uses the we can pass the different callback function to the same function
+//js single threaded,meaning it can't execute multiple operation at the same time ,call back will allow to the offloaded,completed later,preventing the blocking ofother operation
+ //javascript event driven language,instead of waiting for the response it will keep executing while listening other events
+ 
+ 
+ function firstfunction(){
+     setTimeout(function (){
+console.log("first function called");         
+     },1000);
+ }
+ 
+  function secondfunction(){
+console.log("second function called");         
+ }
+
+ firstfunction();
+ secondfunction();
+ //second function called
+//first function called
+//here it is not waiting for the above one is completed secondfunction then we have the firstfunction
 
