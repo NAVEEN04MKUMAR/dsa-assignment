@@ -1026,5 +1026,153 @@ console.log("second function called");
  secondfunction();
  //second function called
 //first function called
-//here it is not waiting for the above one is completed secondfunction then we have the firstfunction
+//here it is not waiting for the above one is completed secondfunction then we have the 
+
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+// console.log("Try programiz.pro");
+
+// //resolve or reject the first promises settles
+// //use ful for the fastest response
+
+// //race method in promise 
+// const promise9=new Promise((resolve)=>{
+//     setTimeout(()=>resolve("promise 1 resolved"),3000 );
+// })
+
+// const promise10=new Promise((resolve,reject)=>{
+//     setTimeout(()=>resolve("promise 2 resolved"),1000 );
+// });
+
+// Promise.race([promise9,promise10])
+// .then(result=>{
+//     console.log(result);//o/p:promise 2 resolved
+// })
+// .catch(error=>{
+//     console.error("error",error);
+// })
+
+
+// //66)strict mode:
+// //we can write code in the cleaner,safer, and more secure code
+
+// a)"use strict";//use strict for global
+
+// b)
+// "use strict";
+// function example(a, a) {
+//     console.log(a,a);
+//     // SyntaxError: Duplicate parameter name not allowed in this context
+// }
+// example(h,h);
+
+// c)
+// //use strict for function only
+// function example(){
+//     "use strict";
+// }
+
+
+//67)why strict mode: notify the bad syntex into the real error
+//catching common error i get the exception for common coding mistakes
+//block the use of certain javascript feature that can access lead to inserure code 
+//it prevents theuse of features that can lead to inconsistant
+
+// "use strict";
+// x=3.14;
+// console.log(x);//ReferenceError: x is not defined
+
+//throw error for the assigning the value for the read only properties:
+
+//  "use strict";
+
+// const obj=Object.freeze({name:"naveen"});
+// console.log(obj);
+// obj.name="kumar";
+// console.log(obj.name);//Cannot assign to read only property 'name' of object '#<Object>'
+
+
+// //68)double escalation:
+// //any expression to boolean(true or false)
+// let value1="hello";
+// let value2=0;
+// console.log(!!value1);
+// console.log(!!value2);
+// //falsy:false,0,"empty string",null,undefined,NaN otherwise true
+
+
+//69)delete value in the javascript:
+//delete only removes the property from the object it is not affect the prototyp chain
+//we can't the delete the variable from the var,let, const
+//if we remove then can have the huge memory
+//remove property from object:
+// let person={
+//     name:'john',
+//     age:30
+    
+// };
+// console.log(person);
+// delete person.age;
+// console.log(person);
+
+
+// //if we delete then element will removed but it is remain same length
+// let arr=[1,2,3,4];
+// console.log(arr);
+// delete arr[2];
+// console.log(arr);
+// console.log(arr.length);
+
+//what about type of operator:
+
+// typeof "naveen";
+console.log(typeof 'naveen')
+console.log(typeof 1.23)
+
+//eval():it can put the string into the actual javacipt code
+let x=10;
+let y=20;
+let result=eval("x+y");
+console.log(result);
+
+let userinput="alert('hacked!')";
+eval(userinput);
+
+
+//undefined and null:
+//both are javacript data typs that represent the absense of a value but they are used in the different meaning
+
+//undefined:lack of assigned value to variable ,it is default value assigned to a varaible that has been declared but not initialised
+
+//how it is occurer when value is declared and not gven value
+let z;
+console.log(z);//undefined
+
+//return function does not explicitly return value
+function test(){}
+console.log(test());//undefined
+
+
+let person={
+    name:'john',
+    age:30
+    
+};
+console.log(person);
+delete person.age;
+console.log(person.age);//undefined
+
+//null:
+//it is represent intentional absence value or variable have the no value
+
+let z1=null;
+console.log(z1);
+
+let obj = { name: 'Alice', age: null }; 
+console.log(obj.age); // Output: null
+
+console.log(typeof null);//object but it is not actually object there is te bug
+
+
 
