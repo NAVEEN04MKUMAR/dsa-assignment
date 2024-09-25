@@ -1010,8 +1010,7 @@ processuserinput(greeting);//o/p:hello alice
 //uses the we can pass the different callback function to the same function
 //js single threaded,meaning it can't execute multiple operation at the same time ,call back will allow to the offloaded,completed later,preventing the blocking ofother operation
  //javascript event driven language,instead of waiting for the response it will keep executing while listening other events
- 
- 
+  
  function firstfunction(){
      setTimeout(function (){
 console.log("first function called");         
@@ -1028,33 +1027,27 @@ console.log("second function called");
 //first function called
 //here it is not waiting for the above one is completed secondfunction then we have the 
 
-// Online Javascript Editor for free
-// Write, Edit and Run your Javascript code using JS Online Compiler
-
-// console.log("Try programiz.pro");
-
-// //resolve or reject the first promises settles
+// //50)resolve or reject the first promises settles
 // //use ful for the fastest response
-
 // //race method in promise 
-// const promise9=new Promise((resolve)=>{
-//     setTimeout(()=>resolve("promise 1 resolved"),3000 );
-// })
+const promise9=new Promise((resolve)=>{
+    setTimeout(()=>resolve("promise 1 resolved"),3000 );
+})
 
-// const promise10=new Promise((resolve,reject)=>{
-//     setTimeout(()=>resolve("promise 2 resolved"),1000 );
-// });
+const promise10=new Promise((resolve,reject)=>{
+    setTimeout(()=>resolve("promise 2 resolved"),1000 );
+});
 
-// Promise.race([promise9,promise10])
-// .then(result=>{
-//     console.log(result);//o/p:promise 2 resolved
-// })
-// .catch(error=>{
-//     console.error("error",error);
-// })
+Promise.race([promise9,promise10])
+.then(result=>{
+    console.log(result);//o/p:promise 2 resolved
+})
+.catch(error=>{
+    console.error("error",error);
+})
 
 
-// //66)strict mode:
+// //51)strict mode:
 // //we can write code in the cleaner,safer, and more secure code
 
 // a)"use strict";//use strict for global
@@ -1074,62 +1067,60 @@ console.log("second function called");
 // }
 
 
-//67)why strict mode: notify the bad syntex into the real error
+//52)why strict mode: notify the bad syntex into the real error
 //catching common error i get the exception for common coding mistakes
 //block the use of certain javascript feature that can access lead to inserure code 
 //it prevents theuse of features that can lead to inconsistant
 
-// "use strict";
-// x=3.14;
-// console.log(x);//ReferenceError: x is not defined
+"use strict";
+x=3.14;
+console.log(x);//ReferenceError: x is not defined
 
 //throw error for the assigning the value for the read only properties:
 
-//  "use strict";
-
-// const obj=Object.freeze({name:"naveen"});
-// console.log(obj);
-// obj.name="kumar";
-// console.log(obj.name);//Cannot assign to read only property 'name' of object '#<Object>'
-
-
-// //68)double escalation:
-// //any expression to boolean(true or false)
-// let value1="hello";
-// let value2=0;
-// console.log(!!value1);
-// console.log(!!value2);
-// //falsy:false,0,"empty string",null,undefined,NaN otherwise true
+ "use strict";
+const obj=Object.freeze({name:"naveen"});
+console.log(obj);
+obj.name="kumar";
+console.log(obj.name);//Cannot assign to read only property 'name' of object '#<Object>'
 
 
-//69)delete value in the javascript:
+// //53)double escalation:
+//any expression to boolean(true or false)
+let value1="hello";
+let value2=0;
+console.log(!!value1);
+console.log(!!value2);
+//falsy:false,0,"empty string",null,undefined,NaN otherwise true
+
+
+//54)delete value in the javascript:
 //delete only removes the property from the object it is not affect the prototyp chain
 //we can't the delete the variable from the var,let, const
 //if we remove then can have the huge memory
-//remove property from object:
-// let person={
-//     name:'john',
-//     age:30
+remove property from object:
+let person={
+    name:'john',
+    age:30
     
-// };
-// console.log(person);
-// delete person.age;
-// console.log(person);
+};
+console.log(person);
+delete person.age;
+console.log(person);
 
+//if we delete then element will removed but it is remain same length
+let arr=[1,2,3,4];
+console.log(arr);
+delete arr[2];
+console.log(arr);
+console.log(arr.length);
 
-// //if we delete then element will removed but it is remain same length
-// let arr=[1,2,3,4];
-// console.log(arr);
-// delete arr[2];
-// console.log(arr);
-// console.log(arr.length);
-
-//what about type of operator:
-
+//55)what about type of operator:
 // typeof "naveen";
 console.log(typeof 'naveen')
 console.log(typeof 1.23)
 
+//56)about eval
 //eval():it can put the string into the actual javacipt code
 let x=10;
 let y=20;
@@ -1140,9 +1131,8 @@ let userinput="alert('hacked!')";
 eval(userinput);
 
 
-//undefined and null:
+//57)undefined and null:
 //both are javacript data typs that represent the absense of a value but they are used in the different meaning
-
 //undefined:lack of assigned value to variable ,it is default value assigned to a varaible that has been declared but not initialised
 
 //how it is occurer when value is declared and not gven value
@@ -1153,7 +1143,6 @@ console.log(z);//undefined
 function test(){}
 console.log(test());//undefined
 
-
 let person={
     name:'john',
     age:30
@@ -1162,16 +1151,12 @@ let person={
 console.log(person);
 delete person.age;
 console.log(person.age);//undefined
-
 //null:
 //it is represent intentional absence value or variable have the no value
-
 let z1=null;
 console.log(z1);
-
 let obj = { name: 'Alice', age: null }; 
 console.log(obj.age); // Output: null
-
 console.log(typeof null);//object but it is not actually object there is te bug
 
 
