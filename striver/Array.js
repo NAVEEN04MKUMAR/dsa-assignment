@@ -526,6 +526,26 @@ console.log("Max profit is: " + maxp);
 //t.c:O(n^2);
 //s.c(1);
 
+//better approach:
+//we are assign the minimum value 1st then we finde difference with the next element,beauty is that if we find the minimum value at the beginning then there is no need to compre wit the next element 
+//here at beginning we have the 1 so there no minimum value availbale at the next then there is no need to make the difference
+function maxProfit(prices) {  
+    let max=0;
+    let min=Infinity;
+    console.log('max',max);
+for(let i=0;i<prices.length;i++){
+           min=Math.min(min,prices[i]);
+            max=Math.max(max,prices[i]-min);
+
+};
+return max;
+}
+let arr=[7,1,5,3,6,4];
+let maxp=maxProfit(arr);
+console.log("Max profit is: " + maxp);
+//t.c:O(n);
+//s.c(1);
+
 
 
 
