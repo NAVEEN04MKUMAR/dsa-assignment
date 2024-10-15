@@ -472,6 +472,31 @@ console.log("The maximum subarray sum is: " + maxSum);
 
 
 
+//thoug process:push the code from mid to right if 2's ,push tpo left if it is 0's then finally mid only i's
+function sortColors(arr){
+    let low=0;high=arr.length-1;mid=0;
+    console.log('assigned pointer');
+
+while(mid<=high){
+   if(arr[mid]===0){
+    [arr[low],arr[mid]]=  [arr[mid],arr[low]];
+    low++;
+    mid++;
+   }else if(arr[mid]===1){
+    mid++;
+   }else{
+        [arr[high],arr[mid]]=  [arr[mid],arr[high]];
+        high--;
+   }
+}
+}
+arr=[2,0,2,1,1,0];
+n=arr.length;
+sortColors(arr,n);
+console.log(arr.join(" "));
+//tc:o(n);
+//sc:(1);
+
 
 
 
