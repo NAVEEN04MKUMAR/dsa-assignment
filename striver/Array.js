@@ -471,7 +471,7 @@ console.log("The maximum subarray sum is: " + maxSum);
 
 
 
-
+//separe the 0 1 ,and 2 
 //thoug process:push the code from mid to right if 2's ,push tpo left if it is 0's then finally mid only i's
 function sortColors(arr){
     let low=0;high=arr.length-1;mid=0;
