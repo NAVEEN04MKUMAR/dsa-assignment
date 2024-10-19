@@ -55,3 +55,41 @@ console.log('rotated matrix');
 //t.c:O(n*n);
 //s.c:O(1);
 
+//Merge Intervals
+//Example 1:
+
+// Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+// Output: [[1,6],[8,10],[15,18]]
+// Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
+function  merge(intervals){
+    const n=intervals.length;
+    intervals.sort((a,b)=>a[0]-b[0]);
+
+    const ans=[];
+    for(let i=0;i<n;i++){
+  let start=intervals[i][0];
+  let end=intervals[i][1];
+
+  //skip the end of current is greater than the end of upcoming element
+  if(ans.length&&end<=ans[ans.length-1][1]){
+    continue;
+  }
+//check the upcoming array 1st element have the greater then the last element of storing element or not
+
+  for(let j=i+1;j<n;j++){
+    if(intervals[j][0]<=end){
+    end=Math.max(end,intervals[j][1]);
+    }else{
+        break;
+    }
+  }
+ans.push([start,end]);
+    }
+return ans;
+}
+
+let intervals = [[1,3],[2,6],[8,10],[15,18]];
+let final= merge(intervals);
+//t.c:o(nlogn)+)o(2n)
+//1st for sorting and 2nd for the  checkinhg and mergig(2n)
+
