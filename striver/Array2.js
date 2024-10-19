@@ -29,4 +29,29 @@ for (let i = 0; i < rotatedMatrix.length; i++) {
 //s.c:O(n*n);
 
 //challange we should optimse the above code:
+//can you solve that one without using the space:
+function rotate(matrix){
+    const n=matrix.length;
+    console.log('n',n)
+
+for(let i=0;i<n;i++){
+    for(let j=i;j<n;j++){
+[matrix[j][i],matrix[i][j]]=[matrix[i][j],matrix[j][i]];
+    }
+}
+    for(let i=0;i<n;i++){
+         console.log(`Before reversing row ${i}:`, matrix[i]); 
+        matrix[i].reverse();
+         console.log(`After reversing row ${i}:`, matrix[i]);
+    }
+}
+const arr = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+const rotatedMatrix=rotate(arr);
+console.log('rotated matrix');
+//t.c:O(n*n);
+//s.c:O(1);
 
