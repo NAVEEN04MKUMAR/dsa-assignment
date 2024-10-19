@@ -93,3 +93,29 @@ let final= merge(intervals);
 //t.c:o(nlogn)+)o(2n)
 //1st for sorting and 2nd for the  checkinhg and mergig(2n)
 
+//challange:do the merging and checking with the single loop
+function  merge(intervals){
+    const n=intervals.length;
+    intervals.sort((a,b)=>a[0]-b[0]);
+    const ans=[intervals[0]];
+    for(let i=0;i<n;i++){
+  let last=ans[ans.length-1];
+  let curr=intervals[i];
+//check the upcoming array 1st element have the greater then the last element of storing element or not
+//current ineterval overlap with the last intervel
+    if(curr[0]<=last[1]){
+   last[1]=Math.max(last[1], curr[1]);
+    }
+    //current ineterval does not overlap with the last intervel
+else{
+        ans.push(curr);
+    }
+    }
+return ans;
+}
+
+let intervals = [[1,3],[2,6],[8,10],[15,18]];
+let final= merge(intervals);
+//t.c:o(nlogn)+)o(n)
+//1st for sorting and 2nd for the  checkinhg and mergig(n)
+
