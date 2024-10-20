@@ -175,3 +175,55 @@ let m=3,n=3;
 mergesorted(nums1,nums2,m,n)
 
 
+//for above tak space can you do the without space:
+/**
+ * @param {number[]} nums1
+ * @param {number} m
+ * @param {number[]} nums2
+ * @param {number} n
+ * @return {void} Do not return anything, modify nums1 in-place instead.
+ */
+// var merge = function(nums1, m, nums2, n) {
+    
+// };
+
+
+
+
+//here we assign the pointer at the end of 1st nums then traverse fo last to zero and pass the nums value to extra assigned space 
+function merge(nums1,m,nums2,n){
+    let lastindex=m+n-1;
+    let left=m-1;
+    let right=n-1;
+while(left>=0&&right>=0){
+    if(nums1[left]>nums2[right]){
+        nums1[lastindex]=nums1[left];
+     left--; 
+    }
+    else{
+         nums1[lastindex]=nums2[right];
+        right--;
+    }
+    lastindex--;
+
+}
+while(right>=0){
+    nums1[lastindex]=nums2[right];
+    right--;
+    lastindex--;
+}
+
+}
+let nums1 = [1,2,3,0,0,0];
+let nums2 = [2,3,9];
+let m=3,n=3;
+merge(nums1,m,nums2,n);
+
+console.log(nums1);
+
+
+//t.c:it will take O(m+n)
+//s.c:it will take constant
+
+
+
