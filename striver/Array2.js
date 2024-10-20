@@ -120,3 +120,58 @@ let final= merge(intervals);
 //1st for sorting and 2nd for the  checkinhg and mergig(n)
 ;;
 
+
+//3.merge the sorted array:
+88. Merge Sorted Array
+
+// You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+// Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+// The final sorted array should not be returned by the function, but instead be stored inside the array nums1.
+// To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored.
+// nums2 has a length of n.
+    
+// Example 1:
+// Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+// Output: [1,2,2,3,5,6]
+// Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
+// The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.
+
+function mergesorted(nums1,nums2,m,n){
+    //declre the 3rd array
+    let arr3=new Array(n+m);
+    let left=0;
+    let right=0;
+    let index=0;
+while(nums1<m,nums2<n){
+    if(nums1[left]<=nums2[right]){
+     arr3[index] =nums1[left];
+     left++, index++;
+    }
+    else{
+             arr3[index] =nums2[right];
+                  right++, index++;
+    }
+}
+//if right pointer reaches end
+while(left<m){
+         arr3[index++] =nums1[left++];
+}
+//if left pointer reaches end
+while(right<n){
+         arr3[index++] =nums2[right++];
+}
+// for(let i=0;i<n+m;i++){
+//     if(i<n) arr1[i]=arr3[i];
+
+// }
+ for (let i = 0; i < n + m; i++) {
+        if (i < n) nums1[i] = arr3[i];
+        else nums2[i - n] = arr3[i];
+    }
+}
+let nums1 = [1,2,3,0,0,0];
+let nums2 = [2,3,9];
+let m=3,n=3;
+mergesorted(nums1,nums2,m,n)
+
+
