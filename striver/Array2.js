@@ -118,4 +118,5 @@ let intervals = [[1,3],[2,6],[8,10],[15,18]];
 let final= merge(intervals);
 //t.c:o(nlogn)+)o(n)
 //1st for sorting and 2nd for the  checkinhg and mergig(n)
+;;
 
