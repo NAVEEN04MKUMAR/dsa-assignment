@@ -226,5 +226,28 @@ console.log(nums1);
 //t.c:it will take O(m+n)
 //s.c:it will take constant
 
+// Find the duplicate in an array of N+1 integers
+// Problem Statement: Given an array of N + 1 size, where each element is between 1 and N. Assuming there is only one duplicate number, your task is to find the duplicate number.
+// Example 1: 
+// Input: arr=[1,3,4,2,2]
+// Output: 2
+function findDuplicate(arr){
+    const n=arr.length;
+const freq=Array(n+1).fill(0);//fill 0 of newly created array
+    for(let i=0;i<n;i++){
+        if(freq[arr[i]]===0){
+            freq[arr[i]]+=1;
+        }else{
+            return arr[i];
+        }
+    }
+return -1;
+
+}
+
+let arr1 = [1,3,2,6,8,10,15,18,3];
+let final= findDuplicate(arr1);
+//t.c:o(n) fro the travrsibg each element in the array
+//o(1) for the get the 1st  dublicate element then we leave the loop 
 
 
