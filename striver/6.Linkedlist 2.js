@@ -87,7 +87,38 @@ node7.next=node8;
 let updatedHead = hasCycle(head);
 //t.c: i can do for the o(n) for moving the slowpointer of the number of the nodes in the list here we are not taking the any space here for to get that one  
 //Reverse a LinkedList in groups of size k.		
-	
+
+//challange can you do less t.c and s.c:
+yes 
+function  findDuplicate(arr){
+    let slow=arr[0];
+    let fast=arr[0];
+
+//find the cycle
+while(fast!==null&&fast.next!==null){
+
+    slow=arr[slow];
+    fast=arr[arr[fast]];
+
+    if(slow===fast){
+        break;
+    }
+}
+//find the entrance of cycle
+     fast=arr[0];
+     while(slow!==fast){
+        slow=arr[slow];
+        fast=arr[fast];
+
+     }
+    return slow;
+}
+const arr=[1,2,3,4,2];
+console.log(findDuplicate(arr));
+
+//t.c:i can iterate through the single loop then get the repeated element like the simple o(n) space complexity is o(1)
+
+
 //Check if a LinkedList is palindrome or not…		
 	
 //Find the starting point of the Loop of Lin…		
