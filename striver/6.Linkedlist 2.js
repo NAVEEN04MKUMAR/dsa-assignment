@@ -40,10 +40,52 @@ node5.next=node2;
 node6.next=node7;
 node7.next=node8;
 
-
 let updatedHead = hasCycle(head);
 //t.c:total number of node searches i have the o(N) and the insertion and the searching of the node at the worst time complexity:O(nlogn),finally o(2nlogn)
-	 
+
+//challange:can you do tis one for the less time ?yes
+class node{
+    constructor(data){
+        this.data=data;
+        this.next=null;
+    }
+}
+function hasCycle(head){
+    let slow=head;
+    let fast=head;
+
+while(fast!==null&&fast.next!==null){
+
+    slow=slow.next;
+    fast=fast.next.next;
+
+
+    if(slow===fast){
+        return true;
+    }
+}
+    return false;
+}
+
+let head=new node(1);
+let node2=new node(1);
+let node3=new node(1);
+let node4=new node(1);
+let node5=new node(1);
+let node6=new node(1);
+let node7=new node(1);
+let node8=new node(2);
+
+head.next=node2;
+node2.next=node3;
+node3.next=node4;
+node4.next=node5;
+node5.next=node2;
+node6.next=node7;
+node7.next=node8;
+
+let updatedHead = hasCycle(head);
+//t.c: i can do for the o(n) for moving the slowpointer of the number of the nodes in the list here we are not taking the any space here for to get that one  
 //Reverse a LinkedList in groups of size k.		
 	
 //Check if a LinkedList is palindrome or not…		
