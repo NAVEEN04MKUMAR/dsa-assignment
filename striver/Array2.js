@@ -253,7 +253,64 @@ let final= findDuplicate(arr1);
 
 
 
+function repeatnumber(a){
+    const n=a.length;
+let repeated=-1; let missing=-1;
+for(let i=1;i<n;i++){
+    let count=0;
+    for(let j=0;j<=n;j++){
+        if(a[j]==i)
+        count++;
+    }
+    if(count==2) repeated =i;
+    else if(count==0) missing =i;
+    
+    if(repeated!=-1&&missing!=-1) break;
+}
+return [repeated,missing];
+}
+const a=[1,2,3,4,4];
+const find=repeatnumber(a);
+console.log(`[${find[0]},${find[1]}]`);
 
+time complexity: O(n2),space complexity:O(1)
+
+
+//optimal approach:
+function repeatnumber(c){
+    const n=c.length;
+    const sn=(n*(n+1))/2;
+    const s2n=(n*(n+1)*(2*n+1))/6;
+    
+  let s=0;
+  let s2=0;
+   
+  //sum and square sum given value
+for(let i=0;i<n;i++){
+    s+=c[i];
+    s2+=c[i]*c[i];
+}
+     //find x-y=val1
+     let val1=s-sn;
+     
+     //find x2-y2=val2;
+     let val2=s2-s2n;
+     
+     //find x+y=val2;
+     val2=val2/val1
+    
+    const x=(val1+val2)/2;
+    const y = x - val1;
+
+return [x,y];
+}
+const b=[1,2,3,4,5,6,7,7];
+const find=repeatnumber(b);
+console.log(`[${find[0]},${find[1]}]`);
+
+//time complexity: O(n),space complexity:O(1)
+
+//better approach:
 function repeatnumber(c){
     const n=c.length;
     let xr=0;
