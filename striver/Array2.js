@@ -251,3 +251,73 @@ let final= findDuplicate(arr1);
 //o(1) for the get the 1st  dublicate element then we leave the loop 
 
 
+
+
+
+function repeatnumber(c){
+    const n=c.length;
+    let xr=0;
+  //get the xr of dublicate value
+for(let i=0;i<n;i++){
+         xr=xr^c[i];
+         xr=xr^(i+1);
+}
+//n-1 from binary flip the number after the last right bit 1 also right bit is 1 to 0
+//~(n-1) convert the 0 to 1 1 to zero
+//isolate the right bit
+let number=xr&(~(xr-1));
+
+//separate the 0's and 1's
+
+let zero=0;
+let one=0;
+
+//group 0 and 1 
+for(let i=0;i<n;i++){
+    //part of the 1 group
+    if((c[i]&number)!=0){
+        one=one^c[i];
+    }
+        //part of the 0 group
+
+    else{
+            zero=zero^c[i];
+    }
+}
+
+for(let i=1;i<=n;i++){
+    //part of the 1 group
+    if((i&number)!=0){
+        one=one^i;
+    }
+        //part of the 0 group
+
+    else{
+            zero=zero^i;
+    }
+}
+
+ // Last step: Identify the numbers:
+  let cnt = 0;
+  for (let i = 0; i < n; i++) {
+    if (c[i] == zero) cnt++;
+  }
+
+  if (cnt == 2) return [zero, one];
+  return [one, zero];
+
+}
+const b=[1,2,3,3];
+const find=repeatnumber(b);
+console.log(`[${find[0]},${find[1]}]`);
+
+//time complexity: O(n),space complexity:O(1)
+
+
+
+
+
+
+
+
+
