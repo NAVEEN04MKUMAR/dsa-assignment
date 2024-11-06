@@ -372,6 +372,23 @@ console.log(`[${find[0]},${find[1]}]`);
 
 
 
+function numberOfInversions(a) {
+    // Count the number of pairs:
+    let cnt = 0;
+    for (let i = 0; i < a.length; i++) {
+        for (let j = i + 1; j < a.length; j++) {
+            if (a[i] > a[j]) cnt++;
+        }
+    }
+    return cnt;
+}
+
+const a = [5, 4, 3, 2, 1];
+const cnt = numberOfInversions(a);
+console.log("The number of inversions is: " + cnt);
+//Time Complexity: O(N2), where N = size of the given array.
+// Reason: We are using nested loops here and those two loops roughly run for N times.
+// Space Complexity: O(1) as we are not using any extra space to solve this problem.
 
 
 
