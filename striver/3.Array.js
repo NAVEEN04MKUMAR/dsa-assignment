@@ -80,3 +80,184 @@ const matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]];
 searchmatrix(matrix, 12) === true ? console.log("true") : console.log("false");
 //t.c:log(n*m)
 //s.c:O(1);
+
+
+
+// Problem Statement: Given a double x and integer n, calculate x raised to power n. Basically Implement pow(x, n).
+// Input: x = 2.00000, n = 10
+// Output: 1024.00000
+// Explanation: You need to calculate 2.00000 raised to 10 which gives ans 1024.00000
+
+
+
+//solution:1
+function pow(x,n){
+    let ans=1.0;
+    for(let i=0;i<n;i++){
+        ans=ans*x;
+    }
+    return ans;
+    
+}
+console.log(pow(2,3));
+
+//solution2:
+function myPow(x,n){
+    let ans=1.0;
+     let num = Math.abs(n);
+    
+    //base case:
+    if(x===0||x===1){
+        return x;
+    }
+    
+    while(num>0){
+        if(num%2===1){
+            ans=ans*x;
+            num=num-1;
+        }
+        else{
+            num=num/2;
+            x=x*x;
+        }
+    }
+
+        // If n is negative, return the reciprocal
+    if (n< 0) {
+        ans = 1 / ans;
+    }
+    return ans;
+}
+
+const x=2;
+const n=21;
+const result=myPow(x,n);
+console.log('result',result);
+//t.c:(logn)
+
+
+
+//  Majority Element
+// The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array
+// Example 1:
+// Input: nums = [3,2,3]
+// Output: 3
+
+function majorityelement(arr){
+    let n=arr.length;
+    
+    for(let i=0;i<n;i++){
+        count=0;
+        for(let j=0;j<n;j++){
+            if(arr[j]===arr[i]){
+                count++;
+            }
+        }
+        if(count>Math.floor(n/2)){
+            return arr[i];
+        }
+    }
+    return -1;
+}
+
+const arr=[1,1,1,2,2,2,4,4,4,4,4,4,4];
+const result=majorityelement(arr);
+console.log(result);
+//t.c:O(n2);
+//s.c:O(1);
+
+
+function majorityelement(arr){
+    let n=arr.length;
+    
+    for(let i=0;i<n;i++){
+        count=0;
+        for(let j=0;j<n;j++){
+            if(arr[j]===arr[i]){
+                count++;
+            }
+        }
+        if(count>Math.floor(n/2)){
+            return arr[i];
+        }
+    }
+    return -1;
+}
+
+const arr=[1,1,1,2,2,2,4,4,4,4,4,4,4];
+const result=majorityelement(arr);
+console.log(result);
+//t.c:O(n2);
+//s.c:O(1);
+
+
+function majorityelement(arr){
+    let n=arr.length;
+    
+    const map=new Map();
+    for(let i=0;i<n;i++){
+        const num=arr[i];
+        if(map.has(num)){
+          map.set(num,map.get(num)+1);
+            }else{
+            map.set(num,1);
+          }
+        }
+    
+        for(const [num,count] of map){
+            if(count>Math.floor(n/2)){
+                return num;
+            }
+        }
+    
+    return -1;
+}
+
+const arr=[1,1,1,2,2,2,4,4,4,4,4,4,4];
+const result=majorityelement(arr);
+console.log(result);
+//t.c:O(NlogN)+O(N);
+//1st nlogn we have for map the n element,2nd one search the n element for the veerify the matching or not n/2
+//s.c:O(N); store the map element
+
+
+
+function majorityelement(arr){
+    let n=arr.length;
+    let count=0;
+    let element;
+    
+    for(let i=0;i<n;i++){
+        if(count===0){
+            count=1;
+            element=arr[i];
+        }
+        else if(element===arr[i]){
+            count++;
+        }
+        else{
+            count--;
+        }
+     }
+    
+    //count the element from the given array from dominated one
+    
+    let count1=0;
+    for(let i=0;i<n;i++){
+        if(arr[i]===element){
+            count1++;
+        }
+    }
+    if(count1>Math.floor(n/2)){
+        return element;
+    }
+    
+    return -1;
+}
+
+const arr=[1,1,1,2,2,2,7,7,7,7,7,7,7];
+const result=majorityelement(arr);
+console.log(result);
+// //t.c:O(N)+O(N);
+// //1st nlogn we have for map the n element,2nd one search the n element for the veerify the matching or not n/2
+// //s.c:O(1); store the map element
