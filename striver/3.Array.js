@@ -1,5 +1,89 @@
 
 
+
+
+//Majority Elements(&gt;N/3 times) | Find the elements that appears more than N/3 times in the array
+//Problem Statement: Given an array of N integers.
+//Find the elements that appear more than N/3 times in the array.
+//If no such element exists, return an empty vector.
+
+
+function majorityElement(v) {
+    const n = v.length;
+    const ls = [];
+
+    for (let i = 0; i < n; i++) {
+        // selected element is v[i]:
+        // checking if v[i] is not already
+        // a part of the answer:
+        if (ls.length == 0 || ls[0] != v[i]) {
+            let cnt = 0;
+            for (let j = 0; j < n; j++) {
+            
+                if (v[j] == v[i]) {
+                    cnt++;
+                }
+            }
+
+           
+            if (cnt > Math.floor(n / 3))
+                ls.push(v[i]);
+        }
+
+        if (ls.length == 2) break;
+    }
+
+    return ls;
+}
+
+const arr = [11, 33, 33, 11, 33, 11];
+const ans = majorityElement(arr);
+console.log("The majority elements are: " + ans.join(" "));
+\
+
+
+
+
+
+function majorityElement(v) {
+    const n = v.length;
+    const ls = []; 
+
+    const mpp = new Map();
+    const mini = Math.floor(n / 3) + 1;
+    
+    for (let i = 0; i < n; i++) {
+        if (mpp.has(v[i])) {
+            mpp.set(v[i], mpp.get(v[i]) + 1);
+        } else {
+            mpp.set(v[i], 1);
+        }
+
+
+        if (mpp.get(v[i]) == mini) {
+            ls.push(v[i]);
+        }
+        if (ls.length == 2) break;
+    }
+
+    return ls;
+}
+
+const arr = [11, 33, 33, 11, 33, 11];
+const ans = majorityElement(arr);
+console.log("The majority elements are: " + ans.join(" "));
+
+
+
+
+
+
+
+
+
+
+
+
 //1.searchMatrix
 // Problem Statement: You have been given a 2-D array 'mat' of size 'N x M' where 'N' and 'M' denote the number of rows and columns, respectively. 
 // The elements of each row are sorted in non-decreasing order.
@@ -54,6 +138,57 @@ const matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]];
 searchmatrix(matrix, 13) === true ? console.log("true") : console.log("false");
 //t.c:(m+log(m))
 //s.c:O(1);
+
+
+
+
+
+
+function majorityElement(v) {
+    let n = v.length; // size of the array
+
+    let cnt1 = 0, cnt2 = 0; // counts
+    let el1 = -Infinity; // element 1
+    let el2 = -Infinity; // element 2
+
+   
+    for (let i = 0; i < n; i++) {
+        if (cnt1 === 0 && el2 !== v[i]) {
+            cnt1 = 1;
+            el1 = v[i];
+        }
+        else if (cnt2 === 0 && el1 !== v[i]) {
+            cnt2 = 1;
+            el2 = v[i];
+        }
+        else if (v[i] === el1) cnt1++;
+        else if (v[i] === el2) cnt2++;
+        else {
+            cnt1--, cnt2--;
+        }
+    }
+
+ let ls = []; // list of answers
+
+   
+    cnt1 = 0, cnt2 = 0;
+    for (let i = 0; i < n; i++) {
+        if (v[i] === el1) cnt1++;
+        if (v[i] === el2) cnt2++;
+    }
+
+    let mini = Math.floor(n / 3) + 1;
+    if (cnt1 >= mini) ls.push(el1);
+    if (cnt2 >= mini) ls.push(el2);
+    
+    return ls;
+}
+
+let arr = [11, 33, 33, 11, 33, 11];
+let ans = majorityElement(arr);
+console.log("The majority elements are: " + ans.join(" "));
+
+
 
 
 
