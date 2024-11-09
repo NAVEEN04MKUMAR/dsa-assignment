@@ -1,79 +1,117 @@
 
 
 
+function fourSum(nums, target) {
+  let n = nums.length;
+  let set = new Set();
+  
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      for (let k = j + 1; k < n; k++) {
+        for (let l = k + 1; l < n; l++) {
+          let sum = nums[i] + nums[j] + nums[k] + nums[l];
+          
+          if (sum === target) {
+            let temp = [nums[i], nums[j], nums[k], nums[l]];
+            temp.sort((a, b) => a - b);
+            set.add(temp);
+          }
+        }
+      }
+    }
+  }
+  
+  let ans = Array.from(set);
+  return ans;
+}
 
-/**
- * @param {number[]} nums
- * @return {number[]}
- */
-// var majorityElement = function(nums) {
-    
-// };
+let nums = [4, 3, 3, 4, 4, 2, 1, 2, 1, 1];
+let target = 9;
+let ans = fourSum(nums, target);
+
+//t.c:O(n4);
+//s.c:
 
 
-
-
-
-
-
-
-function majorityElement(arr){
+function foursum(arr,target){
     const n=arr.length;
-    const ls=[];
-    let count1=0;
-    let count2=0;
-    let element1=null;
-    let element2=null;
+    let set=new Set();
+    
+    
+    for(let i=0;i<n-3;i++){
+        for(let j=i+1;j<n-2;j++){
+            let hashset=new Set();
+            for(let k=j+1;k<n;k++){
+                let sum=arr[i]+arr[j];
+                sum+=arr[k];
+                let fourth=target-sum;
+                if(hashset.has(fourth)){
+                      let temp = [arr[i], arr[j], arr[k], fourth];
+                        temp.sort((a,b)=>a-b);
+                        set.add(JSON.stringify(temp));
+                }
+hashset.add(arr[k]);
+                
+             }
+          }
+      }
+       
+      let ans=Array.from(set).map(str => JSON.parse(str));;
+      return ans;
+}
+
+let arr = [1,2,3,4,5,6,7,8,9,10];
+let target = 10;
+let ans = foursum(arr, target);
+
+//t.c:O(N3*log(M))
+
+
+
+
+function fourSum(arr,target){
+    const n=arr.length;
+       const ans = [];
+    arr.sort((a,b)=>a-b);
 
     for(let i=0;i<n;i++){
-if(count1===0&&element2!==arr[i]){
-    count1=1;
-    element1=arr[i];
-}
+        if(i>0&&arr[i]===arr[i-1]) continue;
+        for(let j=i+1;j<n;j++){
+        if(j>0&&arr[j]===arr[j-1]) continue;
 
-else if(count2===0&&element1!==arr[i]){
-    count2=1;
-    element2=arr[i];
-}
-else if(arr[i]===element1){ 
-    count1++;
-}
-else if(arr[i]===element2) {
-    count2++;
-}
-else{
-    count1--,count2--;
-}
+let k=j+1;
+let l=n-1;
+while(k<l){
+    let sum=arr[i]+arr[j]+arr[k]+arr[l];
+    if(sum===target){
+        ans.push([arr[i],arr[j],arr[k],arr[l]]);
+        k++;
+        l--;
+        if(k < l&&arr[k]===arr[k-1]) continue;
+        if(k<l&&arr[l]===arr[l-1]) continue;
+
+    }else if(sum<target){
+        k++;
+    }
+    else{
+        l--;
     }
 
-let count3=0;
-let count4=0;
-
-for(let i=0;i<n;i++){
-    if(arr[i]===element1) count3++;
-    if(arr[i]===element2) count4++;
 }
 
-    if(count3>=Math.floor(n/3)){ 
-        ls.push(element1);
-    }
-    if(count4>=Math.floor(n/3)) {
-        ls.push(element2);
-    }
-    
-        return ls;
+             }
+      }
+             return ans;
 
 }
 
-const arr=[1,1,1,2,3,4];
-const result=majorityElement(arr);
-console.log("result",result);
-// t.c:(nlogn)
-// s.c:O(n);
 
+let arra = [1,2,3,4,5,6,7,8,9,10];
+let targeta = 10;
+let ansa = fourSum(arra, targeta);
+console.log(ansa);
 
-
-
+//O(N3), where N = size of the array.
 
 
 // 1. Two Sum
