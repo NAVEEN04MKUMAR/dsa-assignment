@@ -419,5 +419,136 @@ console.log(output);
 </aside>
 
 
+	
+
+
+
+💡 **Question 5**
+
+Given two integer arrays arr1 and arr2, and the integer d, *return the distance value between the two arrays*.
+
+The distance value is defined as the number of elements arr1[i] such that there is not any element arr2[j] where |arr1[i]-arr2[j]| <= d.
+
+**Example 1:**
+
+**Input:** arr1 = [4,5,8], arr2 = [10,9,1,8], d = 2
+
+**Output:** 2
+
+**Explanation:**
+
+For arr1[0]=4 we have:
+
+|4-10|=6 > d=2
+
+|4-9|=5 > d=2
+
+|4-1|=3 > d=2
+
+|4-8|=4 > d=2
+
+For arr1[1]=5 we have:
+
+|5-10|=5 > d=2
+
+|5-9|=4 > d=2
+
+|5-1|=4 > d=2
+
+|5-8|=3 > d=2
+
+For arr1[2]=8 we have:
+
+**|8-10|=2 <= d=2**
+
+**|8-9|=1 <= d=2**
+
+|8-1|=7 > d=2
+
+**|8-8|=0 <= d=2**
+
+//get the value from the one array then get the another value from the another then subtract the value from the one array to another array
+//initialise the  distance=0;
+ array 
+
+function finddistancevalue(arr1,arr2,d){
+let distance=0;
+//iterate over the each element arr1 and arr2 from num1 and num2
+//check the number where the absolute difference between the two number are thegreater than the distance 2
+ for(let i=0; i<arr1.length;i++){
+    let found=false;
+
+    for(let j=0;j<arr2.length;j++){
+        if(Math.abs(arr1[i]-arr2[j])<=d){
+         found=true;
+         break;   
+        }
+    }if(!found){
+        distance++;
+    }
+ }
+return distance;
+}
+
+const arr1 = [4, 5, 8];
+const arr2 = [10, 9, 1];
+const d = 2;
+
+const distance = finddistancevalue(arr1, arr2, d);
+console.log(distance);
+//here from the first array with 8 subtrction from the anotherthen we got the value such as <=2
+
+
+</aside>
+
+<aside>
+💡 **Question 6**
+
+Given an integer array nums of length n where all the integers of nums are in the range [1, n] and each integer appears **once** or **twice**, return *an array of all the integers that appears **twice***.
+
+You must write an algorithm that runs in O(n) time and uses only constant extra space.
+
+**Example 1:**
+
+**Input:** nums = [4,3,2,7,8,2,3,1]
+
+**Output:**
+
+[2,3]
+
+
+
+function findduplicates(nums) {
+    const frequency = {};
+//we gone through the all the element number is not appeared then increased the frequency if already present then we increase the value towards 2
+  
+for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+    if (frequency[num] === undefined) {
+      frequency[num] = 1;
+    } else {
+      frequency[num]++;
+    }
+  }
+//whatever value appeared twice we collecet the those element 
+
+  const result=[];
+for(const key in frequency){
+    if(frequency[key]===2){
+        result.push(parseInt(key));
+    }
+    }
+return result;
+}
+const nums = [1,2,3,4,5,3];
+const duplicates = findduplicates(nums);
+console.log(duplicates);
+
+
+
+</aside>
+
+
+
 
 
