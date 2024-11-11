@@ -118,6 +118,128 @@ console.log(containsDuplicate(nums));
 <aside>
 <aside>
 
+<aside>
+💡 **Question 1**
+Given an integer array nums of length n and an integer target, find three integers
+in nums such that the sum is closest to the target.
+Return the sum of the three integers.
+
+You may assume that each input would have exactly one solution.
+
+**Example 1:**
+Input: nums = [-1,2,1,-4], target = 1
+Output: 2
+
+**Explanation:** The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+
+
+
+
+function threeSumClosest(nums, target) {
+    nums.sort((a, b) => a - b); // Sort the array in ascending order
+    let closestSum = nums[0] + nums[1] + nums[2];
+  
+    for (let i = 0; i < nums.length - 2; i++) {//place the left and right pointer
+      let left = i + 1;
+      let right = nums.length - 1;
+  
+      while (left < right) {
+        const sum = nums[i] + nums[left] + nums[right];
+  
+        if (sum === target) {
+          return target; // Found the exact sum, return it
+        }
+  
+        if (Math.abs(sum - target) < Math.abs(closestSum - target)) {
+          closestSum = sum; // Update the closest sum
+        }
+  
+        if (sum < target) {
+          left++; // Increase the left pointer to increase the sum
+        } else {
+          right--; // Decrease the right pointer to decrease the sum
+        }
+      }
+    }
+  
+    return closestSum;
+  }
+  
+  const nums = [-1, 2, 1, -4];
+const target = 1;
+const result = threeSumClosest(nums, target);
+console.log(result); // Output: 2
+
+
+timecomplexity
+
+<aside>
+💡 **Question 2**
+Given an array nums of n integers, return an array of all the unique quadruplets
+[nums[a], nums[b], nums[c], nums[d]] such that:
+           ● 0 <= a, b, c, d < n
+           ● a, b, c, and d are distinct.
+           ● nums[a] + nums[b] + nums[c] + nums[d] == target
+
+You may return the answer in any order.
+
+**Example 1:**
+Input: nums = [1,0,-1,0,-2,2], target = 0
+Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+
+//hint:1stmake the 2 different pointer 1st two place then remainig two pointer placed the remaining the element have te remaining two poin (le = 0; index < angth; index++) {
+//
+function foursum(nums,target){
+nums.sort((a,b)=>a-b);
+const n=nums.length;
+const result=[];
+//fix the 1st pointer
+    for (let i=0; i < n-4; i++) {
+       if(i>0&&nums[i]===nums[i-1]){
+       continue;//because of getting unique value if we are get the repeated value the we remove those element
+       } 
+//fix the 2nd pointer
+for(let j=i+1;j<n-3;j++){
+if(j>i+1&&nums[j]===nums[j-1]){
+    continue;
+}
+//fix the 3rd and 4th pointer
+let left=j+1;
+let right=n-1;
+//two pointer approacg where the get the unique value
+while(left<right){
+    const sum=nums[i]+nums[j]+nums[left]+nums[right];
+if(sum===target){
+    result.push([nums[i],nums[j],nums[left],nums[right]]);
+    left++;
+    right--;
+//skip the dublicate value from the two pointer arrray
+while(left<right&&nums[left]===nums[left-1]){
+    left++;
+}
+while(left<right&&nums[right]===nums[right+1]){
+    right--;
+}
+}
+else if(sum<target){
+    left++;
+}else{
+    right--;
+      }
+    }    
+  }
+ }return result;
+}
+</aside>
+
+
+
+
+
+
+
+
+
 
 
 
