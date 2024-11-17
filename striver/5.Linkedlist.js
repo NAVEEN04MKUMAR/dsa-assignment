@@ -261,7 +261,7 @@ printLinkedList(result);
 
 	
 //Delete a given Node when a node is given.
-
+//here we are not the delete the targer node then we make the copy of the next node to the current node,for the next node we make the link to the next next node 
 class Node {
     constructor(val){
     this.val=val;
@@ -311,3 +311,4 @@ deletenode(result);
 process.stdout.write('delete node Linked List: ');
 printLinkedList(head1);
 // printLinkedList(resulta);
+//
