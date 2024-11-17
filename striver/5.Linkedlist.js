@@ -255,5 +255,9 @@ console.log(result)
 
 process.stdout.write('Reversed Linked List: ');
 printLinkedList(result);
+
+//time complexity:O(max(m,n)) 
+//space complexity:O(max(m,n)) 
+
 	
 //Delete a given Node when a node is given.
