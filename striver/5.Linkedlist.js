@@ -261,3 +261,53 @@ printLinkedList(result);
 
 	
 //Delete a given Node when a node is given.
+
+class Node {
+    constructor(val){
+    this.val=val;
+    this.next=null
+    }
+}
+function getnode(list,value){
+    while(list!==null&&list.val!==value){
+        list=list.next;
+    }
+    return list;
+}
+
+function deletenode(node){
+if(node!==null&&node.next!==null){
+    node.val=node.next.val;
+    node.next=node.next.next;
+    
+      }   
+}
+
+
+function printLinkedList(head) {
+  let temp = head;
+  while (temp !== null) {
+    process.stdout.write(temp.val + ' ');
+    temp = temp.next;
+  }
+  console.log();
+}
+
+const head1 = new Node(1);
+head1.next = new Node(2);
+head1.next.next = new Node(3);
+head1.next.next.next = new Node(4);
+
+process.stdout.write('Original Linked List: ');
+printLinkedList(head1);
+
+const result=getnode(head1,2);
+console.log(result)
+
+// const resulta=
+deletenode(result);
+// console.log(resulta)
+
+process.stdout.write('delete node Linked List: ');
+printLinkedList(head1);
+// printLinkedList(resulta);
