@@ -179,6 +179,81 @@ printLinkedList(head);
 	
 //Remove N-th node from back of LinkedList		
 	
-//Add two numbers as LinkedList		
+//Add two numbers as LinkedList	
+
+
+Add two numbers represented as Linked Lists
+
+//Problem Statement: Given the heads of two non-empty linked lists representing two non-negative integers.
+//The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+class Node {
+    constructor(value){
+    this.value=value;
+    this.next=null
+    }
+}
+//we are sum the 1st node from the both the list add to new node and move on to the nextnode by the given linked list and the newly created linked list 
+//add the carry to the next sum from the given node
+
+// Loop through lists l1 and l2 until you reach both ends, and until carry is present.
+// Set sum=l1.val+ l2.val + carry.
+// Update carry=sum/10.
+// Create a new node with the digit value of (sum%10) and set it to temp node's next, then advance temp node to next.
+// Advance both l1 and l2.
+// Return dummy's next node.
+function addTwoNumbers (list1,list2){
+    
+    let dummy=new Node();
+    let temp=dummy;
+    let carry=0;
+    
+    
+    while(list1!==null||list2||carry!==0){
+ let sum =carry;       
+        if(list1!==null){
+            sum+=list1.value;
+            list1=list1.next;
+        }
+         if(list2!==null){
+            sum+=list2.value;
+            list2=list2.next;
+        }
+        carry=Math.floor(sum/10);
+        temp.next=new Node(sum%10);
+        temp=temp.next;
+    }
+ return dummy.next;   
+}
+
+
+function printLinkedList(head) {
+  let temp = head;
+  while (temp !== null) {
+    process.stdout.write(temp.value + ' ');
+    temp = temp.next;
+  }
+  console.log();
+}
+
+const head1 = new Node(8);
+head1.next = new Node(8);
+head1.next.next = new Node(8);
+// head1.next.next.next = new Node(4);
+
+const head2= new Node(7);
+head2.next = new Node(7);
+head2.next.next = new Node(7);
+// head2.next.next.next = new Node(4);
+
+process.stdout.write('Original Linked List: ');
+printLinkedList(head1);
+printLinkedList(head2);
+
+const result=addTwoNumbers(head1,head2);
+console.log(result)
+
+process.stdout.write('Reversed Linked List: ');
+printLinkedList(result);
 	
 //Delete a given Node when a node is given.
