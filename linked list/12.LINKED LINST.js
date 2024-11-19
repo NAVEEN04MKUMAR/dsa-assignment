@@ -51,12 +51,6 @@ while (current !== null) {
 
 
 2.
-
-
-
-
-
-
 //3.merge two linkedlist
 
 class Node {
@@ -372,11 +366,6 @@ if(prev==null){
 
 6.
 
-
-
-
-
-
 //7.Reversed linked list
 
 //Method:1
@@ -502,22 +491,7 @@ console.log("Reversed Linked List:");
 linkedlist.display(); 
 
 8.
-
-
-
-
-
-
-
 9.
-
-
-
-
-
-
-
-
 //10.reorderlist
 
 class ListNode {
@@ -679,15 +653,10 @@ while (current !== null) {
     current = current.next;
 }
 
-
-
-
 status:do 4,5,6
 # Assignment Questions 12
-
 <aside>
 💡 **Question 1**
-
 Given a singly linked list, delete **middle** of the linked list. For example, if given linked list is 1->2->**3**->4->5 then linked list should be modified to 1->2->4->5.If there are **even** nodes, then there would be **two middle** nodes, we need to delete the second middle element. For example, if given linked list is 1->2->3->4->5->6 then it should be modified to 1->2->3->5->6.If the input linked list is NULL or has 1 node, then it should return NULL
 
 **Example 1:**
@@ -698,7 +667,6 @@ LinkedList: 1->2->3->4->5
 Output:1 2 4 5
 
 ```
-
 **Example 2:**
 
 ```
@@ -852,21 +820,6 @@ are 9 nodes in linked list and we need
 to find 2nd node from end. 2nd node
 from end is 8.
 
-```
-
-**Example 2:**
-
-```
-Input:
-N = 5
-LinkedList: 10->5->100->5
-Output:-1
-Explanation:In the second example, there
-are 4 nodes in the linked list and we
-need to find 5th from the end. Since 'n'
-is more than the number of nodes in the
-linked list, the output is -1.
-```
 class node{  
   constructor(value){  
 this.value=value;
@@ -1035,120 +988,6 @@ console.log(circularornot(head));
 //     Time Complexity: O(n), where n is the number of nodes in the list. In the worst case, both pointers traverse the list once.
 // Space Complexity: O(1), as we are using only two pointers and no additional data structures.
 </aside>
-
-
-
-
-
-
-💡 **Question 4**
-
-Given a singly linked list of characters, write a function that returns true if the given list is a palindrome, else false.
-
-!https://media.geeksforgeeks.org/wp-content/uploads/20220816144425/LLdrawio.png
-
-**Examples:**
-
-> Input: R->A->D->A->R->NULL
-> 
-> 
-> **Output:** Yes
-> 
-> **Input:** C->O->D->E->NULL
-> 
-> **Output:** No
-> 
-</aside>
-
-<aside>
-💡 **Question 5**
-
-Given a linked list of **N** nodes such that it may contain a loop.
-
-A loop here means that the last node of the link list is connected to the node at position X(1-based index). If the link list does not have any loop, X=0.
-
-Remove the loop from the linked list, if it is present, i.e. unlink the last node which is forming the loop.
-
-**Example 1:**
-
-```
-Input:
-N = 3
-value[] = {1,3,4}
-X = 2
-Output:1
-Explanation:The link list looks like
-1 -> 3 -> 4
-     ^    |
-     |____|
-A loop is present. If you remove it
-successfully, the answer will be 1.
-
-```
-
-**Example 2:**
-
-```
-Input:
-N = 4
-value[] = {1,8,3,4}
-X = 0
-Output:1
-Explanation:The Linked list does not
-contains any loop.
-```
-
-**Example 3:**
-
-```
-Input:
-N = 4
-value[] = {1,2,3,4}
-X = 1
-Output:1
-Explanation:The link list looks like
-1 -> 2 -> 3 -> 4
-^              |
-|______________|
-A loop is present.
-If you remove it successfully,
-the answer will be 1.
-```
-
-</aside>
-
-<aside>
-💡 **Question 6**
-
-Given a linked list and two integers M and N. Traverse the linked list such that you retain M nodes then delete next N nodes, continue the same till end of the linked list.
-
-Difficulty Level: Rookie
-
-**Examples**:
-
-```
-Input:
-M = 2, N = 2
-Linked List: 1->2->3->4->5->6->7->8
-Output:
-Linked List: 1->2->5->6
-
-Input:
-M = 3, N = 2
-Linked List: 1->2->3->4->5->6->7->8->9->10
-Output:
-Linked List: 1->2->3->6->7->8
-
-Input:
-M = 1, N = 1
-Linked List: 1->2->3->4->5->6->7->8->9->10
-Output:
-Linked List: 1->3->5->7->9
-```
-
-</aside>
-
-<aside>
 
 
 
