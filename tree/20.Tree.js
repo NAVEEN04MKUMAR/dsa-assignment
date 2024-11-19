@@ -3,8 +3,6 @@ status:do the 2,4,5,6,8,9
 
 1.levelordertraversal
 
-
-
 //given th root of the tree show the level order of the 
 class treenode{
     constructor(val){
@@ -49,8 +47,9 @@ function levelordertraversal(root){
         queue.push(currentnode.right);
       }
       //push the current level of element into the array
-      result.push(currentlevel);
+     
     }
+          result.push(currentlevel);
 }//finish the whil loop
 return result;
 }
@@ -103,7 +102,8 @@ function findsuccessor(root,key){
     const result=[];
 
     //we store the nodes to process into queue for bft manner
-     const queue= [root];
+    const queue= [root];
+    let found = false;
 
      //verify atleast one node in the current level
      while(queue.length>0){
@@ -111,15 +111,15 @@ function findsuccessor(root,key){
       //calculte the number of nodes are available in the current node
       const levelsize=queue.length;
 
-//initially assume false
-let found=false;
+// //initially assume false
+// let found=false;
 
-        //store the nodes in the current level
-        const currentlevel=[];
+        // //store the nodes in the current level
+        // const currentlevel=[];
 
-        for(let i=0;i<levelsize;i++){
-        //remove the node from the queue the store into currentnode       
-        const currentnode=queue.shift();
+        // for(let i=0;i<levelsize;i++){
+        // //remove the node from the queue the store into currentnode       
+        // const currentnode=queue.shift();
 
 //found the target node
             if(found){
@@ -161,31 +161,15 @@ console.log(result);
      
 const target = 2; // The target node for which you want to find the successor
 const successornode = findsuccessor(root, target);
-console.log(successornode ? successornode.val : null); // Output will be the successor's value
+console.log(successornode ? successornode.val : null); // Output will be the successor's 
 
-4.
+// Time Complexity:
+// Time complexity: The time complexity of this algorithm is O(N), where N is the number of nodes in the binary tree. 
+// This is because we potentially have to visit every node in the tree in the worst case to find the target node and its successor.
 
+// Space complexity: The space complexity is O(1) 
 
-
-
-
-
-5.
-
-
-
-
-
-6.
-
-
-
-
-
-7.cousin
-
-//problem:if children are the same level different parant then cousin is true else false
-
+//7.cousin
 class treenode {
     constructor(val) {
       this.val = val;
@@ -194,7 +178,7 @@ class treenode {
     }
   }
   
-function iscousins(root,x,y){
+function isCousins(root,x,y){
 //find the root node x and y in the tree
     const xx=findnode(root,x);
     const yy=findnode(root,y);
@@ -203,13 +187,14 @@ return(
     level(root,xx,0)===level(root,yy,0)&&!issibling(root,xx,yy)
 );
 }
+
 function findnode(node,x){
 if(node===null){
     return null;
 }
-if(node.val===x){
-    return node;
-}
+ if (node.val === x) {
+        return node;
+    }
 
 const leftnode=findnode(node.left,x);
 if(leftnode!==null){
@@ -225,8 +210,8 @@ if(node===null){
 }
 
 return (
-    (node.left===x&&node.right==y)||
-    (node.left===y&&node.right==x)||
+    (node.left && node.right&&node.left===x&&node.right==y)||
+    (node.left && node.right&&node.left===y&&node.right==x)||
     issibling(node.left,x,y)||
     issibling(node.right,x,y)
 );
@@ -237,16 +222,15 @@ return (
 //try to find the left hand side and then we will move on the right hand side
 function level(node,x,lev){
 if(node==null){
-    return 0;
+    return -1;
 }
-
-if(node=x){
-    return lev;
-}
+    if (node.val === x) {
+        return lev;
+    }
 
 //recursively find the node
 const leftlevel=level(node.left,x,lev+1);
-if(leftlevel!=0){
+if(leftlevel!=-1){
     return leftlevel;
 }
 return level(node.right,x,lev+1);
@@ -259,136 +243,7 @@ root.left.left = new treenode(4);
 root.left.right = new treenode(5);
 root.right.right = new treenode(6);
 
-console.log(iscousins(root, 4, 6)); // Output: true (4 and 6 are cousins)
-console.log(iscousins(root, 2, 3)); // Output: false (2 and 3 are not cousins)
+console.log(isCousins(root, 4, 6)); // Output: true (4 and 6 are cousins)
+console.log(isCousins(root, 2, 3)); // Output: false (2 and 3 are not cousins)
 
-8.
 
-
-
-
-
-
-
-9.
-
-
-
-
-
-
-
-
-
-# Assignment Questions 20
-
-<aside>
-💡 Question-1
-
-Given a binary tree, your task is to find subtree with maximum sum in tree.
-
-Examples:
-
-Input1 :       
-
-       1
-
-     /   \
-
-   2      3
-
-  / \    / \
-
-4   5  6   7
-
-Output1 : 28
-
-As all the tree elements are positive, the largest subtree sum is equal to sum of all tree elements.
-
-Input2 :
-
-       1
-
-     /    \
-
-  -2      3
-
-  / \    /  \
-
-4   5  -6   2
-
-Output2 : 7
-
-Subtree with largest sum is :
-
- -2
-
- / \
-
-4   5
-
-Also, entire tree sum is also 7.
-
-</aside>
-
-<aside>
-💡 Question-2
-
-Construct the BST (Binary Search Tree) from its given level order traversal.
-
-Example:
-
-Input: arr[] = {7, 4, 12, 3, 6, 8, 1, 5, 10}
-
-Output: BST:
-
-            7
-
-         /    \
-
-       4     12
-
-     /  \     /
-
-    3   6  8
-
-   /    /     \
-
- 1    5      10
-
-</aside>
-
-<aside>
-💡 Question-3
-
-Given an array of size n. The problem is to check whether the given array can represent the level order traversal of a Binary Search Tree or not.
-
-Examples:
-
-Input1 : arr[] = {7, 4, 12, 3, 6, 8, 1, 5, 10}
-
-Output1 : Yes
-
-For the given arr[], the Binary Search Tree is:
-
-            7
-
-         /    \
-
-       4     12
-
-     /  \     /
-
-    3   6  8
-
-   /    /     \
-
- 1    5      10
-
-Input2 : arr[] = {11, 6, 13, 5, 12, 10}
-
-Output2 : No
-
-The given arr[] does not represent the level order traversal of a BST.
-
-</aside>
