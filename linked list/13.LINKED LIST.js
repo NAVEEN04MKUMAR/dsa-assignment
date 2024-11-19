@@ -32,26 +32,37 @@ function createnewlist(head1,head2){
 while(pointer1!==null&&pointer2!==null){
 let newnode=new node();
 //when the any one of the linkedlist is null 
-if(pointer1!==null){
+if(pointer1 !== null && (pointer2 === null || pointer1.data <= pointer2.data)){
     newnode.data=pointer2.data;
     pointer2=pointer2.next;
-}else if(pointer2==null){
-    newnode.data=pointer1.data;
-    pointer1=pointer1.next;
-}else{
-//compare the values from the both the linkedlist which one is bigger we need to take them
-//also skip the current element
-if(pointer1.data>pointer2.data){
+}else if(pointer2 !== null && (pointer1 === null || pointer1.data > pointer2.data)){
     newnode.data=pointer1.data;
     pointer1=pointer1.next;
 }
-else{
-    newnode.data=pointer2.data;
-    pointer2=pointer2.next;
+//else{
+// //compare the values from the both the linkedlist which one is bigger we need to take them
+// //also skip the current element
+// if(pointer1.data>pointer2.data){
+//     newnode.data=pointer1.data;
+//     pointer1=pointer1.next;
+// }
+// else{
+//     newnode.data=pointer2.data;
+//     pointer2=pointer2.next;
+// }
 }
-}
-newnode.next=newhead;
-newhead=newnode;
+    
+        // If newhead is null, initialize it
+        if (newhead === null) {
+            newhead = newnode;
+            tail = newnode;
+        } else {
+            tail.next = newnode;
+            tail = newnode;
+//         }
+    
+// newnode.next=newhead;
+// newhead=newnode;
 }
 return newhead;
 }
