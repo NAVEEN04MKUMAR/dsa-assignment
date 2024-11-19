@@ -57,7 +57,7 @@ while (current !== null) {
 
 
 
-3.merge two linkedlist
+//3.merge two linkedlist
 
 class Node {
     constructor(value) {
@@ -133,7 +133,7 @@ while (current !== null) {
     current = current.next;
 }
 
-4.detect cycle
+//4.detect cycle
 
 class ListNode {
     constructor(val) {
@@ -148,7 +148,7 @@ let length=0;
     let slowpointer=head;
     let fastpointer=head;
 
-while(fastpointer!==null&fastpointer.next!==null){
+while(fastpointer!==null && fastpointer.next!==null){
 slowpointer=slowpointer.next;
 fastpointer=fastpointer.next.next;
 if(fastpointer===slowpointer){
@@ -164,6 +164,7 @@ if (length === 0) {
 let firstpointer=head;
 let secondpointer=head;
 
+// Move second pointer 'length' steps ahead
 while(length>0){
     secondpointer=secondpointer.next;
     length--;
@@ -173,6 +174,7 @@ while(firstpointer!==secondpointer){
     firstpointer=firstpointer.next;
     secondpointer=secondpointer.next;
 }
+    
 return secondpointer;
 }
 
@@ -207,7 +209,7 @@ const cycleStartNode = detectcycle(headWithCycle);
 
 console.log("Starting node of the cycle:", cycleStartNode.val);
 
-5.bubblesort
+//5.bubblesort
 
 class Node {
     constructor(value) {
@@ -287,9 +289,8 @@ if(prev==null){
     console.log("After sorting:");
     linkedList.print(); // Output: 1 -> 3 -> 5 -> 8
 
-5.bubblesort 
 
-
+//5.bubblesort 
 class Node {
     constructor(value) {
         this.value = value;
@@ -323,6 +324,7 @@ class LinkedList {
     }
 
     bubbleSort() {
+        if (!this.head || !this.head.next) return;
         let sorted = false;
         while (!sorted) {
             sorted = true;
@@ -335,12 +337,12 @@ while(current&&current.next){
 
 
 if(prev==null){
-    //swap the heand and next node
+    //swap the head and next node
     const temp=current.next;
    current.next=temp.next;
    temp.next=current;
    this.head=temp;
-}else{
+}else{ 
     //swap the non head nodes
     const temp=current.next;
     current.next=temp.next;
@@ -349,8 +351,7 @@ if(prev==null){
 }
     }
               prev = current;
-                current = current.next;
-      
+              current = current.next;
     }
         }
     }
@@ -376,9 +377,9 @@ if(prev==null){
 
 
 
-7.Reversed linked list
+//7.Reversed linked list
 
-Method:1
+//Method:1
 
 class ListNode {
     constructor(val) {
@@ -412,7 +413,7 @@ if(next!==null){
 return prev;
 }
 
-Method:2
+//Method:2
 
 class Node{
     constructor(value){
@@ -455,10 +456,12 @@ let prev=null;
 let current=this.head;
 let next=current.next;
 
+     // Traverse the list and reverse the links
 while(current!==null){
     current.next=prev;
     prev=current;
     current=next;
+    
     if(next!==null){
         next=next.next;
     }
@@ -515,7 +518,7 @@ linkedlist.display();
 
 
 
-10.reorderlist
+//10.reorderlist
 
 class ListNode {
     constructor(val) {
@@ -523,13 +526,6 @@ class ListNode {
         this.next = null;
     }
 }
-
-function reorderlist(head) {
-    if (head === null || head.next === null) {
-        return;
-    }
-
-    const mid = middlenode(head);
 
 function middlenode(head){
     let slow=head;
@@ -541,7 +537,7 @@ function middlenode(head){
     return slow;   
 }
 
-    const reversedsecondhalf = reverselist(mid);
+    // Function to reverse the linked list
     function reverselist(head){
         let prev=null;
         let current =head;
@@ -555,17 +551,31 @@ function middlenode(head){
         }
         return prev;   
     }
+
+function reorderlist(head) {
+    if (head === null || head.next === null) {
+        return;
+    }
+
+    const mid = middlenode(head);
+
+    const reversedsecondhalf = reverselist(mid);
     
 let firsthalf=head;
 let secondhalf=reversedsecondhalf;
 
 while(firsthalf!==null&&secondhalf!==null){
     const tempfirsthalfnext=firsthalf.next;
-    firsthalf.next=secondhalf;
-    firsthalf=tempfirsthalfnext;
-
     const tempsecondhalfnext=secondhalf.next;
+    
+    
+        // Link first half node to second half node
+    firsthalf.next=secondhalf;
+     // If we haven't finished with the first half, link second half node to the next first half node
+        if (tempfirsthalfnext === null) break; // Break if it's the last node in the first half
     secondhalf.next=firsthalf;
+    
+    firsthalf=tempfirsthalfnext;
     secondhalf=tempsecondhalfnext;
 }
 if (firsthalf !== null) {
@@ -592,7 +602,7 @@ while (current !== null) {
     current = current.next;
 }
 
-11.reverse the every kth group
+//11.reverse the every kth group
 
 class ListNode {
     constructor(val) {
@@ -710,12 +720,14 @@ function deletemiddlenode(head){
     let slowptr=head;
     let fastptr=head;
     let prevptr=null;
+    
 //this will assign the after find the middle node it will move into skip the middle node
     while(fatsptr!==null&&fastptr.next!==null){
         fastptr=fastptr.next.next;//move the pointer two step at a time
         prevptr=slowptr;//helpful to stand the before the middle node
         slowptr=slowptr.next;//stand at the middle node
     }
+    
     prevptr.next=slowptr.next;
     return head;
 
@@ -734,7 +746,7 @@ printlinkedlist(head);
 const newhead = deletemiddlenode(head);
 
 console.log("Modified linked list:");
-printlinkedlist(newHead);
+printlinkedlist(newhead);
 
 
 function printlinkedlist(head) {
@@ -743,6 +755,10 @@ function printlinkedlist(head) {
         console.log(current.data);
         current = current.next;
     }
+//     Time Complexity:
+// Time complexity: O(n), where n is the number of nodes in the list. We traverse the list once to find the middle node.
+// Space Complexity:
+// Space complexity: O(1), since the operation is done in-place, without using any extra space other than pointers.
 
 </aside>
 
@@ -814,6 +830,9 @@ const n=4;
 const nthnodefromend=findnthnode(head,n);
 console.log((nthnodefromend));
 
+//     Time complexity: O(n), where n is the number of nodes in the list. We traverse the list twice — once for moving the firstpointer n steps ahead, and once for moving both pointers until the end.
+// Space Complexity:
+// Space complexity: O(1) since we only use a constant amount of extra space for the pointers.
 </aside>
 
 <aside>
@@ -881,6 +900,9 @@ head.next.next.next.next = new node(5);
 const n=4;
 const nthnodefromend=findnthnode(head,n);
 console.log((nthnodefromend));
+
+//     Time Complexity: O(n), where n is the number of nodes in the list. We traverse the list twice: once to move the firstPointer n steps and once to move both pointers until the end.
+// Space Complexity: O(1), since we are using only a constant amount of extra space (two pointers).
 </aside>
 
 <aside>
@@ -981,9 +1003,13 @@ class node{
 //assign the slow and fast pointer 
 //both are moving different spped
 function circularornot(head){
+       // Handle edge case when head is null or list has only one node
+    if (!head || !head.next) {
+        return false;
+    }
 //we traverse the head  
-    let slow=head.next;
-    let fast=head.next.next;
+    let slow=head;
+    let fast=head;
 while(fast&&fast.next){
     if(slow===fast){
         return true;
@@ -1000,9 +1026,14 @@ head.next = new node(2);
 head.next.next = new node(3);
 head.next.next.next = new node(4);
 head.next.next.next.next =new node(6);
+head.next.next.next.next.next = head.next.next; // Creates a cycle
+
 
 // Print the values of the circular linkedlist
 console.log(circularornot(head));
+
+//     Time Complexity: O(n), where n is the number of nodes in the list. In the worst case, both pointers traverse the list once.
+// Space Complexity: O(1), as we are using only two pointers and no additional data structures.
 </aside>
 
 
