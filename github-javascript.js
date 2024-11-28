@@ -1126,5 +1126,557 @@ let obj = { name: 'Alice', age: null };
 console.log(obj.age); // Output: null
 console.log(typeof null);//object but it is not actually object there is te bug
 
+//58.How do you receive server-sent event notifications:
+
+//Server-Sent Events (SSE) is a web technology that allows servers to push updates to clients over HTTP. 
+//Unlike WebSockets, SSE is unidirectional, meaning data flows only from the server to the client. 
+
+const express = require('express');
+const app = express();
+
+app.get('/events', (req, res) => {
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+
+    // Send a welcome message
+    res.write('data: Welcome to Server-Sent Events!\n\n');
+
+    // Send periodic updates
+    const intervalId = setInterval(() => {
+        const timestamp = new Date().toISOString();
+        res.write(`data: Current time is ${timestamp}\n\n`);
+    }, 3000);
+
+    // Clean up on client disconnect
+    req.on('close', () => {
+        clearInterval(intervalId);
+        res.end();
+    });
+});
+
+const PORT = 5000;
+app.listen(PORT, () => console.log(`SSE server running on port ${PORT}`));
+
+//client side:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Demo</title>
+</head>
+<body>
+    <h1>Server-Sent Events</h1>
+    <div id="messages"></div>
+
+    <script>
+        // Create an EventSource to listen to the SSE endpoint
+        const eventSource = new EventSource('http://localhost:5000/events');
+
+        // Listen for the 'message' event
+        eventSource.onmessage = (event) => {
+            const messageDiv = document.getElementById('messages');
+            const newMessage = document.createElement('p');
+            newMessage.textContent = event.data;
+            messageDiv.appendChild(newMessage);
+        };
+
+        // Handle errors
+        eventSource.onerror = (error) => {
+            console.error('EventSource error:', error);
+            eventSource.close();
+        };
+    </script>
+</body>
+</html>
+
+//When to Use SSE
+//Real-time notifications.
+//Stock price updates.
+//Live sports scores.
+
+//59.how to check the server side event support browser or not:
+//To check if a browser supports Server-Sent Events (SSE), you can use JavaScript to verify the existence of the EventSource object,
+//which is the interface used to handle SSE in browser
+if (typeof EventSource !== 'undefined') {
+    console.log('Server-Sent Events are supported in this browser!');
+} else {
+    console.log('Server-Sent Events are NOT supported in this browser.');
+}
+
+//60.What are the events available for server sent events:
+
+//Event Type Description Default
+//open	Fired when the connection is established.	
+//Built-in message	Fired for all messages with no event: type.	
+//Built-in error Fired when an error occurs (e.g., server unavailable).	
+//Built-in customEvent	Custom event defined by the developer.	
+const eventSource = new EventSource('/events');
+
+eventSource.onopen = () => console.log('Connection established.');
+eventSource.onmessage = (event) => console.log('Message:', event.data);
+eventSource.onerror = (event) => console.error('Error:', event);
+
+eventSource.addEventListener('customEvent', (event) => {
+    console.log('Custom event data:', event.data);
+});
+
+//61.promises:
+//Promises in JavaScript are a powerful way to handle asynchronous operations. 
+//They follow a set of fundamental rules and behaviors that ensure consistent and predictable handling of asynchronous code.
+
+//A Promise is a State Machine
+//A Promise has three states:
+
+Pending: Initial state, not yet fulfilled or rejected.
+Fulfilled: The operation completed successfully, resulting in a resolved value.
+Rejected: The operation failed, resulting in a rejection reason.
+Once a promise is either fulfilled or rejected, it becomes settled and can no longer change state.
+
+    //.then() Returns a New Promise
+//Every call to .then() returns a new promise that can be chained.
+//The return value of the .then() callback determines the state of the new promise:
+// If the callback returns a value, the new promise resolves with that value.
+// If the callback throws an error, the new promise rejects with that error.
+// If the callback returns a promise, the new promise adopts the state of that returned promise.
+
+Promise.resolve(10)
+    .then((value) => value * 2) // Returns 20
+    .then((value) => Promise.resolve(value + 10)) // Resolves to 30
+    .then(console.log); // Logs: 30
 
 
+    //
+A Promise Can Only Be Resolved or Rejected Once
+A promise can transition to fulfilled or rejected only once. Subsequent calls to resolve or reject are ignored.
+
+new Promise((resolve, reject) => {
+    resolve('Success');
+    resolve('Ignored'); // Ignored
+    reject('Also ignored'); // Ignored
+}).then(console.log);
+Output:
+Success
+
+
+//62.callback in call back:
+ //A callback in callback refers to a scenario where one callback function is nested inside another callback.
+//This is commonly seen when working with asynchronous operations that depend on each other, such as making multiple API calls or performing sequential file operations.
+//problem:
+function taskA(callback) {
+    setTimeout(() => {
+        console.log('Task A completed');
+        callback();
+    }, 1000);
+}
+
+function taskB(callback) {
+    setTimeout(() => {
+        console.log('Task B completed');
+        callback();
+    }, 1000);
+}
+
+function taskC() {
+    setTimeout(() => {
+        console.log('Task C completed');
+    }, 1000);
+}
+
+// Callbacks inside callbacks
+taskA(() => {
+    taskB(() => {
+        taskC();
+    });
+});
+
+//solution to avoid the call back hell:
+const taskA = () =>
+    new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('Task A completed');
+            resolve();
+        }, 1000);
+    });
+
+const taskB = () =>
+    new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('Task B completed');
+            resolve();
+        }, 1000);
+    });
+
+const taskC = () =>
+    new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('Task C completed');
+            resolve();
+        }, 1000);
+    });
+
+// Chaining promises
+taskA()
+    .then(taskB)
+    .then(taskC)
+    .then(() => console.log('All tasks completed'));
+
+
+
+//63.What is Promise Chaining?
+//Promise chaining is a technique in JavaScript where multiple asynchronous operations are executed in sequence by chaining .then() calls on a promise. 
+//Each .then() passes the resolved value to the next .then() in the chain, enabling structured and readable handling of sequential tasks.
+
+// How Promise Chaining Works
+// A promise is created.
+// .then() is called to define a callback for when the promise resolves.
+// The .then() returns a new promise, allowing the chain to continue.
+// Each subsequent .then() operates on the resolved value of the previous one.
+
+new Promise((resolve, reject) => {
+    setTimeout(() => resolve(10), 1000); // Resolves with 10 after 1 second
+})
+    .then((result) => {
+        console.log(result); // 10
+        return result * 2; // Pass 20 to the next .then()
+    })
+    .then((result) => {
+        console.log(result); // 20
+        return result + 5; // Pass 25 to the next .then()
+    })
+    .then((result) => {
+        console.log(result); // 25
+        console.log('Chaining complete');
+    });
+
+
+//Key Benefits of Promise Chaining
+// Sequential Execution: Ensures tasks are executed in a specific order.
+// Clean Syntax: Avoids deeply nested callbacks ("callback hell").
+// Error Propagation: Errors are caught and handled centrally using .catch().
+
+//64.promissess all:
+
+//Promise.all() is a method in JavaScript that allows you to execute multiple promises in parallel and wait for all of them to be resolved (or for any of them to be rejected). 
+//It takes an iterable (usually an array) of promises as input and returns a single promise that resolves when all the input promises have resolved, or it rejects as soon as one of the promises is rejected.
+
+const promise1 = new Promise((resolve) => setTimeout(resolve, 1000, 'Resolved 1'));
+const promise2 = new Promise((resolve, reject) => setTimeout(reject, 500, 'Rejected 2'));
+const promise3 = new Promise((resolve) => setTimeout(resolve, 1500, 'Resolved 3'));
+
+Promise.all([promise1, promise2, promise3])
+    .then((results) => {
+        console.log(results); // This won't run because of rejection
+    })
+    .catch((error) => {
+        console.log(error); // Logs: Rejected 2
+    });
+
+// important Points About Promise.all()
+// All Promises Must Resolve: If you want all promises to be handled together, you must ensure that none of them reject. A rejection will cause the whole Promise.all() to reject.
+// Order of Results: The results are returned in the same order as the promises in the array, not in the order in which they were resolved. This is useful when the promises are independent of each other but you need the results in a specific sequence.
+// Concurrent Execution: Promise.all() executes the promises concurrently, meaning they run in parallel, and it doesn’t wait for one to finish before starting the next.
+// Return Value: The value returned by Promise.all() is an array of resolved values, or the rejection reason if any promise fails.
+
+//65.promise race:
+//What is the Purpose of the Promise.race() Method?
+//The Promise.race() method in JavaScript is used to return the first promise from an iterable (such as an array) that settles (either resolves or rejects).
+//Unlike Promise.all(), which waits for all promises to be settled, Promise.race() only waits for the first promise to be resolved or rejected and then returns that result.
+
+const promise1 = new Promise((resolve, reject) => setTimeout(resolve, 1000, 'First Promise Resolved'));
+const promise2 = new Promise((resolve, reject) => setTimeout(reject, 500, 'Second Promise Rejected'));
+
+Promise.race([promise1, promise2])
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((error) => {
+        console.error(error); // "Second Promise Rejected"
+    });
+
+//Key Points About Promise.race()
+//Only the First Settled Promise Matters: Once the first promise settles (either resolves or rejects), Promise.race() resolves or rejects immediately, ignoring any remaining promises.
+//Useful for Timeout Handling: Promise.race() is often used when you need to race an asynchronous operation against a timeout. For example, you can race a network request against a timeout to ensure it doesn’t take too long.
+//Order of Promise Handling: The order of promises in the array matters; the first promise to resolve or reject is the one that determines the outcome.
+
+//When to Use Promise.race()
+//Timeouts: To implement timeouts for asynchronous operations, ensuring they don't run indefinitely.
+//First-come, first-served: When you have multiple asynchronous tasks and only care about the first one that finishes.
+//Abort or Cancel Operations: When you want to cancel an operation if another one finishes first.
+
+//66.strict mode in react:
+
+What is Strict Mode in JavaScript?
+Strict mode in JavaScript is a way to opt into a restricted version of JavaScript that helps catch common coding mistakes and prevents the use of certain features that are considered error-prone. It was introduced in ECMAScript 5 (ES5) to make JavaScript code safer and more predictable by enforcing stricter parsing and error handling.
+
+When you enable strict mode, certain JavaScript behaviors that are normally tolerated are flagged as errors, allowing you to avoid potential issues during development.
+
+
+What is Strict Mode in JavaScript?
+Strict mode in JavaScript is a way to opt into a restricted version of JavaScript that helps catch common coding mistakes and prevents the use of certain features that are considered error-prone. It was introduced in ECMAScript 5 (ES5) to make JavaScript code safer and more predictable by enforcing stricter parsing and error handling.
+
+When you enable strict mode, certain JavaScript behaviors that are normally tolerated are flagged as errors, allowing you to avoid potential issues during development.
+
+How to Enable Strict Mode
+Strict mode can be enabled in two ways:
+
+Globally: By adding the "use strict"; directive at the beginning of a JavaScript file.
+
+javascript
+Copy code
+"use strict";
+// Code in strict mode
+let x = 3.14; // Valid
+Locally: By adding the "use strict"; directive inside a function to apply strict mode only within that function.
+
+javascript
+Copy code
+function example() {
+    "use strict";
+    let x = 3.14; // Valid in strict mode
+}
+Key Features of Strict Mode
+Strict mode modifies how JavaScript behaves in the following ways:
+
+Prevents the use of undeclared variables:
+
+Without strict mode, JavaScript allows you to create global variables by accident.
+In strict mode, attempting to assign a value to an undeclared variable will throw an error.
+javascript
+Copy code
+"use strict";
+x = 10; // Error: x is not defined
+Eliminates this coercion:
+
+In non-strict mode, this in a function refers to the global object (window in browsers) when the function is called without a context.
+In strict mode, this remains undefined when a function is called without a context (e.g., using call or apply).
+javascript
+Copy code
+"use strict";
+function show() {
+    console.log(this); // undefined in strict mode
+}
+show();
+Disallows the use of duplicate property names or parameters:
+
+In strict mode, defining an object with duplicate property names or a function with duplicate parameter names throws an error.
+javascript
+Copy code
+"use strict";
+const obj = {a: 1, a: 2}; // Error: Duplicate data property in object literal
+Disallows writing to readonly properties:
+
+In strict mode, trying to assign a value to a constant or a non-writable property will throw an error.
+javascript
+Copy code
+"use strict";
+const obj = {};
+Object.defineProperty(obj, 'name', { value: 'John', writable: false });
+obj.name = 'Doe'; // Error: Cannot assign to read-only property 'name'
+Makes eval safer:
+
+In strict mode, the eval function cannot be used to introduce new variables into the surrounding scope.
+Variables declared inside eval() do not affect the outer scope.
+javascript
+Copy code
+"use strict";
+eval('var x = 20;');
+console.log(x); // Error: x is not defined
+Throws error for with statement:
+
+The with statement is disallowed in strict mode, as it creates confusion with variable scope and can lead to unpredictable behavior.
+javascript
+Copy code
+"use strict";
+with (Math) {
+    x = cos(2); // SyntaxError: Strict mode code may not include a with statement
+}
+Prevents octal literals:
+
+In strict mode, using octal literals (numbers with leading zeros, such as 012) is not allowed.
+
+"use strict";
+var num = 012; // SyntaxError: Octal literals are not allowed in strict mode
+Makes eval function and arguments non-reassignable:
+
+The eval function and arguments are restricted in strict mode. For example, you can't assign values to them.
+
+"use strict";
+eval = 2; // Error: Assigning to eval is not allowed in strict mode
+arguments = 3; // Error: Assigning to arguments is not allowed in strict mode
+
+// Key Features of Strict Mode
+// Strict mode modifies how JavaScript behaves in the following ways:
+
+Prevents the use of undeclared variables:
+
+Without strict mode, JavaScript allows you to create global variables by accident.
+In strict mode, attempting to assign a value to an undeclared variable will throw an error.
+
+//"use strict";
+//x = 10; // Error: x is not defined
+//Eliminates this coercion:
+
+In non-strict mode, this in a function refers to the global object (window in browsers) when the function is called without a context.
+In strict mode, this remains undefined when a function is called without a context (e.g., using call or apply).
+
+"use strict";
+function show() {
+    console.log(this); // undefined in strict mode
+}
+show();
+
+//Disallows the use of duplicate property names or parameters:
+//In strict mode, defining an object with duplicate property names or a function with duplicate parameter names throws an error.
+"use strict";
+const obj = {a: 1, a: 2}; // Error: Duplicate data property in object literal
+//Disallows writing to readonly properties:
+//In strict mode, trying to assign a value to a constant or a non-writable property will throw an error.
+"use strict";
+const obj = {};
+Object.defineProperty(obj, 'name', { value: 'John', writable: false });
+obj.name = 'Doe'; // Error: Cannot assign to read-only property 'name'
+
+//Benefits of Using Strict Mode
+//Catches common mistakes: Strict mode makes it easier to catch errors, such as using undeclared variables or writing to read-only properties.
+//Improves performance: JavaScript engines can optimize code more effectively in strict mode because it avoids certain error-prone features.
+//Security: By eliminating dangerous features like with and making eval more predictable, strict mode improves security by avoiding potential vulnerabilities.
+//Consistency: It helps ensure that your code behaves consistently, making it easier to debug and maintain.
+
+//How to Enable Strict Mode
+//Strict mode can be enabled in two ways:
+//Globally: By adding the "use strict"; directive at the beginning of a JavaScript filed
+
+"use strict";
+// Code in strict mode
+let x = 3.14; // Valid
+Locally: By adding the "use strict"; directive inside a function to apply strict mode only within that function.
+    
+function example() {
+    "use strict";
+    let x = 3.14; // Valid in strict mode
+}
+//Key Features of Strict Mode
+Strict mode modifies how JavaScript behaves in the following ways:
+Prevents the use of undeclared variables:
+Without strict mode, JavaScript allows you to create global variables by accident.
+In strict mode, attempting to assign a value to an undeclared variable will throw an error.
+    
+"use strict";
+x = 10; // Error: x is not defined
+Eliminates this coercion:
+
+In non-strict mode, this in a function refers to the global object (window in browsers) when the function is called without a context.
+In strict mode, this remains undefined when a function is called without a context (e.g., using call or apply).
+    
+"use strict";
+function show() {
+    console.log(this); // undefined in strict mode
+}
+show();
+//68.How do you declare strict mode:
+
+//69.What is the purpose of double exclamation:
+
+//The double exclamation mark (!!) in JavaScript is a technique used to convert a value to a boolean. It is essentially a shorthand for casting any value to a boolean (true or false), which is useful for evaluating the truthiness or falsiness of a value.
+//How it works:
+//The first ! (logical NOT) negates the value. It converts the value to a boolean and inverts it (i.e., true becomes false, and false becomes true).
+//The second ! negates the result of the first !, effectively returning the boolean equivalent of the original value.
+
+//70.What is the purpose of the delete operator:
+//The delete operator in JavaScript is used to remove properties from an object.
+//It can also be used to remove elements from arrays when they are accessed by their index, but it leaves a hole (i.e., undefined at that index) rather than actually shifting elements.
+
+//Purpose of the delete Operator:
+//Removing object properties: The primary use of the delete operator is to remove a property from an object. After deletion, the property will no longer exist on the object, and attempting to access it will return undefined.
+let person = {
+    name: "John",
+    age: 30
+};
+
+delete person.age;  // Deletes the "age" property
+
+console.log(person.age);  // undefined
+console.log(person);  // { name: "John" }
+//Deleting array elements: You can use the delete operator to remove an element from an array, but it does not actually remove the element from the array—rather, it leaves a "hole" at that index (the element is removed, but the array length remains the same, and the slot is set to undefined).
+let numbers = [1, 2, 3, 4];
+delete numbers[2];  // Deletes the element at index 2
+console.log(numbers);  // [ 1, 2, <1 empty item>, 4 ]
+console.log(numbers.length);  // 4 (array length remains the same)
+//Note: It is generally not recommended to use delete on arrays. Instead, you might want to use methods like splice() to actually remove the element and reindex the array.
+
+//71.type of operator:
+
+//The typeof operator in JavaScript is used to determine the type of a given variable or expression. 
+//It returns a string that represents the type of the operand (e.g., "string", "number", "object", etc.).
+
+// Example 1: Checking primitive types
+console.log(typeof "Hello");  // "string"
+console.log(typeof 42);       // "number"
+console.log(typeof true);     // "boolean"
+console.log(typeof undefined);  // "undefined"
+console.log(typeof Symbol());  // "symbol"
+console.log(typeof 9007199254740991n);  // "bigint"
+
+// Example 2: Checking non-primitive types
+console.log(typeof { name: "Alice", age: 25 });  // "object"
+console.log(typeof [1, 2, 3]);  // "object" (arrays are objects in JavaScript)
+console.log(typeof null);  // "object" (this is a known JavaScript quirk)
+
+// Example 3: Checking a function
+console.log(typeof function(){});  // "function"
+
+//72.undefine property:
+//In JavaScript, an undefined property refers to a property that does not exist on an object or has not been assigned a value. When you attempt to access such a property, JavaScript will return undefined.
+
+//Key Points about Undefined Properties:
+//Non-existent properties: If you try to access a property on an object that hasn't been defined, it will return undefined.
+
+const person = {
+    name: "John",
+    age: 30
+};
+
+console.log(person.address);  // undefined: 'address' property doesn't exist
+Properties with no assigned value: If you define a property on an object but don't assign a value to it, it will have an undefined value.
+
+
+const person = {
+    name: "John",
+    age: 30,
+    address: undefined  // Explicitly setting the property to undefined
+};
+
+console.log(person.address);  // undefined
+
+//73.null value:
+Undefined vs Null:
+
+undefined is a type and value in JavaScript, representing the absence of a value or an uninitialized state.
+null is a distinct value representing "no value" or "empty object reference." They are different in meaning and usage.
+
+let x;        // x is declared but not assigned, so it's undefined
+let y = null; // y is explicitly set to null
+console.log(x);  // undefined
+console.log(y);  // null
+
+
+//74.difference between the null and undefined:
+
+//75.eval :
+what is eval:
+Summary:
+eval() allows you to execute JavaScript code represented as a string.
+It can be useful but poses security risks, performance drawbacks, and debugging challenges.
+Avoid using eval() when possible, especially with untrusted input. Use safer alternatives like JSON.parse() or the Function constructor for dynamically executed code.
+
+    //76.what is differnce between the window and documents:
+    Key Differences:
+Feature              	window	                                               document
+Represents            	The browser window or tab itself	                    The content (HTML) of the web page
+Scope	                Global scope, accessible anywhere in the script	        Represents the DOM, which is a part of window
+Purpose	               Handles global browser environment features             	Manipulates the structure and content of the webpage
+Example Access         	window.location, window.alert()	                         document.getElementById(), document.body
+Global Object	The global context for JavaScript in the browser	A part of the window object, used for DOM manipulation
+Examples of Use	Controlling the browser window, accessing global properties like screen size, setting timeouts	Accessing or modifying HTML elements, reading the title of the page
