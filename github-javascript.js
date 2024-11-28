@@ -1,5 +1,5 @@
 
-1.What are the ways i can create the object:
+//1.What are the ways i can create the object:
 
 //#1 object literatural way
 var object={
@@ -13,15 +13,8 @@ const obj2=new Object();
 obj2.key1="value1";
 obj2.key2="value2";
 obj2.key3="value3";
-
 console.log("object",obj2);
 //we can get the all the key value pair by console the obj2
-
-
-// Online Javascript Editor for free
-// Write, Edit and Run your Javascript code using JS Online Compiler
-
-console.log("Try programiz.pro");
 
 //#3 objet create method
 //#3 create the new object using the already existing object
@@ -58,11 +51,10 @@ console.log("final",final.prop2);
 //if we give access then it show the object
 //if we access the exp1 only the objectname we will not get the value 
 
-
-2.about the prototype chaining:
-Is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language. 
-i.e, When you create an object using a constructor function or a class, the created object inherits properties from a prototype object.
-e.x:
+//doubt:
+//2.about the prototype chaining:
+//Is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language. 
+//i.e, When you create an object using a constructor function or a class, the created object inherits properties from a prototype object.
 function Animal(name){
     this.name=name;
 }
@@ -74,25 +66,19 @@ Animal.prototype.sayHello=function(){
 
 const lion=new Animal('lion');
 lion.sayHello();
-    console.log(Object.getPrototypeOf(lion));//{ sayHello: [Function (anonymous)] } iyt represent have the sayhello ariable have th funtion
+    console.log(Object.getPrototypeOf(lion));//{ sayHello: [Function (anonymous)] } it represent have the sayhello variable have the funtion
     console.log(Object.getPrototypeOf(Object.getPrototypeOf(lion)));//[Object: null prototype] {} that one inside have the null represent at the node.js
     console.log(Object.getPrototypeOf(Object.getPrototypeOf(Object.getPrototypeOf(lion))));//null
 
 //if we through the key value then get the value 
 
-
-
-
-3.difference betweeen the call,apply,bind
-//Call:the call() method involkes a fuction with a given this value argumet and  argument provided by one
+//3.difference betweeen the call,apply,bind
+//Call:the call() method involkes a fuction with a given this value argument and  argument provided by one
 
 var employee1={firstname:"naveen",lastname:"kumar"};
 var employee2={firstname:"muthu",lastname:"kumar"};
 var employee3={firstname:"vignesh",lastname:"kanna"};
-
-
 function invite(greeting1,greeting2){
-
 console.log(
     greeting1+" "+this.firstname+" "+this.lastname+" "+greeting2
     );    
@@ -102,7 +88,6 @@ invite.call(employee1,"hello","how are you?");
 invite.call(employee2,"hello","where are you?");
 invite.call(employee3,"hello","who are you");
 
-
 //apply
 //pass the arguments as the array with the array
 
@@ -110,14 +95,11 @@ var employee4={firstname:"naveen",lastname:"kumar"};
 var employee5={firstname:"muthu",lastname:"kumar"};
 var employee6={firstname:"vignesh",lastname:"kanna"};
 
-
 function invite2(greeting3,greeting4){
-
 console.log(
     greeting3+" "+this.firstname+" "+this.lastname+" "+greeting4
     );    
 }
-
 invite2.apply(employee4,["hello","how are you?"]);
 invite2.apply(employee5,["hello","where are you?"]);
 invite2.apply(employee6,["hello","who are you"]);
@@ -129,9 +111,7 @@ var employee7={firstname:"naveen",lastname:"kumar"};
 var employee8={firstname:"muthu",lastname:"kumar"};
 var employee9={firstname:"vignesh",lastname:"kanna"};
 
-
 function invite3(greeting5,greeting6){
-
 console.log(
     greeting5+" "+this.firstname+" "+this.lastname+" "+greeting6
     );    
@@ -146,7 +126,7 @@ invitee2("hello","where are you?");
 invitee3("hello","who are you")
 
 
-4. about JSON:
+//4. about JSON:
 //javascript object notation it is light weight data-interchanges format
 //it will useful to the parse the data between the client and server
 
@@ -157,7 +137,7 @@ console.log(jsonobject.name);
 console.log(jsonobject.age);
 console.log(jsonobject);
 
-//convert the js on object into jsonstring
+//convert the json on object into jsonstring
 const jsonobject1={name:"naveen",age:24};
 const jsonstring1=JSON.stringify(jsonobject1);
 console.log(jsonstring1);
@@ -199,9 +179,9 @@ console.log(merged);
 
 
 
-5.slice
+//5.slice
 //slice return the selected element in an array new array object
-//we give the strating argument and returning argument if we are not give the end argument it will automatcally take the nd argument 
+//we give the strating argument and returning argument if we are not give the end argument it will automatcally take the end argument 
 let array=[1,2,3,4];
 
 let array1=array.slice(0,2);
@@ -226,7 +206,7 @@ let array6=array.slice(-4);
 console.log(array6);//[ 1, 2, 3, 4 ]
 
 
-
+//splice:
 //6.it is add,remove or replace element from array 
 //array.splice(start, deleteCount, item1, item2, ..., itemN)
 //it modifies the original array
@@ -234,11 +214,6 @@ const array=[1,2,3,4,5];
 const removed=array.splice(2,2);
 console.log(array);//[ 1, 2, 5 ]
 console.log(removed);//[ 3, 4 ]
-
-const array2=[1,2,3,4,5];
-const removed2=array2.splice(2,2);
-console.log(array2);//[ 1, 2, 5 ]
-console.log(removed2);//[ 3, 4 ]
 
 //add element
 const array3=[1,2,3,4,5];
@@ -258,29 +233,24 @@ console.log(removed4);//[ 3, 4 ]
 // return subset of original array
 // used to pick the element of the array
 
-// splice:
+//splice:
 // we will  the original array modify the array
 // return the deleteed elements of array
 // used to insert/delete the element of the array
 
-9)//key types:
+//9)key types:
 //1)key types:
-
-//object:key ony strings or symbol,if we pass the number it will cnsider them as the string
-//
+//object:key only strings or symbol,if we pass the number it will consider them as the string
 const obj={};
 obj[123]='value1';//123 is not number 
 obj[456]='value4';//123 is not number 
 obj[789]='value7';//123 is not number 
 console.log(obj);
 // obj.keys().length.
-
 //2){ '123': 'value1', '456': 'value4', '789': 'value7' }
-//here we get the correct order of key sometime i get the different order of key
-
+//here we get the correct order of key sometime I get the different order of key
 //3) in object when we searching for properties it is slower  than map becuase it work as the prototype chain
-//4)length of length we shold manually wit argumnt we should pass
-
+//4)length of length we shold manually with argumnt we should pass
 const obj2 = {
   name: "Naveen",
   age: 24,
@@ -295,16 +265,13 @@ for(let key in obj2){
 }
 
 //object.key();
-
 Object.keys(obj2).forEach((key)=>{
     console.log(key,obj2[key])
 })
 
-//
 for(const [key,value] of Object.entries(obj2)){
     console.log(key,value);
 }
-
 //6)application:
 //used for string ,json etc
 
@@ -313,10 +280,9 @@ map.set(123,'value');
 map.set({key:'val1'},'objctkey');
 map.set({key:'val2'},'objctkey');
 map.set({key:'val3'},'objctkey');
-
 console.log(map);
 
-//2)map:it will taje the key as th enumber,string etc
+//2)map:it will take the key as the number,string etc
 //here always we get the order of key is the how we arrange the order
 // Map(4) {
 //   123 => 'value',
@@ -325,7 +291,6 @@ console.log(map);
 //   { key: 'val3' } => 'objctkey'
 // }
 //3)when we add or delete the value that time it will show as the faster performance commpare with the object  
-
 //4)length of key of it will give the automatically
 //5)iteration:
 
@@ -336,6 +301,7 @@ for(let [key,value] of map){
 //suited or the complex key value pais,insertion deletion
 
 //9.arrow function:
+
 //multiple argument
 const sum=(a,b)=>{
     return a+b;
@@ -352,8 +318,8 @@ console.log(greet1());
 
 
 //10)difference between the == lose equality and the === strict equality:
-lose:compare the value
-strict:compare the value an data type
+//lose:compare the value
+//strict:compare the value an data type
 console.log(1=='1');//true
 console.log(true=='1');//true
 console.log(true==1);//true
@@ -373,7 +339,7 @@ const greet=function(){
 };
 greet();
 
-//2)passing function as the  argument
+//2)passing function as the argument
 function sayhello(){
     console.log('hello');
 }
@@ -439,7 +405,8 @@ console.log(unary1(4));
 
 
 //15)currying function:
-//functional programming instead of taking all argument at once take the firt argument and return new function that takes the second argument,once all argument passed,final result is computed
+//functional programming instead of taking all argument at once take the firt argument and
+//return new function that takes the second argument,once all argument passed,final result is computed
 function multiply(a){
     return function(b){
         return a*b;
@@ -451,7 +418,7 @@ console.log(multiplybytwo(5));
 
 //16)pure function:
 
-//no side effects:it will not modify the any external state on exeternal varaible can change,operate  with the only input
+//no side effects:it will not modify the any external state on exeternal varaible can change,operate with the only input
 function add(a,b){
     return a+b;
 }
@@ -464,7 +431,6 @@ function increment(){
     return count;
 }
 console.log(increment());
-
 
 //18)know the difference between the let and var
 //the key word will not use as the before initialisation
@@ -510,10 +476,10 @@ switch (x) {
 }
 
 //21.temporal dead zone:
-//we wil not access the variable before initilalisation,if we access the then it show the error 
+//we will not access the variable before initilalisation,if we access the then it show the error 
 function temp(){
-  //  console.log(temp1);//ReferenceError: Cannot access 'temp1' before initialization
-    //console.log(temp2);//ReferenceError: Cannot access 'temp2' before initialization
+    console.log(temp1);//ReferenceError: Cannot access 'temp1' before initialization
+    console.log(temp2);//ReferenceError: Cannot access 'temp2' before initialization
     console.log(temp3);//undefined
     let temp1=1;
     const temp2=1;
@@ -524,13 +490,14 @@ temp();
 
 //22.Immediately invoked function expression, iife
 //iife
-
+//Variables inside an IIFE are not accessible from outside.
 (function(){
     var about="Naveen working as the frontend developer";
     console.log(about);//Naveen working as the frontend developer
 })();
-    // console.log(about);//ReferenceError: about is not defined
+    console.log(about);//ReferenceError: about is not defined
 
+//23.decode and encode:
 const url="https://www.indeed.com/q-javascript-developer-with-google-jobs.html";
 //encodeURIComponent it will escape the special meaning
 const encoded=encodeURIComponent(url);
@@ -553,9 +520,9 @@ const decoded1=decodeURI(url);
 console.log(decoded1);
 //https://www.indeed.com/q-javascript-developer-with-google-jobs.html
 
+
 //24.hoisting:
 //declaration should be moved to top 
-
 console.log(message);
 var message="Naveen working as a frontend developer";
 
