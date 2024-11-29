@@ -1978,3 +1978,147 @@ person.greet();  // Outputs: Hello, John
 
 
 
+//os of Promises Over Callbacks:
+
+Problem with callbacks: Callbacks, especially when nested, can lead to deeply indented code, making it difficult to read, maintain, and debug. 
+This is often referred to as "callback hell" or the "pyramid of doom."
+Solution with promises: Promises offer a cleaner and more linear approach to handling asynchronous code, reducing nesting and improving readability.
+They allow chaining, which results in a flat structure.
+    
+Example: 
+Better Error Handling:
+Problem with callbacks: In callbacks, errors need to be passed explicitly as arguments, and there is no consistent way to propagate errors through multiple levels of nested callbacks.
+Solution with promises: Promises handle errors via a .catch() method, which provides a centralized way to handle errors.
+    
+Promises also propagate errors automatically through the promise chain, making error handling more predictable.
+Example:
+Callbacks: Requires manual error checking at each level.
+doSomething(function(err, result) {
+  if (err) {
+    handleError(err);
+  } else {
+    doNextThing(result, function(err, result2) {
+      if (err) {
+        handleError(err);
+      } else {
+        doFinalThing(result2);
+      }
+    });
+  }
+});
+Promises: Errors are propagated through the chain.
+
+doSomething()
+  .then(result => doNextThing(result))
+  .then(result2 => doFinalThing(result2))
+  .catch(handleError);
+
+Chaining:
+Problem with callbacks: Callbacks can be difficult to chain together, leading to complex, nested code.
+Solution with promises: Promises allow chaining of multiple asynchronous operations using .then(), making it easier to sequence operations in a readable and maintainable way. 
+Each .then() receives the result of the previous one, and you can chain them together.
+
+doSomething()
+  .then(result => doNextThing(result))
+  .then(result2 => doFinalThing(result2))
+  .then(() => console.log('All done!'))
+  .catch(err => console.error(err));
+Support for Asynchronous Operations:
+Problem with callbacks: Callbacks can make handling multiple asynchronous operations (like parallel tasks) complicated, especially when you need to wait for all of them to complete.
+Solution with promises: Promises provide methods like Promise.all() and Promise.race() to handle multiple asynchronous operations concurrently and manage them in a more organized way.
+
+    
+Example (Using Promise.all() for parallel operations):
+Promise.all([task1(), task2(), task3()])
+  .then(([result1, result2, result3]) => {
+    console.log('All tasks completed', result1, result2, result3);
+  })
+  .catch(err => console.error(err));
+Cleaner and More Maintainable Code:
+Problem with callbacks: Asynchronous code with callbacks can be hard to follow, especially when there are multiple nested levels of callbacks.
+Solution with promises: Promises make the code look cleaner by allowing a more declarative and readable flow of asynchronous operations.
+Built-in Features in Modern JavaScript:
+
+Promises are natively supported in modern JavaScript (ES6+) and are built into the language, whereas callbacks require additional handling or custom implementations in some cases.
+Cons of Promises Over Callbacks:
+Learning Curve for New Developers:
+Problem: While promises offer cleaner code, they can be a bit difficult to grasp for developers who are new to asynchronous JavaScript. Concepts like chaining, error handling, and understanding when to use .then(), .catch(), and .finally() might take time to learn.
+Not Always the Right Tool for Simple Operations:
+
+//Problem: For simple, one-off asynchronous tasks, promises might be overkill compared to using callbacks. 
+//If you just need to execute one simple asynchronous operation and handle its result, a callback might be quicker and simpler.
+Example: If you just need a single callback to handle one result, promises might seem more complex.
+Can Be Misused (Promise Anti-Pattern).
+
+
+//91.value and attributes:
+    
+In JavaScript, attributes and properties refer to different concepts related to HTML elements and the DOM (Document Object Model). Although they may sound similar, they are distinct in the way they function. Here's the breakdown:
+
+1. Attribute
+//Definition: An attribute is a value associated with an HTML element in the markup. 
+//It is part of the HTML element and defines specific configurations, like the id, class, or src of an element.
+//Storage: Attributes are stored in the HTML code itself, in the element's raw markup.
+//Access/Manipulation: You can access and manipulate attributes using methods like getAttribute() and setAttribute() in JavaScript.
+//Updates: Changing an attribute via setAttribute() will update the element's attribute in the HTML markup.
+Example:
+<img id="myImage" src="image.jpg" alt="A beautiful picture">
+In this case:
+id and src are attributes.
+JavaScript:
+const img = document.getElementById('myImage');
+console.log(img.getAttribute('src')); // "image.jpg"
+img.setAttribute('src', 'new-image.jpg'); // Changes the 'src' attribute to 'new-image.jpg'
+
+// 2. Property
+// Definition: A property is a JavaScript object property that represents the current state of an element in the DOM. Properties are dynamically accessible and changeable at runtime.
+// Storage: Properties are stored in the DOM object in the browser's memory. They reflect the element's current state, which can change due to user interaction or JavaScript.
+// Access/Manipulation: You can access and modify properties directly through JavaScript, typically using the standard dot (.) or bracket ([]) notation.
+// Updates: Changing a property via JavaScript will update the property in memory, but it does not directly affect the HTML attribute unless explicitly set using setAttribute().
+// Example:
+// <input type="text" id="myInput" value="Hello">
+value is a property.
+
+JavaScript:
+const input = document.getElementById('myInput');
+console.log(input.value); // "Hello"
+input.value = "World"; // Changes the value property to 'World'
+console.log(input.value); // "World"
+
+//92.Same orgin policy:
+
+The Same-Origin Policy (SOP) is a critical security feature implemented in web browsers to prevent malicious websites from accessing or manipulating resources (like data or cookies) from a different domain, protocol, or port. 
+    The idea behind SOP is to restrict how a web page or script from one origin can interact with resources from another origin.
+
+Definition of "Origin":
+The "origin" is defined by the combination of:
+
+Protocol (e.g., HTTP or HTTPS)
+Domain (e.g., example.com)
+Port (e.g., 80 or 443)
+
+
+
+//Interpreted Language
+Traditionally, JavaScript is considered an interpreted language. 
+This means:Interpretation occurs at runtime, where the JavaScript code is read and executed line-by-line by the JavaScript engine (such as V8 in Chrome, SpiderMonkey in Firefox, or Chakra in older versions of Edge).
+When a browser or runtime environment (like Node.js) loads a web page or script, it parses and executes the JavaScript code directly, without the need for a separate compilation step.
+
+    2. Just-in-Time (JIT) Compilation
+However, modern JavaScript engines (like V8 in Chrome or SpiderMonkey in Firefox) use JIT compilation techniques to optimize performance:
+
+Instead of interpreting the code purely line-by-line, the engine may compile JavaScript into machine code during execution (hence the term Just-in-Time).
+JIT compilers analyze the JavaScript code while it’s running, optimize hot spots (frequently executed code paths), and then compile those parts into machine code for faster execution.
+This means JavaScript is dynamically compiled just before execution, giving the performance benefits of compilation without the need for a separate compilation step before execution.
+
+//Key Points:
+JavaScript is not traditionally compiled into a standalone executable file (like C++ or Java).
+Execution flow: The code is interpreted, but optimization happens during runtime through JIT compilation for performance improvements.
+This hybrid approach allows JavaScript to be both flexible and high-performing
+
+
+
+
+
+
+
