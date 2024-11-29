@@ -1017,21 +1017,21 @@ Promise.race([promise9,promise10])
 // //51)strict mode:
 // //we can write code in the cleaner,safer, and more secure code
 
-// a)"use strict";//use strict for global
+ a)"use strict";//use strict for global
 
 // b)
-// "use strict";
-// function example(a, a) {
-//     console.log(a,a);
-//     // SyntaxError: Duplicate parameter name not allowed in this context
-// }
-// example(h,h);
+ "use strict";
+function example(a, a) {
+    console.log(a,a);
+    // SyntaxError: Duplicate parameter name not allowed in this context
+}
+example(h,h);
 
 // c)
 // //use strict for function only
-// function example(){
-//     "use strict";
-// }
+function example(){
+    "use strict";
+}
 
 
 //52)why strict mode: notify the bad syntex into the real error
@@ -1044,7 +1044,6 @@ x=3.14;
 console.log(x);//ReferenceError: x is not defined
 
 //throw error for the assigning the value for the read only properties:
-
  "use strict";
 const obj=Object.freeze({name:"naveen"});
 console.log(obj);
@@ -1062,7 +1061,7 @@ console.log(!!value2);
 
 
 //54)delete value in the javascript:
-//delete only removes the property from the object it is not affect the prototyp chain
+//delete only removes the property from the object it is not affect the prototype chain
 //we can't the delete the variable from the var,let, const
 //if we remove then can have the huge memory
 remove property from object:
@@ -1094,7 +1093,7 @@ let y=20;
 let result=eval("x+y");
 console.log(result);
 
-let userinput="alert('hacked!')";
+let userinput=alert('hacked!')";
 eval(userinput);
 
 
@@ -1229,7 +1228,7 @@ eventSource.addEventListener('customEvent', (event) => {
 //A Promise is a State Machine
 //A Promise has three states:
 
-Pending: Initial state, not yet fulfilled or rejected.
+//Pending: Initial state, not yet fulfilled or rejected.
 Fulfilled: The operation completed successfully, resulting in a resolved value.
 Rejected: The operation failed, resulting in a rejection reason.
 Once a promise is either fulfilled or rejected, it becomes settled and can no longer change state.
@@ -1247,7 +1246,7 @@ Promise.resolve(10)
     .then(console.log); // Logs: 30
 
 
-    //
+//can we run the promise after the resolve state
 A Promise Can Only Be Resolved or Rejected Once
 A promise can transition to fulfilled or rejected only once. Subsequent calls to resolve or reject are ignored.
 
@@ -1256,8 +1255,8 @@ new Promise((resolve, reject) => {
     resolve('Ignored'); // Ignored
     reject('Also ignored'); // Ignored
 }).then(console.log);
-Output:
-Success
+//Output:
+//Success
 
 
 //62.callback in call back:
@@ -1405,138 +1404,48 @@ Promise.race([promise1, promise2])
 //First-come, first-served: When you have multiple asynchronous tasks and only care about the first one that finishes.
 //Abort or Cancel Operations: When you want to cancel an operation if another one finishes first.
 
-//66.strict mode in react:
+//66.strict mode in javascript:
+//Strict mode in JavaScript is a way to opt into a restricted version of JavaScript that helps catch common coding mistakes and prevents the use of certain features that are considered error-prone. 
+//It was introduced in ECMAScript 5 (ES5) to make JavaScript code safer and more predictable by enforcing stricter parsing and error handling.
 
-What is Strict Mode in JavaScript?
-Strict mode in JavaScript is a way to opt into a restricted version of JavaScript that helps catch common coding mistakes and prevents the use of certain features that are considered error-prone. It was introduced in ECMAScript 5 (ES5) to make JavaScript code safer and more predictable by enforcing stricter parsing and error handling.
+//When you enable strict mode, certain JavaScript behaviors that are normally tolerated are flagged as errors, allowing you to avoid potential issues during development.
 
-When you enable strict mode, certain JavaScript behaviors that are normally tolerated are flagged as errors, allowing you to avoid potential issues during development.
+//How to Enable Strict Mode
+//Strict mode can be enabled in two ways:
+//Globally: By adding the "use strict"; directive at the beginning of a JavaScript file.
 
-
-What is Strict Mode in JavaScript?
-Strict mode in JavaScript is a way to opt into a restricted version of JavaScript that helps catch common coding mistakes and prevents the use of certain features that are considered error-prone. It was introduced in ECMAScript 5 (ES5) to make JavaScript code safer and more predictable by enforcing stricter parsing and error handling.
-
-When you enable strict mode, certain JavaScript behaviors that are normally tolerated are flagged as errors, allowing you to avoid potential issues during development.
-
-How to Enable Strict Mode
-Strict mode can be enabled in two ways:
-
-Globally: By adding the "use strict"; directive at the beginning of a JavaScript file.
-
-javascript
-Copy code
 "use strict";
 // Code in strict mode
 let x = 3.14; // Valid
 Locally: By adding the "use strict"; directive inside a function to apply strict mode only within that function.
 
-javascript
-Copy code
 function example() {
     "use strict";
     let x = 3.14; // Valid in strict mode
 }
-Key Features of Strict Mode
-Strict mode modifies how JavaScript behaves in the following ways:
+//Key Features of Strict Mode
+//Strict mode modifies how JavaScript behaves in the following ways:
+//Prevents the use of undeclared variables:
 
-Prevents the use of undeclared variables:
+//Without strict mode, JavaScript allows you to create global variables by accident.
+//In strict mode, attempting to assign a value to an undeclared variable will throw an error.
 
-Without strict mode, JavaScript allows you to create global variables by accident.
-In strict mode, attempting to assign a value to an undeclared variable will throw an error.
-javascript
-Copy code
 "use strict";
 x = 10; // Error: x is not defined
 Eliminates this coercion:
 
-In non-strict mode, this in a function refers to the global object (window in browsers) when the function is called without a context.
-In strict mode, this remains undefined when a function is called without a context (e.g., using call or apply).
-javascript
-Copy code
-"use strict";
-function show() {
-    console.log(this); // undefined in strict mode
-}
-show();
-Disallows the use of duplicate property names or parameters:
-
-In strict mode, defining an object with duplicate property names or a function with duplicate parameter names throws an error.
-javascript
-Copy code
-"use strict";
-const obj = {a: 1, a: 2}; // Error: Duplicate data property in object literal
-Disallows writing to readonly properties:
-
-In strict mode, trying to assign a value to a constant or a non-writable property will throw an error.
-javascript
-Copy code
-"use strict";
-const obj = {};
-Object.defineProperty(obj, 'name', { value: 'John', writable: false });
-obj.name = 'Doe'; // Error: Cannot assign to read-only property 'name'
-Makes eval safer:
-
-In strict mode, the eval function cannot be used to introduce new variables into the surrounding scope.
-Variables declared inside eval() do not affect the outer scope.
-javascript
-Copy code
-"use strict";
-eval('var x = 20;');
-console.log(x); // Error: x is not defined
-Throws error for with statement:
-
-The with statement is disallowed in strict mode, as it creates confusion with variable scope and can lead to unpredictable behavior.
-javascript
-Copy code
-"use strict";
-with (Math) {
-    x = cos(2); // SyntaxError: Strict mode code may not include a with statement
-}
-Prevents octal literals:
-
-In strict mode, using octal literals (numbers with leading zeros, such as 012) is not allowed.
-
-"use strict";
-var num = 012; // SyntaxError: Octal literals are not allowed in strict mode
-Makes eval function and arguments non-reassignable:
-
-The eval function and arguments are restricted in strict mode. For example, you can't assign values to them.
-
-"use strict";
-eval = 2; // Error: Assigning to eval is not allowed in strict mode
-arguments = 3; // Error: Assigning to arguments is not allowed in strict mode
-
-// Key Features of Strict Mode
-// Strict mode modifies how JavaScript behaves in the following ways:
-
-Prevents the use of undeclared variables:
-
-Without strict mode, JavaScript allows you to create global variables by accident.
-In strict mode, attempting to assign a value to an undeclared variable will throw an error.
-
-//"use strict";
-//x = 10; // Error: x is not defined
-//Eliminates this coercion:
-
-In non-strict mode, this in a function refers to the global object (window in browsers) when the function is called without a context.
-In strict mode, this remains undefined when a function is called without a context (e.g., using call or apply).
+//In non-strict mode, this in a function refers to the global object (window in browsers) when the function is called without a context.
+//In strict mode, this remains undefined when a function is called without a context (e.g., using call or apply).
 
 "use strict";
 function show() {
     console.log(this); // undefined in strict mode
 }
 show();
-
 //Disallows the use of duplicate property names or parameters:
-//In strict mode, defining an object with duplicate property names or a function with duplicate parameter names throws an error.
-"use strict";
-const obj = {a: 1, a: 2}; // Error: Duplicate data property in object literal
-//Disallows writing to readonly properties:
-//In strict mode, trying to assign a value to a constant or a non-writable property will throw an error.
-"use strict";
-const obj = {};
-Object.defineProperty(obj, 'name', { value: 'John', writable: false });
-obj.name = 'Doe'; // Error: Cannot assign to read-only property 'name'
+
+
+
 
 //Benefits of Using Strict Mode
 //Catches common mistakes: Strict mode makes it easier to catch errors, such as using undeclared variables or writing to read-only properties.
