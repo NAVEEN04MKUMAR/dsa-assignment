@@ -1412,12 +1412,13 @@ Promise.race([promise1, promise2])
 
 //How to Enable Strict Mode
 //Strict mode can be enabled in two ways:
-//Globally: By adding the "use strict"; directive at the beginning of a JavaScript file.
+//Globally: By adding the "use strict"; 
+//directive at the beginning of a JavaScript file.
 
 "use strict";
 // Code in strict mode
 let x = 3.14; // Valid
-Locally: By adding the "use strict"; directive inside a function to apply strict mode only within that function.
+//Locally: By adding the "use strict"; directive inside a function to apply strict mode only within that function.
 
 function example() {
     "use strict";
@@ -1444,46 +1445,6 @@ function show() {
 show();
 //Disallows the use of duplicate property names or parameters:
 
-
-
-
-//Benefits of Using Strict Mode
-//Catches common mistakes: Strict mode makes it easier to catch errors, such as using undeclared variables or writing to read-only properties.
-//Improves performance: JavaScript engines can optimize code more effectively in strict mode because it avoids certain error-prone features.
-//Security: By eliminating dangerous features like with and making eval more predictable, strict mode improves security by avoiding potential vulnerabilities.
-//Consistency: It helps ensure that your code behaves consistently, making it easier to debug and maintain.
-
-//How to Enable Strict Mode
-//Strict mode can be enabled in two ways:
-//Globally: By adding the "use strict"; directive at the beginning of a JavaScript filed
-
-"use strict";
-// Code in strict mode
-let x = 3.14; // Valid
-Locally: By adding the "use strict"; directive inside a function to apply strict mode only within that function.
-    
-function example() {
-    "use strict";
-    let x = 3.14; // Valid in strict mode
-}
-//Key Features of Strict Mode
-Strict mode modifies how JavaScript behaves in the following ways:
-Prevents the use of undeclared variables:
-Without strict mode, JavaScript allows you to create global variables by accident.
-In strict mode, attempting to assign a value to an undeclared variable will throw an error.
-    
-"use strict";
-x = 10; // Error: x is not defined
-Eliminates this coercion:
-
-In non-strict mode, this in a function refers to the global object (window in browsers) when the function is called without a context.
-In strict mode, this remains undefined when a function is called without a context (e.g., using call or apply).
-    
-"use strict";
-function show() {
-    console.log(this); // undefined in strict mode
-}
-show();
 //68.How do you declare strict mode:
 
 //69.What is the purpose of double exclamation:
@@ -1589,3 +1550,431 @@ Purpose	               Handles global browser environment features             	
 Example Access         	window.location, window.alert()	                         document.getElementById(), document.body
 Global Object	The global context for JavaScript in the browser	A part of the window object, used for DOM manipulation
 Examples of Use	Controlling the browser window, accessing global properties like screen size, setting timeouts	Accessing or modifying HTML elements, reading the title of the page
+
+
+//76.how to access the history in javascript:
+
+//In JavaScript, you can access the browser's history using the window.history object.
+//This object allows you to navigate the user's browsing history for the current session, providing methods to move forward, backward, or load a specific page.
+
+//Accessing the history Object
+console.log(window.history); // Outputs the history object
+Key Methods of the history Object
+back(): Moves the browser to the previous page in the history stack, equivalent to clicking the back button.
+window.history.back();
+forward(): Moves the browser to the next page in the history stack, equivalent to clicking the forward button.
+window.history.forward();
+go(): Navigates to a specific page in the history stack based on its relative position.
+
+Positive number: Moves forward.
+Negative number: Moves backward.
+0: Reloads the current page.
+
+// Go back two pages
+window.history.go(-2);
+
+// Go forward one page
+window.history.go(1);
+
+// Reload the current page
+window.history.go(0);
+Properties of the history Object
+length: Returns the number of entries in the session's history stack.
+console.log(window.history.length); // Outputs the number of pages in the history
+state: Returns the current state object associated with the history entry (used with pushState or replaceState).
+console.log(window.history.state); // Outputs the state object, if any
+
+//78.how to verify the caps lock is open or not:
+//In JavaScript, you can detect whether the Caps Lock key is active or not by listening to keyboard events (keydown, keypress, or keyup) and examining the event.getModifierState('CapsLock') method.
+ou can provide real-time feedback to the user about the Caps Lock status, such as when entering a password.
+
+<input type="password" id="password" placeholder="Enter your password" />
+<p id="caps-warning" style="color: red; display: none;">Caps Lock is ON</p>
+
+<script>
+  const passwordInput = document.getElementById("password");
+  const warning = document.getElementById("caps-warning");
+
+  passwordInput.addEventListener("keydown", (event) => {
+    if (event.getModifierState("CapsLock")) {
+      warning.style.display = "block";
+    } else {
+      warning.style.display = "none";
+    }
+  });
+
+  passwordInput.addEventListener("keyup", (event) => {
+    if (!event.getModifierState("CapsLock")) {
+      warning.style.display = "none";
+    }
+  });
+</script>
+// Explanation
+// event.getModifierState('CapsLock'):
+// Returns true if the Caps Lock key is active; otherwise, it returns false.
+// Keyboard Events:
+
+// keydown: Fires when a key is pressed.
+// keyup: Fires when a key is released.
+// Styling Feedback:
+// The warning message is shown when Caps Lock is active and hidden when it is not.
+
+//79.what is Nan:
+ //It is a special numeric value that indicates a computational operation failed to produce a valid number. 
+// NaN is a numeric value representing "Not-a-Number".
+// It is the result of invalid or undefined numeric operations.
+// Use Number.isNaN() to check for NaN reliably.
+
+Type:
+The type of NaN is number.
+console.log(typeof NaN); // "number"
+
+//Self-Equality:
+//NaN is the only value in JavaScript that is not equal to itself.
+console.log(NaN === NaN); // false
+Used in Invalid Numeric Operations:
+
+//NaN occurs when a mathematical operation does not result in a valid number.
+console.log(0 / 0);          // NaN
+console.log(Math.sqrt(-1)); // NaN
+console.log(parseInt("abc")); // NaN
+Property of Global Object:
+
+//NaN is a predefined property of the global object.
+console.log(globalThis.NaN); // NaN
+
+//80.what is undeclared and undifined:
+//undeclared and undefined:
+// Undeclared variables do not exist in the scope and throw an error when accessed.
+// Undefined variables exist but have not been assigned a value. They are safe to check and handle
+
+
+//Undeclared
+A variable is undeclared if it has never been declared using var, let, or const.
+
+// Characteristics
+// Referring to an undeclared variable will throw a ReferenceError.
+// It indicates that the variable does not exist in the current scope.
+
+  //  Example:
+console.log(x); // ReferenceError: x is not defined
+Avoiding Undeclared Variables
+Always declare variables using var, let, or const to prevent this error:
+
+let x = 10;
+console.log(x); // 10
+2. Undefined
+A variable is undefined when it has been declared but has not been assigned a value.
+
+    
+// Characteristics
+// Default value of a declared variable that is not initialized.
+// No ReferenceError occurs because the variable exists in the scope.
+
+//Example:
+let x;
+console.log(x); // undefined
+
+const obj = {};
+console.log(obj.name); // undefined
+Functions without a return statement return undefined:
+
+function noReturn() {}
+console.log(noReturn()); // undefined
+
+//81.what is global variable:
+// Global Variables in JavaScript
+// A global variable is a variable that is declared in the global scope and is accessible from any part of the program, including functions, objects, and blocks.
+
+// Characteristics of Global Variables
+// Scope:
+// Global variables are available throughout the entire script or program.
+// Declaration:
+// Declared outside any function, block, or object.
+// Default Behavior:
+// Variables declared without var, let, or const are automatically global (not recommended).
+// Global Object:
+// In browsers, global variables become properties of the window object.
+// In Node.js, they are part of the global object but must be explicitly declared.
+
+    Declaring Global Variables
+1. Using var (Old Syntax):
+
+var globalVar = "I am global";
+console.log(globalVar); // "I am global"
+2. Without var, let, or const (Not Recommended):
+
+globalVariable = "I am global"; // Implicitly global
+console.log(globalVariable); // "I am global"
+3. Using let or const in Global Scope:
+
+let globalLet = "I am a global variable";
+const globalConst = "I am also global";
+console.log(globalLet);  // "I am a global variable"
+console.log(globalConst); // "I am also global"
+
+//82.how to verify that number is the isFinite or not:
+isFinite(100); // true
+//The isFinite() function in JavaScript is used to check whether a value is a finite number. 
+//It determines if the provided value is:
+
+isFinite(value)
+value: The value you want to test.
+
+
+isFinite(100);         // true
+isFinite("50");        // true
+isFinite("hello");     // false (Not a number)
+Non-numeric strings, Infinity, -Infinity, and NaN return false:
+
+isFinite(Infinity);    // false
+isFinite(-Infinity);   // false
+isFinite(NaN);         // false
+isFinite("abc");       // false
+
+Type coercion is applied:
+isFinite("123");       // true (coerced to number 123)
+isFinite("");          // true (empty string coerced to 0)
+isFinite(null);        // true (null coerced to 0)
+Objects and other non-primitive values:
+
+isFinite({});          // false (cannot be coerced to a finite number)
+isFinite([1, 2, 3]);   // false (array cannot be coerced to a single finite number)
+Comparison with Number.isFinite()
+Number.isFinite() is stricter and does not perform type coercion.
+
+isFinite("100");          // true (coerced to number)
+Number.isFinite("100");   // false (strict check, no coercion)
+Number.isFinite(100);     // true
+
+//83.Event Flow in JavaScript
+//Event flow refers to the order in which events are received by the target elements in the DOM when an event is triggered, such as a user clicking a button or pressing a key. 
+//In JavaScript, this flow follows a specific sequence: capturing phase, target phase, and bubbling phase.
+
+// Phases of Event Flow
+// Capturing Phase (or Capture Phase)
+// The event starts from the window object (root of the DOM) and moves down to the target element. During this phase, the event is captured before reaching the target.
+
+// Target Phase
+// The event reaches the target element (the element that directly receives the event, such as a button clicked by the user).
+
+// Bubbling Phase
+// After reaching the target element, the event bubbles up to the root (document, then window) passing through the ancestors of the target element in the reverse order (from child to parent).
+
+//Example of Event Flow
+//Here’s a visual representation of event flow in the DOM:
+
+Capturing Phase: window → document → div → button (capturing listeners)
+Target Phase: button (event listener directly on the target)
+Bubbling Phase: button → div → document → window (bubbling listeners)
+
+Example Code:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Flow Example</title>
+</head>
+<body>
+    <div id="parent">
+        <button id="child">Click Me</button>
+    </div>
+
+    <script>
+        // Capturing phase listener
+        document.getElementById('parent').addEventListener('click', () => {
+            console.log("Captured at parent (capturing phase)");
+        }, true); // 'true' means use capturing phase
+
+        // Target phase listener
+        document.getElementById('child').addEventListener('click', () => {
+            console.log("Clicked on the button (target phase)");
+        });
+
+        // Bubbling phase listener
+        document.getElementById('parent').addEventListener('click', () => {
+            console.log("Bubbled up to parent (bubbling phase)");
+        });
+
+        document.getElementById('child').click();  // Simulate a click on the button
+    </script>
+</body>
+</html>
+
+//Output:
+Captured at parent (capturing phase)
+Clicked on the button (target phase)
+Bubbled up to parent (bubbling phase)
+
+//84.event flow: capturing phase:
+//it is available at the top
+
+//85.event flow in the bubling phase:
+//it is available at the top
+
+//86.how to submit the form:
+//The submit() method submits the form without triggering the form's submit event handler (such as onsubmit). 
+    //This means that the form is submitted directly to the server, bypassing any client-side validation or custom JavaScript handling.
+
+<form id="myForm" action="/submit" method="POST">
+    <input type="text" name="name" placeholder="Enter your name">
+    <input type="email" name="email" placeholder="Enter your email">
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    // Get the form element by its ID
+    const form = document.getElementById('myForm');    
+    // Submit the form using JavaScript
+    function submitForm() {
+        form.submit();  // Submits the form to the server
+    }
+// Call the submitForm function to submit the form
+    submitForm();
+</script>
+
+//87.How do you find operating system details:
+Using navigator.platform
+//The navigator.platform property returns a string representing the platform of the browser.
+//It provides information like whether the user is on a Windows, macOS, Linux, or mobile operating system.
+
+console.log(navigator.platform);
+
+// //Output might be:
+// "Win32" for Windows 32-bit systems
+// "MacIntel" for macOS
+// "Linux x86_64" for Linux
+2. Using navigator.userAgent
+The navigator.userAgent property provides a more detailed string about the browser, including the operating system version. It returns a string with information about the browser name, version, and OS. You can parse this string to extract the OS details.
+
+console.log(navigator.userAgent);
+//Output could be something like:
+// "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" for Windows 10
+// "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" for macOS
+// You can then use regular expressions to extract specific details such as the OS name and version.
+
+Example for detecting the OS:
+
+function getOperatingSystem() {
+    const userAgent = navigator.userAgent;
+
+    if (userAgent.indexOf("Windows NT") !== -1) {
+        return "Windows";
+    } else if (userAgent.indexOf("Macintosh") !== -1) {
+        return "macOS";
+    } else if (userAgent.indexOf("Linux") !== -1) {
+        return "Linux";
+    } else if (userAgent.indexOf("Android") !== -1) {
+        return "Android";
+    } else if (userAgent.indexOf("iPhone") !== -1) {
+        return "iOS";
+    }
+
+    return "Unknown OS";
+}
+
+console.log(getOperatingSystem());
+// 3. Using navigator.oscpu (if available)
+// Some modern browsers support the navigator.oscpu property, which gives more detailed information about the CPU architecture, such as whether it’s ARM, x86, etc
+// console.log(navigator.oscpu);
+// This may return information such as "Windows NT 10.0; Win64; x64" or "Intel Mac OS X 10.15; x64". However, this property is not supported by all browsers.
+
+// 4. Using window.navigator for Detailed Information
+// You can also use window.navigator to gather more system-related details such as the architecture, language, and more
+
+// console.log(window.navigator.language);  // Outputs the language setting, e.g., "en-US"
+// console.log(window.navigator.hardwareConcurrency);  // Outputs the number of logical CPU cores available
+// Summary of Key Properties:
+// navigator.platform: Gives general platform info (e.g., Windows, Mac, Linux).
+// navigator.userAgent: Detailed string about the browser and OS (can be parsed to extract specific details).
+// navigator.oscpu: Available in some browsers, gives more specific CPU and OS architecture information.
+// navigator.language: The language setting of the browser (often related to the OS language setting).
+// navigator.hardwareConcurrency: The number of CPU cores available.
+
+//88.domloaded and the load:
+
+// load event and the DOMContentLoaded event are both used to detect when a webpage has finished loading, 
+//but they differ in what exactly is considered "finished" for the event to be triggered.
+
+1. DOMContentLoaded Event
+//The DOMContentLoaded event is fired when the HTML document has been completely loaded and parsed, without waiting for stylesheets, images, or subframes to finish loading. 
+//This event is triggered as soon as the DOM (Document Object Model) is ready, and you can manipulate the page's structure at this point.
+
+//Triggered when: The HTML is completely loaded and parsed, including the execution of JavaScript, but before external resources like images, stylesheets, and fonts are fully loaded.
+//Use case: Typically used when you want to manipulate the DOM (like adding event listeners or modifying elements) as soon as the HTML is fully available, but before other resources are loaded.
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('DOM completely loaded and parsed');
+});
+
+2. load Event
+//The load event is triggered when the entire page, including all dependent resources such as images, stylesheets, scripts, and subframes, has finished loading. 
+//This event is fired after everything on the page has been fully loaded, so it's a more "complete" signal compared to DOMContentLoaded.
+//Triggered when: The HTML document is loaded and all external resources (images, stylesheets, scripts, etc.) have finished loading.
+Use case: This event is often used when you need to wait until the whole page (with all images, scripts, etc.) is fully loaded before performing tasks like rendering images or performing complex JavaScript operations that depend on the complete page state.
+
+//Example:
+window.addEventListener('load', function () {
+  console.log('Page and all resources (images, stylesheets) are fully loaded');
+});
+
+89.Native host and user defined project:
+
+//In JavaScript, objects can be categorized into three main types based on their origin and the environment in which they are created: native objects, host objects, and user-defined objects. 
+//Here's an explanation of each:
+
+//1. Native Objects
+//Native objects are built-in objects provided by JavaScript itself. 
+//These objects are part of the JavaScript language specification and are available across all JavaScript environments (browsers, Node.js, etc.).
+
+//Examples of Native Objects:
+Object: The base object from which all other objects are derived.
+Array: Used to represent ordered collections of values.
+String: Represents and manipulates strings of text.
+Number: Represents numerical values.
+Function: Represents a function (a block of reusable code).
+Date: Used to represent and manipulate dates and times.
+Math: Provides basic mathematics functions and constants.
+JSON: Provides methods to parse and stringify JSON data.
+Characteristics of Native Objects:
+Part of the JavaScript language.
+Always available in any JavaScript environment.
+Have well-defined behaviors and methods based on the ECMAScript specification.
+
+    2. Host Objects
+Host objects are objects that are provided by the host environment in which JavaScript is running. These environments could be a web browser, Node.js, or any other platform. Host objects are not part of the ECMAScript standard, but they provide functionality specific to the environment.
+
+Examples of Host Objects in Browsers:
+window: Represents the global object in a browser environment (for example, the window object in the browser exposes the browser’s window properties, methods, and events).
+document: Represents the web page's DOM (Document Object Model), allowing access and manipulation of HTML elements.
+localStorage: Provides access to the browser’s local storage mechanism.
+XMLHttpRequest: Used for making HTTP requests.
+navigator: Provides information about the browser.
+Examples of Host Objects in Node.js:
+fs: Provides file system operations like reading and writing files.
+http: Provides HTTP server and client functionality.
+process: Provides information about and control over the current Node.js process.
+Characteristics of Host Objects:
+Specific to the JavaScript runtime environment (like a browser or Node.js).
+Provide APIs for interacting with external systems or the host environment.
+Not guaranteed to be available in all JavaScript environments (e.g., window and document are not available in Node.js).
+
+3. User-Defined Objects
+User-defined objects are objects that are created by the developer using JavaScript's object syntax. 
+These objects are not built-in or provided by the host environment but are defined by the developer to store data and encapsulate behavior.
+
+//Example of User-Defined Objects:
+// Defining a simple user-defined object
+const person = {
+  name: "John",
+  age: 30,
+  greet: function () {
+    console.log("Hello, " + this.name);
+  }
+};
+
+person.greet();  // Outputs: Hello, John
+
+
+
