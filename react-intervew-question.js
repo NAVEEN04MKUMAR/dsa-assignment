@@ -1,4 +1,8 @@
-//difference between the HTML AND XML
+
+
+
+
+//1.difference between the HTML AND XML
 //class vs classname
 //HTML
 <div class="my-class"></div>
@@ -25,14 +29,14 @@
 
 
 
-//difference between the unidirectional flow and bidirectionflow
+//*2.difference between the unidirectional flow and bidirectionflow
 //unidirection:
 //parant comoponent holds the state and props down to child componentsToColor,
-//changes in the child componentdo not affect the parant component directly
+//changes in the child component do not affect the parant component directly
 
 
 
-Unidirection parant
+//Unidirection parant
 import React from 'react';
 import Childcomponent from './Unidirection-child';
 
@@ -47,16 +51,10 @@ function Parantcomponent(){
         </div>
     )
 }
-
-
 export default Parantcomponent;
-
-
-
 
 // import { message } from 'antd';
 import React from 'react';
-
 
 function Childcomponent({message}){
     return (
@@ -68,14 +66,12 @@ function Childcomponent({message}){
         </div>
     )
 }
-
-
 export default Childcomponent;
 
 
 
 
-we can change te stage from parant to chld and child to parant
+//we can change the stage from parant to child and child to parant
 
 //Bidirection
 import React, { useState } from 'react';
@@ -94,17 +90,13 @@ function Parantcomponent1(){
     )
 }
 
-
 export default Parantcomponent1;
 
 
 
-bidirection child.jsx
-
-
+//bidirection child.jsx
 // import { message } from 'antd';
 import React from 'react';
-
 
 function Childcomponent({inputvalue,setinputvalue}){
     return (
@@ -120,11 +112,7 @@ function Childcomponent({inputvalue,setinputvalue}){
 
 export default Childcomponent;
 
-
-
-
-
-//Composable component
+//3.Composable component
 
 //Parant component
 import React, { Children } from 'react';
@@ -161,14 +149,9 @@ function Inputfield({label,type='text',...rest}){
         </div>
     )
 }
-
-
-
 export default Inputfield;
 
 import React, { Children } from 'react';
-
-
 function Submitbutton({children,...rest}){
     return (
         <button type="submit" {...rest}>
@@ -176,15 +159,7 @@ function Submitbutton({children,...rest}){
         </button>
     )
 }
-
-
 export default Submitbutton;
-
-
-
-
-
-
 
 //Reusable child
 import React from 'react';
@@ -229,7 +204,7 @@ function Main({children,...rest}){
 }
 export default Main;
 
-
+//4.about jsx
 //jsx is the javascript syntex extension
 //it provides the synthetic sugar to 
 //React.createElement(type,props,...childern)
@@ -276,12 +251,9 @@ const element=React.createElement("div",{id:"login-btn"},"login");
 //Component: it is class with the render() method
 //or defined as te function
 //return a react element or jsx
-
 //it is bulding block of any react application it is manages own stateor props
-
 //if we assign the element at the js file
-
-
+//component examples:
 function Mycomponent(){
     return <div>Hello,Component</div>;
 }
@@ -313,8 +285,6 @@ function functionname(){
         <h1>hello</h1>
     );
 }
-
-
 //using class
 class classname extends Component{
     render(){
@@ -323,8 +293,6 @@ class classname extends Component{
     );
   }
 }
-
-
 //using useState
 function functionname(){
     const [count,setcount]=useState(0);
@@ -340,16 +308,7 @@ click me
 }
 
 
-
-
-
-
-
-
-
-
-
-//using class over teh Function if it is reqyired the old third party library
+//using class over the Function if it is required the old third party library
 If you need to manage state or use lifecycle methods.
 import React,{ Component } from "react"
 
@@ -385,13 +344,9 @@ click me
 }
  export default Classname;
 
-
-
-
-
-
+//6.memo in react:
 //memo if we want to avoid the re-render it will helpfull
-//same output will get if we hav the same state and props
+//same output will get if we have the same state and props
 //wrapping will helpful to avoid th rerender 
 //function will not reset to the previous state to the current state
 
@@ -425,15 +380,14 @@ export default function Employeeform(){
     <hr/>
     <Employeeprofile name={name} email={email}/>
     </>
-
 )
 };
 
-9.about state:it means like ist is the component the we store some information that will change over time 
+//9.about state:it means like is is the component the we store some information that will change over time 
 differance between the it is private and fully controlled by the component
-will not access to any one because it is like the  till the owner component decides to pass it
+will not access to any one because it is like the till the owner component decides to pass it
 
-10.state and props:
+//10.state and props:
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -447,8 +401,6 @@ const Childcomponent=(props)=>{
     )
 };
 
-
-
  const Parantcomponent=()=>{
     return(
         <div>
@@ -458,16 +410,15 @@ const Childcomponent=(props)=>{
     )
 };
 
-
 export default Parantcomponent;
 
-11.state:managed by the component itself,can be updated using setstate
-it is changes in the state trigger a re-render f the component and its childern
+//11.state:managed by the component itself,can be updated using setstate
+//it is changes in the state trigger a re-render of the component and its childern
 
-props:
+//props:
 properties are the parant component to childrebn are read only
-used ti pass the data between componente
-heer coponent is reusable with the usage of props 
+used the pass the data between component
+here coponent is reusable with the usage of props 
 
 //12.event handling:
 
@@ -477,32 +428,25 @@ heer coponent is reusable with the usage of props
 //in react
 <button onClick={activatelasrs}/> 
 
-
-
-//to avaoid default behavior
-//hteml we put the falsee
+//to avoid default behavior
+//html we put the false
  <a 
 href="#"
 onclick='cconsole.log("the link was clicked");return false;'
 /> 
-
-
-
-reat we put the prevendefault
+//react we put the prevendefault
 function handleclick(event){
     event.preventDefault();
     console.log("the link wa clicked");
 }
 
+//13.about sythetic event
+//prevent the default action event
+//it will helpful to wrap around the native DOM events
+//providing consisting interface for event handling across differet platform and browser
 
-
-//about sytheti event
-prevent the default action event
-it will helpful to wrap around the native DOM events
-providing consisting interface for event handling across differet platform and browser
 import React from "react";
 import ReactDOM from "react-dom";
-
 
  const Mycomponent=()=>{
     function handleclick(event){
@@ -516,69 +460,59 @@ import ReactDOM from "react-dom";
     }
     return <input name="title" onChange={handleclick}/> 
 };
-
-
-
 export default Mycomponent;
 
 
-
-
-
-// //inline conditional expression
+//14. inline conditional expression
 
 //it is represent the ternary condition 
 <h1>hello</h1>
 {
     messages.length>0&&islogin?(
-<h2>ypu have {messages.length} unread message</h2>
+<h2>you have {messages.length} unread message</h2>
     ):(
 <h2> you dont have the unread message</h2>
     );
 }
-
-//key is a special attibute include when mapping over arrays to render data
+//15.keys:
+//key is a special attribute include when mapping over arrays to render data
 //key props help to idenify the what addedd or removed
 
 const todoitems=todo.map((todo,index)=>{
     <li key={index}>{todo.text}</li>
 })
 
-//don't use if it is the 
+
+//16.virtual dom:
+// it is memorty light weight represation of the actual DOM
+// when changes occured at the time changes will not occured at the directly to the dom then
+// virtual dom created then first changes occured then compare with the dom whatver 
+// minimal changes requird then we will put them   
 
 
-
-#16:
-virtual dom:
-it is memorty ligght weiht represation of the actual DOM
-when changes occured at the time changes will not occured at the directly to the dom then
-virtual dom created then first changes occured then compare wit the dom whatver 
-minimal changes reqyuird then we will put them   
-
-
-17)virtual dom how it is works:
-1)if we change anything then entire ui is re-render in v-dom
-2)only the difference between the previous dom  representation and new one is calculated
-3)once calculation i don't then real dom will updated
+// 17)virtual dom how it is works:
+// 1)if we change anything then entire is re-render in virtual-dom
+// 2)only the difference between the previous dom representation and new one is calculated
+// 3)once calculation i don't then real dom will updated
 
 
 
 //18)shadow dom:
-purpose:it is the isolatio of component logic 
-ensure that components ar self-containded and do not interfare with the rest of element 
-use case:it helpful to reusable component
-rendering :
-encapsulate the wn dom tree  which is separate from the document dom 
+// purpose:it is the isolation of component logic 
+// ensure that components are self-containded and do not interfare with the rest of element 
+// use case:it helpful to reusable component
+// rendering :
+// encapsulate the dom tree  which is separate from the document dom 
 
 //18)vittual dom:
-purpose:prrfomance optimasation for the dom in  react
-use case:helpful t manage the ui updates
-render:memory representation of entire dom real dom only updated with diff
+// purpose:perfomance optimasation for the dom in  react
+// use case:helpful the manage the ui updates
+// render:memory representation of entire dom real dom only updated with diff
 
 
 //19)react fiber:
-//it will solve the propblem related to responsive name and updating user interface
-//it will make the react as the taskmore small taks it will help to heavy updats
+//it will solve the problem related to responsive name and updating user interface
+//it will make the react as the task more small taks it will help to heavy updats
 //it can pause work,switch between tasks or discard work
 
 import React,{useState} from 'react';
@@ -600,11 +534,9 @@ const incrementcounter=()=>{
             <div>
                   <button onClick={updatedlist}>updated heavy list</button>
            </div>
-
            <div>
                   <button onClick={incrementcounter}>increment counter{count}</button>
            </div>
-
                <div>
                 <ul>
                 {items.map((item)=>(
@@ -614,7 +546,6 @@ const incrementcounter=()=>{
                 ))}
                  </ul>
                 </div>
-            
                 </div>
     );
  };
@@ -626,121 +557,102 @@ const incrementcounter=()=>{
 //it will freese then block the increament by user 
 
 
-20.main goal of the react fiber:
+//20.main goal of the react fiber:
 
-it can split our work interruble work into chunks
-ability to prioritise,reuse work 
-better support for error boundarie
-
-
-
-
-
-
-// //31.Fragment
-// //is the light weight process adding element without adding the any extra node to theDOM tree
-// //uer input the repository name and description
-// import React from "react";
-// const Fragment=()=>{
-//     return (
-//         // <React.Fragment>
-//         //     <h1>Hiii</h1>
-//         // </React.Fragment>
-//         <>
-//         <h1>Hii</h1>
-//         </>
-//     )
-// }
-// export default  Fragment;
-
-import { Component } from "react"
-
-
-// //32.why fragment not div:
-// //it is the  have the less cluster to have the clean one 
-// //it is run the css very quickly
+// it can split our work interruble work into chunks
+// ability to prioritise,reuse work 
+// better support for error boundarie
 
 
 
 
 
-// //33. React Portal:
-// //Modals are placed the outside of the parant compnent hierarchy to avoind the layout issue or to ensure they rendered on top of the element in ui
-// //normal react render inside the dom
-// //explicitly specify the dom node render the content
-// import React,{useState} from "react";
-// import ReactDOM from 'react-dom';
 
-// const Modal=(isopen,onclose)=>{
 
-//     if(!isopen) return true;
+//31.Fragment:
+//is the light weight process adding element without adding the any extra node to theDOM tree
+//user input the repository name and description
+import React from "react";
+const Fragment=()=>{
+    return (
+        <React.Fragment>
+            <h1>Hiii</h1>
+        </React.Fragment>
+        <>
+        <h1>Hii</h1>
+        </>
+    )
+}
+export default  Fragment;
 
-//     return ReactDOM.createPortal(
-//      <div>
-//         <h1>I am modal</h1>
-//         <button onClick={onclose}>close</button>
-//      </div>,
-//      document.getElementById('modal-root')
-//     );
+
+// 32.why fragment not div:
+// it is the  have the less cluster to have the clean one 
+// it is run the css very quickly
+
+//33. React Portal:
+//Modals are placed the outside of the parant compnent hierarchy to avoid the layout issue or to ensure they rendered on top of the element 
+//normal react render inside the dom
+//explicitly specify the dom node render the content
+import React,{useState} from "react";
+import ReactDOM from 'react-dom';
+
+const Modal=(isopen,onclose)=>{
+    if(!isopen) return true;
+    return ReactDOM.createPortal(
+     <div>
+        <h1>I am modal</h1>
+        <button onClick={onclose}>close</button>
+     </div>,
+     document.getElementById('modal-root')
+    );
+}
+
+const Portal=()=>{
+    const [ismodelopen,setismodelopen]=useState(false);
+
+    const openmodal=()=>setismodelopen(true);
+    const closemodal=()=>setismodelopen(false);
+
+    return (
+     <div>
+        <h1>Portal</h1>
+        <button onClick={openmodal}>open modal</button>
+        <Modal isOpen={ismodelopen} onClose={closemodal}></Modal>
+     </div>
+    )
   
  
-// }
+}
 
-// const Portal=()=>{
-//     const [ismodelopen,setismodelopen]=useState(false);
+export default  Portal;
 
-//     const openmodal=()=>setismodelopen(true);
-//     const closemodal=()=>setismodelopen(false);
+//34.state component:
+//  state:maintain and manages its own internal state
+//this willl change over time  such as the input
+import React,{useState} from "react";
+const State=()=>{
+    const [count,setcounter]=useState(0);
+    const increment=()=>setcounter(count+1);
+    return (
+     <div>
+        <h1>Counter:{count}</h1>
+        <button onClick={increment}>Increment</button>
+     </div>
+    )
+}
+export default State;
 
-//     return (
-//      <div>
-//         <h1>Portal</h1>
-//         <button onClick={openmodal}>open modal</button>
-//         <Modal isOpen={ismodelopen} onClose={closemodal}></Modal>
-//      </div>
-//     )
-  
- 
-// }
+//35.stateless:
+//do not maintain the any internal state
+//primaryly used for the ui:
 
-// export default  Portal;
+import React from 'react';
+function Greeting(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
 
-
-
-// //34.state component:
-// //  state:maintain and manages its own internal state
-// //this willl change over time  such as the input
-// import React,{useState} from "react";
-
-// const State=()=>{
-//     const [count,setcounter]=useState(0);
-
-//     const increment=()=>setcounter(count+1);
-
-//     return (
-//      <div>
-//         <h1>Counter:{count}</h1>
-//         <button onClick={increment}>Increment</button>
-//      </div>
-//     )
-  
- 
-// }
-
-
-// export default State;
-
-// //35.stateless:
-// //do not maintain the any internal state
-// //primaryly used for the ui:
-
-// import React from 'react';
-
-// function Greeting(props) {
-//   return <h1>Hello, {props.name}!</h1>;
-// }
-
-// export default Greeting;
+export default Greeting;
 
 
 
