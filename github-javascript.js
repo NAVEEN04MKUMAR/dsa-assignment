@@ -559,8 +559,8 @@ console.log(addition(80));//fetching from cache 100
 
 
 //26.Classes:
-//it is the blueprint fo the creating objects
-//insid that clas we will not use the function keyword
+//it is the blueprint of the creating objects
+//inside that class we will not use the function keyword
 class Animal{
     constructor(name){
         this.name=name;
@@ -583,7 +583,7 @@ class Animals{
         console.log(`${this.name} makes a sound`);
     }
 }
-
+//
 class Dog extends Animals{
     constructor(name){
         super(name);//we are call the parant constructor
@@ -597,8 +597,8 @@ mydog.speak();
 mydog.bark();
 
 //27.closure 
-//access the variable from its outer scope even after outer function has finished eecuting 
-
+//access the variable from its outer scope even after outer function has finished executing 
+//we can access the varible from outer function after the finish the execution of outer function
 function outerfunction(outervariable){
     return function innerfunction(innervariable){
         console.log(`inner variable:${innervariable}`);
@@ -620,10 +620,10 @@ function createsecureholder(secret){
         }
     };
 };
-//closure even after get the value of the initial secret then when we assign the setsecret w change the value from secret to new sssecret 
+//closure even after get the value of the initial secret then when we assign the setsecret we change the value from secret to new secret 
 const secretholder=createsecureholder('initial secret');
 console.log(secretholder.getSecret());
-secretholder.setSecret('new sssecret');
+secretholder.setSecret('new secret');
 console.log(secretholder.getSecret());
 
 //28.global and local scope
@@ -874,7 +874,7 @@ event.source.postMessage('Hello from the child window!', event.origin);
 
 // Cookies are small pieces of data stored on the user's browser by a website, which the server can later retrieve. 
 // They are commonly used for authentication, session management, and storing user preferences.
-Set a cookie that expires in 7 days
+//Set a cookie that expires in 7 days
 const now = new Date();
 now.setTime(now.getTime() + (7 * 24 * 60 * 60 * 1000)); // 7 days
 document.cookie = "username=JohnDoe; expires=" + now.toUTCString() + "; path=/";
@@ -882,11 +882,11 @@ document.cookie = "username=JohnDoe; expires=" + now.toUTCString() + "; path=/";
 
 //41)why we need cookie:
 //when user visits a web page,user profile can be stored in cookie
-//next time user visits te page,the cokie remembers the user profile
+//next time user visits the page,the cokie remembers the user profile
 
 //42).options:
 //1)we can set the expire date
-//2)set the maximu/ age for the cookies
+//2)set the maximum/ age for the cookies
 //3)we can define the domain we can access the cookie that domain only
 //4)we can define path
 //5)we can access this one at the through http
@@ -896,7 +896,7 @@ document.cookie = "username=JohnDoe; expires=" + now.toUTCString() + "; path=/";
 
 //44)why web storage:
 //if we store at the local then we dont have the frequent request to the server improving performance and responsiveness  
-//more storage capacity on the compare wth the cookie like the web storage have the 10MB and the cookie have the 4KB
+//more storage capacity on the compare with the cookie like the web storage have the 10MB and the cookie have the 4KB
 //use the single page application,also have the offline capabilities,enable functionality
 
 
@@ -961,7 +961,7 @@ asynFunction1(data,function(result1){
 
 //48)call back function:
 //passed the function passed into the another function as an argument
-//it will use ful for the asynchronous operation when we executing the after completing the current task 
+//it will use full for the asynchronous operation when we executing the after completing the current task 
 
 function greeting(name){
     console.log('hello',name);
