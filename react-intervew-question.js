@@ -2,6 +2,8 @@
 
 
 
+
+
 //1.difference between the HTML AND XML
 //class vs classname
 //HTML
@@ -654,37 +656,30 @@ function Greeting(props) {
 
 export default Greeting;
 
+//36.proptypes:PropTypes, a built-in feature of React that allows you to specify the expected types and structure of the props a component should receive
+import React,{useState} from "react";
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
+const Fragment=({name,age,isActive,id})=>{
+    return (
+     <div>
+        <h1>Name:{name}</h1>
+        <p>Age:{age}</p>
+        <p>Status:{isActive?'Active':'Inactive'}</p>
+        <p>Id:{id}</p>
 
-// //36.proptypes:PropTypes, a built-in feature of React that allows you to specify the expected types and structure of the props a component should receive
-// import React,{useState} from "react";
-// import ReactDOM from 'react-dom';
-// import PropTypes from 'prop-types';
+     </div>
+    )
+}
 
-// const Fragment=({name,age,isActive,id})=>{
-//     return (
-//      <div>
-//         <h1>Name:{name}</h1>
-//         <p>Age:{age}</p>
-//         <p>Status:{isActive?'Active':'Inactive'}</p>
-//         <p>Id:{id}</p>
-
-//      </div>
-//     )
-  
- 
-// }
-
-
-// Fragment.proptypes={
-//     name:PropTypes.string.isRequired,
-//     age:PropTypes.number.isRequired,
-//     isActive:PropTypes.bool.isRequired,
-//     id:PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
-// }
-
-
-// export default  Fragment;
+Fragment.proptypes={
+    name:PropTypes.string.isRequired,
+    age:PropTypes.number.isRequired,
+    isActive:PropTypes.bool.isRequired,
+    id:PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,
+}
+export default  Fragment;
 
 //37.advantags of react:
 
@@ -697,380 +692,22 @@ export default Greeting;
 //38.disadvantages of react:
 //it is not full framework it is just view library
 //code complexity increase with the JSX
-//to many small compennet we have that is for the boilr plate
+//to many small compennet we have that is for the boiler plate
 //writing the jsx file will be difficult
 
 //39.static types:
 //it is ensure the that the types of variables,props,and state are correct at compile time(before code executed)
 //for the javascript we have the typescript largecodebases and small we have the proptypes
 //proptypes verify at the run time
-//
 
 //40.use of the react-dom:
-
 //render the react component to DOM
 //it can helpful to reder at he server side
-
 //1.reactDOM.render:helpful to the render the react into dom
 //2.reactDOM.createRoot:better performance optimization
 //3.reactDom.hydrate():used for the server side render,it will put the intially html into the clientside
 //4.findDOMNode():return the corresponding node for the given react
 //5.reactDOM.createPortal():we can render at the diff part of the DOM tree (outside of the parant component)
-
-
-
-
-
-// console.log("Try programiz.pro");
-
-// //palindrome  a given Node when a node is given.
-// // 
-// class Node {
-//     constructor(val){
-//     this.val=val;
-//     this.next=null
-//     }
-// }
-
-
-// function startingnode(head){
-//     let slow=head;
-//     let fast=head;
-    
-//     while(fast!==null&&fast.next!==null){
-        
-//         slow=slow.next;
-//         fast=fast.next.next;
-//         if(slow===fast){
-//          slow=head;
-//          while(slow!==fast){
-//              slow=slow.next;
-//              fast=fast.next
-//          }
-         
-//          return slow;
-//         }
-//     }
-    
-
-//     return null;
-    
-// }
-
-
-
-
-
-// function printLinkedList(head) {
-//   let temp = head;
-//   while (temp !== null) {
-//     process.stdout.write(temp.val + ' ');
-//     temp = temp.next;
-//   }
-//   console.log();
-// }
-
-// const head1 = new Node(1);
-// head1.next = new Node(2);
-// head1.next.next = new Node(3);
-// head1.next.next.next = new Node(4);
-// head1.next.next.next.next = new Node(5);
-// head1.next.next.next.next.next = new Node(6);
-// head1.next.next.next.next.next.next= head1.next.next.next.next.next;
-
-// process.stdout.write('Original Linked List: ');
-// // printLinkedList(head1);
-
-// const result= startingnode(head1);
-// console.log(result);
-
-// if (result) {
-//     console.log("Cycle starts at node with value:", result.val);  // Print the value of the starting node of the cycle
-// } else {
-//     console.log("No cycle detected.");
-// }
-
-
-// // const resulta=
-// // deletenode(result);
-// // // console.log(resulta)
-
-// process.stdout.write('palindrome node Linked List: ');
-// printLinkedList(head1);
-// // printLinkedList(resulta);
-
-// //Time Complexity: O( N) This is because we traverse the linked list  
-
-// //Space Complexity: O(1) 
-
-
-
-
-
-// console.log("Try programiz.pro");
-
-// //palindrome  a given Node when a node is given.
-// // 
-// class Node {
-//     constructor(val){
-//     this.val=val;
-//     this.next=null
-//     }
-// }
-
-
-// function startingnode(head){
-//     let temp=head;
-//     let map=new Map();
-    
-//     while(temp!==null){
-        
-//         if(map.has(temp)){
-//             return temp; 
-//         }
-//         map.set(temp,true);
-//         temp=temp.next;
-//     }
-//     return null;
-    
-// }
-
-
-
-
-
-// function printLinkedList(head) {
-//   let temp = head;
-//   while (temp !== null) {
-//     process.stdout.write(temp.val + ' ');
-//     temp = temp.next;
-//   }
-//   console.log();
-// }
-
-// const head1 = new Node(1);
-// head1.next = new Node(2);
-// head1.next.next = new Node(3);
-// head1.next.next.next = new Node(4);
-// head1.next.next.next.next = new Node(5);
-// head1.next.next.next.next.next = new Node(6);
-// head1.next.next.next.next.next.next= head1.next.next.next.next.next;
-
-// process.stdout.write('Original Linked List: ');
-// // printLinkedList(head1);
-
-// const result= startingnode(head1);
-// console.log(result);
-
-// if (result) {
-//     console.log("Cycle starts at node with value:", result.val);  // Print the value of the starting node of the cycle
-// } else {
-//     console.log("No cycle detected.");
-// }
-
-
-// // const resulta=
-// // deletenode(result);
-// // // console.log(resulta)
-
-// process.stdout.write('palindrome node Linked List: ');
-// printLinkedList(head1);
-// // printLinkedList(resulta);
-
-// //Time Complexity: O( N) This is because we traverse the linked list  
-
-// //Space Complexity: O(N) We use a map to store the values of the linked list
-
-
-
-
-
-
-
-
-// //palindrome  a given Node when a node is given.
-// // 
-// class Node {
-//     constructor(val){
-//     this.val=val;
-//     this.next=null
-//     }
-// }
-
-
-// function reverselist(head){
-//     let temp=head;
-//     let prev=null;
-    
-//     while(temp!==null){
-        
-//         let first=temp.next;
-//         temp.next=prev;
-//         prev=temp;
-//         temp=first;
-        
-//     }
-//     return prev;
-    
-// }
-
-
-// function palindrome(head){
-    
-//      if (head === null || head.next === null) {
-//         // It's a palindrome by definition
-//         return true;
-//     }
-    
-    
-//     let slow=head;
-//     let fast=head;
-//     //find the middle node using slow pointer
-//     while(fast.next!==null&&fast.next.next!==null){
-
-//     slow=slow.next;
-//     fast=fast.next.next;
-//     }
-    
-//     let newhead=reverselist(slow.next);
-    
-//     let first=head;
-//     let second=newhead;
-    
-//     //using head of 1st half and the 2nd half we are compare the data of the linked list
-//     while(second!==null){
-        
-//         if(first.val!==second.val){
-//             reverselist(newhead);
-//             return false;
-//         }
-//       first=first.next;
-//       second=second.next;
-//     }
-    
-//       reverselist(newhead);
-//         return true;
-// }
-
-
-
-// function printLinkedList(head) {
-//   let temp = head;
-//   while (temp !== null) {
-//     process.stdout.write(temp.val + ' ');
-//     temp = temp.next;
-//   }
-//   console.log();
-// }
-
-// const head1 = new Node(1);
-// head1.next = new Node(2);
-// head1.next.next = new Node(3);
-// head1.next.next.next = new Node(4);
-// head1.next.next.next.next = new Node(6);
-// head1.next.next.next.next.next = new Node(2);
-// head1.next.next.next.next.next.next = new Node(1);
-
-// process.stdout.write('Original Linked List: ');
-// printLinkedList(head1);
-
-// const result=palindrome(head1);
-// console.log(result)
-
-// // const resulta=
-// // deletenode(result);
-// // // console.log(resulta)
-
-// process.stdout.write('palindrome node Linked List: ');
-// printLinkedList(head1);
-// // printLinkedList(resulta);
-
-// //Time Complexity: O(2 * N) 1st we traverse using the N/2 and N/2 by the slow and fast pointe,again we verify the 1st half and the 2nd half for the compare the value
-
-// //Space Complexity: O(1) 
-
-
-
-
-
-
-
-
-
-
-	
-// //palindrome  a given Node when a node is given.
-// // 
-// class Node {
-//     constructor(val){
-//     this.val=val;
-//     this.next=null
-//     }
-// }
-
-
-// function palindrome(head){
-    
-    
-//     let stack=[];
-//     let temp=head;
-//   //push the node to stack  
-//     while(temp!==null){
-//         stack.push(temp.data);
-//         temp=temp.next;
-//             // console.log(temp);
-
-//     }
-    
-//     //compare the value of the stack with the linkedlist
-//     temp=head;
-//     while(temp!==null){
-//         if(temp.val!==stack.pop()){
-//             return false;
-//         }
-//         temp=temp.next;
-//     }
-//      return true;
-    
-// }
-
-
-
-// function printLinkedList(head) {
-//   let temp = head;
-//   while (temp !== null) {
-//     process.stdout.write(temp.val + ' ');
-//     temp = temp.next;
-//   }
-//   console.log();
-// }
-
-// const head1 = new Node(1);
-// head1.next = new Node(2);
-// head1.next.next = new Node(3);
-// head1.next.next.next = new Node(4);
-// head1.next.next.next.next = new Node(3);
-// head1.next.next.next.next.next = new Node(2);
-// head1.next.next.next.next.next.next = new Node(9);
-
-// process.stdout.write('Original Linked List: ');
-// printLinkedList(head1);
-
-// const result=palindrome(head1);
-// console.log(result)
-
-// // const resulta=
-// // deletenode(result);
-// // // console.log(resulta)
-
-// process.stdout.write('palindrome node Linked List: ');
-// printLinkedList(head1);
-// // printLinkedList(resulta);
-
-// //Time Complexity: O(2 * N) This is because we traverse the linked list twice: once to push the values onto the stack, and once to pop the values and compare with the linked list. 
-
-// //Space Complexity: O(N) We use a stack to store the values of the linked list
-
 
 //41.react ssr:
 
@@ -1086,737 +723,705 @@ export default Greeting;
 //42.INNERHTML:
 //we insert the raw HTML into the DOM ,IT is unsafe for the expose the security concerncross-site-scripting
 
-// import React from 'react';
+import React from 'react';
 
-// const MyComponent = () => {
-//   const htmlContent = '<h1>This is a heading</h1><p>This is a paragraph of text.</p>';
-
-//   return (
-//     <div>
-//       <h2>React Component with Raw HTML:</h2>
-//       <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-//     </div>
-//   );
-// };
-
-// export default MyComponent;
+const MyComponent = () => {
+  const htmlContent = '<h1>This is a heading</h1><p>This is a paragraph of text.</p>';
+  return (
+    <div>
+      <h2>React Component with Raw HTML:</h2>
+      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    </div>
+  );
+};
+export default MyComponent;
 
 
 //43.insert the css in react:
-
 //where the it is accept the object 
-// import React from "react";
-// const MyComponent=()=>{
+import React from "react";
+const MyComponent=()=>{
 
-// const divstyle={
-// backgroundColor:'lightblue',
-// paddding:'20px',
-// fontSize:'18px'
-// };
+const divstyle={
+backgroundColor:'lightblue',
+paddding:'20px',
+fontSize:'18px'
+};
 
-//     return <div style={divstyle}>this is the styled div using the inline style</div>
-// };
-// export default MyComponent;
+    return <div style={divstyle}>this is the styled div using the inline style</div>
+};
+export default MyComponent;
 
 
 //44.React event different from HTML and javascript:
-//1)we use the camelcase for the reacta and lowercase for the normal one 
-//<button onClick={handleclick}>Click me</button>
+//1)we use the camelcase for the react and lowercase for the normal one 
+<button onClick={handleclick}>Click me</button>
 //  for native we use the onclick and onnouseover
 
 //2)evethandling:(function)
-
 //in react we pass the function referance to the eventhandler
 
-// const handleclick=()=>{
-//     alert('button clicked');
-// }
-// return <button onClick={handleclick}>click me</button>
+const handleclick=()=>{
+    alert('button clicked');
+}
+return <button onClick={handleclick}>click me</button>
 
-// //native dom:
-// <button onclick="alert('button clicked)">click me</button>
-
-
-
-// //45.impact of index as keys:
-// //using of the index of array as the keywhen rendring list of element
-
-// const items=["naveen","kumar","family"];
-// const list=items.map((item,index)=>{
-// <li key={index}>{item}</li>
-// });
-// //dynamic changes:
-// //reordering:if you reorder the list index based key will change,but actual item will not
-// //performance issue will rise because of the wheen we add the component and remoe the component it will take the more nuber of time it will rerender
-
-// //best practice:
-// const items=[{id:1,name:"naveen"},{id:2,name:"kumar"},{id:3,name:"family"}];
-// const list=items.map((item,index)=>{
-// <li key={index.id}>{item.name}</li>
-// });
+ //native dom:
+<button onclick="alert('button clicked)">click me</button>
 
 
-// //46.conditional based rendering:
 
-// //using the if/else:
+//45.impact of index as keys:
+//using of the index of array as the keywhen rendring list of element
 
-// function isgreeting({isloggedin}){
-//     if(isloggedin){
-// return <h1>welcome</h1>
-//     }else{
-//         return <h1>please sign in</h1>
-//     }
-// }
-// //using the 
-// function isgreeting({isloggedin}){
-// return(
-//     <h1>
-//         {isloggedin?'welcomeback':'please login'}
-//     </h1>
-// )
-// }
-// //using the and operator
-// function isgreeting({isloggedin}){
-//     return(
-//         <h1>
-//             {isloggedin&&<h1>welcome back</h1>}
-//             {!isloggedin&&<h1>please sign in</h1>}
-//         </h1>
-//     )
-//     }
+const items=["naveen","kumar","family"];
+const list=items.map((item,index)=>{
+<li key={index}>{item}</li>
+});
+//dynamic changes:
+//reordering:if you reorder the list index based key will change,but actual item will not
+//performance issue will rise because of the when we add the component and remove the component it will take the more number of time it will rerender
+//best practice:
+const items=[{id:1,name:"naveen"},{id:2,name:"kumar"},{id:3,name:"family"}];
+const list=items.map((item,index)=>{
+<li key={index.id}>{item.name}</li>
+});
 
 
-//     //47.why it is risk using the prop by spread operator::
-//     //a)we are pass the non valid DOM from the prop it show invalid error:
+//46.conditional based rendering:
+//using the if/else:
+
+function isgreeting({isloggedin}){
+    if(isloggedin){
+return <h1>welcome</h1>
+    }else{
+        return <h1>please sign in</h1>
+    }
+}
+//using the ternary operator:
+function isgreeting({isloggedin}){
+return(
+    <h1>
+        {isloggedin?'welcomeback':'please login'}
+    </h1>
+)
+}
+//using the and operator
+function isgreeting({isloggedin}){
+    return(
+        <h1>
+            {isloggedin&&<h1>welcome back</h1>}
+            {!isloggedin&&<h1>please sign in</h1>}
+        </h1>
+    )
+    }
 
 
-//     function button(props){
-//         return <button {...props}>Click me</button>
-//     }
-//     const props={
-//         className:'btn-primary',
-//         onClick()=>alert('clicked');
-//         customProp:'not-a-dom-attribute'
+    //47.why it is risk using the prop by spread operator::
+    //a)we are pass the non valid DOM from the prop it show invalid error:
+    function button(props){
+        return <button {...props}>Click me</button>
+    }
+    const props={
+        className:'btn-primary',
+        onClick()=>alert('clicked');
+        customProp:'not-a-dom-attribute'
         
-//     };
-// //note here customprop is not the valid dom so it show the error
-// //b)overwrite the existing props:
-// function Button({label},onClick,...props){
-//     return <button {...props} onClick={onClick}>{label}</button>
-// }
-// //note:here we are pass the props as the onClick but again we override the onClick
+    };
+//note here customprop is not the valid dom so it show the error
+//b)overwrite the existing props:
+function Button({label},onClick,...props){
+    return <button {...props} onClick={onClick}>{label}</button>
+}
+//note:here we are pass the props as the onClick but again we override the onClick
 
-// //c)while debug it show the difficulties when we have the props contain the multiple place we have to verify
+//c)while debug it show the difficulties when we have the props contain the multiple place we have to verify
 
-// //solution:
-
-// function button({label,onClick,...props}){
-//  const {customprop,...domprop}=props;
-//     return <button {...domprop}>Click me</button>
-// }
-
-// //use the explicitely defined:
-// function Button({label,onClick}){
-//     return <button onClick={onClick}>{label}</button>
-// }
+//solution:
+function button({label,onClick,...props}){
+ const {customprop,...domprop}=props;
+    return <button {...domprop}>Click me</button>
+}
+//use the explicitely defined:
+function Button({label,onClick}){
+    return <button onClick={onClick}>{label}</button>
+}
 
 //48.memoizing a component means the cahing the result of componenet rendering
-//it mean if we receive the same props then there eis no need to re-render unless the props change
+//it mean if we receive the same props then there is no need to re-render unless the props change
 
-// function Mycomponent=({label,onClick})=>{
-//     return (
-//         <div>
-//         <h1>{name}</h1>
-//         <p>Age:{Age}</p>
-//         </div>
-//     );
-// };
-// const memocomponent=React.memo(Mycomponent);
-// export default memocomponent;
+function Mycomponent=({label,onClick})=>{
+    return (
+        <div>
+        <h1>{name}</h1>
+        <p>Age:{Age}</p>
+        </div>
+    );
+};
+const memocomponent=React.memo(Mycomponent);
+export default memocomponent;
 
-// //react.memo:it have the pure component(it is for the same props for the same output)
+//react.memo:it have the pure component(it is for the same props for the same output)
 
-// const MyComponent = React.memo(
-//     ({ name, age }) => {
-//         console.log('Rendering MyComponent');
-//         return (
-//           <div>
-//             <h1>{name}</h1>
-//             <p>Age: {age}</p>
-//           </div>
-//         );
-//       },
-//       (prevProps, nextProps) => {
-//         // Only re-render if "age" has changed
-//         return prevProps.age === nextProps.age;
-//       }
-//     );
+const MyComponent = React.memo(
+    ({ name, age }) => {
+        console.log('Rendering MyComponent');
+        return (
+          <div>
+            <h1>{name}</h1>
+            <p>Age: {age}</p>
+          </div>
+        );
+      },
+      (prevProps, nextProps) => {
+        // Only re-render if "age" has changed
+        return prevProps.age === nextProps.age;
+      }
+    );
     
-//     export default MyComponent;
-//     //for above one Child will not re-render because value remain same
-//     //twist:if we use the memo concept still it will change if same prop with the non primitive data type like the object etc
+    export default MyComponent;
+    //for above one Child will not re-render because value remain same
+    //twist:if we use the memo concept still it will change if same prop with the non primitive data type like the object etc
     
-//     const MyComponent = React.memo(({ data }) => {
-//   console.log('Component rendered');
-//   return <div>{data}</div>;
-// });
+    const MyComponent = React.memo(({ data }) => {
+  console.log('Component rendered');
+  return <div>{data}</div>;
+});
 
-// const Parent = () => {
-//   const [count, setCount] = useState(0);
-//   const data = { key: 'value' }; // New object reference each time
-//   return (
-//     <div>
-//       <MyComponent data={data} />
-//       <button onClick={() => setCount(count + 1)}>Increment</button>
-//     </div>
-//   );
-// };
-// //for this one still prop is same but it will re-render because of he non primitative data type
+const Parent = () => {
+  const [count, setCount] = useState(0);
+  const data = { key: 'value' }; // New object reference each time
+  return (
+    <div>
+      <MyComponent data={data} />
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+};
+//for this one still prop is same but it will re-render because of he non primitative data type
 
 
 //51.Hooks are better then the props and Highr orer component:
 //1)hooks vs the renderprops:
-
 //render props:
 //a pattern where a component accepsts a function as a props ,return <JSX></JSX>
 
-
-// function Mousetracker({ render }) {
-//     const [x, y] = useState(0);
-  
-//     useEffect(() => {
-//       const handleMouseMove = (event) => {
-//         setX(event.clientX);
-//         setY(event.clientY);
-//       };
+function Mousetracker({ render }) {
+    const [x, y] = useState(0);  
+    useEffect(() => {
+      const handleMouseMove = (event) => {
+        setX(event.clientX);
+        setY(event.clientY);
+      };
       
-//       window.addEventListener('mousemove', handleMouseMove);
-//       return () => window.removeEventListener('mousemove', handleMouseMove);
-//     }, []);
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
   
-//     return render({ x, y });
-//   }
+    return render({ x, y });
+  }
 
-
-// function App(){
-//     return (
-//         <Mousetracker render={({x,y})=>(
-//             <h1>the mouse is at ({x},{y})</h1>
-//         )}/>
-//     );
-// }
-// //for aabove one we pass the props such as the position of the mouse
-
-// //for the hooks:
-
-
-
-// function Mousetracker() {
-//     const [position,setposition] = useState({x:0,y:0});
+function App(){
+    return (
+        <Mousetracker render={({x,y})=>(
+            <h1>the mouse is at ({x},{y})</h1>
+        )}/>
+    );
+}
+//for above one we pass the props such as the position of the mouse
+//for the hooks:
+function Mousetracker() {
+    const [position,setposition] = useState({x:0,y:0});
   
-//     useEffect(() => {
-//       const handleMouseMove = (event) => {
-//         setposition({x:event.clientX,y:event.clientY})
-//       };
+    useEffect(() => {
+      const handleMouseMove = (event) => {
+        setposition({x:event.clientX,y:event.clientY})
+      };
       
-//       window.addEventListener('mousemove', handleMouseMove);
-//       return () => window.removeEventListener('mousemove', handleMouseMove);
-//     }, []);
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
   
-//     return position;
-//   }
+    return position;
+  }
 
+function App(){
+const {x,y}=useMousePosition();
+    return (
+            <h1>the mouse is at ({x},{y})</h1>
+    );
+}
+//with hook we can achieve the same data without pass the props
 
-// function App(){
-// const {x,y}=useMousePosition();
-//     return (
-//             <h1>the mouse is at ({x},{y})</h1>
-//     );
-// }
-// //with hook we can achieve the same data without pass the props
+//2)Higher order function:
+//it takes the component and return the new component with additional props or logic
+//it will take the component and wrap it add to extra functionality
 
-// //2)Higher order function:
-// //it takes the coponent and return the new component wih additional propsor logic
-// //it will take the component and wrpa it add to extra functionality
-
-// function withMousePosition(Component) {
-//     return function WrappedComponent(props) {
-//       const [position, setPosition] = useState({ x: 0, y: 0 });
+function withMousePosition(Component) {
+    return function WrappedComponent(props) {
+      const [position, setPosition] = useState({ x: 0, y: 0 });
   
-//       useEffect(() => {
-//         const handleMouseMove = (event) => {
-//           setPosition({ x: event.clientX, y: event.clientY });
-//         };
+      useEffect(() => {
+        const handleMouseMove = (event) => {
+          setPosition({ x: event.clientX, y: event.clientY });
+        };
   
-//         window.addEventListener('mousemove', handleMouseMove);
-//         return () => window.removeEventListener('mousemove', handleMouseMove);
-//       }, []);
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+      }, []);
   
-//       return <Component {...props} position={position} />;
-//     };
-//   }
+      return <Component {...props} position={position} />;
+    };
+  }
   
-//   function DisplayMousePosition({ position }) {
-//     return <h1>The mouse is at ({position.x}, {position.y})</h1>;
-//   }
+  function DisplayMousePosition({ position }) {
+    return <h1>The mouse is at ({position.x}, {position.y})</h1>;
+  }
   
-//   const EnhancedComponent = withMousePosition(DisplayMousePosition);
+  const EnhancedComponent = withMousePosition(DisplayMousePosition);
   
-//   function App() {
-//     return <EnhancedComponent />;
-//   }
+  function App() {
+    return <EnhancedComponent />;
+  }
   
-//   //for hooks:
-
-//   function useMousePosition() {
-//       const [position, setPosition] = useState({ x: 0, y: 0 });
+  //for hooks:
+  function useMousePosition() {
+      const [position, setPosition] = useState({ x: 0, y: 0 });
   
-//       useEffect(() => {
-//         const handleMouseMove = (event) => {
-//           setPosition({ x: event.clientX, y: event.clientY });
-//         };
+      useEffect(() => {
+        const handleMouseMove = (event) => {
+          setPosition({ x: event.clientX, y: event.clientY });
+        };
   
-//         window.addEventListener('mousemove', handleMouseMove);
-//         return () => window.removeEventListener('mousemove', handleMouseMove);
-//       }, []);
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+      }, []);
   
-//       return position ;
-//     };
+      return position ;
+    };
   
   
-//   function DisplayMousePosition() {
-//     const position=useMousePosition();
-//     return <h1>The mouse is at ({position.x}, {position.y})</h1>;
-//   }
+  function DisplayMousePosition() {
+    const position=useMousePosition();
+    return <h1>The mouse is at ({position.x}, {position.y})</h1>;
+  }
   
   
-//   function App() {
-//     return <DisplayMousePosition/>;
-//   }
-//   //hook are simpler and more readable to the HOC 
-//   //we dont need to wooory about the props forwarding etc
-// //if we use the HOC then we need to the wap this one if we use the hook then we dnt need to wrapping this one we can directly 
+  function App() {
+    return <DisplayMousePosition/>;
+  }
+  //hook are simpler and more readable to the HOC 
+  //we dont need to wooory about the props forwarding etc
+//if we use the HOC then we need to the wap this one if we use the hook then we dnt need to wrapping this one we can directly 
 
-// //52)switching in react:
-// //refer to the changing or rendering different component based on certain condition
+//52)switching in react:
+//refer to the changing or rendering different component based on certain condition
+//1)conditional rending:
+function App() {
+  const position=useMousePosition();
+  return (
+    <div>
+        {isloggedin?<Dashboard/>:<Login/>}
+        <button onClick={()=>setloggedin(!isloggedin)}>{isloggedin?'logout':'login'}</button>
+    </div>
+  );
+}
 
-
-
-// //1)conditional rending:
-// function App() {
-//   const position=useMousePosition();
-//   return (
-//     <div>
-//         {isloggedin?<Dashboard/>:<Login/>}
-//         <button onClick={()=>setloggedin(!isloggedin)}>{isloggedin?'logout':'login'}</button>
-//     </div>
-//   );
-// }
-
-// function Dashboard() {
-//     return <h1>Welome to the dash board</h1>;
-//   }
+function Dashboard() {
+    return <h1>Welome to the dash board</h1>;
+  }
 
 
 
-// function Login() {
-//   return <h1>please login to continue</h1>;
-// }
-// //we switch btwwen the dashboard amd the login
+function Login() {
+  return <h1>please login to continue</h1>;
+}
+//we switch btwwen the dashboard amd the login
 
 
-// //2)React router:views the single page application
-// import React, { useState } from 'react';
-// import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+//2)React router:views the single page application
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
-// function App() {
+function App() {
 
-//     return (
-//         <Router>
-//             <nav>
-//                 <Link to="/home">Home</Link>
-//                 <Link to="/about">About</Link>
-//             </nav>
-//             <Switch>
-//                 <Route path="/home">
-// <Home/>
-//                 </Route>
-//                 <Route path="/about">
-// <About/>
-//                 </Route>
-//                 <Route path="/">
-// <Welcome/>
-//                 </Route>
-//             </Switch>
+    return (
+        <Router>
+            <nav>
+                <Link to="/home">Home</Link>
+                <Link to="/about">About</Link>
+            </nav>
+            <Switch>
+                <Route path="/home">
+<Home/>
+                </Route>
+                <Route path="/about">
+<About/>
+                </Route>
+                <Route path="/">
+<Welcome/>
+                </Route>
+            </Switch>
 
-//         </Router>
+        </Router>
     
-//     );
-//   }
+    );
+  }
   
-//   function Home() {
-//     return <h1>Home page</h1>;
-//   }
+  function Home() {
+    return <h1>Home page</h1>;
+  }
 
-//   function About() {
-//       return <h1>About page</h1>;
-//     }
+  function About() {
+      return <h1>About page</h1>;
+    }
   
   
   
-//   function Welcome() {
-//     return <h1>Welcome to site</h1>;
-//   }
-//   //for above one we switch the compnent based on the URL
+  function Welcome() {
+    return <h1>Welcome to site</h1>;
+  }
+  //for above one we switch the compnent based on the URL
 
-//   //3)state based component switching:
-//   import React from 'react';
-
-
-//   function App(){
-//     const [step,setstep]=useState(1);
-
-//     return(
-//         <div>
-//             {step===1&&<Stepone/>}
-//             {step===2&&<Steptwo/>}
-//             {step===3&&<Stepthree/>
-//             <button onClick={()=>setstep(step+1)}>Next</button>}
-
-//         </div>
-//     )
-
-//   }
-
-//   function Stepone(){
-//     return <h1>This is step 1</h1>
-//   }
-
-//   function Steptwo(){
-//     return <h1>This is step 2</h1>
-//   }
-//    function Stepthree(){
-//     return <h1>This is step 3</h1>
-//   }
+  //3)state based component switching:
+  import React from 'react';
 
 
-//   //53.mixin:it is reuse code across multiple componenet
-//   //we will use the reusable logic
-//   var React = require('react');
+  function App(){
+    const [step,setstep]=useState(1);
 
-// // Define a mixin
-// var MyMixin = {
-//   componentDidMount: function() {
-//     console.log('Component Mounted!');
-//   },
-//   handleClick: function() {
-//     console.log('Button clicked!');
-//   }
-// };
+    return(
+        <div>
+            {step===1&&<Stepone/>}
+            {step===2&&<Steptwo/>}
+            {step===3&&<Stepthree/>
+            <button onClick={()=>setstep(step+1)}>Next</button>}
 
-// // Define a component that uses the mixin
-// var MyComponent = React.createClass({
-//   mixins: [MyMixin],
+        </div>
+    )
 
-//   render: function() {
-//     return (
-//       <div>
-//         <button onClick={this.handleClick}>Click me</button>
-//       </div>
-//     );
-//   }
-// });
+  }
 
-// module.exports = MyComponent;
-// //above one we have the problemm wih the same name lead to unexpected behavior
-// //difficult to track behavior:when we use multiple mixin
+  function Stepone(){
+    return <h1>This is step 1</h1>
+  }
 
-// //solution we have the HOC,hooks 
-// //example hooks:
-
-// import { useEffect } from 'react';
-
-// function useLogging(){
-//     useEffect(()=>{
-// console.log('component mounted');
-//     },[]);
-// }
+  function Steptwo(){
+    return <h1>This is step 2</h1>
+  }
+   function Stepthree(){
+    return <h1>This is step 3</h1>
+  }
 
 
-// function Mycomponent(){
-//     useLogging();
-//     return <div>Hello world</div>;
-// }
-// Mycomponent();
+  //53.mixin:it is reuse code across multiple componenet
+  //we will use the reusable logic
+  var React = require('react');
 
-// //54.Pointer event:
-// //standard way to handle input from the mouse 
-// //1)onpointerdown:
+// Define a mixin
+var MyMixin = {
+  componentDidMount: function() {
+    console.log('Component Mounted!');
+  },
+  handleClick: function() {
+    console.log('Button clicked!');
+  }
+};
 
-// function handlepointerdown(event){
-//     console.log('pointre down at,',event.clientX,event.clientY);
-// }
-// return <div onPointerDown={handlepointerdown}>click or touch me</div>
+// Define a component that uses the mixin
+var MyComponent = React.createClass({
+  mixins: [MyMixin],
 
-// //2)onpointerdown:
-// //triggered when pointer move across element
-// function handlepointermove(event){
-//     console.log('pointre down at,',event.clientX,event.clientY);
-// }
-// return <div onPointerMove={handlepointermove}>Move pointer here</div>
+  render: function() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>Click me</button>
+      </div>
+    );
+  }
+});
 
-// //3)onpointerdown:
-// //trigger when pointer released from element
-// function handlepointerup(event){
-//     console.log('pointre released at,',event.clientX,event.clientY);
-// }
-// return <div onPointerUp={handlepointerup}>Release pointer here</div>
+module.exports = MyComponent;
+//above one we have the problemm wih the same name lead to unexpected behavior
+//difficult to track behavior:when we use multiple mixin
 
-// //4)onpointercancel:
-// //triggered pointer operation cancel such as the touch is interrupted by another input such as the scrolling
-// function handlepointercancel(event){
-//     console.log('pointre event cancel at,');
-// }
-// return <div onPointerCancel={handlepointercancel}>pointer cancel</div>
+//solution we have the HOC,hooks 
+//example hooks:
 
+import { useEffect } from 'react';
 
-// //55.HTML element vs react component:
-// //to distinguis between the native DOM(lowercase) and React component like the native React React.Component 
-
-
-// //56.custom dom attributes suppported in react 16?
-// //for before react will skip the unknown DOM attributes
-// //if we wrote JSX with attribute
-// //<div mycustomattribute={"something"}/>
-
-// //<div/>
-// //in react 16 it will accept
-// //<div mycustomattribute={"something"}/>
-
-// //57.loop inside the jsx:
-// //using the javascript expresssion with curly braces{}
-// //we use the array metthod like .map() which itrarate the array return new array
+function useLogging(){
+    useEffect(()=>{
+console.log('component mounted');
+    },[]);
+}
 
 
-// function App(){
-//     const lists=['apple','banana','orange'];
-//     return (
-//         <div>
-//             <h1>Fruit list</h1>
-//             <ul>
-//                 {lists.map((item,index)=>(
-//                     <li key={index}>{item}</li>
-//                 ))}
-//             </ul>
-//         </div>
-//     );
-// }
-// export default App;
+function Mycomponent(){
+    useLogging();
+    return <div>Hello world</div>;
+}
+Mycomponent();
 
-// function Greeting(props){
-//     return (
-//         <div>
-//             <h1>Hello,{props.name}</h1>
-//             <p>Hello,{props.place}</p>
+//54.Pointer event:
+//standard way to handle input from the mouse 
+//1)onpointerdown:
 
-//         </div>
-//     );
-// }
-// export default Greeting;
+function handlepointerdown(event){
+    console.log('pointre down at,',event.clientX,event.clientY);
+}
+return <div onPointerDown={handlepointerdown}>click or touch me</div>
 
-// //58.access the props i attribute quotes:
+//2)onpointermove:
+//triggered when pointer move across element
+function handlepointermove(event){
+    console.log('pointre down at,',event.clientX,event.clientY);
+}
+return <div onPointerMove={handlepointermove}>Move pointer here</div>
 
-// function App(){
+//3)onpointerup:
+//trigger when pointer released from element
+function handlepointerup(event){
+    console.log('pointre released at,',event.clientX,event.clientY);
+}
+return <div onPointerUp={handlepointerup}>Release pointer here</div>
 
-//     return (
-//         <div>
-//             <Greeting name="alice" place="wonderland"/>
-//             <Greeting name="naveen" place="react land"/>
-//         </div>
-//     )
-// }
+//4)onpointercancel:
+//triggered pointer operation cancel such as the touch is interrupted by another input such as the scrolling
+function handlepointercancel(event){
+    console.log('pointre event cancel at,');
+}
+return <div onPointerCancel={handlepointercancel}>pointer cancel</div>
 
 
+//55.HTML element vs react component:
+//to distinguish between the native DOM(lowercase) and React component like the native React React.Component 
 
 
-// import React from 'react';
-// import PropTypes from 'prop-types';
+//56.custom dom attributes suppported in react 16?
+//for before react will skip the unknown DOM attributes
+//if we wrote JSX with attribute
+//<div mycustomattribute={"something"}/>
 
-// function ProductList({ products }) {
-//   return (
-//     <div>
-//       <h1>Product List</h1>
-//       <ul>
-//         {products.map(product => (
-//           <li key={product.id}>
-//             <strong>{product.name}</strong> - ${product.price}
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
+//<div/>
+//in react 16 it will accept
+//<div mycustomattribute={"something"}/>
 
-// // Define the shape of the products prop (array of objects)
-// ProductList.propTypes = {
-//   products: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       name: PropTypes.string.isRequired,
-//       price: PropTypes.number.isRequired
-//     })
-//   ).isRequired
-// };
+//57.loop inside the jsx:
+//using the javascript expresssion with curly braces{}
+//we use the array metthod like .map() which itrarate the array return new array
 
-// function App() {
-//   const productData = [
-//     { id: 1, name: 'Laptop', price: 999 },
-//     { id: 2, name: 'Phone', price: 799 },
-//     { id: 3, name: 'Tablet', price: 399 }
-//   ];
 
-//   return (
-//     <div>
-//       <ProductList products={productData} />
-//     </div>
-//   );
-// }
+function App(){
+    const lists=['apple','banana','orange'];
+    return (
+        <div>
+            <h1>Fruit list</h1>
+            <ul>
+                {lists.map((item,index)=>(
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+export default App;
 
-// export default App;
+function Greeting(props){
+    return (
+        <div>
+            <h1>Hello,{props.name}</h1>
+            <p>Hello,{props.place}</p>
 
-// //for above verify it should array  while passing them ,and verify it should this shape like the id(number),name(string),price(number)
+        </div>
+    );
+}
+export default Greeting;
+
+//58.access the props attribute quotes:
+
+function App(){
+    return (
+        <div>
+            <Greeting name="alice" place="wonderland"/>
+            <Greeting name="naveen" place="react land"/>
+        </div>
+    )
+}
+import React from 'react';
+import PropTypes from 'prop-types';
+
+function ProductList({ products }) {
+  return (
+    <div>
+      <h1>Product List</h1>
+      <ul>
+        {products.map(product => (
+          <li key={product.id}>
+            <strong>{product.name}</strong> - ${product.price}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// Define the shape of the products prop (array of objects)
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired
+    })
+  ).isRequired
+};
+
+function App() {
+  const productData = [
+    { id: 1, name: 'Laptop', price: 999 },
+    { id: 2, name: 'Phone', price: 799 },
+    { id: 3, name: 'Tablet', price: 399 }
+  ];
+
+  return (
+    <div>
+      <ProductList products={productData} />
+    </div>
+  );
+}
+
+export default App;
+ //for above verify it should array  while passing them ,and verify it should this shape like the id(number),name(string),price(number)
+
+
 // //60.simple one
 
-// //61.React and react router:
+//61.React and react router:
 
-// //1)React:
-// //Javascript library build for userinterface,from this one we create the view layer such as the single page application
-// //we have like the currrect state of application
-// //from this one state,prop flow,virtual dom for efficient ui updates
+//1)React:
+//Javascript library build for userinterface,from this one we create the view layer such as the single page application
+//we have like the currrect state of application
+//from this one state,prop flow,virtual dom for efficient ui updates
 
-// //2)react router:
-// //React router is routing library that enables navigation management of different component depanding on the URL path
-// //from this one we are doing like the <Link/> or <Navlink/>
-// //it will helpful to have the different page
+//2)react router:
+//React router is routing library that enables navigation management of different component depanding on the URL path
+//from this one we are doing like the <Link/> or <Navlink/>
+//it will helpful to have the different page
 
-// //62)react and reactdom:
-// //React platform independance:
-// //React:focuses unser nterfaces,manage ui logic ,component redering
-// //react dom:it is we can build the react native and react-vr etc from this one
-// //Modularity:
-// //react focus indepandent on the react dom any dom system
-// //react dom taking he react component tree and eficiently rendering into the browserdom
-// //simplified update:
-// //if any change we make at the react dom then it is not directly affect the react
+//62)react and reactdom:
+//React platform independance:
+//React:focuses user interfaces,manage ui logic ,component redering
+//react dom:it is we can build the react native and react-vr etc from this one
+//Modularity:
+//react focus indepandent on the react dom any dom system
+//react dom taking the react component tree and efficiently rendering into the browserdom
+//simplified update:
+//if any change we make at the react dom then it is not directly affect the react
 
 
-// //63.React label:
-// //it will provide the more clear about the clear description for input field
-// <label htmlFor="username">Username</label>
+//63.React label:
+//it will provide the more clear about the clear description for input field
+<label htmlFor="username">Username</label>
 
-// //64.combin the multiple inline style object
-// //sing the spread syntex:
-// const style1 = {
-//     color: 'blue',
-//     fontSize: '16px',
-//   };
+//64.combine the multiple inline style object
+//single the spread syntex:
+const style1 = {
+    color: 'blue',
+    fontSize: '16px',
+  };
   
-//   const style2 = {
-//     backgroundColor: 'yellow',
-//     padding: '10px',
-//   };
+  const style2 = {
+    backgroundColor: 'yellow',
+    padding: '10px',
+  };
   
-//   const CombinedComponent = () => {
-//     return (
-//       <div style={{ ...style1, ...style2 }}>
-//         This div has combined styles.
-//       </div>
-//     );
-//   };
+  const CombinedComponent = () => {
+    return (
+      <div style={{ ...style1, ...style2 }}>
+        This div has combined styles.
+      </div>
+    );
+  };
 
-//   //alternative method to apply into this one 
-//   //<div style={Object.assign({}, style1, style2)}> 
+  //alternative method to apply into this one 
+  //<div style={Object.assign({}, style1, style2)}> 
 
-//   //65.we have to re-render when we have the resized event:
-// //  we can listen resize event and update the component state accordingly
+  //65.we have to re-render when we have the resized event:
+//  we can listen resize event and update the component state accordingly
 
-// import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-// const ResizeComponent = () => {
-//   // State to store window dimensions
-//   const [windowSize, setWindowSize] = useState({
-//     width: window.innerWidth,
-//     height: window.innerHeight,
-//   });
+const ResizeComponent = () => {
+  // State to store window dimensions
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
-//   useEffect(() => {
-//     // Define the resize handler
-//     const handleResize = () => {
-//       setWindowSize({
-//         width: window.innerWidth,
-//         height: window.innerHeight,
-//       });
-//     };
+  useEffect(() => {
+    // Define the resize handler
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
 
-//     // Add the resize event listener
-//     window.addEventListener('resize', handleResize);
+    // Add the resize event listener
+    window.addEventListener('resize', handleResize);
 
-//     // Cleanup function to remove event listener when the component is unmounted
-//     return () => {
-//       window.removeEventListener('resize', handleResize);
-//     };
-//   }, []); // Empty dependency array ensures it runs once when the component mounts
+    // Cleanup function to remove event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); // Empty dependency array ensures it runs once when the component mounts
 
-//   return (
-//     <div>
-//       <p>Width: {windowSize.width}px</p>
-//       <p>Height: {windowSize.height}px</p>
-//     </div>
-//   );
-// };
+  return (
+    <div>
+      <p>Width: {windowSize.width}px</p>
+      <p>Height: {windowSize.height}px</p>
+    </div>
+  );
+};
 
-// export default ResizeComponent;
+export default ResizeComponent;
 //Re-rendering: When the window is resized, the handleResize function updates the state with the new dimensions, triggering a re-render of the component.
 
 
+//66.how to print the json with react:
 
+//HINT:we convert the javascript object into javascript string
+import React  from 'react';
 
-// //66.how to print the json with react:
+const Printjson = ({data}) => {
+const prettyjson=JSON.stringify(data,null,2);
 
-// //HINT:we convert the javascript object into javascript string
-// import React  from 'react';
+  return (
+    <div>
+<h2>pretty json</h2>
+<pre>{prettyjson}</pre>
+    </div>
+  );
+};
 
-// const Printjson = ({data}) => {
-//  const prettyjson=JSON.stringify(data,null,2);
+const App=()=>{
+  const sampledata={
+    name:"naveen"
+  };
+  return <Printjson data={sampledata}/>
+}
 
-//   return (
-//     <div>
-// <h2>pretty json</h2>
-// <pre>{prettyjson}</pre>
-//     </div>
-//   );
-// };
-
-
-// const App=()=>{
-//   const sampledata={
-//     name:"naveen"
-//   };
-//   return <Printjson data={sampledata}/>
-
-// }
-
-// export default App;
+export default App;
 
 
 //67.why we can't update the react:
-//when we receive the data to the child from the parant we cant not change the date at tchild Component
-//if child component break the data flow then it is unpredictable flow
+// when we receive the data to the child from the parant we can't not change the date at the child Component
+// if child component break the data flow then it is unpredictable flow
 
 
 //68.
 import React,{useEffect,useRef}  from 'react';
-
 const Fragment = () => {
 const inputref=useRef(null);
 useEffect(()=>{
@@ -1836,31 +1441,30 @@ export default  Fragment ;
 //from this one useref focus on the do directly then useeffect will run for the focus point
 //it mean it will automatically focus on the text field once the page load 
 
-
+//69.
 //70.how to add the google analytics:
 
 
 //71.vendor in css:
-// //everything is not supported by thr browser then we should have the code each browser
+//everything is not supported by thr browser then we should have the code each browser
 
+const MyComponent = () => {
+  const styles = {
+    // Applying vendor prefixes to the 'transform' property
+    transform: 'rotate(45deg)',
+    WebkitTransform: 'rotate(45deg)',  // Safari and Chrome
+    MozTransform: 'rotate(45deg)',     // Firefox
+    msTransform: 'rotate(45deg)',      // Internet Explorer
+  };
 
-// const MyComponent = () => {
-//   const styles = {
-//     // Applying vendor prefixes to the 'transform' property
-//     transform: 'rotate(45deg)',
-//     WebkitTransform: 'rotate(45deg)',  // Safari and Chrome
-//     MozTransform: 'rotate(45deg)',     // Firefox
-//     msTransform: 'rotate(45deg)',      // Internet Explorer
-//   };
+  return (
+    <div style={styles}>
+      <h1>Vendor Prefixes Example</h1>
+    </div>
+  );
+};
 
-//   return (
-//     <div style={styles}>
-//       <h1>Vendor Prefixes Example</h1>
-//     </div>
-//   );
-// };
-
-
+/72.
 
 //73.exception on react component naming:
 //a)Componentname start with captital
@@ -1875,8 +1479,7 @@ const Anothercomponent=()=><div>Another component</div>
 function mycomponent(){
   return <div>invalid</div>
 }
-
-//2)function or class declaration:
+//b)function or class declaration:
 function MyComponent(){
   return <div>Hello</div>
 }
@@ -1919,7 +1522,7 @@ function String(){
 function Mycomponent(){
   return <div>hello</div>
 }
-
+//Invalid:
 function My-component(){
   return <div>hello</div>
 }
@@ -1991,7 +1594,7 @@ export default App;
 
 //75.framework for the animation for the react:
 
-//framer motion: ideal for the basic and avanced animation
+//framer motion: ideal for the basic and advanced animation
 //react spring:great for animation that mimic real world animation
 //react transition group:adding the simple enter/exit transition
 //GSAP:ideal for complex.high performane animation
@@ -2006,46 +1609,46 @@ export default App;
 //but styles in the css have the styled component
 
 //78.react specific linter:
-//with the react plugin:react specific code like the proptypes and ddefault props
-//react hook plugin:ensure correct usage of reac hooks like the useEffect,useState
+//with the react plugin:react specific code like the proptypes and default props
+//react hook plugin:ensure correct usage of react hooks like the useEffect,useState
 //airnum react strict set of react hook
 //prettier integration:ensuring your lintingrules and conflict rules
 
 
-// //React router:
-// //managing the navigation and rendering components based on the application url
-// //browserrouter:wrap the entire app uses the browser history
-// //routes:container for all route
-// //route:define the singl route
-// //enable navigation without full page reload
+//React router:
+//managing the navigation and rendering components based on the application url
+//browserrouter:wrap the entire app uses the browser history
+//routes:container for all route
+//route:define the single route
+//enable navigation without full page reload
 
-// import React from 'react';
-// import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-// function Home() {
-//   return <h1>Home Page</h1>;
-// }
+function Home() {
+  return <h1>Home Page</h1>;
+}
 
-// function About() {
-//   return <h1>About Page</h1>;
-// }
+function About() {
+  return <h1>About Page</h1>;
+}
 
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <nav>
-//         <Link to="/">Home</Link>
-//         <Link to="/about">About</Link>
-//       </nav>
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route path="/about" element={<About />} />
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// }
+function App() {
+  return (
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-// export default App;
+export default App;
 
 
 //79.react router and the history:
@@ -2071,21 +1674,284 @@ history.listen(({ location, action }) => {
 });
 
 
+//81.what are the route available for the react Router():
+
+1. <BrowserRouter>
+Purpose: Manages routing using the HTML5 history API (pushState, replaceState).
+Usage: Best suited for web applications where you have full control over the server (e.g., you can serve all routes from the same entry point).
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+2. <HashRouter>
+Purpose: Manages routing using the URL hash (#) fragment, commonly used in static file hosting environments where the server doesn't handle routing.
+Usage: Ideal for environments like GitHub Pages, where the server can't rewrite URLs to the main index.html.
+
+import { HashRouter, Routes, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </HashRouter>
+  );
+}
+3. <MemoryRouter>
+Purpose: Keeps the history of your "route stack" in memory, rather than syncing it with the browser's address bar.
+Usage: Primarily used for testing or environments like React Native where you don't have a browser.
+
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <MemoryRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </MemoryRouter>
+  );
+}
+4. <StaticRouter>
+Purpose: A router that renders static HTML, typically used in server-side rendering (SSR) applications.
+Usage: Provides routing for server-rendered React applications, often paired with frameworks like Next.js or custom SSR setups.
+
+import { StaticRouter, Routes, Route } from 'react-router-dom';
+
+function App({ location }) {
+  return (
+    <StaticRouter location={location}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </StaticRouter>
+  );
+}
+5. <Router>
+Purpose: The base component for all routers in React Router. It allows for custom implementations and is used internally by <BrowserRouter>, <HashRouter>, and <MemoryRouter>.
+Usage: Rarely used directly unless you're implementing a custom router.
+
+import { Router, Routes, Route, createBrowserHistory } from 'react-router-dom';
+
+const customHistory = createBrowserHistory();
+
+function App() {
+  return (
+    <Router navigator={customHistory} location={customHistory.location}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
+  );
+}
 
 
 
+// push Method
+// Purpose:
+// Adds a new entry to the browser's history stack.
+// Allows the user to navigate back to the previous page using the browser's back button.
+// Use Case:
+//Navigate to a new page while retaining the current page in the history.
+Example:
+import { useNavigate } from 'react-router-dom';
+
+function Example() {
+  const navigate = useNavigate();
+
+  function goToAboutPage() {
+    navigate('/about'); // Internally calls `history.push`
+  }
+
+  return <button onClick={goToAboutPage}>Go to About Page</button>;
+}
+// If the user clicks the button, the /about page is added to the history stack.
+// The browser back button will allow navigation back to the previous page.
+// replace Method
+
+// Purpose:
+// Replaces the current entry in the browser's history stack with a new one.
+// Does not allow the user to navigate back to the previous page using the browser's back button (since the previous entry is replaced).
+//Use Case:
+// Navigate to a new page without keeping the current page in the history.
+// Useful for scenarios like redirecting after a login or form submission where going "back" to the previous page is not desirable.
+
+import { useNavigate } from 'react-router-dom';
+
+function Example() {
+  const navigate = useNavigate();
+
+  function redirectToHomePage() {
+    navigate('/', { replace: true }); // Internally calls `history.replace`
+  }
+
+  return <button onClick={redirectToHomePage}>Go to Home Page</button>;
+}
+// Clicking the button navigates to /, but the previous page is removed from the history stack.
+// The browser back button will not navigate back to the previous page.
+
+//3. Using the history Object Directly
+//You can also create and use your own history object. This approach is useful for centralizing navigation logic.
+
+import React from 'react';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
+const customHistory = createBrowserHistory();
+
+function App() {
+  const navigate = () => {
+    customHistory.push('/new-page'); // Navigate to /new-page
+  };
+
+  return (
+    <Router history={customHistory}>
+      <div>
+        <button onClick={navigate}>Go to New Page</button>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+
+//4. Using Functional Components with useHistory (React Router v5)
+//While useHistory is not available in v4, if you're upgrading to v5, you can use this hook.
+
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+
+function MyComponent() {
+  const history = useHistory();
+
+  const navigate = () => {
+    history.push('/new-page');
+  };
+
+  return <button onClick={navigate}>Go to New Page</button>;
+}
+export default MyComponent;
+
+//84.How to get query parameters in React Router v4:
+// Using URLSearchParams
+// The URLSearchParams API provides an easy way to parse query strings.
+
+//Example
+import React from 'react';
+import { Route } from 'react-router-dom';
+
+function MyComponent({ location }) {
+  const queryParams = new URLSearchParams(location.search);
+
+  const paramValue = queryParams.get('paramName'); // Get value of 'paramName'
+  
+  return <div>Query Parameter Value: {paramValue}</div>;
+}
+
+function App() {
+  return (
+    <Route path="/example" component={MyComponent} />
+  );
+}
+
+export default App;
+//URL
+//If the URL is /example?paramName=value123, the output will be:
 
 
+Query Parameter Value: value123
+2. Using qs Library
+The qs library can parse query strings into objects.
 
+//Installation
+//npm install qs
+//Example
+import React from 'react';
+import { Route } from 'react-router-dom';
+import qs from 'qs';
 
+function MyComponent({ location }) {
+  const queryParams = qs.parse(location.search, { ignoreQueryPrefix: true });
 
+  const paramValue = queryParams.paramName; // Get value of 'paramName'
+  
+  return <div>Query Parameter Value: {paramValue}</div>;
+}
 
+function App() {
+  return (
+    <Route path="/example" component={MyComponent} />
+  );
+}
 
+export default App;
+//URL
+//If the URL is /example?paramName=value123, the output will be:
 
+mathematica
+Copy code
+Query Parameter Value: value123
+3. Handling Multiple Query Parameters
+Both URLSearchParams and qs can handle multiple parameters.
 
+Using URLSearchParams
+jsx
+Copy code
+function MyComponent({ location }) {
+  const queryParams = new URLSearchParams(location.search);
 
+  const param1 = queryParams.get('param1');
+  const param2 = queryParams.get('param2');
 
+  return (
+    <div>
+      Param1: {param1}, Param2: {param2}
+    </div>
+  );
+}
+// Using qs
+// jsx
 
+function MyComponent({ location }) {
+  const queryParams = qs.parse(location.search, { ignoreQueryPrefix: true });
 
+  return (
+    <div>
+      Param1: {queryParams.param1}, Param2: {queryParams.param2}
+    </div>
+  );
+}
+//For a URL like /example?param1=value1&param2=value2, the output will be:
+
+Param1: value1, Param2: value2
+4. Accessing Query Parameters in Functional Components
+If you're using a functional component, you can access the location prop by using the withRouter higher-order component or React's Context.
+
+//Using withRouter
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+
+function MyComponent({ location }) {
+  const queryParams = new URLSearchParams(location.search);
+  const paramValue = queryParams.get('paramName');
+
+  return <div>Query Parameter Value: {paramValue}</div>;
+}
+
+export default withRouter(MyComponent);
 
 
