@@ -1989,7 +1989,7 @@ function App() {
 
 export default App;
 
-In React Router v4/v5
+//In React Router v4/v5
 React Router v4/v5 uses <Switch> to ensure only one route matches. A Not Found page can be implemented by adding a fallback <Route> without a path at the end of the <Switch>.
 
 //Example:
@@ -2037,4 +2037,293 @@ function NotFound() {
 // React Router v6: Use Routes and path="*" for fallback routes.
 // React Router v4/v5: Use <Switch> and a catch-all <Route> without a path.
 
+//86.
+//87.
+//88.
+//89.
 
+//react internationalization
+//90.react init:
+//React Intl is a library designed to help React applications support internationalization (i18n) and localization (l10n). 
+//It provides tools to format numbers, dates, times, and strings for different locales while managing translations for your app. React Intl is part of the broader FormatJS ecosystem and simplifies adding multi-language support to React apps.
+
+//Key Features of React Intl
+Localized Formatting:
+Supports formatting dates, times, numbers, and currencies.
+Handles pluralization and relative time (e.g., "3 days ago").
+Translation Management:
+Enables integration of translations for multiple languages.
+Provides tools to extract and manage translation messages.
+Context Support:
+Automatically detects and applies the user's locale settings.
+Allows easy switching between locales.
+Customizable Components:
+Provides React components and hooks for common i18n tasks.
+
+//91.What are the main features of React Intl?
+//92.What are the two ways of formatting in React Intl?
+
+
+//     1. Declarative Formatting (Using React Components)
+// This approach uses prebuilt components provided by React Intl to format content directly in JSX. It’s simple and expressive, making it suitable for most use cases.
+// Key Components:
+// <FormattedMessage>: Formats strings with dynamic values and translations.
+// <FormattedNumber>: Formats numbers, including currencies and percentages.
+// <FormattedDate>: Formats dates and times.
+// <FormattedRelativeTime>: Formats relative time (e.g., "3 days ago").
+// <FormattedTime>: Formats specific time values.
+
+
+//     2. Programmatic Formatting (Using Hooks or HOC)
+// This approach uses the useIntl hook (or injectIntl HOC) to access formatting utilities programmatically. This method is useful when you need greater flexibility or conditional logic for formatting.
+
+// Formatting Utilities:
+// formatMessage: Formats translated strings.
+// formatNumber: Formats numbers, including currencies and percentages.
+// formatDate: Formats dates and times.
+// formatRelativeTime: Formats relative time.
+// formatTime: Formats specific time values.
+
+//93.How to use FormattedMessage as placeholder using React Intl?
+//HTML input attributes like placeholder expect plain text, but <FormattedMessage> is a React component and cannot directly output a string. 
+//This is why formatMessage is necessary to generate a plain string for attributes like placeholder, alt, or title
+
+
+//94.When Might You Need the Current Locale?
+// To dynamically load locale-specific resources (e.g., images, data, or styles).
+// To customize UI elements or behavior based on the locale.
+// To display the locale for debugging or user information.
+
+import React from 'react';
+import { IntlProvider, useIntl } from 'react-intl';
+
+const messages = {
+  en: { welcome: 'Welcome!' },
+  fr: { welcome: 'Bienvenue!' },
+};
+
+function CurrentLocale() {
+  const intl = useIntl();
+  const currentLocale = intl.locale;
+
+  return <p>Current Locale: {currentLocale}</p>;
+}
+
+function App() {
+  const locale = 'en'; // Change this to 'fr' to test different locales.
+
+  return (
+    <IntlProvider locale={locale} messages={messages[locale]}>
+      <div>
+        <h1>{messages[locale].welcome}</h1>
+        <CurrentLocale />
+      </div>
+    </IntlProvider>
+  );
+}
+
+export default App;
+
+//95.How to format date using React Intl?
+//format dates using React Intl, you can use either the Declarative Approach with <FormattedDate> 
+//the Programmatic Approach with the formatDate method available via the useIntl hook or the injectIntl HOC.
+
+//1. Declarative Approach (Using <FormattedDate> Component)
+The <FormattedDate> component is part of React Intl and is used directly in JSX for formatting dates.
+
+//Basic Example:
+import React from 'react';
+import { IntlProvider, FormattedDate } from 'react-intl';
+
+function App() {
+  const today = new Date();
+
+  return (
+    <IntlProvider locale="en">
+      <div>
+        <p>Today's Date: <FormattedDate value={today} /></p>
+      </div>
+    </IntlProvider>
+  );
+}
+
+export default App;
+// Customizing Date Formats:
+// You can customize the format using props like year, month, day, etc.
+
+<p>
+  Full Date: <FormattedDate value={today} year="numeric" month="long" day="2-digit" />
+</p>
+<p>
+  Short Date: <FormattedDate value={today} year="2-digit" month="short" day="numeric" />
+</p>
+//2. Programmatic Approach (Using formatDate with useIntl or injectIntl)
+//The formatDate method allows programmatic date formatting. This is useful when you need dynamic formatting logic.
+
+//Using useIntl Hook:
+import React from 'react';
+import { IntlProvider, useIntl } from 'react-intl';
+
+function App() {
+  const intl = useIntl();
+  const today = new Date();
+  const formattedDate = intl.formatDate(today, {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+  });
+
+  return (
+    <div>
+      <p>Today's Date: {formattedDate}</p>
+    </div>
+  );
+}
+
+export default function Wrapper() {
+  return (
+    <IntlProvider locale="en">
+      <App />
+    </IntlProvider>
+  );
+}
+//Using injectIntl HOC:
+import React from 'react';
+import { IntlProvider, injectIntl } from 'react-intl';
+
+function App({ intl }) {
+  const today = new Date();
+  const formattedDate = intl.formatDate(today, {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+  });
+
+  return (
+    <div>
+      <p>Today's Date: {formattedDate}</p>
+    </div>
+  );
+}
+
+const WrappedApp = injectIntl(App);
+
+export default function Wrapper() {
+  return (
+    <IntlProvider locale="en">
+      <WrappedApp />
+    </IntlProvider>
+  );
+}
+//React Testing
+    //96.what isthe  shallow rendring:
+
+//Renderer is a utility in React Testing Library that allows you to test a React component in isolation, without rendering its child components.
+//This means that only the component being tested is rendered, and any child components are not mounted or executed. 
+//This is helpful when you want to focus on testing the behavior of a single component without worrying about its dependencies or nested components.
+
+//Key Features of Shallow Rendering:
+Isolated Testing:
+The shallow renderer only renders the component under test, avoiding the need to deal with or test child components.
+Lightweight:
+Shallow rendering is faster than full rendering because it doesn't mount child components.
+Prevents Side Effects:
+Since child components are not rendered, shallow rendering prevents their side effects from affecting the test, making tests more predictable and isolated.
+Testing the Component's API:
+It is useful for testing a component's interface (e.g., props, state, methods) and ensuring it behaves as expected without dealing with the complexity of its children.
+//Example of Using Shallow Rendering
+import React from 'react';
+import { shallow } from 'enzyme'; // Assuming Enzyme is being used
+import MyComponent from './MyComponent';
+
+describe('<MyComponent />', () => {
+  it('should render without crashing', () => {
+    const wrapper = shallow(<MyComponent />);
+    expect(wrapper.exists()).toBe(true);
+  });
+});
+//In this example:
+When you are interested in the output of the component itself, not its children.
+When you want to test how a component interacts with props and state, but you don’t want child components to influence the test.
+Limitations of Shallow Rendering:
+Lacks Realistic Testing: Since child components are not rendered, shallow rendering might miss some issues that could occur in a fully rendered application where the children are mounted.
+Limited to Component's Internal Behavior: It doesn't allow you to test the full lifecycle of child components, and complex interactions might not be fully captured.
+// Conclusion:
+// Shallow rendering is a powerful tool for unit testing individual React components in isolation. It is most useful for testing the logic, state, and prop-based behavior of a single component. However, if you need to test how a component interacts with its children or wants to simulate real-world rendering, full rendering (via mounting) may be more appropriate.
+//Would you like to see an example with React Testing Library or how to use shallow rendering with other tools like Jest or Enzyme?
+
+
+//97.What is TestRenderer package in React?
+    The react-test-renderer package is a testing utility for React components, primarily used for rendering components in a test environment and performing assertions on the rendered output. 
+    Unlike other rendering methods such as shallow rendering or full mounting (e.g., with Enzyme or React Testing Library), react-test-renderer does not interact with the DOM but instead produces a lightweight, virtual representation of the component tree.
+    This is especially useful for testing the structure and output of React components without needing to worry about DOM manipulation.
+
+Key Features of react-test-renderer:
+Snapshot Testing:
+
+It is most commonly used for snapshot testing, where you capture the rendered output of a component and compare it to a previously saved snapshot to detect any changes.
+No DOM Interaction:
+Unlike tools like Enzyme or React Testing Library, react-test-renderer doesn't interact with the real DOM. It only generates a virtual DOM tree.
+Component Tree Rendering:
+It renders the component tree as a lightweight structure that can be used for assertions in unit tests.
+No Dependencies:
+It doesn't require a full browser or DOM environment, so it is fast and efficient for tests, and it's often used for more isolated component tests.
+Test Behavior and Structure:
+It allows you to test if a component renders as expected by inspecting the component's output, checking props, and ensuring the structure matches expectations.
+
+//98.
+
+//The ReactTestUtils package is a utility provided by React (specifically the react-dom/test-utils module) that allows you to simulate and interact with React components during testing. 
+//It provides methods for rendering components, simulating events, and interacting with components in a testing environment, enabling developers to test how their components behave under different scenarios.
+
+//The package is primarily used in conjunction with other testing tools like Jest and Enzyme for more fine-grained testing and simulation of user interactions, including form submissions, button clicks, and other DOM events.
+
+
+Simulate Events:
+You can simulate user interactions with your components, such as mouse clicks, form submissions, key presses, and more. This helps you test how your component responds to user input.
+Shallow Rendering:
+Although ReactTestUtils itself does not provide "shallow rendering" like enzyme does, it can be used with shallow rendering and full mounting techniques to test components in isolation.
+Interact with Components:
+The package lets you find components, trigger events, and inspect state changes, allowing for detailed tests on how components behave in various conditions.
+DOM Manipulation:
+It provides methods to simulate real user events, such as click, focus, and change, and lets you inspect how components respond.
+Commonly Used Methods:
+Here are some of the common methods in ReactTestUtils:
+
+import React from 'react';
+import { render } from 'react-dom';
+import ReactTestUtils from 'react-dom/test-utils'; // Import ReactTestUtils
+import MyButton from './MyButton';
+
+describe('<MyButton />', () => {
+  it('should handle button click', () => {
+    const component = ReactTestUtils.renderIntoDocument(<MyButton />);
+    const button = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'my-button');
+    
+    // Simulate a click event
+    ReactTestUtils.Simulate.click(button);
+    
+    // Check the result of the click
+    expect(component.state.clicked).toBe(true); // Assuming `clicked` is updated on click
+  });
+});
+
+//In this example:
+renderIntoDocument() renders the MyButton component into the virtual DOM.
+findRenderedDOMComponentWithClass() is used to locate the button DOM element by its class name.
+Simulate.click() simulates a click on the button.
+The test then checks if the component's state has been updated correctly after the click.
+//When to Use ReactTestUtils:
+Unit Testing: It is especially useful for unit testing individual React components, where you simulate interactions and check for state changes.
+Simulating Events: It provides a simple way to simulate native DOM events, which can be helpful in testing user interactions like form submissions, button clicks, and input changes.
+Testing Component Behavior: ReactTestUtils is useful when you need to test how components handle events, trigger state changes, and re-render in response to different user interactions.
+Legacy React Codebases: If you're working with an older React codebase, ReactTestUtils may still be in use for testing before more modern tools like React Testing Library and Enzyme became widely adopted.
+
+
+
+
+
+
+
+
+    
