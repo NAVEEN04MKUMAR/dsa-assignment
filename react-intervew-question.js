@@ -1,9 +1,3 @@
-
-
-
-
-
-
 //1.difference between the HTML AND XML
 //class vs classname
 //HTML
@@ -1953,5 +1947,94 @@ function MyComponent({ location }) {
 }
 
 export default withRouter(MyComponent);
+
+
+
+      
+//85.how to implment the react not found page:
+//Implementing a default or "Not Found" (404) page in React Router ensures users see an appropriate message or UI when they try to access an undefined route. 
+//Here's how to do it in different versions of React Router:
+
+// In React Router v6
+// React Router v6 introduces the path="*" syntax, which matches all routes not explicitly defined.
+
+
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+function Home() {
+  return <h1>Home Page</h1>;
+}
+
+function About() {
+  return <h1>About Page</h1>;
+}
+
+function NotFound() {
+ 
+    return <h1>404 - Page Not Found</h1>;
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+In React Router v4/v5
+React Router v4/v5 uses <Switch> to ensure only one route matches. A Not Found page can be implemented by adding a fallback <Route> without a path at the end of the <Switch>.
+
+//Example:
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+function Home() {
+  return <h1>Home Page</h1>;
+}
+
+function About() {
+  return <h1>About Page</h1>;
+}
+
+function NotFound() {
+  return <h1>404 - Page Not Found</h1>;
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route component={NotFound} /> {/* Catch-all route */}
+      </Switch>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+
+import { Link } from 'react-router-dom';
+function NotFound() {
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <h1>404 - Page Not Found</h1>
+      <p>Oops! The page you are looking for does not exist.</p>
+      <Link to="/">Go back to Home</Link>
+    </div>
+  );
+}
+// Key Differences Between v4/v5 and v6
+// React Router v6: Use Routes and path="*" for fallback routes.
+// React Router v4/v5: Use <Switch> and a catch-all <Route> without a path.
 
 
