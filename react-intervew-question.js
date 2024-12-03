@@ -677,7 +677,7 @@ export default  Fragment;
 
 //37.advantags of react:
 
-//increase tyhe application performance
+//increase the application performance
 //JSX code easy to read and write
 //render the both side of the client and the serverside(next.js) rendering
 //react uses the unidirectional data flow
@@ -696,7 +696,7 @@ export default  Fragment;
 
 //40.use of the react-dom:
 //render the react component to DOM
-//it can helpful to reder at he server side
+//it can helpful to render at the server side
 //1.reactDOM.render:helpful to the render the react into dom
 //2.reactDOM.createRoot:better performance optimization
 //3.reactDom.hydrate():used for the server side render,it will put the intially html into the clientside
@@ -710,7 +710,7 @@ export default  Fragment;
 //3)react render componentserver //reactserver.renderToString()
 //4)server the reads the content from HTML THEN insert the placeholder
 //5)server send the HTML to client
-//6)client receive the HTML and rnder content
+//6)client receive the HTML and render content
 //7)react hydrates the html and make the page interactive
 //8)client navifgation and the react updates
 
@@ -747,7 +747,7 @@ fontSize:'18px'
 export default MyComponent;
 
 
-//44.React event different from HTML and javascript:
+//44.not.React event different from HTML and javascript:
 //1)we use the camelcase for the react and lowercase for the normal one 
 <button onClick={handleclick}>Click me</button>
 //  for native we use the onclick and onnouseover
@@ -766,7 +766,7 @@ return <button onClick={handleclick}>click me</button>
 
 
 //45.impact of index as keys:
-//using of the index of array as the keywhen rendring list of element
+//using of the index of array as the key when rendring list of element
 
 const items=["naveen","kumar","family"];
 const list=items.map((item,index)=>{
@@ -895,10 +895,10 @@ const Parent = () => {
 //for this one still prop is same but it will re-render because of he non primitative data type
 
 
-//51.Hooks are better then the props and Highr orer component:
+//51.Hooks are better then the props and Higher order component:
 //1)hooks vs the renderprops:
 //render props:
-//a pattern where a component accepsts a function as a props ,return <JSX></JSX>
+//a pattern where a component accepts a function as a props ,return <JSX></JSX>
 
 function Mousetracker({ render }) {
     const [x, y] = useState(0);  
@@ -1022,7 +1022,7 @@ function App() {
 }
 
 function Dashboard() {
-    return <h1>Welome to the dash board</h1>;
+    return <h1>Welcome to the dash board</h1>;
   }
 
 
@@ -1030,7 +1030,7 @@ function Dashboard() {
 function Login() {
   return <h1>please login to continue</h1>;
 }
-//we switch btwwen the dashboard amd the login
+//we switch between the dashboard amd the login
 
 
 //2)React router:views the single page application
@@ -1136,7 +1136,7 @@ var MyComponent = React.createClass({
 });
 
 module.exports = MyComponent;
-//above one we have the problemm wih the same name lead to unexpected behavior
+//above one we have the problem wih the same name lead to unexpected behavior
 //difficult to track behavior:when we use multiple mixin
 
 //solution we have the HOC,hooks 
@@ -1190,7 +1190,6 @@ return <div onPointerCancel={handlepointercancel}>pointer cancel</div>
 
 //55.HTML element vs react component:
 //to distinguish between the native DOM(lowercase) and React component like the native React React.Component 
-
 
 //56.custom dom attributes suppported in react 16?
 //for before react will skip the unknown DOM attributes
@@ -1383,7 +1382,7 @@ export default ResizeComponent;
 //Re-rendering: When the window is resized, the handleResize function updates the state with the new dimensions, triggering a re-render of the component.
 
 
-//66.how to print the json with react:
+//66.ok.how to print the json with react:
 
 //HINT:we convert the javascript object into javascript string
 import React  from 'react';
@@ -1439,8 +1438,8 @@ export default  Fragment ;
 //70.how to add the google analytics:
 
 
-//71.vendor in css:
-//everything is not supported by thr browser then we should have the code each browser
+//71.ok.vendor in css:
+//everything is not supported by the browser then we should have the code each browser
 
 const MyComponent = () => {
   const styles = {
@@ -1460,7 +1459,7 @@ const MyComponent = () => {
 
 /72.
 
-//73.exception on react component naming:
+//73.ok.exception on react component naming:
 //a)Componentname start with captital
 function MyComponent(){
   return <div>Hello</div>
@@ -1538,7 +1537,7 @@ function Component(){
 }
 
 
-//74.it is possible to use the async /await in react:
+//74.ok.it is possible to use the async /await in react:
 
 import React, { useState, useEffect } from "react";
 
