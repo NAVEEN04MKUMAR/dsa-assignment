@@ -130,7 +130,7 @@ invitee3("hello","who are you")
 //javascript object notation it is light weight data-interchanges format
 //it will useful to the parse the data between the client and server
 
-//convert the js on string into json object
+//convert the json string into json object
 const jsonstring='{"name":"naveen","age":24}';
 const jsonobject=JSON.parse(jsonstring);
 console.log(jsonobject.name);
@@ -1469,7 +1469,8 @@ delete person.age;  // Deletes the "age" property
 
 console.log(person.age);  // undefined
 console.log(person);  // { name: "John" }
-//Deleting array elements: You can use the delete operator to remove an element from an array, but it does not actually remove the element from the array—rather, it leaves a "hole" at that index (the element is removed, but the array length remains the same, and the slot is set to undefined).
+//Deleting array elements: You can use the delete operator to remove an element from an array, but it does not actually remove the element from the array—rather, it leaves a "hole" at that index (the element is removed, 
+//but the array length remains the same, and the slot is set to undefined).
 let numbers = [1, 2, 3, 4];
 delete numbers[2];  // Deletes the element at index 2
 console.log(numbers);  // [ 1, 2, <1 empty item>, 4 ]
@@ -1559,7 +1560,7 @@ Examples of Use	Controlling the browser window, accessing global properties like
 
 //Accessing the history Object
 console.log(window.history); // Outputs the history object
-Key Methods of the history Object
+//Key Methods of the history Object
 back(): Moves the browser to the previous page in the history stack, equivalent to clicking the back button.
 window.history.back();
 forward(): Moves the browser to the next page in the history stack, equivalent to clicking the forward button.
@@ -1721,7 +1722,6 @@ isFinite(100); // true
 isFinite(value)
 value: The value you want to test.
 
-
 isFinite(100);         // true
 isFinite("50");        // true
 isFinite("hello");     // false (Not a number)
@@ -1855,7 +1855,7 @@ console.log(navigator.userAgent);
 // "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" for macOS
 // You can then use regular expressions to extract specific details such as the OS name and version.
 
-Example for detecting the OS:
+//Example for detecting the OS:
 
 function getOperatingSystem() {
     const userAgent = navigator.userAgent;
@@ -1898,7 +1898,7 @@ console.log(getOperatingSystem());
 // load event and the DOMContentLoaded event are both used to detect when a webpage has finished loading, 
 //but they differ in what exactly is considered "finished" for the event to be triggered.
 
-1. DOMContentLoaded Event
+//1. DOMContentLoaded Event
 //The DOMContentLoaded event is fired when the HTML document has been completely loaded and parsed, without waiting for stylesheets, images, or subframes to finish loading. 
 //This event is triggered as soon as the DOM (Document Object Model) is ready, and you can manipulate the page's structure at this point.
 
@@ -1919,7 +1919,7 @@ window.addEventListener('load', function () {
   console.log('Page and all resources (images, stylesheets) are fully loaded');
 });
 
-89.Native host and user defined project:
+89.Native, host and user defined project:
 
 //In JavaScript, objects can be categorized into three main types based on their origin and the environment in which they are created: native objects, host objects, and user-defined objects. 
 //Here's an explanation of each:
@@ -1937,13 +1937,15 @@ Function: Represents a function (a block of reusable code).
 Date: Used to represent and manipulate dates and times.
 Math: Provides basic mathematics functions and constants.
 JSON: Provides methods to parse and stringify JSON data.
-Characteristics of Native Objects:
-Part of the JavaScript language.
+//Characteristics of Native Objects:
+//Part of the JavaScript language.
 Always available in any JavaScript environment.
 Have well-defined behaviors and methods based on the ECMAScript specification.
 
-    2. Host Objects
-Host objects are objects that are provided by the host environment in which JavaScript is running. These environments could be a web browser, Node.js, or any other platform. Host objects are not part of the ECMAScript standard, but they provide functionality specific to the environment.
+//2. Host Objects
+Host objects are objects that are provided by the host environment in which JavaScript is running.
+These environments could be a web browser, Node.js, or any other platform.
+Host objects are not part of the ECMAScript standard, but they provide functionality specific to the environment.
 
 Examples of Host Objects in Browsers:
 window: Represents the global object in a browser environment (for example, the window object in the browser exposes the browser’s window properties, methods, and events).
@@ -1955,12 +1957,12 @@ Examples of Host Objects in Node.js:
 fs: Provides file system operations like reading and writing files.
 http: Provides HTTP server and client functionality.
 process: Provides information about and control over the current Node.js process.
-Characteristics of Host Objects:
+//Characteristics of Host Objects:
 Specific to the JavaScript runtime environment (like a browser or Node.js).
 Provide APIs for interacting with external systems or the host environment.
 Not guaranteed to be available in all JavaScript environments (e.g., window and document are not available in Node.js).
 
-3. User-Defined Objects
+//3. User-Defined Objects
 User-defined objects are objects that are created by the developer using JavaScript's object syntax. 
 These objects are not built-in or provided by the host environment but are defined by the developer to store data and encapsulate behavior.
 
@@ -1985,7 +1987,7 @@ This is often referred to as "callback hell" or the "pyramid of doom."
 Solution with promises: Promises offer a cleaner and more linear approach to handling asynchronous code, reducing nesting and improving readability.
 They allow chaining, which results in a flat structure.
     
-Example: 
+//Example: 
 Better Error Handling:
 Problem with callbacks: In callbacks, errors need to be passed explicitly as arguments, and there is no consistent way to propagate errors through multiple levels of nested callbacks.
 Solution with promises: Promises handle errors via a .catch() method, which provides a centralized way to handle errors.
@@ -2013,7 +2015,7 @@ doSomething()
   .then(result2 => doFinalThing(result2))
   .catch(handleError);
 
-Chaining:
+//Chaining:
 Problem with callbacks: Callbacks can be difficult to chain together, leading to complex, nested code.
 Solution with promises: Promises allow chaining of multiple asynchronous operations using .then(), making it easier to sequence operations in a readable and maintainable way. 
 Each .then() receives the result of the previous one, and you can chain them together.
@@ -2023,18 +2025,18 @@ doSomething()
   .then(result2 => doFinalThing(result2))
   .then(() => console.log('All done!'))
   .catch(err => console.error(err));
-Support for Asynchronous Operations:
+//Support for Asynchronous Operations:
 Problem with callbacks: Callbacks can make handling multiple asynchronous operations (like parallel tasks) complicated, especially when you need to wait for all of them to complete.
 Solution with promises: Promises provide methods like Promise.all() and Promise.race() to handle multiple asynchronous operations concurrently and manage them in a more organized way.
 
     
-Example (Using Promise.all() for parallel operations):
+//Example (Using Promise.all() for parallel operations):
 Promise.all([task1(), task2(), task3()])
   .then(([result1, result2, result3]) => {
     console.log('All tasks completed', result1, result2, result3);
   })
   .catch(err => console.error(err));
-Cleaner and More Maintainable Code:
+//Cleaner and More Maintainable Code:
 Problem with callbacks: Asynchronous code with callbacks can be hard to follow, especially when there are multiple nested levels of callbacks.
 Solution with promises: Promises make the code look cleaner by allowing a more declarative and readable flow of asynchronous operations.
 Built-in Features in Modern JavaScript:
@@ -2053,33 +2055,33 @@ Can Be Misused (Promise Anti-Pattern).
 
 //91.value and attributes:
     
-In JavaScript, attributes and properties refer to different concepts related to HTML elements and the DOM (Document Object Model). Although they may sound similar, they are distinct in the way they function. Here's the breakdown:
+// In JavaScript, attributes and properties refer to different concepts related to HTML elements and the DOM (Document Object Model).
+// Although they may sound similar, they are distinct in the way they function. Here's the breakdown:
 
-1. Attribute
+//1. Attribute
 //Definition: An attribute is a value associated with an HTML element in the markup. 
 //It is part of the HTML element and defines specific configurations, like the id, class, or src of an element.
 //Storage: Attributes are stored in the HTML code itself, in the element's raw markup.
 //Access/Manipulation: You can access and manipulate attributes using methods like getAttribute() and setAttribute() in JavaScript.
 //Updates: Changing an attribute via setAttribute() will update the element's attribute in the HTML markup.
-Example:
+//Example:
 <img id="myImage" src="image.jpg" alt="A beautiful picture">
-In this case:
-id and src are attributes.
-JavaScript:
+//In this case:
+//id and src are attributes.
 const img = document.getElementById('myImage');
 console.log(img.getAttribute('src')); // "image.jpg"
 img.setAttribute('src', 'new-image.jpg'); // Changes the 'src' attribute to 'new-image.jpg'
 
 // 2. Property
-// Definition: A property is a JavaScript object property that represents the current state of an element in the DOM. Properties are dynamically accessible and changeable at runtime.
+// Definition: A property is a JavaScript object property that represents the current state of an element in the DOM. Properties are dynamically accessible and changable at runtime.
 // Storage: Properties are stored in the DOM object in the browser's memory. They reflect the element's current state, which can change due to user interaction or JavaScript.
 // Access/Manipulation: You can access and modify properties directly through JavaScript, typically using the standard dot (.) or bracket ([]) notation.
 // Updates: Changing a property via JavaScript will update the property in memory, but it does not directly affect the HTML attribute unless explicitly set using setAttribute().
 // Example:
-// <input type="text" id="myInput" value="Hello">
-value is a property.
+<input type="text" id="myInput" value="Hello">
+//value is a property.
 
-JavaScript:
+//JavaScript:
 const input = document.getElementById('myInput');
 console.log(input.value); // "Hello"
 input.value = "World"; // Changes the value property to 'World'
@@ -2087,10 +2089,10 @@ console.log(input.value); // "World"
 
 //92.Same orgin policy:
 
-The Same-Origin Policy (SOP) is a critical security feature implemented in web browsers to prevent malicious websites from accessing or manipulating resources (like data or cookies) from a different domain, protocol, or port. 
-    The idea behind SOP is to restrict how a web page or script from one origin can interact with resources from another origin.
+//The Same-Origin Policy (SOP) is a critical security feature implemented in web browsers to prevent malicious websites from accessing or manipulating resources (like data or cookies) from a different domain, protocol, or port. 
+//The idea behind SOP is to restrict how a web page or script from one origin can interact with resources from another origin.
 
-Definition of "Origin":
+//Definition of "Origin":
 The "origin" is defined by the combination of:
 
 Protocol (e.g., HTTP or HTTPS)
@@ -2101,10 +2103,10 @@ Port (e.g., 80 or 443)
 
 //Interpreted Language
 Traditionally, JavaScript is considered an interpreted language. 
-This means:Interpretation occurs at runtime, where the JavaScript code is read and executed line-by-line by the JavaScript engine (such as V8 in Chrome, SpiderMonkey in Firefox, or Chakra in older versions of Edge).
-When a browser or runtime environment (like Node.js) loads a web page or script, it parses and executes the JavaScript code directly, without the need for a separate compilation step.
+//This means:Interpretation occurs at runtime, where the JavaScript code is read and executed line-by-line by the JavaScript engine (such as V8 in Chrome, SpiderMonkey in Firefox, or Chakra in older versions of Edge).
+//When a browser or runtime environment (like Node.js) loads a web page or script, it parses and executes the JavaScript code directly, without the need for a separate compilation step.
 
-    2. Just-in-Time (JIT) Compilation
+//2. Just-in-Time (JIT) Compilation
 However, modern JavaScript engines (like V8 in Chrome or SpiderMonkey in Firefox) use JIT compilation techniques to optimize performance:
 
 Instead of interpreting the code purely line-by-line, the engine may compile JavaScript into machine code during execution (hence the term Just-in-Time).
