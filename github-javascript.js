@@ -1549,7 +1549,9 @@ Represents            	The browser window or tab itself	                    The 
 Scope	                Global scope, accessible anywhere in the script	        Represents the DOM, which is a part of window
 Purpose	               Handles global browser environment features             	Manipulates the structure and content of the webpage
 Example Access         	window.location, window.alert()	                         document.getElementById(), document.body
-Global Object	The global context for JavaScript in the browser	A part of the window object, used for DOM manipulation
+Global Object	The global context for JavaScript in the browse 
+    
+A part of the window object, used for DOM manipulation
 Examples of Use	Controlling the browser window, accessing global properties like screen size, setting timeouts	Accessing or modifying HTML elements, reading the title of the page
 
 
