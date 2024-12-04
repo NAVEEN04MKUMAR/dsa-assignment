@@ -195,7 +195,7 @@ console.log(array2);//[ 1, 2, 3, 4 ]
 let array3=array.slice(-3);
 console.log(array3);//[ 2, 3, 4 ]
 
-//negatie side 1st is inclusive 2nd is exclusive
+//negative side 1st is inclusive 2nd is exclusive
 let array4=array.slice(-3,-2);
 console.log(array4);//[ 2 ]
 
@@ -301,7 +301,7 @@ for(let [key,value] of map){
 //suited or the complex key value pais,insertion deletion
 
 //9.arrow function:
-
+//Arrow functions are shorter and more readable compared to regular function expressions.
 //multiple argument
 const sum=(a,b)=>{
     return a+b;
@@ -380,7 +380,7 @@ const result=add(6,3);
 console.log(result);
 
 //13)higher order function
-//it is accept the function as the argument and the  return the function 
+//it is accept the function as the argument and the return the function 
 function add(a,b){
     return a+b;
 }
