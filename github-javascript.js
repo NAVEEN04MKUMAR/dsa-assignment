@@ -2122,6 +2122,147 @@ This hybrid approach allows JavaScript to be both flexible and high-performing
 
 
 
+//3. Core OOP Principles
+//a. Encapsulation
+//Encapsulation: Keep sensitive data private and expose only what is needed
+//Encapsulation means bundling data (properties) and methods into a single unit (object). Access to some data can be restricted using private fields or closures.
+
+class BankAccount {
+  #balance; // Private field
+
+  constructor(initialBalance) {
+    this.#balance = initialBalance;
+  }
+
+  deposit(amount) {
+    this.#balance += amount;
+  }
+
+  getBalance() {
+    return this.#balance;
+  }
+}
+
+const account = new BankAccount(1000);
+account.deposit(500);
+console.log(account.getBalance()); // 1500
+
+//b. Abstraction
+Abstraction hides the implementation details and shows only the functionality.
+//Abstraction: Hide complex details and show only what’s necessary.
+
+class Shape {
+  calculateArea() {
+    throw new Error("Method not implemented.");
+  }
+}
+
+class Circle extends Shape {
+  constructor(radius) {
+    super();
+    this.radius = radius;
+  }
+
+  calculateArea() {
+    return Math.PI * this.radius ** 2;
+  }
+}
+
+const circle = new Circle(5);
+console.log(circle.calculateArea()); // 78.53981633974483
+//c. Inheritance
+Inheritance allows one class to inherit properties and methods of another.
+//Inheritance: Reuse code by inheriting features from a parent class.
+
+class Vehicle {
+  constructor(brand) {
+    this.brand = brand;
+  }
+
+  start() {
+    console.log(`${this.brand} is starting...`);
+  }
+}
+
+class Car extends Vehicle {
+  constructor(brand, model) {
+    super(brand); // Call parent constructor
+    this.model = model;
+  }
+
+  start() {
+    super.start(); // Call parent method
+    console.log(`${this.brand} ${this.model} is ready to drive.`);
+  }
+}
+
+const car = new Car("Toyota", "Corolla");
+car.start();
+// Toyota is starting...
+// Toyota Corolla is ready to drive.
+//d. Polymorphism
+//Polymorphism allows methods to be overridden in derived classes.
+//The same method name can work differently for different objects or classes
+class Animal {
+  sound() {
+    console.log("Animal makes a sound");
+  }
+}
+
+class Dog extends Animal {
+  sound() {
+    console.log("Dog barks");
+  }
+}
+
+class Cat extends Animal {
+  sound() {
+    console.log("Cat meows");
+  }
+}
+
+const animals = [new Dog(), new Cat()];
+animals.forEach((animal) => animal.sound());
+// Dog barks
+// Cat meows
+//4. Prototypes and Prototype Chain
+In JavaScript, objects are linked to a prototype object. Prototypes allow inheritance of methods and properties.
+
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.greet = function () {
+  console.log(`Hello, my name is ${this.name}`);
+};
+
+const person = new Person("Alice");
+person.greet(); // Hello, my name is Alice
+console.log(person.__proto__ === Person.prototype); // true
+
+//5. Getters and Setters
+Provide controlled access to properties.
+
+class Rectangle {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+
+  get area() {
+    return this.width * this.height;
+  }
+
+  set dimensions({ width, height }) {
+    this.width = width;
+    this.height = height;
+  }
+}
+
+const rect = new Rectangle(10, 20);
+console.log(rect.area); // 200
+rect.dimensions = { width: 5, height: 15 };
+console.log(rect.area); // 75
 
 
 
