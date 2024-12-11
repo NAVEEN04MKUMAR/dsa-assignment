@@ -163,7 +163,7 @@ Integer obj = Integer.valueOf(10);
 // This is often required when you need to work with different types of data or when performing certain operations that require a specific type.
 
 There are two main types of casting in Java:
-1. Primitive Casting
+//13. Primitive Casting
 Primitive casting is used to convert one primitive data type into another.
 
 // Types of Primitive Casting:
@@ -185,7 +185,7 @@ Primitive casting is used to convert one primitive data type into another.
 // int intNum = (int) num; // Explicit casting (double to int)
 // System.out.println(intNum); // Output: 99 (fractional part is truncated)
 
-// 2. Object Casting
+// 14. Object Casting
 // Object casting is used when converting one object type to another within an inheritance hierarchy.
 
 // Types of Object Casting:
