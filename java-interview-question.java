@@ -102,3 +102,148 @@ public class Main {
         System.out.println("Age: " + user.age);
     }
 }
+//9.method to create the wrapper class:
+
+//Using the valueOf Method:
+The valueOf method is a static factory method that is efficient because it uses caching for frequently used values (e.g., integers between -128 and 127);
+
+Integer intValue = Integer.valueOf(10);
+Double doubleValue = Double.valueOf(20.5);
+Boolean booleanValue = Boolean.valueOf(true);
+//Benefits:
+Memory-efficient due to caching.
+Faster and modern approach.
+
+
+//Using parseXXX for String Conversion
+//If you have a String representation of a number, you can use methods like parseInt or parseDouble to convert it to a primitive, and then auto-boxing will handle the conversion to a Wrapper class.
+Example:
+String number = "100";
+Integer intValue = Integer.parseInt(number);  // intValue becomes an Integer
+
+//Using Auto-boxing 
+Auto-boxing is the automatic conversion of a primitive type to its corresponding Wrapper class.
+Example:
+Integer intValue = 10;  // int is automatically converted to Integer
+Double doubleValue = 20.5;  // double is automatically converted to Double
+Boolean booleanValue = true;  // boolean is automatically converted to Boolean
+// Benefits:
+// Concise and easy to read.
+
+//10.create the wrapper class by the different one:
+
+//Using Constructors
+Description: You explicitly call the constructor of the wrapper class to create a new instance.
+//Syntax:
+Integer obj = new Integer(10); // Deprecated in Java 9+
+// Key Characteristics:
+// Always creates a new object in memory.
+// Explicit and straightforward.
+// Deprecated since Java 9: This method is discouraged in favor of valueOf() for better performance.
+
+//Using valueOf() Factory Methods
+Description: You call the valueOf() method to create an instance of the wrapper class.
+//Syntax:
+Integer obj = Integer.valueOf(10);
+// Key Characteristics:
+// Efficient due to caching of frequently used values.
+// Reuses existing objects from a pool for certain values (e.g., Integer values between -128 and 127).
+// Preferred way of creating wrapper objects since Java 5.
+// Promotes immutability and reduces memory overhead.
+
+//11.what is auto boxing:
+
+// Autoboxing automates the conversion of primitives to wrapper objects.
+// It simplifies working with collections and APIs that expect objects.
+// Always be cautious of null values during unboxing to avoid runtime exceptions.
+
+
+//12.What is Casting in Java?
+// Casting in Java is the process of converting one data type into another.
+// This is often required when you need to work with different types of data or when performing certain operations that require a specific type.
+
+There are two main types of casting in Java:
+1. Primitive Casting
+Primitive casting is used to convert one primitive data type into another.
+
+// Types of Primitive Casting:
+// a. Widening Casting (Implicit Casting):
+// Automatically performed by the Java compiler.
+// Converts a smaller data type to a larger data type (e.g., int to long or float to double).
+// No data loss occurs.
+// Example:
+// int num = 100;
+// double doubleNum = num; // Implicit casting (int to double)
+// System.out.println(doubleNum); // Output: 100.0
+
+// b. Narrowing Casting (Explicit Casting):
+// Manually performed by the programmer.
+// Converts a larger data type to a smaller data type (e.g., double to int).
+// May result in data loss or truncation.
+// Example:
+// double num = 99.99;
+// int intNum = (int) num; // Explicit casting (double to int)
+// System.out.println(intNum); // Output: 99 (fractional part is truncated)
+
+// 2. Object Casting
+// Object casting is used when converting one object type to another within an inheritance hierarchy.
+
+// Types of Object Casting:
+// a. Upcasting (Implicit Casting):
+
+// Casting a child object to a parent class type.
+// Always safe and doesn't require explicit casting.
+// Example:
+// class Animal {}
+// class Dog extends Animal {}
+
+// Animal animal = new Dog(); // Implicit upcasting
+   //Downcasting: 
+// If you want to access methods or properties from a grandchild class (a subclass of a subclass), you would need to downcast to the appropriate type in order to access those methods, assuming the object is actually an instance of that subclass.
+// Example of Downcasting to Access a Child of Child:
+
+class Animal {
+    void eat() {
+        System.out.println("Animal is eating.");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog is barking.");
+    }
+}
+
+class Puppy extends Dog {
+    void play() {
+        System.out.println("Puppy is playing.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating a Puppy object and assigning it to an Animal reference (Upcasting)
+        Animal animal = new Puppy();
+
+        // Downcasting from Animal to Dog, because the object is actually a Dog or subclass
+        Dog dog = (Dog) animal;
+        
+        // Now you can access Dog-specific methods
+        dog.bark();  // Output: Dog is barking.
+
+        // Downcasting from Dog to Puppy (to access Puppy-specific methods)
+        Puppy puppy = (Puppy) dog;
+        
+        // Now you can access Puppy-specific methods
+        puppy.play();  // Output: Puppy is playing.
+    }
+}
+    
+// Key Points:
+// Upcasting: When you assign a Puppy object to an Animal reference (Animal animal = new Puppy();), Java will automatically treat the Puppy object as an Animal,
+    //since Puppy is a subclass of Dog, and Dog is a subclass of Animal.
+
+// Downcasting:
+
+// To call methods specific to Dog (like bark()), you downcast the animal object to Dog (Dog dog = (Dog) animal;).
+// To access methods specific to Puppy (like play()), you need to downcast further from Dog to Puppy (Puppy puppy = (Puppy) dog;).
