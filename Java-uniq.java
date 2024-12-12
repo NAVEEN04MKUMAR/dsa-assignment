@@ -80,6 +80,66 @@ scanner.close();
 }
 
 
+//12/12/2024
+
+
+public class Main {
+  public static String (String input) {
+     Stack <Character> stack=new Stack<>();  
+      
+           for(char ch:input.toCharArray()){
+               stack.push(ch)
+           }
+             
+             System.out.println("stack " +stack);
+             
+             StringBuilder reversed=new StringBuilder();
+             while(!stack.isEmpty()){
+                 reversed.apped(stack.pop());
+             }
+             
+             return reversed.toString();
+  }
+}
+
+
+
+
+
+
+
+// import java.util.*; 
+
+// public class Main {
+//   public static void main(String args[]) {
+//       List <String> al=new ArrayList<>();
+//  al.add("a");
+//  al.add("b");
+//  al.add("c");
+//  al.add("d");
+// System.out.println("al " +al);  
+             
+//  List <String> al1=new ArrayList<>();
+//  al1.add("e");
+//  al1.add("b");
+//  al1.add("c");
+//  al1.add("f");
+//              System.out.println("al1 " +al1);   
+             
+//             // List <String> common=new ArrayList<>();
+            
+//             //find the common element both the arraylist
+//              for(String element:al){
+//                  if(al1.contains(element)){
+//                     //  common.add(element);
+//                  System.out.println("common " +element);   
+
+//                  }
+//              }
+//             //  System.out.println("common " +common);   
+//   }
+// }
+
 
 
 
