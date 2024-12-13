@@ -142,4 +142,76 @@ public class Main {
 
 
 
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
 
+
+
+import java.util.ArrayList;
+import java.util.ListIterator;
+
+
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        ArrayList <String> s=new ArrayList<>();
+        s.add("naveen");
+        s.add("kumar");
+        s.add("vishnu");
+                s.add("vis04h-n-u");
+
+                // System.out.println("s",s);
+                ListIterator<String> l=s.listIterator();
+                
+                 System.out.println("forword traversal");
+                 while(l.hasNext()){
+                 
+                     System.out.println("index"+l.nextIndex()+"value" + l.next());
+                 }
+                 
+                   
+                   System.out.println("backword traversal");
+                 while(l.hasPrevious()){
+                 
+                     System.out.println("index"+l.previousIndex()+"value" + l.previous());
+                 }
+                 
+                    System.out.println("change value");
+                    l=s.listIterator();
+                 while(l.hasNext()){
+                  String element=l.next();
+                     if(element.equals("naveen")){
+                         l.set("kali");
+                     }
+                 }
+                 
+                   System.out.println("filterchar");
+                    l=s.listIterator();
+                // s.clear();
+                 while(l.hasNext()){
+                  String element=l.next();
+                   StringBuilder f=new StringBuilder();
+                 
+                   //filter the char alone
+                   for(char ch:element.toCharArray()){
+                       if(Character.isLetter(ch)){
+                           f.append(ch);
+                       }else{
+                           if(f.length()>0){
+                               l.add(f.toString());
+                            //   f.setLength(0);
+                   }
+                       }
+                   }
+                   //insert last element
+                   if(f.length()>0){
+                        l.add(f.toString());
+                   }
+        System.out.println("list"+f);
+                 }
+         System.out.println("list"+s);
+
+        
+    }
+}
