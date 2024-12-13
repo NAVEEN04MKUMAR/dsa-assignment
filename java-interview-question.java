@@ -247,3 +247,210 @@ public class Main {
 
 // To call methods specific to Dog (like bark()), you downcast the animal object to Dog (Dog dog = (Dog) animal;).
 // To access methods specific to Puppy (like play()), you need to downcast further from Dog to Puppy (Puppy puppy = (Puppy) dog;).
+
+//12/12/24
+//23.class
+//In Java, a class is a blueprint for creating objects.
+//It defines the properties (fields) and behaviors (methods) that the objects created from the class will have.
+///Classes encapsulate data and code, making it easier to organize and manage complex programs.
+
+//Key Characteristics of a Class:
+Blueprint for Objects: A class serves as a template from which objects (instances) are created. Each object is an independent entity with its own state and behavior.
+Encapsulation: A class encapsulates data (fields) and methods, restricting direct access to some components and maintaining control over how the data is modified.
+Inheritance: A class can inherit fields and methods from another class, promoting code reuse.
+Polymorphism: A class can override methods from its parent class or interface, providing different implementations.
+Syntax:
+
+public class Car {
+    // Fields
+    String brand;
+    int year;
+
+    // Constructor
+    public Car(String brand, int year) {
+        this.brand = brand;
+        this.year = year;
+    }
+
+    // Method
+    public void displayDetails() {
+        System.out.println("Brand: " + brand + ", Year: " + year);
+    }
+
+    // Main method to create objects
+    public static void main(String[] args) {
+        // Creating objects
+        Car car1 = new Car("Toyota", 2021);
+        Car car2 = new Car("Honda", 2020);
+
+        // Calling methods
+        car1.displayDetails();
+        car2.displayDetails();
+    }
+}
+//Explanation:
+// The Car class defines two fields: brand and year.
+// A constructor initializes the fields when an object of the Car class is created.
+// The displayDetails method prints the object's details.
+// In the main method, two objects (car1 and car2) are created and their methods are called.
+
+//Output:
+Brand: Toyota, Year: 2021
+Brand: Honda, Year: 2020
+This demonstrates how classes and objects work together in Java to model real-world entities.
+
+//24.object?
+    //In Java, an object is an instance of a class. 
+    //It represents a specific entity that has a state and behavior defined by the class it is created from.
+    //Objects are the building blocks of object-oriented programming and allow you to interact with the data and methods encapsulated within a class.
+
+//Key Characteristics of an Object:
+Instance of a Class: Objects are created using the class as a blueprint.
+State: The state of an object is represented by its fields (attributes).
+Behavior: The behavior of an object is defined by its methods (functions).
+Identity: Each object has a unique identity that distinguishes it from other objects, even if they have the same state.
+Creating an Object:
+Objects are created using the new keyword in Java, which calls the class constructor.
+
+//Syntax:
+ClassName objectName = new ClassName(parameters);
+//Example:
+class Car {
+    // Fields
+    String brand;
+    int year;
+
+    // Constructor
+    public Car(String brand, int year) {
+        this.brand = brand;
+        this.year = year;
+    }
+
+    // Method
+    public void displayDetails() {
+        System.out.println("Brand: " + brand + ", Year: " + year);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating an object of the Car class
+        Car car1 = new Car("Toyota", 2021);
+
+        // Accessing object's method
+        car1.displayDetails();
+    }
+}
+//How Objects Work:
+Instance Creation: When you write Car car1 = new Car("Toyota", 2021);, the Car class constructor is called, and memory is allocated for the car1 object.
+//State and Behavior:
+The object's state is represented by the brand and year fields.
+The object's behavior is defined by the displayDetails() method.
+Object Lifecycle:
+Declaration: Car car1; (declares an object reference variable but does not create an object).
+Instantiation: car1 = new Car("Toyota", 2021); (creates the object and allocates memory).
+Initialization: The constructor sets initial values for the object’s fields.
+
+//     Output of the Above Example:
+// Brand: Toyota, Year: 2021
+
+//25.state in the object:
+// The state of an object refers to the data or attributes (fields) that describe the object at a specific moment in time.
+// It represents the characteristics or properties of the object.
+
+Characteristics of Object State:
+Defined by Fields: The values stored in an object's fields (variables) determine its state.
+Dynamic: The state of an object can change over time as its fields are updated.
+Encapsulated: State is typically encapsulated within the object, with controlled access through methods (getters and setters).
+
+Example:
+class Car {
+    // Fields (State)
+    String brand;
+    int speed;
+
+    // Constructor
+    public Car(String brand, int speed) {
+        this.brand = brand;
+        this.speed = speed;
+    }
+
+    // Method to update speed
+    public void accelerate(int increment) {
+        this.speed += increment;
+    }
+
+    // Method to display the state
+    public void displayState() {
+        System.out.println("Brand: " + brand + ", Speed: " + speed);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car car1 = new Car("Toyota", 50); // Initial state
+        car1.displayState();
+
+        car1.accelerate(20); // Update state
+        car1.displayState();
+    }
+}
+Output:
+Brand: Toyota, Speed: 50
+Brand: Toyota, Speed: 70
+Initial State: brand = "Toyota", speed = 50
+//Updated State: After calling accelerate(20), the state changes to speed = 70.
+
+    
+//26. What is the Behavior of an Object?
+The behavior of an object refers to the actions or operations the object can perform.
+These are defined by the methods in the object's class. Behavior typically involves modifying the object's state or interacting with other objects.
+
+Characteristics of Object Behavior:
+Defined by Methods: The class's methods dictate the actions an object can perform.
+Interacts with State: Methods often read or modify the object's fields.
+Encapsulation of Logic: Behavior hides implementation details and provides functionality.
+Example:
+//Using the same Car class:
+public void accelerate(int increment) {
+    this.speed += increment; // Behavior: Increase speed
+}
+
+public void brake(int decrement) {
+    this.speed -= decrement; // Behavior: Decrease speed
+}
+Behavior Demonstrated:
+//accelerate() increases the speed field (changing the state).
+//brake() decreases the speed field (changing the state).
+Example with Behavior in Action:
+public class Main {
+    public static void main(String[] args) {
+        Car car1 = new Car("Honda", 30); // Initial state
+        car1.displayState();
+
+        car1.accelerate(10); // Behavior: Accelerate
+        car1.displayState();
+
+        car1.brake(5); // Behavior: Brake
+        car1.displayState();
+    }
+}
+//Output:
+Brand: Honda, Speed: 30
+Brand: Honda, Speed: 40
+Brand: Honda, Speed: 35
+
+Summary:
+//Behavior: The actions an object can perform, represented by its methods (e.g., accelerate(), brake()).
+
+
+
+
+
+
+
+
+
+
+
+
