@@ -443,13 +443,136 @@ Brand: Honda, Speed: 35
 Summary:
 //Behavior: The actions an object can perform, represented by its methods (e.g., accelerate(), brake()).
 
+//28.equals methods:
+
+
+//29.about the verification of the equals method:
+
+1. Follow the Contract of equals
+The equals method has a well-defined contract as per the Java documentation. Your implementation must satisfy these properties:
+
+a. Reflexivity
+For any non-null reference x, x.equals(x) should return true.
+
+b. Symmetry
+For any non-null references x and y, x.equals(y) should return true if and only if y.equals(x) is true.
+
+c. Transitivity
+For any non-null references x, y, and z, if x.equals(y) is true and y.equals(z) is true, then x.equals(z) must also return true.
+
+d. Consistency
+For any non-null references x and y, repeated calls to x.equals(y) should consistently return the same result, provided neither object is modified.
+
+e. Null-Handling
+For any non-null reference x, x.equals(null) must return false.
+    
+import java.util.Objects;
+
+class Person{
+    private String name;
+    
+    public Person(String name){
+        this.name=name;
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;//Refeerance equality
+        if(obj==null||getClass()!=obj.getClass());//check null and class
+        Person person=(Person) obj;//downcast
+        return Objects.equals(name, person.name);
+    }
+    @Override
+    public int hashCode(){
+return Objects.hash(name);        
+    }
+    
+     public String getName() {
+        return name;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        Person person1=new Person("naveen");
+                Person person2=new Person("naveen");
+        Person person3=new Person("naveenkumar");
+        
+                System.out.println("p"+person1.equals(person2));
+                                System.out.println("p"+person1.equals(person3));
+                System.out.println("p"+(person1==person2));
+                
+                                System.out.println("p"+(person1.hashCode()==person2.hashCode()));//for the same content produce the same referance value
+                                     System.out.println("p"+(person1.hashCode()==person3.hashCode()));
+                                     //for the diff content produce the diff referance value
+    }
+}
 
 
 
+//30.about the hash number:
 
+//the hashCode method in Java is used to generate a numerical representation (an integer) of an object,
+//which is typically used in hash-based collections like HashMap, HashSet, and Hashtable. 
+//It serves as a way to identify objects efficiently in these collections by providing a hash code that represents the object's data.
 
+Key Points About hashCode
+Purpose in Collections:
+It allows objects to be stored and retrieved quickly in hash-based data structures by converting the object into a numeric code (a "bucket index")
+    where it is stored.
+    
+// Contract with equals:
+// If two objects are equal according to the equals method, they must have the same hash code.
+// However, two objects with the same hash code may not necessarily be equal (this is known as a hash collision).
+//Example: Using hashCode in a HashSet
+import java.util.HashSet;
+import java.util.Objects;
 
+class Person {
+    private String name;
+    private int age;
 
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Person person = (Person) obj;
+        return age == person.age && Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age); // Combine fields into a hash
+    }
+
+    @Override
+    public String toString() {
+        return "Person{name='" + name + "', age=" + age + "}";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        HashSet<Person> people = new HashSet<>();
+
+        Person person1 = new Person("Alice", 25);
+        Person person2 = new Person("Alice", 25);
+        Person person3 = new Person("Bob", 30);
+
+        people.add(person1);
+        people.add(person2); // Won't be added because person1.equals(person2) is true
+        people.add(person3);
+
+        System.out.println("HashSet contains: " + people); // Prints only person1 and person3
+    }
+}
+//Outpu
+//HashSet contains: [Person{name='Alice', age=25}, Person{name='Bob', age=30}]
 
 
 
