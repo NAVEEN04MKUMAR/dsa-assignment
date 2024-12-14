@@ -215,3 +215,27 @@ class Main {
         
     }
 }
+
+
+//14/12
+
+import java.util.HashSet;
+
+class Main {
+    public static void main(String[] args) {
+        // String input="abcd efgh abcd efgh";
+        String input="collection is the framework of java then oops is the major concept of java";
+        String[] elements=input.split(" ");
+
+        HashSet <String> temp=new HashSet<>();
+
+for(String element:elements){
+           boolean uniq=temp.add(element);
+            if(!uniq){
+            System.out.println("already present "+element);
+                    }
+                  
+        }
+    }
+}
+
