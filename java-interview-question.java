@@ -571,9 +571,288 @@ public class Main {
         System.out.println("HashSet contains: " + people); // Prints only person1 and person3
     }
 }
-//Outpu
+//Output:
 //HashSet contains: [Person{name='Alice', age=25}, Person{name='Bob', age=30}]
 
+//31.inheritance in java:
+
+//Inheritance in Java is a key object-oriented programming concept that allows a class (called the subclass or child class) to acquire the properties (fields) and behaviors (methods) of another class (called the superclass or parent class).
+//It helps promote code reuse and establishes a hierarchical relationship between classes.
 
 
+class Parent {
+    int a;
+
+    void display() {
+        System.out.println("This is the parent class.");
+    }
+}
+
+class Child extends Parent {
+    void show() {
+        System.out.println("This is the child class.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child child = new Child();
+        child.display(); // Method from Parent
+        child.show();    // Method from Child
+    }
+}
+
+Types of Inheritance in Java
+Single Inheritance: One class inherits from another class:
+class A {}
+class B extends A {}
+Multilevel Inheritance: A class inherits from a class, and another class inherits from it.
+class A {}
+class B extends A {}
+class C extends B {}
+Hierarchical Inheritance: Multiple classes inherit from a single class.
+class A {}
+class B extends A {}
+class C extends A {}
+Example:
+class Animal {
+    void eat() {
+        System.out.println("This animal can eat.");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("The dog can bark.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.eat();  // Inherited from Animal
+        myDog.bark(); // Defined in Dog
+    }
+}
+Here are examples of all types of inheritance in Java:
+
+1. Single Inheritance
+A subclass inherits directly from a superclass.
+class Parent {
+    void displayParent() {
+        System.out.println("This is the parent class.");
+    }
+}
+
+class Child extends Parent {
+    void displayChild() {
+        System.out.println("This is the child class.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child child = new Child();
+        child.displayParent(); // Inherited from Parent
+        child.displayChild();  // Defined in Child
+    }
+}
+2. Multilevel Inheritance
+A class inherits from a class, and another class inherits from it.
+class Grandparent {
+    void displayGrandparent() {
+        System.out.println("This is the grandparent class.");
+    }
+}
+
+class Parent extends Grandparent {
+    void displayParent() {
+        System.out.println("This is the parent class.");
+    }
+}
+
+class Child extends Parent {
+    void displayChild() {
+        System.out.println("This is the child class.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child child = new Child();
+        child.displayGrandparent(); // Inherited from Grandparent
+        child.displayParent();      // Inherited from Parent
+        child.displayChild();       // Defined in Child
+    }
+}
+3. Hierarchical Inheritance
+Multiple subclasses inherit from a single superclass.
+class Animal {
+    void eat() {
+        System.out.println("This animal can eat.");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("The dog can bark.");
+    }
+}
+
+class Cat extends Animal {
+    void meow() {
+        System.out.println("The cat can meow.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.eat();  // Inherited from Animal
+        dog.bark(); // Defined in Dog
+
+        Cat cat = new Cat();
+        cat.eat();  // Inherited from Animal
+        cat.meow(); // Defined in Cat
+    }
+}
+4. Multiple Inheritance via Interfaces
+Java does not support multiple inheritance with classes but allows it through interfaces.
+
+
+interface Printable {
+    void print();
+}
+
+interface Readable {
+    void read();
+}
+
+class Document implements Printable, Readable {
+    public void print() {
+        System.out.println("Printing the document.");
+    }
+
+    public void read() {
+        System.out.println("Reading the document.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Document doc = new Document();
+        doc.print(); // From Printable
+        doc.read();  // From Readable
+    }
+}
+5. Hybrid Inheritance (Not Directly Supported in Java)
+Hybrid inheritance is a combination of hierarchical and multiple inheritance. Since Java doesn't support multiple inheritance with classes, we can use interfaces.
+
+interface Vehicle {
+    void vehicleType();
+}
+
+class Car implements Vehicle {
+    public void vehicleType() {
+        System.out.println("This is a car.");
+    }
+}
+
+class Truck implements Vehicle {
+    public void vehicleType() {
+        System.out.println("This is a truck.");
+    }
+}
+
+class HybridVehicle extends Car implements Vehicle {
+    void hybridFeature() {
+        System.out.println("This is a hybrid vehicle with advanced features.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        HybridVehicle hybrid = new HybridVehicle();
+        hybrid.vehicleType();    // From Car
+        hybrid.hybridFeature();  // Defined in HybridVehicle
+    }
+}
+
+
+//Method Overloading is a feature in Java that allows a class to define multiple methods with the same name but different parameters.
+//It improves code readability and flexibility by enabling methods to perform similar functions with varying input types or numbers of arguments.
+
+//Key Rules of Method Overloading
+Same Method Name: All overloaded methods must share the same name.
+Different Parameters:
+Different number of parameters.
+Different types of parameters.
+Different order of parameters (if types are different).
+Return Type Does Not Matter: Method overloading is not determined by the return type of methods.
+Examples of Method Overloading
+    
+1. Varying Number of Parameters
+class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.add(2, 3));       // Calls the first add method
+        System.out.println(calc.add(2, 3, 4));   // Calls the second add method
+    }
+}
+Output:
+5
+9
+2. Varying Types of Parameters
+class Printer {
+    void print(int value) {
+        System.out.println("Printing an integer: " + value);
+    }
+
+    void print(String value) {
+        System.out.println("Printing a string: " + value);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Printer printer = new Printer();
+        printer.print(42);       // Calls the print method with an integer
+        printer.print("Hello");  // Calls the print method with a string
+    }
+}
+Output:
+Printing an integer: 42
+Printing a string: Hello
+3. Varying Order of Parameters
+
+class Display {
+    void show(int a, String b) {
+        System.out.println("Integer: " + a + ", String: " + b);
+    }
+
+    void show(String b, int a) {
+        System.out.println("String: " + b + ", Integer: " + a);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Display display = new Display();
+        display.show(10, "Hello");   // Calls the first show method
+        display.show("World", 20);  // Calls the second show method
+    }
+}
+Output:
+Integer: 10, String: Hello
+String: World, Integer: 20
 
