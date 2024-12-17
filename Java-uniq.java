@@ -239,3 +239,56 @@ for(String element:elements){
     }
 }
 
+//17/12/2024
+
+
+//example of the queue
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Main {
+    public static void main(String[] args) {
+        Queue <Integer> q=new LinkedList<>();
+        q.add(10);
+        q.add(20);
+        q.add(30);
+        q.offer(40);
+        q.offer(5);
+        
+        System.out.println("Try programiz.pro"+q);
+        System.out.println("head"+q.peek());//view thw head
+        System.out.println("head"+q.poll());//remove thw head
+        System.out.println("head"+q);//view the queue
+        System.out.println("head "+q.size());//view the queue
+
+    }
+}
+
+
+
+
+//example of the priority queue
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+
+class Main {
+    public static void main(String[] args) {
+       PriorityQueue <Integer> q=new PriorityQueue<>();
+        q.add(10);
+        q.add(20);
+        q.add(30);
+        q.offer(40);
+        // q.offer(5);
+        //  q.add(6);
+        q.add(7);
+        q.offer(8);
+        
+        System.out.println("Try programiz.pro"+q);
+        System.out.println("head"+q.peek());//view the head
+        System.out.println("head"+q.poll());//remove thw head such as the 5
+        System.out.println("head"+q);//view the queue such as the 10
+        System.out.println("head "+q.size());//view the queue
+
+    }
+}
+
