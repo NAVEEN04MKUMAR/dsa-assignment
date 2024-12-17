@@ -856,3 +856,184 @@ Output:
 Integer: 10, String: Hello
 String: World, Integer: 20
 
+//34.what is method overriding:
+
+// Method Overriding is a concept in Object-Oriented Programming (OOP) where a child class provides a specific implementation of a method that is already defined in its parent class.
+
+//In method overriding:
+
+//The method in the child class has the same name, return type, and parameters as the method in the parent class.
+//The implementation in the child class overrides (replaces) the one in the parent class.
+//This allows the child class to provide its own specific behavior while still maintaining a common method structure.
+    
+// Parent Class: PaymentGateway
+class PaymentGateway {
+    void processPayment(double amount) {
+        System.out.println("Processing payment of $" + amount + " using generic gateway...");
+    }
+}
+
+// Child Class 1: Credit Card Payment
+class CreditCardPayment extends PaymentGateway {
+    @Override
+    void processPayment(double amount) {
+        System.out.println("Processing $" + amount + " using Credit Card gateway...");
+    }
+}
+
+// Child Class 2: PayPal Payment
+class PayPalPayment extends PaymentGateway {
+    @Override
+    void processPayment(double amount) {
+        System.out.println("Processing $" + amount + " using PayPal gateway...");
+    }
+}
+
+// Child Class 3: Google Pay Payment
+class GooglePayPayment extends PaymentGateway {
+    @Override
+    void processPayment(double amount) {
+        System.out.println("Processing $" + amount + " using Google Pay gateway...");
+    }
+}
+
+// Main Class to Test
+public class PaymentSystem {
+    public static void main(String[] args) {
+        PaymentGateway payment;
+
+        // Credit Card Payment
+        payment = new CreditCardPayment();
+        payment.processPayment(100.00);  
+        // Output: Processing $100.0 using Credit Card gateway...
+
+        // PayPal Payment
+        payment = new PayPalPayment();
+        payment.processPayment(200.00);  
+        // Output: Processing $200.0 using PayPal gateway...
+
+        // Google Pay Payment
+        payment = new GooglePayPayment();
+        payment.processPayment(300.00);  
+        // Output: Processing $300.0 using Google Pay gateway...
+    }
+}
+
+
+
+//35.can super class can hold the object of the subclass:
+//Yes, in Java, a superclass reference variable can hold an object of a subclass. 
+//This is a key concept in polymorphism.
+
+Explanation:
+A reference variable of a parent class (superclass) can point to an object of its child class (subclass).
+This is because a subclass object "is-a" type of its superclass.
+
+    
+// Parent Class: PaymentGateway
+class PaymentGateway {
+    void processPayment(double amount) {
+        System.out.println("Processing payment of $" + amount + " using generic gateway...");
+    }
+}
+
+// Child Class 1: Credit Card Payment
+class CreditCardPayment extends PaymentGateway {
+    @Override
+    void processPayment(double amount) {
+        System.out.println("Processing $" + amount + " using Credit Card gateway...");
+    }
+}
+
+// Child Class 2: PayPal Payment
+class PayPalPayment extends PaymentGateway {
+    @Override
+    void processPayment(double amount) {
+        System.out.println("Processing $" + amount + " using PayPal gateway...");
+    }
+}
+
+// Child Class 3: Google Pay Payment
+class GooglePayPayment extends PaymentGateway {
+    @Override
+    void processPayment(double amount) {
+        System.out.println("Processing $" + amount + " using Google Pay gateway...");
+    }
+}
+
+// Main Class to Test
+public class PaymentSystem {
+    public static void main(String[] args) {
+        PaymentGateway payment;//// Superclass reference variable
+
+        //  Superclass reference holds a CreditCardPayment object
+        // Credit Card Payment
+        payment = new CreditCardPayment();
+        payment.processPayment(100.00);  
+        // Output: Processing $100.0 using Credit Card gateway...
+
+         // Superclass reference holds a CreditCardPayment object
+        // PayPal Payment
+        payment = new PayPalPayment();
+        payment.processPayment(200.00);  
+        // Output: Processing $200.0 using PayPal gateway...
+
+         // Superclass reference holds a GooglePayPayment object
+        // Google Pay Payment
+        payment = new GooglePayPayment();
+        payment.processPayment(300.00);  
+        // Output: Processing $300.0 using Google Pay gateway...
+    }
+}
+
+
+//What is Multiple Inheritance?
+//When a child class tries to inherit (extend) properties from two or more parent classes, it is called multiple inheritance.
+
+//In Java, this is not allowed with classes to avoid confusion.
+
+class Parent1 {
+    void work() {
+        System.out.println("Work from Parent1");
+    }
+}
+
+class Parent2 {
+    void work() {
+        System.out.println("Work from Parent2");
+    }
+}
+
+// This is not allowed in Java!
+class Child extends Parent1, Parent2 {
+    // Confusion: Which work() method should Child use?
+}
+Here, if Child tries to inherit from both Parent1 and Parent2, Java would not know which work() method to use. To avoid this confusion, Java does not allow multiple inheritance with classes.
+
+//How Does Java Solve This?
+//Java allows multiple inheritance through interfaces because interfaces only declare methods (no implementation). The child class writes its own method.
+
+//Example with Interfaces (Allowed):
+interface Parent1 {
+    void work();
+}
+
+interface Parent2 {
+    void work();
+}
+
+class Child implements Parent1, Parent2 {
+    public void work() {
+        System.out.println("Child is working");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child obj = new Child();
+        obj.work();  // Output: Child is working
+    }
+}
+//Simple Explanation
+Java doesn't allow multiple inheritance with classes to avoid confusion.
+Java allows multiple inheritance with interfaces because the child class gives its own implementation.
