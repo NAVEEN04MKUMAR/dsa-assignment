@@ -292,3 +292,88 @@ class Main {
     }
 }
 
+//18/12/24
+//set the salary detatils from the employee id:
+import java.util.ArrayList;
+class Employee{
+    //define datatype
+    private String name;
+    private Integer exp;
+    private double salary;
+    private Integer id;
+    private String role;
+    
+    //constructor
+    public Employee(String name ,Integer exp ,double salary, Integer id,String role){
+        this.name=name;
+        this.exp=exp;
+        this.salary=salary;
+        this.id=id;
+        this.role=role;
+    }
+    
+    //getter and setter
+    public String getrole(){
+        return role;
+    }
+    
+    public void setrole(String role){
+this.role=role;        
+    }
+    
+      public double getsalary(){
+        return salary;
+    }
+    public void setsalary(double salary){
+this.salary=salary;        
+    }
+    
+      public int getexp(){
+        return exp;
+    }
+    public void setexp(int exp){
+this.exp=exp;        
+    }
+      public String getname(){
+        return name;
+    }
+    public void setname(String name){
+this.name=name;        
+    }
+    
+    @Override
+      public String toString(){
+        return "{" +"name:"+name+  ",exp:"+ exp+",salary:"+salary+",id:"+id+",role:"+role +'}';
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+
+            ArrayList <Employee> sss=new ArrayList<>();
+          sss.add(new Employee("naveen  ",0,10000.00,1,"developer"));
+          sss.add(new Employee("kumar  ",1,20000.00,2,"tester"));
+          sss.add(new Employee("vishnu  ",2,30000.00,3,"developer"));
+          sss.add(new Employee("vignesh  ",3,40000.00,4,"tester"));
+          sss.add(new Employee("ganabathy  ",4,50000.00,5,"developer"));
+          sss.add(new Employee("ashok  ",5,60000.00,6,"tester"));
+          System.out.println("s"+sss);
+              
+              for(Employee s:sss){
+                  if(s.getexp()>1&&s.getrole().equals("developer")){
+                                    System.out.println("s"+s.getname()+s.getsalary());
+                                    s.setsalary(s.getsalary()+5000);
+                                    System.out.println("s"+s.getname()+s.getsalary()+s.getrole());
+                  }
+                  
+                    if(s.getexp()>1&&s.getrole().equals("tester")){
+                                    System.out.println("s"+s.getname()+s.getsalary());
+                                    s.setsalary(s.getsalary()+2000);
+                                    System.out.println("s"+s.getname()+s.getsalary()+s.getrole());
+
+                  }
+                  
+              }             
+    }
+}
