@@ -377,3 +377,150 @@ public class Main {
               }             
     }
 }
+
+//19/12
+
+//  not completed
+import java.util.*;
+package collection;
+
+class Student{
+    int age;
+    String name;
+    
+    Student (){
+        
+    }
+    @Overide
+    public String toString(){
+        return "Student[""name"+name+"age"+age+ "]";
+    }
+    public Student(int age,
+    String name){
+        this.name=name;
+        this.age=age;
+    }
+    
+    public int getage(){
+        return age;
+    }
+     public String getname(){
+        return name;
+    }
+    
+    //  class Agecomparator implements Comparator<Student>{
+    //     @Override
+    //     public int compare(Student s1,Student s2){
+    //         return Integer.compare(s1.getage(),s2.getage());
+    //     }
+    // }
+    
+    // class Namecomparator implements Comparator<Student>{
+    //     @Override
+    //     public int compare(Student s1,Student s2){
+    //         return s1.getname().compareTo(s2.getname());
+            
+    //     }
+    }
+    
+}
+
+public class Comparato implements Comparator<Student>{
+    public static void main(String[] args){
+        Comparato cm=new Comparato();
+        ArrayList <Student> f=new ArrayList<>();
+        f.add(new Student(22,"naveen"));
+        f.add(new Student(23,"kumar"));
+        f.add(new Student(24,"ganaps"));
+        f.add(new Student(25,"vignesh"));
+         System.out.println("f"+f);
+         
+         Colection.sort(f,cm);
+         for(Emp e:f){
+             System.out.println(e);
+         }
+//                   System.out.println("before sorting by age");
+//                   f.forEach(s-> System.out.println(s.getname()+"-"+s.getage()));
+                  
+                  
+//                   f.sort(new Agecomparator());
+// System.out.println("/nafter sorting by age");
+//                   f.forEach(s-> System.out.println(s.getname()+"-"+s.getage()));
+                  
+                          
+                  
+//                   f.sort(new Namecomparator());
+// System.out.println("/nafter sorting by name");
+//                   f.forEach(s-> System.out.println(s.getname()+"-"+s.getage()));
+                  @Override
+                  public int compare(Student s1.Student s2){
+                      if(s1.agee>s2.age){
+                          return -1;
+                          
+                      }else if (o1.age<o2.age){
+                          return 1;
+                      }
+                      else{
+                          return 0;
+                      }
+                      
+                  }
+
+    }
+}
+
+
+
+//bending not get the compare with row wit col
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        
+        int [][] matrix={
+            {1,2,1},
+            {2,5,2},
+            {1,8,1}
+        };
+    // int  row=matrix.length;
+    // int  col=matrix[0].length;
+
+        for(int row=0;row<matrix.length;row++){
+      System.out.println("row"+row);  
+            
+            for(int col=0;col<matrix.length;col++){
+                      System.out.println("col"+col);
+
+    System.out.println(matrix[row][col]);      
+    boolean match=false;
+    int count=0;
+    for(int k=0;k<matrix.length;k++){
+                         System.out.println("k"+k); 
+                         System.out.println("a"+matrix[row][k]); 
+
+        // if(matrix[row][k]==matrix[k][col]){
+        //         // System.out.println("not match row"+row+"col"+col); 
+        //         match=true;
+        //         break;
+        // }
+        // if()
+        
+    }
+     if(match){
+        // System.out.println("match row"+row+"col"+col); 
+        count++;
+        }
+                 System.out.println("count"+count); 
+
+       
+            }
+                        System.out.println();            
+        }
+        
+    }
+}
+
+
+
+
+
