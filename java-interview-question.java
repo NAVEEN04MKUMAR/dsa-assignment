@@ -1103,4 +1103,326 @@ public class Main {
 
 
 
+//93.finally block in java:
+//The finally block in Java is used to ensure that certain code is executed no matter what happens—whether an exception occurs or not. 
+//It provides a mechanism to clean up resources or perform critical finalization tasks.
+
+//Key Reasons for the finally Block
+//Resource Cleanup:
+//It is commonly used to release resources such as closing files, database connections, or network sockets to avoid resource leaks.
+Example:
+try {
+    // Open a file
+    FileReader file = new FileReader("example.txt");
+    // Perform operations
+} catch (IOException e) {
+    System.out.println("Exception occurred: " + e.getMessage());
+} finally {
+    // Always close the file
+    file.close();
+}
+Guaranteed Execution:
+
+// The code inside the finally block is guaranteed to execute, regardless of whether an exception is thrown, caught, or not.
+// Even if the try block contains a return statement, the finally block will execute before the method returns.
+
+
+//Example
+Without Exception
+public class FinallyExample {
+    public static void main(String[] args) {
+        try {
+            System.out.println("Inside try block");
+        } catch (Exception e) {
+            System.out.println("Exception caught");
+        } finally {
+            System.out.println("Finally block executed");
+        }
+    }
+}
+Output:
+
+//o/p:
+Inside try block
+Finally block executed
+With Exception:
+public class FinallyExample {
+    public static void main(String[] args) {
+        try {
+            System.out.println("Inside try block");
+            int result = 10 / 0; // Throws ArithmeticException
+        } catch (ArithmeticException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        } finally {
+            System.out.println("Finally block executed");
+        }
+    }
+}
+Output:
+
+// Inside try block
+// Exception caught: / by zero
+// Finally block executed
+// With return in try Block
+// Even if there’s a return in the try block, the finally block executes before the method returns.
+
+java
+Copy code
+public class FinallyExample {
+    public static void main(String[] args) {
+        System.out.println(demo());
+    }
+
+    public static String demo() {
+        try {
+            return "Returning from try block";
+        } finally {
+            System.out.println("Finally block executed");
+        }
+    }
+}
+// Output:
+// Finally block executed
+// Returning from try block
+
+
+
+
+1. File Handling
+When working with files, you must close the file after reading or writing, even if an error occurs during the operation. Failing to do so can lead to file locks or resource leaks.
+Example Scenario: A program reads a configuration file. Whether the file exists, is corrupt, or throws an exception, the file must be closed.
+public class FileHandlingExample {
+    public static void main(String[] args) {
+        FileReader file = null;
+        try {
+            file = new FileReader("config.txt");
+            // Read and process file contents
+            System.out.println("File is being processed");
+        } catch (IOException e) {
+            System.out.println("Error while reading the file: " + e.getMessage());
+        } finally {
+            try {
+                if (file != null) {
+                    file.close(); // Ensure the file is closed
+                    System.out.println("File closed successfully");
+                }
+            } catch (IOException e) {
+                System.out.println("Failed to close the file: " + e.getMessage());
+            }
+        }
+    }
+}
+2. Database Connections
+In real-world applications, database connections must be closed to avoid connection pool exhaustion or memory leaks, even if an error occurs during query execution.
+Example Scenario: A program fetches user data from a database. If an exception occurs during the query, the connection must still be closed.
     
+public class DatabaseExample {
+    public static void main(String[] args) {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "user", "password");
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+            while (rs.next()) {
+                System.out.println("User: " + rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Database error: " + e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close(); // Ensure the connection is closed
+                    System.out.println("Database connection closed");
+                }
+            } catch (SQLException e) {
+                System.out.println("Failed to close connection: " + e.getMessage());
+            }
+        }
+    }
+}
+3. Network Connections
+When working with sockets or network connections, it’s crucial to close the connection, whether the operation succeeds or fails.
+Open connections can lead to resource exhaustion on the server or client side.
+Example Scenario: A client sends data to a server. Even if the server is unreachable or there’s a network issue, the socket must be closed.
+
+public class NetworkExample {
+    public static void main(String[] args) {
+        Socket socket = null;
+        try {
+            socket = new Socket("example.com", 80);
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println("GET / HTTP/1.1");
+        } catch (IOException e) {
+            System.out.println("Network error: " + e.getMessage());
+        } finally {
+            try {
+                if (socket != null) {
+                    socket.close(); // Always close the socket
+                    System.out.println("Socket closed successfully");
+                }
+            } catch (IOException e) {
+                System.out.println("Failed to close socket: " + e.getMessage());
+            }
+        }
+    }
+}
+4. Locking Mechanisms
+In multi-threaded programming, locks are used to synchronize access to shared resources. If an exception occurs, the lock must be released to prevent deadlocks.
+Example Scenario: Two threads are updating a shared resource. If an exception occurs, the lock must be released for other threads to proceed.
+    
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class LockExample {
+    private static final Lock lock = new ReentrantLock();
+
+    public static void main(String[] args) {
+        try {
+            lock.lock(); // Acquire lock
+            // Perform critical section operations
+            System.out.println("Updating shared resource");
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        } finally {
+            lock.unlock(); // Ensure the lock is released
+            System.out.println("Lock released");
+        }
+    }
+}
+5. Sending Emails
+When sending emails in a real-world application, you often use a library that requires initializing and cleaning up resources (e.g., a mail session). The finally block ensures cleanup even if the email fails to send.
+Example Scenario: An application sends a confirmation email. Even if the SMTP server is unreachable, resources must be cleaned up.
+
+public class EmailExample {
+    public static void main(String[] args) {
+        Session session = null;
+        try {
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.example.com");
+            session = Session.getDefaultInstance(props);
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("sender@example.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("receiver@example.com"));
+            message.setSubject("Test Email");
+            message.setText("This is a test email");
+            Transport.send(message);
+            System.out.println("Email sent successfully");
+        } catch (Exception e) {
+            System.out.println("Failed to send email: " + e.getMessage());
+        } finally {
+            System.out.println("Email session cleanup (if necessary)");
+        }
+    }
+}
+// Summary of Real-Life Applications
+// File Handling: Ensures files are closed to avoid resource locks.
+// Database Management: Closes connections to prevent memory leaks.
+// Networking: Closes sockets to free up network resources.
+// Multi-threading: Releases locks to prevent deadlocks.
+// Email Sending: Cleans up email session resources.
+    
+
+//94.when the finally not executed: 
+The finally block in Java is almost always executed, but there are rare scenarios where it might not run. 
+These scenarios typically involve program termination or interruption before the finally block gets a chance to execute.
+
+Scenarios Where finally is Not Executed
+System.exit() is Called
+If System.exit() is called within the try or catch block, the JVM terminates the program immediately, and the finally block does not execute.
+Example:
+public class FinallyExample {
+    public static void main(String[] args) {
+        try {
+            System.out.println("Try block");
+            System.exit(0); // JVM terminates here
+        } finally {
+            System.out.println("Finally block"); // This will not execute
+        }
+    }
+}
+
+// Thread Interruption or Termination:
+// If the thread executing the try-catch-finally block is interrupted or forcibly terminated, the finally block may not execute.
+Example:
+public class FinallyExample {
+    public static void main(String[] args) {
+        Thread t = new Thread(() -> {
+            try {
+                System.out.println("Thread running");
+                Thread.currentThread().stop(); // Forcefully stops the thread
+            } finally {
+                System.out.println("Finally block in thread"); // May not execute
+            }
+        });
+        t.start();
+    }
+// }
+// JVM Crashes
+// If the JVM crashes due to a critical error (e.g., OutOfMemoryError, stack overflow, or hardware failure), the finally block will not execute.
+Example:
+public class FinallyExample {
+    public static void main(String[] args) {
+        try {
+            throw new OutOfMemoryError("Simulating JVM crash");
+        } finally {
+            System.out.println("Finally block"); // Will not execute
+        }
+    }
+}
+//Infinite Loops or Unreachable Code
+//If an infinite loop is present in the try or catch block, and control never reaches the finally block.
+Example:
+public class FinallyExample {
+    public static void main(String[] args) {
+        try {
+            while (true) {
+                System.out.println("Infinite loop");
+            }
+        } finally {
+            System.out.println("Finally block"); // Never executed
+        }
+    }
+}
+//95.96.
+ //Is try without a catch allowed in Java?
+Yes, a try block without a catch block is allowed as long as it is followed by a finally block. 
+The finally block ensures that cleanup or termination logic is executed regardless of whether an exception occurs.
+
+Example: try without catch (with finally)
+A scenario where you don't need to handle the exception in the current method but still need to ensure cleanup is a good use case for try without catch.
+Real-World Example: File Handling
+
+import java.io.*;
+
+public class TryWithoutCatch {
+    public static void main(String[] args) throws IOException {
+        FileReader file = null;
+        try {
+            file = new FileReader("example.txt");
+            System.out.println("File opened successfully");
+            // Process the file contents
+        } finally {
+            // Ensure the file is closed even if an exception occurs
+            if (file != null) {
+                file.close();
+                System.out.println("File closed in finally block");
+            }
+        }
+    }
+}
+In this case:
+If the file does not exist or an exception is thrown, the exception propagates.
+The finally block ensures the file is closed regardless of what happens in the try block.
+
+2. Is try without both catch and finally allowed?
+No, a try block must always be followed by either a catch block, a finally block, or both.
+
+Omitting both catch and finally results in a compilation error:
+error: 'try' without 'catch', 'finally' or resource declarations
+Why Can't try Exist Alone?
+The purpose of the try block is to handle exceptions or ensure cleanup. Without a catch or finally, it would be meaningless to have a try block, as it would not serve its intended purpose.
+
+// Summary of Valid Scenarios
+// try + catch: Handle exceptions in the same method.
+// try + finally: Ensure cleanup or finalization, even if an exception propagates.
+// try + catch + finally: Handle exceptions and ensure cleanup.
