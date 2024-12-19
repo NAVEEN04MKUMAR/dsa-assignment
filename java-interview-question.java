@@ -1037,3 +1037,70 @@ public class Main {
 //Simple Explanation
 Java doesn't allow multiple inheritance with classes to avoid confusion.
 Java allows multiple inheritance with interfaces because the child class gives its own implementation.
+
+
+
+//92.which design pattarn used in exception handling:
+//If an exception is not handled in a method, it automatically propagates up the call stack.
+
+//     If none of the methods handle the exception, and it reaches the top of the stack (main), but there’s still no handler, the program will terminate, and the Java runtime will print the exception stack trace.
+// This "bubbling up" mechanism ensures that the exception has multiple chances to be caught and handled.
+// The top-most method (main) must handle it; otherwise, the program terminates with an error.
+public class Main {
+    public static void main(String[] args) throws Exception{
+        System.out.println("Try programiz.pro");
+        try{
+            method1();
+            }catch(Exception e){
+        System.out.println("handle exceeption  "+ e.getMessage());
+            }
+    }
+    
+       static void method1() throws Exception{
+        method2();
+    }
+    
+      static void method2() throws Exception{
+        method3();
+    }
+    
+      static void method3() throws Exception{
+        throw new Exception("something went wrong");
+    }
+}
+
+//o/p:
+//handle exceeption  something went wrong
+
+
+
+public class Main {
+    public static void main(String[] args) throws Exception{
+        System.out.println("Try programiz.pro");
+        method1();
+    }
+    
+      static void method1() throws Exception{
+        method2();
+    }
+    
+      static void method2() throws Exception{
+        method3();
+    }
+    
+      static void method3() throws Exception{
+        throw new Exception("something went wrong");
+    }
+}
+
+
+//o/p:
+// Exception in thread "main" java.lang.Exception: something went wrong
+// 	at Main.method3(Main.java:20)
+// 	at Main.method2(Main.java:16)
+// 	at Main.method1(Main.java:12)
+// 	at Main.main(Main.java:8)
+
+
+
+    
