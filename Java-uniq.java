@@ -522,5 +522,136 @@ class Main {
 
 
 
+//20.12/2024
+
+//Compare
+//  Comparable used within the class then it mean we are sorting singl one ata a time not the multiple time like this one 
+import java.util.*;
+//  package collection;
+
+ class Student implements Comparable<Student>{
+    int age;
+    String name;
+    
+   
+    @Override
+    public String toString(){
+        return "Student[name"+name+"age"+age+ "]";
+    }
+    public Student(int age,
+    String name){
+        this.name=name;
+        this.age=age;
+    }
+    
+    public int getage(){
+        return age;
+    }
+     public String getname(){
+        return name;
+    }
+
+}
+
+ public class Main {
+    public static void main(String[] args){
+        // Comparato cm=new Comparato();
+        ArrayList <Student> f=new ArrayList<Student>();
+        f.add(new Student(27,"prakash"));
+        f.add(new Student(22,"naveen"));
+        f.add(new Student(23,"kumar"));
+        f.add(new Student(24,"ganaps"));
+        f.add(new Student(25,"vignesh"));
+         System.out.println("f"+f);
+         
+       
+         System.out.println("Sorted by Age:");
+         Collections.sort(f);
+         for(Student e:f){
+             System.out.println(e);
+         }
+         
+        //   System.out.println("Sorted by name");
+        //  Collections.sort(f);
+        //  for(Student e:f){
+        //      System.out.println(e);
+        //  }
+
+
+    }
+    public int compareTo(Student p){
+        return this.age-p.age;
+    }
+    
+}
+
+
+//Comparator
+import java.util.*;
+//  package collection;
+
+class Student{
+    int age;
+    String name;
+    
+    // Student (){
+        
+    // }
+    @Override
+    public String toString(){
+        return "Student[name"+name+"age"+age+ "]";
+    }
+    public Student(int age,
+    String name){
+        this.name=name;
+        this.age=age;
+    }
+    
+    public int getage(){
+        return age;
+    }
+     public String getname(){
+        return name;
+    }
+
+}
+
+public class Main {
+    public static void main(String[] args){
+        // Comparato cm=new Comparato();
+        ArrayList <Student> f=new ArrayList<Student>();
+        f.add(new Student(27,"prakash"));
+        f.add(new Student(22,"naveen"));
+        f.add(new Student(23,"kumar"));
+        f.add(new Student(24,"ganaps"));
+        f.add(new Student(25,"vignesh"));
+         System.out.println("f"+f);
+         
+         Comparator<Student> c1=new Comparator<Student>(){
+             public int compare(Student s1,Student s2){
+                 return s1.age-s2.age;
+             }
+         };
+         
+          Comparator<Student> c2=new Comparator<Student>(){
+             public int compare(Student s1,Student s2){
+                 return s1.name.compareTo(s2.name);
+             }
+         };
+         System.out.println("Sorted by Age:");
+         Collections.sort(f,c1);
+         for(Student e:f){
+             System.out.println(e);
+         }
+         
+          System.out.println("Sorted by name");
+         Collections.sort(f,c2);
+         for(Student e:f){
+             System.out.println(e);
+         }
+
+
+    }
+}
 
 
