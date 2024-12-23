@@ -1040,6 +1040,211 @@ Java allows multiple inheritance with interfaces because the child class gives i
 
 
 
+//37.interface in java:
+    //In Java, an interface is a reference type that acts as a contract for classes.
+    //It defines a collection of abstract methods that a class must implement.
+    //Interfaces are used to achieve abstraction and multiple inheritance in Java.
+    
+interface Fly{
+    void fly();
+}
+interface Swim{
+    void swim();
+}
+class Duck implements Fly,Swim{
+    public void fly(){
+        System.out.println("duck is flying");
+    }
+    
+     public void swim(){
+        System.out.println("duck is swimming");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        Fly f=new Duck();
+                Swim s=new Duck();
+        f.fly();
+        s.swim();
+        }
+}
+//o/p:
+// duck is flying
+// duck is swimming
+
+// why Use Interfaces?
+// Abstraction: Defines a "what to do" behavior without worrying about "how to do" it.
+// Multiple Inheritance: A class can implement multiple interfaces.
+// Polymorphism: Allows objects to be referenced by their interface type.
+// Loose Coupling: Helps in designing loosely coupled systems.
+
+//38.how to define the interface java:
+//ans is available at the top i given the example like that
+
+//39. How do you implement an interface?
+//the ans is availabe at the top then we taken this one
+
+//40.
+//the ans is availabe at the top then we taken this one
+
+//41.can we extend the class:
+
+interface Fly{
+    void fly();
+}
+interface Swim extends Fly{
+    void swim();
+}
+class Duck implements Swim{
+    public void fly(){
+    System.out.println("fly");
+    }
+    
+     public void swim(){
+    System.out.println("swim");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Swim f=new Duck();
+        f.fly();
+        f.swim();
+        }
+}
+//o/p:
+// fly
+// swim
+//here through the exends we can access through the child class to the parant class,
+
+
+    //46.differenece between the abstract and interface:
+Comparison Table
+Feature	         Abstract Class	                                             Interface
+Purpose	        Base class for related classes	                        Defines a contract (behavior)
+Methods	          Abstract and concrete	                                 Abstract, default, static (from Java 8)
+Fields	           Can have variables	                                     Only constants (public static final)
+Constructors	     Yes	                                                  No
+Inheritance      	Single inheritance                                   	Multiple inheritance
+Access Modifiers	  Any	                                            Methods are public by default
+Best For	      Sharing common state/behavior	                         Specifying behavior across unrelated classes
+
+// Abstract Class:
+// Used for common vehicle behaviors like start, stop, and move.
+// Defines a general template for vehicles.
+// Subclasses like Car and Plane specialize the move method.
+// Interface:
+// Adds specialized behaviors like fly and swim.
+// Allows unrelated classes (Boat, Seaplane) to share these abilities.
+// A class like Seaplane can implement multiple interfaces to combine capabilities.
+
+//47.about the constructor:
+     constructor in Java is a special method used to initialize objects when they are created. 
+    It is called automatically when an instance of a class is instantiated.
+    The primary purpose of a constructor is to assign initial values to the instance variables of the class.
+
+// Key Features of Constructors
+// Same Name as the Class: A constructor must have the same name as the class.
+// No Return Type: Constructors do not have a return type, not even void.
+// Called Automatically: They are automatically called when an object of the class is created.
+// Overloading Allowed: You can have multiple constructors with different parameter lists (constructor overloading).
+
+Types of Constructors
+Default Constructor:
+
+Provided by Java if no constructor is defined in the class.
+It has no parameters and assigns default values to fields (e.g., 0 for numbers, null for objects).
+Example:
+    
+class Person {
+    String name;
+    int age;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p = new Person(); // Default constructor is used
+        System.out.println(p.name); // Output: null
+        System.out.println(p.age);  // Output: 0
+    }
+}
+
+No-Argument Constructor:
+A constructor without parameters but explicitly defined by the user.
+Example:
+class Person {
+    String name;
+    int age;
+
+    // No-argument constructor
+    Person() {
+        name = "John Doe";
+        age = 30;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p = new Person(); // Calls no-argument constructor
+        System.out.println(p.name); // Output: John Doe
+        System.out.println(p.age);  // Output: 30
+    }
+}
+
+Parameterized Constructor:
+A constructor that takes parameters to initialize the object with specific values.
+Example:
+class Person {
+    String name;
+    int age;
+
+    // Parameterized constructor
+    Person(String name, int age) {
+        this.name = name; // 'this' refers to the current object's field
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p = new Person("Alice", 25); // Pass values to the constructor
+        System.out.println(p.name); // Output: Alice
+        System.out.println(p.age);  // Output: 25
+    }
+}
+
+Copy Constructor (User-defined):
+Used to create a new object by copying an existing object.
+Example:
+class Person {
+    String name;
+    int age;
+
+    // Parameterized constructor
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Copy constructor
+    Person(Person p) {
+        this.name = p.name;
+        this.age = p.age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p1 = new Person("Bob", 40);
+        Person p2 = new Person(p1); // Copy constructor is called
+        System.out.println(p2.name); // Output: Bob
+        System.out.println(p2.age);  // Output: 40
+    }
+}
+
+    
 //92.which design pattarn used in exception handling:
 //If an exception is not handled in a method, it automatically propagates up the call stack.
 
