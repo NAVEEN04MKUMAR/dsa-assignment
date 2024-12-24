@@ -654,4 +654,79 @@ public class Main {
     }
 }
 
+//24/12/24
 
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        
+        HashMap<Integer,String> hm=new HashMap<Integer,String>();
+        hm.put(1,"java");
+        hm.put(2,"javascript");
+        hm.put(3,"phython");
+        hm.put(4,"mysql");
+        hm.put(5,"c++");
+        hm.put(6,"c");
+        System.out.println("hm"+hm);
+        System.out.println("hm.get"+hm.get(1));//if we give only key then return the value alone
+        System.out.println("hm.get"+hm.get(7));
+        System.out.println("hm.get contain value"+hm.containsValue("java"));//true
+        System.out.println("hm.get contain value"+hm.containsValue("rupy"));//false
+        System.out.println("hm.put if absent"+hm.putIfAbsent(1,"algo"));//doubt
+        System.out.println("hm remove"+hm.remove(1));//
+        System.out.println("hm remove the key and value"+hm.remove(6,"c"));//we can remove using key ar both the key and value
+        System.out.println("hm remove the key and value"+hm.remove(7,"coa"));//we can remove using key ar both the key and value
+
+        System.out.println("hm replace"+hm.replace(2,"rupy"));//
+        System.out.println("hm replace"+hm.replace(2,"rupy","java"));//
+        System.out.println("hm size"+hm.size());//
+        Set s=hm.entrySet();
+        System.out.println("entrySet"+s);//
+        Iterator i=s.iterator();
+        while(i.hasNext()){
+        System.out.println("hm next"+i.next());//
+            
+        }
+        Collection c=hm.values();
+        System.out.println("hmm"+hm);
+        
+        // Set ss=hm.keySet();
+        System.out.println("ss"+hm.keySet());//
+        Iterator ii=s.iterator();
+        while(ii.hasNext()){
+        System.out.println("hm next"+ii.next());//
+        Map.Entry s1=(Map.Entry)ii.next();
+        if(s1.getKey().equals(4));
+        System.out.println("hm setvalue"+s1.setValue("compiler"));//
+        }
+    System.out.println("hm setvalue"+hm);//
+
+    }
+}
+
+//o/p:
+// hm{1=java, 2=javascript, 3=phython, 4=mysql, 5=c++, 6=c}
+// hm.getjava
+// hm.getnull
+// hm.get contain valuetrue
+// hm.get contain valuefalse
+// hm.put if absentjava
+// hm removejava
+// hm remove the key and valuetrue
+// hm remove the key and valuefalse
+// hm replacejavascript
+// hm replacetrue
+// hm size4
+// entrySet[2=java, 3=phython, 4=mysql, 5=c++]
+// hm next2=java
+// hm next3=phython
+// hm next4=mysql
+// hm next5=c++
+// hmm{2=java, 3=phython, 4=mysql, 5=c++}
+// ss[2, 3, 4, 5]
+// hm next2=java
+// hm setvaluephython
+// hm next4=mysql
+// hm setvaluec++
+// hm setvalue{2=java, 3=compiler, 4=mysql, 5=compiler}
