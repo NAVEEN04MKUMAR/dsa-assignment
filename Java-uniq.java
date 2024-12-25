@@ -730,3 +730,62 @@ class Main {
 // hm next4=mysql
 // hm setvaluec++
 // hm setvalue{2=java, 3=compiler, 4=mysql, 5=compiler}
+
+
+
+
+
+
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        
+        String key="abba";
+        String value="ant bat bat ant";
+        String [] word=value.split(" ");
+        
+        Map<Character,String> map=new HashMap<>();
+        
+        boolean consistant=true;
+        
+        for(int i=0;i<key.length();i++){
+            char keym=key.charAt(i);
+    
+        if(map.keySet().equals(keym)){
+            System.out.println("true");
+        }
+        
+           String valuem=word[i];
+    //verify current key compare already existing key
+           if(map.containsKey(keym)){
+               //compare the value not same
+               if(!map.get(keym).equals(valuem)){
+                   consistant=false;
+                   break;
+               }
+               
+           }else{
+            map.put(keym,valuem);
+
+           }
+    
+        }
+        if(consistant){
+            System.out.println("mapping is consistant"+map);
+        }else{
+            System.out.println("mapping is inconsistant");
+        }
+        
+
+        StringBuilder op=new StringBuilder();
+        
+        for(Map.Entry<Character,String> entry:map.entrySet()){
+            op.append(entry.getKey()).append(" ").append(entry.getValue()).append(", ");
+        }
+        
+                System.out.print(op.toString());
+    }
+}
+
