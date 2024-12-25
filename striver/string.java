@@ -103,3 +103,39 @@ class Main {
 
 //time complexity:O(n);
 //space complexity:O(1);
+
+
+
+//to find the longest length of the palindrome diven string:
+
+
+
+
+class Main {
+    public static void main(String[] args) {
+        String input="abcdefghhgfedcba";
+        System.out.println(longestpalindrome(input));
+    }    
+    public static String longestpalindrome(String s){
+        int start=0,end=0;
+        for(int i=0;i<s.length();i++){
+            int len1=expandfromcenter(s,i,i);//verify the odd lengt palindrome
+            int len2=expandfromcenter(s,i,i+1);//verify the even length palindrome
+            int len=Math.max(len1,len2);
+            
+            if(len>(end-start)){
+                start=i-((len-1)/2);
+                end=i+(len/2);
+            }
+        }
+        return s.substring(start,end+1);//substring exclude the end so we add the +1 at end
+    }
+    //using the center location we decrease the pointer at left and incrase the pointer at the right
+       public static int expandfromcenter(String s,int left,int right){
+       while(left>=0&&right<s.length()&&s.charAt(left)==s.charAt(right)){
+           left--;
+           right++;
+       }
+        return right-left-1;
+    }
+}
