@@ -789,3 +789,42 @@ class Main {
     }
 }
 
+
+
+
+
+
+//27/10/24
+// class Main {
+//     public static void main(String[] args) {
+//         int a[] ={6,6,1,1,2,3,5};
+//         Arrays.sort(a);
+//         for(int i=0;i<a.length;i++){
+//          if(a[i]==a[i+1]||a[i]+1==a[i+1]){
+//              System.out.println("ans"+(a[i+1]));
+//              continue;
+//          }  else{
+//              System.out.println("ans1  "+(a[i]+1));
+//              break;
+//          }
+//         }
+//     }
+// }
+class Main {
+    public static void main(String[] args) {
+        int a[] ={1,2,3,5,4,7,10};
+        int h;
+        int r;
+        for(int i=0;i<a.length;i++){
+         if(a[i]%2!=0){
+             System.out.println("ans"+(a[i]));
+         }  else{
+             System.out.println("ans1  "+(a[i]));
+             h=a[i];
+            //  r=reverse(h);
+            //  System.out.println("reverse "+h);
+         }
+        }
+    }
+}
+
