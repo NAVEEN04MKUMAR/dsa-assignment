@@ -828,3 +828,55 @@ class Main {
     }
 }
 
+
+
+//30/12/2024
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+
+//serialisation and deserialisation
+import java.io.*;
+import java.util.ArrayList;
+
+class Data implements Serializable{
+    private static final long serialVersionUID=12345678L;
+    int id;
+    String name;
+    Data(String name,int id){
+        this.name=name;
+        this.id=id;
+        
+    }
+    
+    public String toString(){
+        return name+" "+id;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Exception{
+
+        Data d1=new Data("java",102);
+        String fl=new String("data.ser");//it throws the file not found exception 
+        // String fl=System.getProperty("user.home") + File.separator + "data.ser";
+        
+        FileOutputStream fos=new FileOutputStream(fl);//read the raw data
+        ObjectOutputStream op=new  ObjectOutputStream(fos);//byte to object
+        // op.writeObject(al);
+        op.writeObject(d1);
+        op.close();
+                System.out.println("created");
+                System.out.println("-------");
+                
+   FileInputStream f1=new FileInputStream(fl);//read the raw data
+        ObjectInputStream op1=new  ObjectInputStream(f1);//byte to object
+      Data obj=(Data)op1.readObject();
+                op1.close();
+            System.out.println(obj);
+        
+    }
+}
+
+
+
