@@ -1631,3 +1631,301 @@ The purpose of the try block is to handle exceptions or ensure cleanup. Without 
 // try + catch: Handle exceptions in the same method.
 // try + finally: Ensure cleanup or finalization, even if an exception propagates.
 // try + catch + finally: Handle exceptions and ensure cleanup.
+
+
+
+//Here’s a complete and executable Java example for the loose coupling scenario in the context of an online shopping app using different payment methods.
+//loose coupling:
+    // Define the PaymentService interface
+interface PaymentService {
+    void processPayment();
+}
+
+// Implement the PaymentService interface for PayPal
+class PayPal implements PaymentService {
+    @Override
+    public void processPayment() {
+        System.out.println("Payment processed using PayPal.");
+    }
+}
+
+// Implement the PaymentService interface for Stripe
+class Stripe implements PaymentService {
+    @Override
+    public void processPayment() {
+        System.out.println("Payment processed using Stripe.");
+    }
+}
+
+// Implement the PaymentService interface for Apple Pay
+class ApplePay implements PaymentService {
+    @Override
+    public void processPayment() {
+        System.out.println("Payment processed using Apple Pay.");
+    }
+}
+
+// The ShoppingApp class
+class ShoppingApp {
+    private PaymentService paymentService; // Dependency injected through the constructor
+
+    // Constructor to inject the payment service
+    public ShoppingApp(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
+    // Method to process checkout
+    public void checkout() {
+        System.out.println("Starting checkout process...");
+        paymentService.processPayment(); // Use the injected payment service
+    }
+}
+
+// Main class to run the program
+public class Main {
+    public static void main(String[] args) {
+        // Use PayPal for payment
+        PaymentService paypal = new PayPal();
+        ShoppingApp appWithPayPal = new ShoppingApp(paypal);
+        appWithPayPal.checkout();
+
+        System.out.println();
+
+        // Use Stripe for payment
+        PaymentService stripe = new Stripe();
+        ShoppingApp appWithStripe = new ShoppingApp(stripe);
+        appWithStripe.checkout();
+
+        System.out.println();
+
+        // Use Apple Pay for payment
+        PaymentService applePay = new ApplePay();
+        ShoppingApp appWithApplePay = new ShoppingApp(applePay);
+        appWithApplePay.checkout();
+    }
+}
+// How It Works:
+// Interface (PaymentService):
+
+// Defines a common contract that all payment methods (PayPal, Stripe, Apple Pay) must follow.
+// Each payment method implements this interface.
+// ShoppingApp:
+
+// Accepts a PaymentService object in its constructor.
+// Can work with any payment method that implements the PaymentService interface.
+// Main Class:
+
+// Creates instances of different payment services (PayPal, Stripe, Apple Pay).
+// Passes the desired payment service to the ShoppingApp.
+
+// Output:
+// Starting checkout process...
+// Payment processed using PayPal.
+
+// Starting checkout process...
+// Payment processed using Stripe.
+
+// Starting checkout process...
+// Payment processed using Apple Pay.
+
+Complete Example of Tight Coupling:
+// PayPal class (specific payment method)
+class PayPal {
+    public void processPayment() {
+        System.out.println("Payment processed using PayPal.");
+    }
+}
+
+// Stripe class (specific payment method)
+class Stripe {
+    public void processPayment() {
+        System.out.println("Payment processed using Stripe.");
+    }
+}
+
+// ShoppingApp class tightly coupled to a specific payment method
+class ShoppingApp {
+    private PayPal payPal; // Dependency on a specific payment class
+    private Stripe stripe; // Dependency on another specific payment class
+
+    public ShoppingApp() {
+        this.payPal = new PayPal(); // Directly creating an instance (tight coupling)
+        this.stripe = new Stripe(); // Directly creating an instance (tight coupling)
+    }
+
+    // Method to checkout using PayPal
+    public void checkoutWithPayPal() {
+        System.out.println("Starting checkout process with PayPal...");
+        payPal.processPayment();
+    }
+
+    // Method to checkout using Stripe
+    public void checkoutWithStripe() {
+        System.out.println("Starting checkout process with Stripe...");
+        stripe.processPayment();
+    }
+}
+
+// Main class to run the program
+public class Main {
+    public static void main(String[] args) {
+        ShoppingApp app = new ShoppingApp();
+
+        // Checkout using PayPal
+        app.checkoutWithPayPal();
+
+        System.out.println();
+
+        // Checkout using Stripe
+        app.checkoutWithStripe();
+    }
+}
+// How It Works:
+// Direct Dependency:
+
+// ShoppingApp directly creates and manages instances of PayPal and Stripe.
+// This makes the ShoppingApp tightly coupled to these classes.
+// Separate Methods:
+
+// You need specific methods (checkoutWithPayPal and checkoutWithStripe) for each payment method.
+
+// Output:
+// Starting checkout process with PayPal...
+// Payment processed using PayPal.
+
+// Starting checkout process with Stripe...
+// Payment processed using Stripe.
+
+
+
+
+
+
+//Imagine you are running a restaurant, which has various staff members performing specific tasks. 
+//This setup can help us understand the difference between high cohesion and low cohesion.
+
+// High Cohesion:
+// In a well-run restaurant:
+
+// Chef: Prepares food.
+// Waiter: Takes orders and serves food.
+// Cashier: Handles payments.
+// Each person has a clear, focused role. This is high cohesion, where each "module" (person) is responsible for a single task.
+
+// Low Cohesion:
+// In a chaotic restaurant:
+
+// The chef cooks food, serves tables, and manages the cash register.
+// The waiter takes orders, prepares food, and handles payments.
+// Everyone does multiple unrelated tasks, leading to confusion and inefficiency. This is low cohesion because roles are not focused.
+
+High Cohesion Example:
+Each class has a single responsibility, similar to the staff in a well-run restaurant.
+
+
+// Chef class: Only responsible for preparing food
+class Chef {
+    void prepareFood() {
+        System.out.println("Chef is preparing food.");
+    }
+}
+
+// Waiter class: Only responsible for serving food
+class Waiter {
+    void takeOrder() {
+        System.out.println("Waiter is taking the order.");
+    }
+
+    void serveFood() {
+        System.out.println("Waiter is serving the food.");
+    }
+}
+
+// Cashier class: Only responsible for handling payments
+class Cashier {
+    void processPayment() {
+        System.out.println("Cashier is processing the payment.");
+    }
+}
+
+// Main class to simulate the restaurant
+public class Restaurant {
+    public static void main(String[] args) {
+        Chef chef = new Chef();
+        Waiter waiter = new Waiter();
+        Cashier cashier = new Cashier();
+
+        // Each class performs its specific task
+        waiter.takeOrder();
+        chef.prepareFood();
+        waiter.serveFood();
+        cashier.processPayment();
+    }
+}
+Output:
+
+// Waiter is taking the order.
+// Chef is preparing food.
+// Waiter is serving the food.
+// Cashier is processing the payment.
+// Advantages of High Cohesion:
+
+
+Low Cohesion Example:
+All responsibilities are merged into a single class, like the chaotic restaurant.
+
+// Restaurant class doing all tasks
+class Restaurant {
+    void takeOrder() {
+        System.out.println("Taking the order.");
+    }
+
+    void prepareFood() {
+        System.out.println("Preparing the food.");
+    }
+
+    void serveFood() {
+        System.out.println("Serving the food.");
+    }
+
+    void processPayment() {
+        System.out.println("Processing the payment.");
+    }
+}
+
+// Main class to simulate the restaurant
+public class Main {
+    public static void main(String[] args) {
+        Restaurant restaurant = new Restaurant();
+
+        // Same class handling all tasks
+        restaurant.takeOrder();
+        restaurant.prepareFood();
+        restaurant.serveFood();
+        restaurant.processPayment();
+    }
+}
+Output:
+Taking the order.
+Preparing the food.
+Serving the food.
+Processing the payment.
+Drawbacks of Low Cohesion:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
