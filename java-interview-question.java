@@ -1916,6 +1916,102 @@ Drawbacks of Low Cohesion:
 
 
 
+//Encapsulation:
+    
+//Encapsulation is a fundamental object-oriented programming (OOP) principle that involves bundling data (fields/attributes) and methods (functions/operations) that operate on the data into a single unit, typically a class.
+//It also restricts direct access to some of the object's components, protecting the integrity of the data and providing controlled access through public methods.
+
+Key Points:
+Hiding Data:
+
+// Data (fields) is kept private within a class.
+// Direct access is restricted, ensuring better control over how the data is modified or accessed.
+// Controlled Access:
+// Access to private fields is provided via getters (to retrieve data) and setters (to modify data).
+// Improved Security:
+// Prevents unauthorized or unintended changes to the data.
+// Improved Modularity:
+// Makes the code easier to maintain and modify since internal implementation details are hidden from the outside.
+// Real-Life Analogy:
+// Think of a bank account:
+// You cannot directly access or modify the bank's database to change your balance.
+Instead, you interact through controlled actions like deposit(), withdraw(), or checkBalance().
+This protects the integrity of the account and ensures proper checks are in place.
+Programming Example:
+Here’s how encapsulation works in a bank account system:
+
+Encapsulation Example:
+class BankAccount {
+    // Private fields (data is hidden)
+    private double balance;
+
+    // Constructor to initialize the balance
+    public BankAccount(double initialBalance) {
+        if (initialBalance > 0) {
+            this.balance = initialBalance;
+        } else {
+            System.out.println("Initial balance must be positive.");
+            this.balance = 0;
+        }
+    }
+
+    // Public method to get the balance (getter)
+    public double getBalance() {
+        return balance;
+    }
+
+    // Public method to deposit money
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: $" + amount);
+        } else {
+            System.out.println("Deposit amount must be positive.");
+        }
+    }
+
+    // Public method to withdraw money
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawn: $" + amount);
+        } else if (amount > balance) {
+            System.out.println("Insufficient balance.");
+        } else {
+            System.out.println("Withdrawal amount must be positive.");
+        }
+    }
+}
+
+// Main class to test encapsulation
+public class Main {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount(1000); // Create an account with an initial balance
+
+        account.deposit(500); // Deposit money
+        System.out.println("Current Balance: $" + account.getBalance()); // Check balance
+
+        account.withdraw(300); // Withdraw money
+        System.out.println("Current Balance: $" + account.getBalance()); // Check balance
+
+        account.withdraw(1500); // Try to withdraw more than the balance
+    }
+}
+// Output:
+// Deposited: $500.0
+// Current Balance: $1500.0
+// Withdrawn: $300.0
+// Current Balance: $1200.0
+// Insufficient balance.
+// Benefits of Encapsulation:
+Data Security:
+// Protects sensitive data by hiding it from outside interference.
+// Flexibility:
+// You can change the internal implementation without affecting the external code.
+// Code Reusability:
+// Encapsulation promotes the reuse of objects as independent units.
+// Ease of Maintenance:
+// By isolating the implementation details, updates are localized and less error
 
 
 
