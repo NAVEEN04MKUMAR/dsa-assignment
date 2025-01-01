@@ -16,6 +16,7 @@ obj2.key3="value3";
 console.log("object",obj2);
 //we can get the all the key value pair by console the obj2
 
+//not understand
 //#3 objet create method
 //#3 create the new object using the already existing object
 
@@ -74,7 +75,7 @@ lion.sayHello();
 
 //3.difference betweeen the call,apply,bind
 //Call:the call() method involkes a fuction with a given this value argument and  argument provided by one
-
+//What it does: Calls a function and lets you set the value of this.
 var employee1={firstname:"naveen",lastname:"kumar"};
 var employee2={firstname:"muthu",lastname:"kumar"};
 var employee3={firstname:"vignesh",lastname:"kanna"};
@@ -89,6 +90,7 @@ invite.call(employee2,"hello","where are you?");
 invite.call(employee3,"hello","who are you");
 
 //apply
+//What it does: Same as call, but you pass arguments as an array.
 //pass the arguments as the array with the array
 
 var employee4={firstname:"naveen",lastname:"kumar"};
@@ -106,6 +108,7 @@ invite2.apply(employee6,["hello","who are you"]);
 
 //bind
 //pass the any number of arguments 
+//What it does: Doesn’t call the function immediately. Instead, it creates a new function with this bound.
 
 var employee7={firstname:"naveen",lastname:"kumar"};
 var employee8={firstname:"muthu",lastname:"kumar"};
@@ -124,7 +127,8 @@ var invitee3=invite3.bind(employee9);
 invitee1("hello","how are you?");
 invitee2("hello","where are you?");
 invitee3("hello","who are you")
-
+//Use call or apply when you want to run a function right now with a specific this.
+//Use bind when you want to save a function to use later, with a specific this.
 
 //4. about JSON:
 //javascript object notation it is light weight data-interchanges format
