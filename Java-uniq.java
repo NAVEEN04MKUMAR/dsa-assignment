@@ -877,6 +877,38 @@ public class Main {
         
     }
 }
+class Task extends Thread{
+    private String taskname;
+    public Task(String taskname){
+        this.taskname=taskname;
+    }
+    
+    public void run(){
+        for(int i=1;i<=3;i++){
+         System.out.println(taskname + " - Step " + i);
+
+            try{
+                Thread.sleep(1000);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
+}
 
 
-
+public class Main{
+    public static void main(String[] args){
+        Task task1=new Task("download file");
+        Task task2=new Task("play music");
+        task1.start();
+        task2.start();
+    }
+}
+//The tasks overlap instead of waiting for one to finish before the next starts.
+//play music - Step 1
+// download file - Step 1
+// download file - Step 2
+// play music - Step 2
+// download file - Step 3
+// play music - Step 3
