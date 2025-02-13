@@ -2013,7 +2013,179 @@ Data Security:
 // Ease of Maintenance:
 // By isolating the implementation details, updates are localized and less error
 
+//13/02/2025
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+    }
+}
 
+//1.thread:
+class Main extends Thread{
+    public void run(){
+        System.out.println("thread is running");
+    }
+    public static void main(String[] args){
+         Main t1=new  Main();
+        t1.start();
+    }
+}
+
+
+
+class  Main extends Thread{
+    private String filename;
+    public  Main(String filename){
+        this.filename=filename;
+    }
+    public void run(){
+        System.out.println("thread is running"+filename);
+        try{
+            Thread.sleep(10000);
+        }catch(InterruptedException e){
+        e.printStackTrace();
+        }
+        System.out.println("download complete"+filename);
+    }
+    public static void main(String[] args){
+        Main file1=new  Main("file1.pdf");
+        Main file2=new  Main("file2.pdf");
+        
+file1.start();
+file2.start();
+    }
+}
+
+// //for the above one i am not extend the any class but i am doing the download where the  both the download are occured simultanously then each download will occur for the 10sec delay
+
+//thread:
+//can't extend the another class
+//create thenew thread object every time
+//can't be used between the multiple threads
+//not prefer for the real world project
+
+//2.runnable method we are extend the already class then we are doing here
+
+class Main implements Runnable{
+    public void run(){
+        System.out.println("this is running...");
+    }
+    public static void main(String[] args){
+        Main myrunnable=new Main();
+        Thread t1=new Thread(myrunnable);
+        t1.start();
+    }
+}
+class Main implements Runnable{
+    private String transactiontype;
+    private double amount;
+
+public Main(String transactiontype, double amount){
+    this.transactiontype=transactiontype;
+    this.amount=amount;
+}
+        public void run(){
+        System.out.println("this is running...");
+        try{
+            Thread.sleep(7000);
+        }catch(InterruptedException e){
+e.printStackTrace();            
+        }
+        System.out.println(transactiontype+ "of $"+amount +"completed");
+    }
+    public static void main(String[] args){
+        Thread t1=new Thread(new  Main("deposit",500));
+        Thread t2=new Thread(new  Main("deposit",5000));
+
+        t1.start();
+        t2.start();
+        
+    }
+}
+
+
+//runnable:
+//can extend the another class
+//supports thread pooling
+//can be used between the multiple threads
+//prefer for the real world project
+
+public class Main{
+    public static void main(String[] args){
+        Thread t1=new Thread(()->         System.out.println("this is running...");
+)
+t1.start();
+    }
+}
+
+public class Main{
+    public static void main(String[] args){
+        Thread emailthread=new Thread(()->{
+            System.out.println("sending email to user...");
+            try{
+                Thread.sleep(10000);
+            }catch(InterruptedException e){
+e.printStackTrace();                
+            }
+                        System.out.println("email send successfull...");
+
+        });
+        emailthread.start();
+    }
+}
+
+//it is for the when we dont want to craete the separate class 
+//o/p:
+//sending email to user...
+//after 10 seconds
+//email send successfull...
+
+//4.using the executor service:(Thread Pool)
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Main{
+    public static void main(String[] args){
+        ExecutorService executor=Executors.newFixedThreadPool(2);
+        executor.execute(()->System.out.println("thread is running..."));
+        executor.shutdown();
+    }
+}
+//handling the multiple users efficiently
+
+//********doublt customer request handling
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class CustomerRequest implements Runnable{
+    private int customerid;
+    
+    public CustomerRequest(int customerid){
+        this.customerid=customerid;
+    }
+    public void run(){
+        System.out.println("processing request for he customer"+customerid);
+        try {
+            Thread.sleep(3000); 
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("request for the customer"+customerid+"completed");
+        executors.shutdown();
+    }
+}
+
+
+public class Main{
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newFixedThreadPool(3);
+        for (int i = 1; i <= 5; i++) {
+            service.execute(new CustomerRequest(i));
+        }
+        service.shutdown();
+    }
+}
 
 
 
