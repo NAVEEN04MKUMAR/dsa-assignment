@@ -912,3 +912,25 @@ public class Main{
 // play music - Step 2
 // download file - Step 3
 // play music - Step 3
+
+
+//14/02/2025:
+//187.How do you create a thread by extending thread class?
+//which already available at 186
+
+//188.How do you create a thread by implementing runnable interface?
+//which already available at 186
+
+//189.How do you run a thread in Java?
+//which already available at 186
+
+
+
+
+
+
+
+
+
+
+
