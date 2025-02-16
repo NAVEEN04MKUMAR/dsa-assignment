@@ -925,6 +925,168 @@ public class Main{
 //which already available at 186
 
 
+//190.priority in thread:
+//it is the which thread execute first when the multiple thread executed that time
+class Main extends Thread{
+    public void run(){
+        System.out.println(Thread.currentThread().getName()+"Priority:"+Thread.currentThread().getPriority());
+    }
+    public static void main(String[] args){
+        Main t1=new Main();
+        Main t2=new Main();
+        Main t3=new Main();
+        
+        t1.setPriority(Thread.MIN_PRIORITY);
+        t2.setPriority(Thread.NORM_PRIORITY);
+        t3.setPriority(Thread.MAX_PRIORITY);
+        
+        t1.start();
+        t2.start();
+        t3.start();
+        
+    }
+}
+//Thread-2Priority:10
+// Thread-0Priority:1
+// Thread-1Priority:5
+
+
+//application
+class Main extends Thread{
+    private String transactiontype;
+    public Main(String transactiontype){
+        this.transactiontype=transactiontype;
+    } 
+    public void run(){
+        System.out.println(transactiontype+"Priority:"+getPriority());
+    }
+    public static void main(String[] args){
+        Main salarydepo=new Main("salary deposit");
+        Main fundtransfer=new Main("fund transfer");
+        Main balancecheck=new Main("balance check");
+        
+        salarydepo.setPriority(Thread.MAX_PRIORITY);
+        fundtransfer.setPriority(Thread.NORM_PRIORITY);
+        balancecheck.setPriority(Thread.MIN_PRIORITY);
+        
+      salarydepo.start();
+      fundtransfer.start();
+      balancecheck.start();
+        
+    }
+}
+// fund transferPriority:5
+// balance checkPriority:1
+// salary depositPriority:10
+//for the above oe thread schdular not always gurantee execute based on the priority but i is also depans on the jvm and os schudular
+//higher thread will execute the better chances o the get the thread first
+
+
+//executer service:
+//high level concurreny framework that provides a way to manage and control thread execution
+//part of the java.util.concurrent used to execute the task asynchronously in a thread pool instead of the managing threads
+
+//fixed thread pool
+//executors.new FixedThreadPool(n)-which is the fixed number of threads,good for the application with a known for the concurrent tasks
+//when we know thw fixed number of pool
+import java.util.concurrent.*;
+public class Main{
+    public static void main(String[] args){
+        ExecutorService executor=Executors.newFixedThreadPool(3);
+        Runnable task=()->{
+            System.out.println("task executed by"+Thread.currentThread().getName());
+        };
+        for(int i=0;i<12;i++){
+            executor.execute(task);
+        }
+            executor.shutdown();
+    }
+}
+//o/p:
+// task executed bypool-1-thread-2
+// task executed bypool-1-thread-2
+// task executed bypool-1-thread-2
+// task executed bypool-1-thread-2
+// task executed bypool-1-thread-2
+// task executed bypool-1-thread-2
+// task executed bypool-1-thread-2
+// task executed bypool-1-thread-3
+// task executed bypool-1-thread-3
+// task executed bypool-1-thread-3
+// task executed bypool-1-thread-1
+// task executed bypool-1-thread-2
+
+//executors.newCachedThreadPool(n)-which is the reuse idel threads
+//suitabe for the handling many short lived tasks
+//it will tthe thread grow dynamically as needed
+
+import java.util.concurrent.*;
+public class Main{
+    public static void main(String[] args){
+        ExecutorService executor=Executors.newCachedThreadPool();
+        // Runnable task=()->{
+        //     System.out.println("task executed by"+Thread.currentThread().getName());
+        // };
+        for(int i=0;i<12;i++){
+            final int taskNumber=i;
+            executor.execute(()->{
+                System.out.println("Executing Task " + taskNumber + " by " + Thread.currentThread().getName());
+            });
+        }
+            executor.shutdown();
+    }
+}
+
+//Single Thread Executor
+//Executors.newSingleThreadExecutor()
+//uses a single thread to execute tasks sequentially
+//ensures thread safety for the sequential execution
+
+import java.util.concurrent.*;
+public class Main{
+    public static void main(String[] args){
+        ExecutorService executor=Executors.newSingleThreadExecutor();
+        // Runnable task=()->{
+        //     System.out.println("task executed by"+Thread.currentThread().getName());
+        // };
+        for(int i=0;i<4;i++){
+            final int taskNumber=i;
+            executor.execute(()->{
+                System.out.println("Executing Task " + taskNumber + " by " + Thread.currentThread().getName());
+            });
+        }
+            executor.shutdown();
+    }
+}
+//this code execute in the order
+//Executing Task 0 by pool-1-thread-1
+// Executing Task 1 by pool-1-thread-1
+// Executing Task 2 by pool-1-thread-1
+// Executing Task 3 by pool-1-thread-1
+
+//Single Thread Executor
+import java.util.concurrent.*;
+public class Main{
+    public static void main(String[] args){
+        ScheduledExecutorService schedular=Executors.newScheduledThreadPool(2);
+        Runnable task=()->{
+            System.out.println("executing task at"+ System.currentTimeMillis());
+        };
+        schedular.schedule(task, 100, TimeUnit.SECONDS); // Runs after 3 seconds
+            schedular.shutdown();
+    }
+}
+
+//Executors.newScheduledThreadPool(n)
+//allows schduling task to run ata fixed delay or periodically
+//useful for shduled jobs suchas timers
+
+
+
+
+
+
+
 
 
 
